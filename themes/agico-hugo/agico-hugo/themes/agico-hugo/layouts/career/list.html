@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<section class="section section-lg-bottom bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="subtitle" data-aos="fade-up">{{ i18n "career_subtitle" }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">{{ i18n "career_title" }}</h2>
+      </div>
+      {{ range .Data.Pages }}
+      <div class="col-lg-12 bg-white p-4 rounded shadow-sm my-3" data-aos="fade-up">
+        <div class="d-flex gap-2 gap-md-4 gap-lg-0 align-items-center flex-column flex-lg-row p-2">
+          {{ with .Params.Image }}
+          {{ partial "image.html" (dict "Src" . "Alt" "company-logo" "Class" `me-sm-3 mb-4 mb-sm-0 border rounded p-2` "Size" "75x" "Webp" false) }}
+          {{ end }}
+          <div class="media-body text-sm-left mb-4 mb-sm-0">
+            <h6 class="mt-0 mb-1">{{ .Title }}</h6>
+            <p class="mb-0 text-gray">{{ .Params.Job_category }} | {{ .Params.Location }} | {{ .Params.Job_type }} | {{.PublishDate.Format "06 Jan 2006" }}</p>
+          </div>
+          <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary ms-lg-auto">{{ i18n "apply_now" }}</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

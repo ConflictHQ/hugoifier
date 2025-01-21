@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- portfolio -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-7 order-2 order-lg-1 content">
+        {{ with .Params.Image }}
+        <img src="{{ . | absURL }}" class="img-fluid float-left mr-5 mb-5">
+        {{ end }}
+        {{ .Content }}
+      </div>
+
+      <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0">
+        <div class="p-5 sticky-top bg-secondary">
+          <h3 class="text-white border-bottom pb-4 mb-4">{{ i18n "create_project"}}</h3>
+          <p>{{ .Params.About_project | markdownify }}</p>
+          <a href="{{`contact`| relLangURL }}" class="btn btn-primary">{{ i18n "contact_us" }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /portfolio -->
+
+{{ end }}

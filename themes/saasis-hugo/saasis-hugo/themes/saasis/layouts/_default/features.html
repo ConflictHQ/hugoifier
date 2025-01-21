@@ -1,0 +1,203 @@
+{{ define "main" }}
+
+<main class="section-bordered-even">
+
+  <!-- features-section -->
+  <section class="section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-12" data-aos="fade">
+          <div class="section-title text-center mb-0">
+            <p class="caption">{{ .Title | markdownify }}</p>
+            <h2>{{ .Params.heading | markdownify }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4">
+        {{ range .Params.features }}
+        <div class="col-lg-6" data-aos="fade">
+          <div class="rounded-sm border-sm bg-white-blur p-4 d-flex align-items-start">
+            <div class="block pe-3">
+              <h3 class="h5 mb-3">{{ .title | markdownify }}</h3>
+              <p class="mb-0">{{ .description | markdownify }}</p>
+            </div>
+            {{$img:= resources.Get (.image) }}
+            {{$img:= $img.Resize "50x webp"}}
+            <img loading="lazy" decoding="async" class="img-fluid" src="{{$img.RelPermalink}}" alt="features image" width="{{$img.Width}}" height="{{$img.Height}}" data-aos="cool">
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <!-- /features-section -->
+
+  {{ with site.GetPage "/" }}
+  {{ if .Params.about_info.enable }}
+  {{ with .Params.about_info }}
+  <section>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-6">
+          <div class="section-title">
+            <p class="caption">{{ .Title }}</p>
+            <h2 class="mb-4">{{ .heading | markdownify }}</h2>
+            <p class="mb-4">{{ .description | markdownify }}</p>
+          </div>
+  
+          <ul class="check-list">
+            {{ range .features_list }}
+            <li>{{.}}</li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="col-lg-4 d-none d-lg-block" data-aos="fade-up">
+          {{$img:= resources.Get (.image) }}
+          {{$img:= $img.Resize "500x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid" src="{{$img.RelPermalink}}" alt="features image" width="{{$img.Width}}" height="{{$img.Height}}">
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+
+  {{ with site.GetPage "brands-logos" }}
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="section-title text-center">
+            <p class="caption">{{ .Title }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="brand-carousel" data-aos="cool">
+        {{ range .Params.partners }}
+        <div class="d-flex align-items-center justify-content-center">
+          {{$img:= resources.Get (.image) }}
+          {{$img:= $img.Resize "100x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid" src="{{$img.RelPermalink}}" width="{{$img.Width}}" height="{{$img.Height}}" alt="partner-image">
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+
+  {{ with site.GetPage "/" }}
+  {{ if .Params.about_features.enable }}
+  {{ with .Params.about_features }}
+  <section>
+    <div class="container">
+      <div class="row justify-content-center align-items-center mb-4">
+        <div class="col-lg-5 text-center" data-aos="fade-up">
+          {{$img:= resources.Get (.image) }}
+          {{$img:= $img.Resize "520x webp"}}
+          <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" width="{{$img.Width}}" height="{{$img.Height}}" alt="features-image">
+        </div>
+        <div class="col-lg-5">
+          <div class="section-title">
+            <p class="caption">{{ .Title }}</p>
+            <h2 class="mb-4">{{ .heading | markdownify }}</h2>
+            <p class="mb-4">{{ .description | markdownify }}</p>
+          </div>
+          <div class="row g-4">
+            {{ range .features_items }}
+            <div class="col-sm-6">
+              <div class="rounded-sm border bg-white-blur p-4 text-center h-100" data-aos="cool">
+                {{$img:= resources.Get (.image) }}
+                {{$img:= $img.Resize "50x webp"}}
+                <img loading="lazy" decoding="async" class="mb-3" src="{{$img.RelPermalink}}" alt="icon" width="{{$img.Width}}" height="{{$img.Height}}">
+                <h3 class="h5 mb-0">{{.title}}</h3>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+
+  {{ with site.GetPage "faq" }}
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="section-title">
+            <p class="caption">{{.Title}}</p>
+            <h2 class="title">{{.Params.heading}}</h2>
+          </div>
+          
+          <div class="accordion faq" id="accordionFAQ">
+            {{ range $i, $e := .Params.faq }}
+            <div class="accordion-item bg-white-blur rounded-sm border">
+              <h2 class="accordion-header" id="heading-{{ .title | urlize }}">
+                <button class="accordion-button {{if ne $i 0 }}collapsed{{end}} h5 font-secondary border-0" style="font-weight:600" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ .title | urlize }}" aria-expanded="{{if eq $i 0 }}true{{else}}false{{end}}" aria-controls="collapse-{{ .title | urlize }}">{{ .title | markdownify }}</button>
+              </h2>
+              <div id="collapse-{{ .title | urlize }}" class="accordion-collapse collapse border-0 {{if eq $i 0 }}show{{end}}" aria-labelledby="heading-{{ .title | urlize }}" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  {{ .content | markdownify }}
+                </div>
+              </div>
+            </div>
+            {{end}}
+          </div>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-up">
+          {{$img:= resources.Get (.Params.image) }}
+          {{$img:= $img.Resize "540x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid" src="{{$img.RelPermalink}}" alt="faq-image" width="{{$img.Width}}" height="{{$img.Height}}">
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with site.GetPage "testimonials" }}
+  <section class="fix-space">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6">
+          <div class="section-title text-center">
+            <p class="caption">{{.Title}}</p>
+            <h2 class="title">{{.Params.heading}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center g-4">
+        {{ range first 3 .Params.testimonials }}
+        <div class="col-lg-4 col-md-6">
+          <div class="text-center">
+            <div class="bg-white-blur border-sm rounded-sm p-4 pb-5">
+              <p class="mb-2">{{.content}}</p>
+            </div>
+            <div class="position-relative" style="margin-top:-40px">
+              {{$img:= resources.Get (.image) }}
+              {{$img:= $img.Resize "80x webp"}}
+              <img loading="lazy" decoding="async" class="rounded-circle border-sm mx-auto" src="{{$img.RelPermalink}}" alt="testimonial-image" data-aos="cool" width="{{$img.Width}}" height="{{$img.Height}}">
+              <h3 class="h5 mt-3 mb-2">{{.name}}</h3>
+              <p class="mb-0">{{.designation}}</p>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+  
+        <div class="col-12 mt-5">
+          <div class="text-center">
+            <a href="{{ `testimonials/` | relLangURL }}" class="btn btn-primary">All Feedbacks</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+</main>
+
+{{ end }}

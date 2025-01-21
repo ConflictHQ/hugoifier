@@ -1,0 +1,71 @@
+.slider{
+  background: url("../images/bg/slider-1.jpg") no-repeat;
+  background-size: cover;
+  background-position: 10% 0%;
+  padding:220px 0 200px 0;
+  position: relative;
+  @extend .overly-2;
+    h1{
+      font-size: 56px;
+      line-height: 70px;
+    }
+
+    p{
+     width: 65%;
+    margin: 0 auto;
+    }
+
+    span{
+      letter-spacing: 8px;
+      color:rgba(255,255,255,.85);
+      font-size: 15px;
+    }
+
+}
+
+
+.letter-spacing{
+  letter-spacing: 1px;
+}
+
+.mt--6{
+  margin-top: -4rem;
+}
+
+.slider-cta .btn:hover{
+  border-color: $light;
+  background: transparent;
+}
+.slider .btn-main:hover{
+  background: $light;
+  color: $primary-color;
+  border-color: $light;
+}
+
+@include mobile{
+  
+  .slider{
+    padding: 126px 0 151px 0;
+  }
+    .slider h1 {
+      font-size: 27px;
+      line-height: 38px;
+  }
+}
+@include mobile-xs{
+ 
+  .slider .block h1 {
+      font-size: 28px;
+      line-height: 40px;
+  }
+
+  .slider{
+    padding: 126px 0 151px 0;
+  }
+}
+@include tablet{
+    .slider h1 {
+      font-size: 37px;
+      line-height:48px;
+  }
+}

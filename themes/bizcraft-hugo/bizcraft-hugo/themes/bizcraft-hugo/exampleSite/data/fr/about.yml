@@ -1,0 +1,47 @@
+############################ Company Profile ########################
+company_profile:
+  enable : true
+  title : "Company Profile"
+  title_icon : "fa-suitcase" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+  profile_tab:
+    # profile tab item loop
+    - name : "Who Are We"
+      icon : "fa-info-circle" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      title : "We Are Awwared Winning Company"
+      content : "Over the year we have lots of experience in our field. In sit amet massa sapien. Vestibulum diam turpis, gravida in lobortis id, ornare a eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis nulla non elit dignissim suscipit. Duis lorem nulla, eleifend."
+      
+    # profile tab item loop
+    - name : "Our Company"
+      icon : "fa-briefcase" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      title : "We Have Worldwide Business"
+      content : "Over the year we have lots of experience in our field. In sit amet massa sapien. Vestibulum diam turpis, gravida in lobortis id, ornare a eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis nulla non elit dignissim suscipit. Duis lorem nulla, eleifend."
+      
+    # profile tab item loop
+    - name : "What We Do"
+      icon : "fa-android" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      title : "We Build Readymade Applications"
+      content : "Over the year we have lots of experience in our field. In sit amet massa sapien. Vestibulum diam turpis, gravida in lobortis id, ornare a eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis nulla non elit dignissim suscipit. Duis lorem nulla, eleifend."
+      
+    # profile tab item loop
+    - name : "Modern Design"
+      icon : "fa-pagelines" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      title : "Clean and Modern Design"
+      content : "Over the year we have lots of experience in our field. In sit amet massa sapien. Vestibulum diam turpis, gravida in lobortis id, ornare a eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis nulla non elit dignissim suscipit. Duis lorem nulla, eleifend."
+      
+    # profile tab item loop
+    - name : "Dedicated Support"
+      icon : "fa-support" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      title : "24/7 Dedicated Support"
+      content : "Over the year we have lots of experience in our field. In sit amet massa sapien. Vestibulum diam turpis, gravida in lobortis id, ornare a eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis nulla non elit dignissim suscipit. Duis lorem nulla, eleifend."
+
+
+############################### funfact ##################################
+funfact:
+  enable : true
+  # funfacts content comes from "data/homepage.yml" file
+
+
+############################### team ####################################
+team:
+  enable : true
+  # team content comes from "data/team.yml" file

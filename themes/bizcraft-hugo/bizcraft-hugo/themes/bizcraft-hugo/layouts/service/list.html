@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<section id="main-container">
+  {{ with $data.service.services }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 heading">
+        {{ with .title_icon }} <span class="title-icon float-left"><i class="fa {{ . }}"></i></span> {{ end }}
+        <h2 class="title">{{ .title | markdownify }} <span class="title-desc">{{ .subtitle | markdownify }}</span></h2>
+      </div>
+    </div><!-- Title row end -->
+
+    <div class="row">
+      {{ range $index,$elements:= .service_item }}
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".{{mul $index 2}}s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon"><i class="fa {{ .icon }}"></i></span>
+          <h3>{{ .name | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div><!-- Content row end -->
+  </div>
+  {{ end }}
+
+  <div class="gap-60"></div>
+
+
+  <!-- Testimonial start-->
+  {{ if $data.service.testimonial.enable }}
+  {{ partial "testimonial.html" . }}
+  {{ end }}
+  <!--/ Testimonial end-->
+
+  <div class="gap-60"></div>
+  
+
+  {{ if $data.service.pricing.enable }}
+  {{ partial "pricing.html" . }}
+  {{ end }}
+
+</section>
+
+{{ end }}

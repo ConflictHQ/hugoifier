@@ -1,0 +1,45 @@
+{{ define "main" }} 
+{{ partial "components/page-title.html" . }}
+
+{{ with .Params.faq_list }}
+{{ "<!-- FAQ Section -->" | safeHTML }}
+<section class="faq section pt-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 m-auto">
+				<div class="block shadow">
+					{{ $.Scratch.Set "count" 0 }}
+					{{ range . }}
+					{{ $.Scratch.Set "count" (add ($.Scratch.Get "count") 1) }}
+					{{ "<!-- Faq list -->" | safeHTML }}
+					<div class="faq-item">
+						<div class="faq-item-title">
+							<h2>{{ .title }}</h2>
+						</div>
+						<div id="accordions{{$.Scratch.Get `count`}}" data-children=".item">
+							{{ $.Scratch.Set "counter" 0 }}
+							{{ range .faq_item }}
+							{{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+							<div class="item">
+								<div class="item-link"> <a data-bs-toggle="collapse" data-parent="#accordions{{$.Scratch.Get `count`}}"
+										href="#accordion{{$.Scratch.Get `count`}}{{$.Scratch.Get `counter`}}">{{ .question | markdownify
+										}}</a>
+								</div>
+								<div id="accordion{{$.Scratch.Get `count`}}{{$.Scratch.Get `counter`}}"
+									class="collapse accordion-block">
+									<p>{{ .answer | markdownify }}</p>
+								</div>
+							</div>
+							{{ end }}
+						</div>
+					</div>
+					{{ end }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!--====  End of FAQ Section  ====-->" | safeHTML }}
+{{ end }}
+
+{{ end }}

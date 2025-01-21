@@ -1,0 +1,92 @@
+- id: read_more
+  translation: 더 읽어보기
+  
+- id: read_case_study
+  translation: 전체 사례 연구 읽기
+  
+- id: view_product
+  translation: 제품 보기
+
+- id: send
+  translation: 문자 보내
+
+- id: category
+  translation: 범주
+
+- id: tags
+  translation: 태그
+
+- id: by
+  translation: ~에 의해
+
+- id: min_read
+  translation: 최소 읽기
+
+- id: admin
+  translation: 관리자
+
+- id: lets_meet
+  translation: 만나자
+
+- id: prev_case
+  translation: 이전의
+
+- id: next_case
+  translation: 다음
+
+- id: apply_for_position
+  translation: 직위 지원
+
+- id: view_all_positions
+  translation: 모든 직책 보기
+
+- id: apply_now
+  translation: 지금 신청
+
+- id: share_this_job
+  translation: "이 작업 공유:"
+
+- id: other_jobs
+  translation: 기타 직업
+
+- id: all_jobs
+  translation: 모든 작업
+  
+- id: fname
+  translation: 이름
+  
+- id: full_name
+  translation: 성명
+  
+- id: lname
+  translation: 성
+  
+- id: email
+  translation: 이메일 주소
+  
+- id: website
+  translation: 웹사이트
+  
+- id: organization_size
+  translation: 조직 규모(직원)*
+  
+- id: region
+  translation: 지역*
+  
+- id: message
+  translation: 메세지
+  
+- id: submit_now
+  translation: 지금 제출
+  
+- id: get_demo
+  translation: 데모 받기
+  
+- id: cv_note
+  translation: doc, pdf 파일만 허용 및 파일 크기는 2MB 미만입니다.
+  
+- id: upload_cv
+  translation: 이력서 업로드
+  
+- id: search_faq
+  translation: 클릭 및 검색 FAQ..

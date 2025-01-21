@@ -1,0 +1,147 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- counter -->
+{{ if .Params.counter.enable }}
+{{ with .Params.counter }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="heading text-center">
+          <h2>{{ .title | markdownify }}</h2>
+        </div>
+
+        <div class="row">
+          {{ range .counter_item }}
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="counter-item counter--style text-center mb-5 mb-lg-0">
+              <i class="{{ .icon }}"></i>
+              <h2 class="mb-0 mt-3"><span class="counter-stat count font-weight-bold" data-count="{{ .count }}">0</span> {{ .unit }}</h2>
+              <p>{{ .title }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /counter -->
+
+<!-- promo video -->
+{{ if .Params.video.enable }}
+{{ with .Params.video }}
+<section class="video-block section bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="heading feature-list">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <div class="content">{{ .content | markdownify }}</div>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-main mt-4">{{ .label }}<i class="ti-angle-right ml-2"></i></a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="video-img">
+          <img loading="lazy" src="{{ .video_thumb | absURL }}" alt="" class="img-fluid">
+          <a data-toggle="modal" data-src="{{ .video_embed_link }}" data-target="#videoModal" class="video-play"><i class="ti-control-play"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade rounded" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered border-0" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0 bg-transparent">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="" id="showVideo" allowscriptaccess="always"
+            allow="autoplay"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ end }}
+<!-- /promo video -->
+
+<!-- team -->
+{{ if .Params.team.enable }}
+{{ with .Params.team }}
+<section class="section team">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="heading text-center mb-50">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range .team_member }}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="team-block mb-5 mb-lg-0">
+          <img loading="lazy" src="{{ .image | absURL }}" alt="{{ .name }}" class="img-fluid w-100">
+          <h4 class="mt-4 mb-0">{{ .name }}</h4>
+          <p>{{.designation }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /team -->
+
+<!-- clients slider -->
+{{ if .Params.clients.enable }}
+{{ with .Params.clients }}
+<section class="section awards bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="why-content">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p class="mb-5">{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range .logos }}
+      <div class="col-lg-2 col-md-3 col-sm-4">
+        <div class="award-img-block mb-4 mb-lg-0">
+          <div class="award-img">
+            <img loading="lazy" src="{{ . | absURL }}" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- clients slider -->
+
+{{ if .Params.homepage.testimonial.enable }}
+{{ partial "testimonial.html" . }}
+{{ end }}
+
+{{ end }}

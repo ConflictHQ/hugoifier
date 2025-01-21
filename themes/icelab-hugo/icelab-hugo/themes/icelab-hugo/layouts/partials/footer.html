@@ -1,0 +1,77 @@
+<footer class="footer">
+    <div class="footer-dividers">
+      <div class="divider"></div>
+      <div class="divider"></div>
+      <div class="divider"></div>
+      <div class="divider"></div>
+    </div>
+    <div class="shape-small">
+      <img src="{{`images/shape-small.png` | absURL }}" alt="small-shape">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="logo">
+            <a href="{{ .Site.BaseURL }}">
+              <img src="{{ .Site.Params.logo | absURL }}" alt="logo">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="content">
+            <nav class="footer-nav">
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+                {{ range .Site.Menus.main }}
+                <li class="list-inline-item"><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+                {{ end }}
+              </ul>
+            </nav>
+            <p>{{ .Site.Params.footer_content | markdownify }}</p>
+            <ul class="social-links list-inline">
+              {{ range .Site.Params.social }}
+              <li class="list-inline-item"><a href="{{ .link | safeURL }}" target="_blank"><i class="fa {{ .icon }}"></i></a></li>
+              {{ end }}
+            </ul>
+            <div class="scroll-top">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="6px"
+                height="40px">
+                <path fill-rule="evenodd"
+                  d="M6.000,-0.000 C6.000,-0.000 -0.000,13.621 -0.000,13.766 C-0.000,13.783 4.011,14.008 4.000,13.999 C3.959,13.968 4.000,40.131 4.000,39.999 L6.000,39.999 L6.000,-0.000 L6.000,-0.000 Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+  {{ "<!-- Google Map API -->" | safeHTML }}
+  {{ if .Site.Params.map.enable }}
+  <script src="{{ .Site.Params.map.gmap_api | absURL }}"></script>
+  {{ end }}
+
+  {{ "<!-- JS Plugins -->" | safeHTML }}
+  {{ range .Site.Params.plugins.js}}
+  <script src="{{ .URL | absURL }}"></script>
+  {{ end }}
+  {{ "<!-- Main Script -->" | safeHTML }}
+  {{ $script := resources.Get "js/script.js" | minify}}
+  <script src="{{ $script.Permalink }}"></script>
+  {{ "<!-- google analitycs -->" | safeHTML }}
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', '{{ .Site.Params.googleAnalitycsID }}', 'auto');
+    ga('send', 'pageview');
+  </script>

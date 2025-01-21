@@ -1,0 +1,199 @@
+{{ define "main" }}
+
+  <!-- about us -->
+  <section class="section-lg about pb-0">
+    <div class="container">
+      <div class="row">
+        {{ with .Site.Data.about.about }}
+        <div class="col-lg-12">
+          <h2 class="section-title">{{ .title }}</h2>
+        </div>
+        <div class="col-lg-12 mb-100">
+          <p>{{ .content | safeHTML }}</p>
+        </div>
+        {{ end }}
+        <div class="col-lg-12">
+          <!-- about video -->
+          <div class="about-video">
+            <img class="img-fluid w-100" src="{{ with .Site.Data.about.about.videoThumb }}{{ . | absURL}}{{ end }}" alt="video-thumb">
+            <a class="venobox play-btn" href="{{ with .Site.Data.about.about.videoURL }}{{ . | absURL}}{{ end }}" data-vbtype="iframe"><i class="ti-control-play"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- background shapes -->
+    <svg class="about-bg-1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="81px" height="81px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="81px" height="81px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(0, 42, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(28, 255, 49)"
+    d="M39.000,14.000 C43.971,14.000 48.000,18.029 48.000,23.000 C48.000,27.970 43.971,32.000 39.000,32.000 C34.029,32.000 30.000,27.970 30.000,23.000 C30.000,18.029 34.029,14.000 39.000,14.000 Z"/>
+    </g>
+    </svg>
+    <svg class="about-bg-2"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="72px" height="72px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="72px" height="72px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(0, 42, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(0, 42, 255)"
+    d="M34.500,14.000 C36.985,14.000 39.000,16.015 39.000,18.500 C39.000,20.985 36.985,23.000 34.500,23.000 C32.015,23.000 30.000,20.985 30.000,18.500 C30.000,16.015 32.015,14.000 34.500,14.000 Z"/>
+    </g>
+    </svg>
+    <svg class="about-bg-4"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="138px" height="138px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+      <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+      <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+    </linearGradient>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+    d="M67.500,19.000 C82.136,19.000 94.000,30.864 94.000,45.500 C94.000,60.135 82.136,72.000 67.500,72.000 C52.864,72.000 41.000,60.135 41.000,45.500 C41.000,30.864 52.864,19.000 67.500,19.000 Z"/>
+    </g>
+    <path fill="url(#PSgrad_0)"
+    d="M67.500,19.000 C82.136,19.000 94.000,30.864 94.000,45.500 C94.000,60.135 82.136,72.000 67.500,72.000 C52.864,72.000 41.000,60.135 41.000,45.500 C41.000,30.864 52.864,19.000 67.500,19.000 Z"/>
+    </svg>
+    <svg class="about-bg-5"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="134px" height="135px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+    d="M84.011,50.756 L43.994,63.004 L53.464,21.998 L84.011,50.756 Z"/>
+    </g>
+    </svg>
+    <!-- <img src="{{`images/background-shape/green-dot.png` | relURL }}" alt="background-shape" class="about-bg-1 up-down-animation">
+    <img src="{{`images/background-shape/blue-dot.png` | relURL }}" alt="background-shape" class="about-bg-2 left-right-animation"> -->
+    <img src="{{`images/background-shape/green-half-cycle.png` | relURL }}" alt="background-shape" class="about-bg-3 up-down-animation">
+    <!-- <img src="{{`images/background-shape/seo-ball-1.png` | relURL }}" alt="background-shape" class="about-bg-4 left-right-animation">
+    <img src="{{`images/background-shape/team-bg-triangle.png` | relURL }}" alt="background-shape" class="about-bg-5 up-down-animation"> -->
+    <img src="{{`images/background-shape/service-half-cycle.png` | relURL }}" alt="background-shape" class="about-bg-6 left-right-animation">
+  </section>
+  <!-- /about us -->
+
+  {{ if .Site.Data.about.products.enable }}
+  <!-- product -->
+  <section class="section product" style="background-image: url('{{ .Site.Data.about.products.bgImage | absURL }}');">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          {{ with .Site.Data.about.products }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-100">{{ .description | safeHTML }}</p>
+          {{ end }}
+        </div>
+        {{ range .Site.Data.about.products.productList }}
+        <div class="col-md-4 col-sm-6 mb-50">
+          <a href="{{ .URL }}"><img src="{{ .productImage | absURL }}" alt="product-img" class="rounded w-100 img-fluid"></a>
+        </div>
+        {{ end }}
+        {{ if .Site.Data.about.products.button.enable }}
+        <div class="col-12 text-center">
+          <a href="{{.Site.Data.about.products.button.URL}}" class="btn btn-primary">{{ .Site.Data.about.products.button.btnText }} </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  {{ if .Site.Data.about.vision.enable }}
+  <!-- our vision -->
+  {{ with .Site.Data.about.vision }}
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="section-title">{{ .title }}</h2>
+          <p>{{ .content }}</p>
+        </div>
+        <div class="col-md-6">
+          <img src="{{ .image | absURL }}" alt="vision" class="img-fluid w-100">
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /our vision -->
+  {{ end }}
+
+  {{ if .Site.Data.about.clients.enable}}
+  <!-- clients -->
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-title">{{ .Site.Data.about.clients.title }}</h2>
+          <ul class="list-inline text-center">
+            {{ range .Site.Data.about.clients.clientList }}
+            <li class="list-inline-item mx-5 mb-5"><a href="#"><img src="{{ .logo | absURL }}" alt="clients-logo" class="img-fluid"></a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /clients -->
+{{ end }}
+</section>
+<!-- /product -->
+
+
+{{ end }}

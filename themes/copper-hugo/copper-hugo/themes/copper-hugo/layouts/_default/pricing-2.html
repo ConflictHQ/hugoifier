@@ -1,0 +1,114 @@
+{{ define "main" }}
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-9 text-center mb-40 content">
+        {{.Content}}
+      </div>
+    </div>
+
+    {{ $toggle:= .Params.monthly_yearly_toggle }}
+    {{ if eq $toggle "toggle" }}
+    <div class="row">
+      <!-- pricing-switcher -->
+      <div class="col-md-12">
+        <div class="pricing-switch d-flex align-items-center justify-content-center w-100 mb-30">
+          <label class="h5 m-0" id="monthly">{{ i18n "monthly" }}</label>
+          <div class="toggle">
+            <input class="pricing-check" type="checkbox"><b class="switch"></b>
+          </div>
+          <label class="h5 m-0" id="annually">{{ i18n "yearly" }}</label>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="pricing-table shadow">
+
+          <!-- table head -->
+          <thead class="pricing-table-head">
+            <tr>
+              {{ range .Params.pricing_table_info }}
+              <th>
+                <h3 class="text-white font-weight-bold">{{.name | markdownify}}</h3>
+              </th>
+              {{ end }}
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- table price -->
+            <tr>
+              {{ range .Params.pricing_table_info }}
+              <td data-label="{{.name | markdownify}}" {{if .recomended}}class="active" {{end}}>
+                {{if .recomended}}<span class="recomended">{{i18n "recomended"}}</span>{{end}}
+                {{ if or .monthly_price .yearly_price }}
+                <span class="h2 font-weight-bold d-inline-flex">
+                  {{.currency}}<span class="data-count" data-count-monthly="{{.monthly_price}}"
+                    data-count-annually="{{.yearly_price}}">
+                    {{if eq $toggle "yearly"}}{{.yearly_price}}{{else}}{{.monthly_price}}{{end}}
+                  </span>
+                </span>
+                {{ end }}
+                {{if .monthly_price}}<span
+                  class="text-monthly {{if eq $toggle `yearly`}}d-none{{end}}">\{{ i18n "month"}}</span>{{end}}
+                {{if .yearly_price}}<span
+                  class="text-annually {{if ne $toggle `yearly`}}d-none{{end}}">\{{ i18n "year"}}</span>{{end}}
+                <div class="mt-10">
+                  {{with .monthly_content}}<p class="text-monthly {{if eq $toggle `yearly`}}d-none{{end}}">
+                    {{. | markdownify}}</p>{{end}}
+                  {{with .yearly_content}}<p class="text-annually {{if ne $toggle `yearly`}}d-none{{end}}">
+                    {{. | markdownify}}</p>{{end}}
+                </div>
+              </td>
+              {{ end }}
+            </tr>
+
+            <!-- table body/info -->
+            {{ range .Params.pricing_table_data }}
+            <tr>
+              {{ range .table_row }}
+              <td data-label="{{.name | markdownify}}">
+                <div class="d-flex align-items-center">
+                  {{ with .monthly_icon }}<i
+                    class="{{.}} me-2 text-monthly {{if eq $toggle `yearly`}}d-none{{end}}"></i>{{end}}
+                  {{ with .yearly_icon }}<i
+                    class="{{.}} me-2 text-annually {{if ne $toggle `yearly`}}d-none{{end}}"></i>{{end}}
+                  {{ if or .monthly_count .yearly_count }}
+                  <span class="data-count" data-count-monthly="{{.monthly_count}}"
+                    data-count-annually="{{.yearly_count}}">
+                    {{if eq $toggle "yearly"}}{{.yearly_count}}{{else}}{{.monthly_count}}{{end}}
+                  </span>
+                  {{ end }}
+                  {{with .monthly_content}}<span
+                    class="text-monthly {{if eq $toggle `yearly`}}d-none{{end}}">{{. | markdownify}}</span>{{end}}
+                  {{with .yearly_content}}<span
+                    class="text-annually {{if ne $toggle `yearly`}}d-none{{end}}">{{. | markdownify}}</span>{{end}}
+                </div>
+              </td>
+              {{ end }}
+            </tr>
+            {{ end }}
+
+            <!-- table footer -->
+            <tr>
+              {{ range .Params.pricing_table_info }}
+              <td data-label="{{.name | markdownify}}" class="font-weight-bold">
+                {{ if or .button_label .button_link }}
+                <a href="{{ .button_link | relLangURL }}"
+                  class="btn btn{{if not .recomended}}-outline{{end}}-primary d-block">{{.button_label}}</a>
+                {{ end }}
+              </td>
+              {{ end }}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

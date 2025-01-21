@@ -1,0 +1,78 @@
+<section class="section-sm pb-0">
+  <div class="container">
+    <div class="swiper featured-post-slider rounded-lg overflow-hidden">
+      <div class="swiper-wrapper">
+        {{ range (where site.RegularPages "Type" "featured") }}
+          <div class="swiper-slide">
+            <div class="featured-post">
+              {{ with .Params.images }}
+                {{ range first 1 . }}
+                  {{ partial "image.html" (dict "Src" . "Alt" "post image" "Class" `w-100 featured-post-img`) }}
+                {{ end }}
+              {{ end }}
+
+
+              <div class="featured-post-overlay">
+                <div class="featured-post-content">
+                  <h2 class="mb-3">
+                    <a href="{{ .RelPermalink }}" class="post-title"
+                      >{{ .Title | markdownify }}</a
+                    >
+                  </h2>
+                  <ul class="list-inline post-meta mb-5">
+                    <li class="list-inline-item">
+                      <i class="fas fa-user me-2"></i
+                      ><a
+                        href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/"
+                        >{{ .Params.author }}</a
+                      >
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "date" }} :
+                      {{ .PublishDate.Format "January 2, 2006" }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "categories" }} :
+                      {{ range $i,$p:= .Params.Categories }}
+                        {{ if ne $i 0 }},{{ end }}<a
+                          href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . | humanize }}
+                        </a>
+                      {{ end }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "tags" }} :
+                      {{ range $i,$p:= .Params.Tags }}
+                        {{ if ne $i
+                          0
+                        }}
+                          ,
+                        {{ end }}<a
+                          href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . |
+                            humanize
+                          }}
+                        </a>
+                      {{ end }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+      <div class="swiper-navigation">
+        <button
+          class="swiper-button-prev"
+          aria-label="navigation button"></button>
+        <button
+          class="swiper-button-next"
+          aria-label="navigation button"></button>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>

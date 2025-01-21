@@ -1,0 +1,69 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-6">
+        {{ with .Params.contact }}
+        <div class="section-title text-center">
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+          <p>{{ .description | markdownify}}</p>
+        </div>
+        {{ end }}
+      </div>
+
+      <div class="col-lg-10">
+        <div class="shadow rounded p-5 bg-white">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <h4>{{ i18n `leave_message` }}</h4>
+            </div>
+            <div class="col-lg-6">
+              <div class="contact-form">
+                <form action="">
+                  <div class="form-group mb-4 pb-2">
+                    <label for="exampleFormControlInput1" class="form-label">{{i18n `full_name`}}</label>
+                    <input type="text" class="form-control shadow-none" id="contact_name">
+                  </div>
+                  <div class="form-group mb-4 pb-2">
+                    <label for="exampleFormControlInput1" class="form-label">{{i18n `email_address`}}</label>
+                    <input type="email" class="form-control shadow-none" id="contact_email">
+                  </div>
+                  <div class="form-group mb-4 pb-2">
+                    <label for="exampleFormControlTextarea1" class="form-label">{{i18n `write_message`}}</label>
+                    <textarea class="form-control shadow-none" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                  <button class="btn btn-primary w-100" type="submit">{{ i18n "send" }}</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+              <div class="contact-info">
+                
+                {{ range $i, $ci := .Params.contactInfo }}
+                <div class="block {{if eq $i 0 }}mt-0{{else}}mt-4{{end}}">
+                  <h4 class="h5">{{.title | markdownify }}</h4>
+                  <div class="content">
+                    {{ .content | markdownify }}
+                  </div>
+                </div>
+                {{ end }}
+
+                <div class="block">
+                  <ul class="list-unstyled list-inline my-4 social-icons">
+                    {{range site.Params.social }}
+                    <li class="list-inline-item me-3"><a title="Explorer {{ .title | humanize }} Profile" class="text-black" href="{{ .link }}"><i class="{{ .icon }}"></i></a></li>
+                    {{end}}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

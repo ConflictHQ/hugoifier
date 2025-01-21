@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<section class="blog section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 pr-lg-5">
+        <div class="row">
+          <div class="col-md-12">
+            <article class="post">
+              <div class="post-header">
+                <!-- tags and share start-->
+                <div class="meta-row mb-3">
+                  <div class="tags">
+                    {{ range .Params.Tags }}
+                    <a href="{{ `tags/` | absURL }}{{ . | lower }}">{{ . }}</a>
+                    {{ end }}
+                  </div>
+                </div>
+                <!-- tags and share end-->
+                <h2>{{ .Title | markdownify }}</h2>
+              </div>
+
+              <div class="single-post-thumbnail my-4">
+                <img class="img-fluid w-100" src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" />
+              </div>
+
+              <div class="post-blog">
+                <div class="content">
+                  {{ .Content }}
+                </div>
+                <!--author info start-->
+                {{ range where .Site.RegularPages "Title" (.Params.Author | title) }}
+                <div class="post-author-info mt-5 border p-4">
+                  <div class="media">
+                    {{ if .Params.Image }}
+                    <img class="img-fluid mr-3" style="object-fit: cover;" src="{{ .Params.Image | relURL }}"
+                      alt="{{ .Title }}">
+                    {{else if .Params.Email}}
+                    <img class="img-fluid mr-3" style="object-fit: cover;"
+                      src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon">
+                    {{ end }}
+                    <div class="media-body author-details">
+                      <h5><a href="{{ `author/` | relLangURL }}{{ .Title | lower | urlize }}">{{ .Title }}</a></h5>
+                      <p>{{ .Summary | truncate 150 }}</p>
+                    </div>
+                  </div>
+                </div>
+                {{ end }}
+              </div>
+            </article>
+            <!-- comments -->
+            {{ if .Site.DisqusShortname }}
+            <div class="mt-5">
+              {{ template "_internal/disqus.html" . }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ partial "blog-sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

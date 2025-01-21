@@ -1,0 +1,14 @@
+<article class="card text-center post-card mb-5">
+  <div class="card-header bg-transparent border-0">
+    {{ range .Params.categories }}
+    <a class="post-meta" href="{{`categories/` | absURL}}{{. | lower | urlize}}/">{{.| humanize}}</a>
+    {{ end }}
+    <h3 class="my-3"><a class="post-title" href="{{.Permalink}}">{{.Title}}</a></h3>
+    <span class="post-date">{{.PublishDate.Format "02 Jan, 2006"}}</span>
+  </div>
+  <a href="{{.Permalink}}"><img loading="lazy" class="img-fluid" src="{{ .Params.image_webp | absURL }}" onerror="this.onerror=null;this.src='{{ .Params.image | absURL }}'" alt="{{.Title}}"></a>
+  <div class="card-body px-0">
+    <p class="card-text mb-4 text-left">{{ .Summary }}...</p>
+    <a href="{{.Permalink}}" class="btn btn-outline-primary mb-4">Continue Reading</a>
+  </div>
+</article>

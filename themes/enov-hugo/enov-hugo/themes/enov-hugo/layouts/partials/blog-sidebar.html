@@ -1,0 +1,49 @@
+<div class="sidebar-wrap mt-5 mt-lg-0">
+  <div class="sidebar-widget search mb-5">
+    <form action="{{ `search/` | relLangURL }}">
+      <input id="search-query" name="s" type="search" class="form-control" placeholder="search">
+      <button type="submit" class="btn btn-dark btn-block mt-2">{{ i18n "search" }}</button>
+    </form>
+  </div>
+
+  <div class="sidebar-widget latest-post mb-4">
+    <h5 class="text-center mb-4">{{ i18n "latest_post" }}</h5>
+    {{ range first 3 ( where .Site.RegularPages "Type" "post" )}}
+    <div class="media border-bottom py-3">
+      <a href="{{ .Permalink }}"><img class="post-thumb-sm mr-4 rounded" src="{{ .Params.Image | absURL }}"
+          alt="{{ .Title | markdownify }}"></a>
+      <div class="media-body">
+        <h6 class="my-2"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h6>
+        <span class="text-sm text-muted">{{ .PublishDate.Format "02 Jan 2006" }}</span>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="sidebar-widget category mb-4">
+    <h5 class="mb-4 text-center">{{ i18n "categories"}}</h5>
+    {{- if isset .Site.Taxonomies "categories" }}
+    {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
+    <ul class="list-group">
+      {{- range $name, $items := .Site.Taxonomies.categories }}
+      <li class="list-group-item">
+        <a class="align-items-center d-flex justify-content-between"
+          href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | title | humanize }}<span>{{len $items}}</span></a>
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    {{- end }}
+  </div>
+
+  <div class="sidebar-widget tags mb-3">
+    <h5 class="mb-4 text-center">{{ i18n "tags"}}</h5>
+    {{- if isset .Site.Taxonomies "tags" }}
+    {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
+    {{- range $name, $items := .Site.Taxonomies.tags }}
+    <a href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | humanize }}</a>
+    {{- end }}
+    {{- end }}
+    {{- end }}
+  </div>
+</div>

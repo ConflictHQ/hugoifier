@@ -1,0 +1,154 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: ''
+webhook_url: 
+sections:
+- type: heading
+  label: Homepage
+- type: document
+  path: exampleSite/content/english/_index.md
+  label: Homepage (en)
+- type: document
+  path: exampleSite/content/spanish/_index.md
+  label: Homepage (es)
+- type: heading
+  label: Pages (en)
+- type: document
+  path: exampleSite/content/english/about.md
+  label: About (en)
+- type: document
+  path: exampleSite/content/english/how-it-works.md
+  label: How it works (en)
+- type: document
+  path: exampleSite/content/english/faq.md
+  label: FAQ (en)
+- type: document
+  path: exampleSite/content/english/contact.md
+  label: Contact (en)
+- type: document
+  path: exampleSite/content/english/legal.md
+  label: Legal (en)
+- type: document
+  path: exampleSite/content/english/privacy-policy.md
+  label: Privacy-Policy (en)
+- type: document
+  path: exampleSite/content/english/terms.md
+  label: Terms (en)
+- type: heading
+  label: Pages (es)
+- type: document
+  path: exampleSite/content/spanish/about.md
+  label: About (es)
+- type: document
+  path: exampleSite/content/spanish/how-it-works.md
+  label: How it works (es)
+- type: document
+  path: exampleSite/content/spanish/faq.md
+  label: FAQ (es)
+- type: document
+  path: exampleSite/content/spanish/contact.md
+  label: Contact (es)
+- type: document
+  path: exampleSite/content/spanish/legal.md
+  label: Legal (es)
+- type: document
+  path: exampleSite/content/spanish/privacy-policy.md
+  label: Privacy-Policy (es)
+- type: document
+  path: exampleSite/content/spanish/terms.md
+  label: Terms (es)
+- type: heading
+  label: Services
+- type: document
+  path: exampleSite/content/english/services/_index.md
+  label: Service Setting (en)
+- type: document
+  path: exampleSite/content/spanish/services/_index.md
+  label: Service Setting (es)
+- type: directory
+  path: exampleSite/content/english/services
+  label: All Services (en)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - service
+- type: directory
+  path: exampleSite/content/spanish/services
+  label: All Services (es)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - service
+- type: heading
+  label: Blog
+- type: document
+  path: exampleSite/content/english/blog/_index.md
+  label: Blog Setting (en)
+- type: document
+  path: exampleSite/content/spanish/blog/_index.md
+  label: Blog Setting (es)
+- type: directory
+  path: exampleSite/content/english/blog
+  label: All Blog (en)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - post
+- type: directory
+  path: exampleSite/content/spanish/blog
+  label: All Blog (es)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - post
+- type: heading
+  label: All Pages
+- type: directory
+  path: exampleSite/content
+  label: All Pages
+  create: all
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - new-page
+- type: heading
+  label: Configuration
+- type: document
+  path: exampleSite/config/_default/config.toml
+  label: Configuration
+- type: document
+  path: exampleSite/config/_default/params.toml
+  label: Parameters
+- type: document
+  path: config.toml
+  label: Variables & Plugins
+- type: document
+  path: exampleSite/config/_default/languages.toml
+  label: Languages
+- type: document
+  path: exampleSite/config/_default/menus.en.toml
+  label: Menu (en)
+- type: document
+  path: exampleSite/config/_default/menus.es.toml
+  label: Menu (es)
+upload_dir: exampleSite/static/images
+public_path: "/images"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+build:
+  preview_env:
+  - HUGO_ENV=staging
+  - HUGO_VERSION=0.81.0
+  preview_output_directory: public
+  preview_docker_image: forestryio/hugo:latest
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: hugo server -D -E -F --port 8080 --bind 0.0.0.0 --renderToDisk
+    -d public
+version: 0.81.0

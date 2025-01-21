@@ -1,0 +1,26 @@
+{{ "<!-- authors -->" | safeHTML }}
+<div class="widget widget-author">
+  <h2 class="widget-title">{{ i18n "authors" }}</h2>
+  {{ range first 3 (where site.RegularPages "Section" "author" )}}
+  {{$Permalink := .Permalink}}
+  <div class="d-flex align-items-center">
+    <div class="me-3">
+      {{ if .Params.image }}
+      <a href="{{$Permalink}}">
+        {{ partial "image.html" (dict "Src" .Params.image "Alt" "author image" "Size" "70x") }}
+      </a>
+      {{else if .Params.email}}
+      {{ $emailHash := md5 .Params.email }}
+      {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=70&pg&d=identicon" }}
+      <a href="{{$Permalink}}">
+        <img src="{{$gravatorUrl}}" alt="author image">
+      </a>
+      {{ end }}
+    </div>
+    <div class="flex-1">
+      <h3 class="h5 mb-1"><a class="post-title" href="{{.Permalink}}">{{ .Title }}</a></h3>
+      <span>{{ .Params.Description | markdownify }}</span>
+    </div>
+  </div>
+  {{ end }}
+</div>

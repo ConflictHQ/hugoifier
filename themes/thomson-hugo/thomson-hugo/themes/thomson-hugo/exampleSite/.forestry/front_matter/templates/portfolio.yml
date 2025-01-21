@@ -1,0 +1,30 @@
+---
+label: portfolio
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: file
+  name: image
+  label: image
+- type: text
+  name: client
+  label: client
+- type: text
+  name: year
+  label: year
+- type: text
+  name: description
+  label: description
+  description: meta description
+- type: text
+  name: category
+  label: category
+- type: text
+  name: project_url
+  label: project_url
+- type: text
+  name: type
+  label: type
+  default: portfolio

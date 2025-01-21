@@ -1,0 +1,491 @@
+.shadow {
+  box-shadow: 0px 0px 30px 0px rgba(11, 29, 66, 0.15);
+}
+
+.border-bottom {
+  border-bottom: 1px solid $border-color;
+}
+
+
+/* preloader */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $body-color;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  &:before {
+    content: '';
+    background: url(../images/background/objects.png) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &:after {
+    content: '';
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%, #1d1546 0%, #1a0b25 100%, #207cca 100%);
+    opacity: .25;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.overlay-lighter {
+  &:before {
+    content: '';
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%, #1d1546 0%, #1a0b25 100%, #207cca 100%);
+    opacity: .20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.text-overlay {
+  &:after {
+    content: 'CONFERENCE';
+    font-family: $secondary-font;
+    font-weight: 600;
+    font-size: 215px;
+    width: 100%;
+    height: 300px;
+    background-position: center center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    opacity: .05;
+    transform: translateX(-50%);
+
+    @include tablet {
+      font-size: 100px;
+    }
+
+    @include mobile {
+      font-size: 70px;
+    }
+  }
+}
+
+.overlay-primary {
+  &:before {
+    content: '';
+    background: rgba(255, 102, 0, 0.93);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.overlay-dark {
+  &:before {
+    content: '';
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%, #1d1546 0%, #1a0b25 100%, #207cca 100%);
+    opacity: .75;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.overlay-white {
+  &:before {
+    content: '';
+    background: linear-gradient(0deg, rgba(245, 245, 248, 0.8) 0%, rgba(247, 247, 247, 1) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.overlay-white-slant {
+  &:before {
+    content: '';
+    width: 100%;
+    margin-left: -45%;
+    background: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: skewX(-20deg);
+
+    @include tablet {
+      content: none;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  em {
+    color: $primary-color;
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+a {
+  transition: 0.2s ease;
+}
+
+a:focus,
+a:hover {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.bg-gray {
+  background: #fafafa;
+}
+
+.bg-blue {
+  background: $primary-color;
+}
+
+.bg-banner-one {
+  background: url(../images/background/homepage-one-banner.jpg) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-banner-two {
+  background: url(../images/background/banner-bg-two.jpg) no-repeat;
+  background-size: cover;
+  background-position: right center;
+
+  @include tablet {
+    background-position: center center;
+  }
+}
+
+.bg-about {
+  background: url(../images/background/pattern-background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.bg-speaker {
+  background: url(../images/background/spaeker-background.jpg) fixed no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-timer {
+  background: url(../images/background/timer-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-schedule {
+  background: url(../images/background/schedule-bg.png) no-repeat;
+  background-size: cover;
+}
+
+.bg-service {
+  background: url(../images/background/feature-background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.bg-registration {
+  background: url(../images/background/registration-background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.bg-registration-two {
+  background: url(../images/background/bg-registration-two.jpg) no-repeat;
+  background-size: cover;
+}
+
+.bg-ticket {
+  background: url(../images/background/cta-ticket-bg.jpg) fixed no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-sponsors {
+  background: url(../images/background/sponsors-bg.jpg) fixed no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-subscribe {
+  background: url(../images/background/newsletter-bg.jpg) fixed no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-title {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.section {
+  padding: 90px 0;
+}
+
+.border-less {
+  border-bottom: 1px solid $border-color;
+}
+
+.section-title {
+  margin-top: 25px;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  p {}
+
+  margin-bottom: 40px;
+
+  &.white {
+
+    h3,
+    p {
+      color: $light;
+    }
+  }
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  text-align: center;
+}
+
+// Promo Video
+.video {
+  position: relative;
+
+  &:before {
+    border-radius: 3px;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .video-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-box {
+    a {
+      width: 100%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+
+      i {
+        height: 125px;
+        width: 125px;
+        font-size: 40px;
+        background: $primary-color;
+        border-radius: 100%;
+        color: $light;
+        line-height: 125px;
+        text-align: center;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.form-control {
+  &.main {
+    background: transparent;
+    border: 1px solid darken($light, 30%);
+    border-radius: 0;
+    font-size: 0.9375rem;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    color: darken($light, 30%);
+
+    &:focus {
+      border: 1px solid $primary-color;
+    }
+  }
+
+  &.white {
+    background: $light;
+    color: $black;
+  }
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: 50px;
+}
+
+
+
+.left {
+  overflow: hidden;
+
+  img {
+    margin-left: -40px;
+
+    @include tablet {
+      margin-left: 0;
+      margin-bottom: 30px;
+
+    }
+  }
+}
+
+.right {
+  overflow: hidden;
+
+  img {
+    margin-left: 40px;
+
+    @include tablet {
+      margin-left: 0;
+    }
+  }
+}
+
+.hide-overflow {
+  overflow: hidden;
+}
+
+// Magnific Popup zoom effect
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  /* ideally, transition speed should match zoom duration */
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+  opacity: 1;
+}
+
+.mfp-with-zoom.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+//Border
+.border-top {
+  border-top: 1px solid;
+}
+
+.pagination {
+  margin-top: 30px;
+  justify-content: center;
+
+  .page-item {
+    .page-link {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background: transparent;
+      text-align: center;
+      padding: 0;
+      margin-right: 10px;
+      border: 0;
+      color: $text-color;
+
+      &:hover {
+        background: $primary-color;
+        color: $light;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      .page-link {
+        border-radius: 50%;
+      }
+    }
+
+    &.active {
+      .page-link {
+        background: $primary-color;
+        color: $light;
+      }
+    }
+  }
+}

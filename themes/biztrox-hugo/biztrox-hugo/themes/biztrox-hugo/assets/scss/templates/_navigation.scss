@@ -1,0 +1,258 @@
+/* 2. Navigation */
+.top-header {
+  background: $color-secondary;
+
+  ul {
+    @include mobile {
+      text-align: center;
+    }
+
+    li {
+      margin: 15px 0;
+
+      @include mobile {
+        margin: 10px 0;
+      }
+
+      a {
+        display: inline-block;
+        padding: 0 20px;
+        border-right: 1px solid $border-color;
+        color: #bcbcbd;
+
+        @include mobile {
+          border: 0;
+        }
+
+        span {
+          color: $color-primary;
+        }
+      }
+
+      &:last-child {
+        a {
+          padding-right: 0;
+          border-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.navigation {
+  .navbar {
+    padding: 0px;
+    background: $white !important;
+    position: relative;
+
+    @include desktop {
+      padding: 10px 0px;
+    }
+
+    &-nav {
+      @include desktop {
+        max-width: 400px;
+        margin: auto;
+      }
+    }
+
+    .nav-link {
+      @include desktop {
+        display: block;
+        width: fit-content;
+        margin: auto;
+      }
+    }
+
+    &-brand {
+      position: absolute;
+      left: 0;
+      top: -52px;
+      height: 170px;
+      width: 220px;
+      background: $white;
+      text-align: center;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+      z-index: 9;
+
+      @include desktop {
+        position: relative;
+        height: unset;
+        width: unset;
+        box-shadow: none;
+        top: 24px;
+        background: none;
+
+        img {
+          height: 50px;
+          width: auto;
+        }
+      }
+
+      img {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .nav-item {
+      padding: 28px 0;
+
+      @include desktop {
+        padding: 0;
+      }
+
+      .nav-link {
+        padding: 15px 10px;
+        font-family: $font-primary;
+        font-weight: 600;
+        color: $text-dark;
+        text-transform: uppercase;
+        transition: .2s ease;
+        font-size: 14px;
+
+        @include desktop-lg {
+          font-size: 12px;
+          padding: 15px 6px;
+        }
+
+        @include desktop {
+          padding: 15px 0;
+          font-size: 14px;
+          text-align: center;
+        }
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+
+      &.nav-button {
+        padding: 28px 0 28px 30px;
+
+        @include desktop {
+          padding: 0;
+          margin-bottom: 20px;
+        }
+
+        .nav-link {
+          color: $white;
+
+          &.pgactive {
+            color: $color-primary;
+          }
+        }
+      }
+
+      &.active {
+        .nav-link {
+          color: $color-primary;
+        }
+      }
+    }
+
+    .dropdown {
+      &:hover {
+        .dropdown-menu {
+          visibility: visible;
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+      &-menu {
+        box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
+        padding: 40px 30px;
+        border: 0;
+        border-radius: 0;
+        top: 80%;
+        left: -20px;
+        display: block;
+        visibility: hidden;
+        transition: .3s ease;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+
+        @include desktop {
+          display: none;
+          opacity: 1;
+          visibility: visible;
+          transform: scaleY(1);
+          transform-origin: unset;
+        }
+
+        &.show {
+          visibility: visible;
+          opacity: 1;
+          transform: scaleY(1);
+
+          @include desktop {
+            display: block;
+          }
+        }
+      }
+
+      &-item {
+        position: relative;
+        color: #848484;
+        transition: .2s ease;
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+
+        &:hover {
+          color: $color-primary;
+          text-decoration: underline;
+          background: transparent;
+        }
+
+        &::before {
+          position: absolute;
+          content: '';
+          left: 5px;
+          top: 12px;
+          height: 4px;
+          width: 4px;
+          border-radius: 50%;
+          background: #848484;
+          border: 1px solid $white;
+          display: inline-block;
+          box-shadow: 0 0 0 2px #848484;
+        }
+
+        @include desktop {
+          text-align: center;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .ti-menu {
+      display: block;
+    }
+
+    .ti-close {
+      display: none;
+    }
+
+    .navbar-toggler {
+      padding: 8px 12px;
+    }
+
+    .navbar-toggler[aria-expanded="true"] {
+      .ti-menu {
+        display: none;
+      }
+
+      .ti-close {
+        display: block;
+      }
+    }
+  }
+}

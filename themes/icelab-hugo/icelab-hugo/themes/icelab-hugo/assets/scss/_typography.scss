@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'futurabook';
+    src: url('../fonts/futura_book_font-webfont.woff2') format('woff2'),
+         url('../fonts/futura_book_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'futura_bdcn_btbold';
+    src: url('../fonts/futura_bold_font-webfont.woff2') format('woff2'),
+         url('../fonts/futura_bold_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  line-height: 1.2;
+  font-size: 16px;
+  font-family: $secondary-font;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h3.sm,h4,h5,h6,h6.sm{
+  font-family: $primary-font;
+  font-weight: 700;
+  color: $black;
+}
+
+h1,.h1{
+  font-size: 60px;
+}
+
+h2,.h2{
+  font-size: 40px;
+}
+
+h3,.h3{
+  font-size: 35px;
+}
+
+h4,.h4{
+  font-size: 30px;
+}
+
+h5, .h5{
+  font-size: 24px;
+}
+
+h6.big{
+  font-size: 20px;
+}
+
+h6, .h6{
+  font-size: 18px;
+}
+
+h6.sm{
+  font-size: 16px;
+}
+
+a{
+  font-size: 16px;
+}
+
+p{
+  font-size: 16px;
+}
+
+p.sm{
+  font-size: 14px;
+}
+
+// span{
+//   font-size: 13px;
+// }

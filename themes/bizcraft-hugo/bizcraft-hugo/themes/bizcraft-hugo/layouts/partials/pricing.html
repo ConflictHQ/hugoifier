@@ -1,0 +1,37 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+{{ with $data.pricing }}
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 heading">
+        {{ with .title_icon }} <span class="title-icon float-left"><i class="fa {{ . }}"></i></span> {{ end }}
+        <h2 class="title">{{ .title | markdownify }} <span class="title-desc">{{ .subtitle | markdownify }}</span></h2>
+      </div>
+    </div><!-- Title row end -->
+    <div class="row">
+      <!-- plan start -->
+      {{ range $index,$elements:= .pricing_table }}
+      <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay=".{{mul $index 2}}s">
+        <div class="plan text-center {{if eq .type `featured`}}featured{{end}}">
+          <span class="plan-name">{{ .name }} <small>{{.package | markdownify }}</small></span>
+          <p class="plan-price"><sup class="currency">{{ .currency }}</sup><strong>{{ .dollar }}</strong>{{with .cent}}<sub>.{{.}}</sub>{{end}}</p>
+          <ul class="list-unstyled">
+            {{ range .services }}
+            <li>{{ . | markdownify }}</li>
+            {{ end }}
+          </ul>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a class="btn btn-primary" href="{{ .link | safeURL }}">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      <!-- plan end -->
+    </div>
+    <!--/ Content row end -->
+  </div>
+  <!--/  Container end-->
+</section>
+{{ end }}

@@ -1,0 +1,79 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row no-gutters-lg">
+      <div class="col-12">
+        <h2 class="section-title">{{i18n `latest_articles`}}</h2>
+      </div>
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="row">
+          {{ $paginator:= .Paginate (where site.RegularPages "Section" "in" site.Params.mainSections) }}
+          {{ range $i, $e:= $paginator.Pages }}
+          {{ if eq $i 0}}
+          <div class="col-12 mb-4">
+            <article class="card article-card">
+              <a href="{{.Permalink}}">
+                <div class="card-image">
+                  <div class="post-info">
+                    <span class="text-uppercase">{{.PublishDate.Format "02 Jan 2006"}}</span>
+                    <span class="text-uppercase">{{ .ReadingTime }} {{i18n `minutes_read`}}</span>
+                  </div>
+                  
+                  {{ $image:= .Params.image }}
+                  {{ if $image }}
+                  {{ if hasPrefix $image "http" }}
+                  <img loading="lazy" decoding="async" src="{{ $image | safeURL }}" alt="{{ .Title }}" class="w-100">
+                  {{ else }}
+                  {{ if fileExists (add `assets/` .Params.image) }}
+                  {{$img:= resources.Get (.Params.image) }}
+                  {{$img:= $img.Resize "850x webp"}}
+                  <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="{{.Title}}" class="w-100" width="{{$img.Width}}" height="{{$img.Height}}">
+                  {{ else }}
+                  <span class="image-fallback">{{.Title | title}}</span>
+                  {{ end }}
+                  {{ end }}
+                  {{ else }}
+                  <span class="image-fallback">{{.Title | title}}</span>
+                  {{ end }}
+                </div>
+              </a>
+              
+              <div class="card-body px-0 pb-1">
+                {{ if .Params.categories }}
+                <ul class="post-meta mb-2">
+                  <li>
+                    {{ range $i,$e:= .Params.categories }}
+                    <a href="{{`categories/` | relLangURL}}{{index (split . `/`) 0}}/">{{- index (split . "/") 0 -}}</a>
+                    {{ if (index (split . "/") 1)}}
+                    <a href="{{`categories/` | relLangURL}}{{index (split . `/`) 0}}/{{index (split . `/`) 1}}">{{- index (split . "/") 1 -}}</a>
+                    {{ end }}
+                    {{ end }}
+                  </li>
+                </ul>
+                {{ end }}
+                <h2 class="h1"><a class="post-title" href="{{.RelPermalink}}">{{ .Title }}</a></h2>
+                <p class="card-text">{{.Summary}}</p>
+
+                <div class="content">
+                  <a class="read-more-btn" href="{{.RelPermalink}}">Read Full Article</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          {{ else }}
+          {{ .Render "post" }}
+          {{ end }}
+          {{ end }}
+          <div class="col-12">
+            {{ partial "pagination.html" . }}
+          </div>
+        </div>
+      </div>
+      <!-- sidebar -->
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

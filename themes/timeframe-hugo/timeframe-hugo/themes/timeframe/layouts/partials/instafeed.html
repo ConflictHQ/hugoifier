@@ -1,0 +1,19 @@
+<!-- instagram feed -->
+{{ if site.Params.instafeed.enable }}
+{{ if eq site.Params.layout.instafeed "1" }}
+<section class="section-sm instafeed-full">
+  {{ else }}
+  <section class="section-sm">
+    {{ end }}
+    {{ with site.Params.instafeed }}
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">{{ i18n "instagram_post" }}</h2>
+      </div>
+      <div class="instagram-slider" id="instafeed" data-accessToken="{{.access_token}}">
+      </div>
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+  <!-- /instagram feed -->

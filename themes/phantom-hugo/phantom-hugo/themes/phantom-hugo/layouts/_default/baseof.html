@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="{{ with site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{- partial "head.html" . -}}
+
+<body class="{{if site.Params.dark_mode}}dark{{end}}">
+	{{- partialCached "preloader.html" . -}}
+	{{- block "main" . }}{{- end }}
+	{{- partialCached "script.html" . -}}
+</body>
+
+</html>

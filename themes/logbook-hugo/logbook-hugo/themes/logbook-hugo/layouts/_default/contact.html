@@ -1,0 +1,73 @@
+{{ define "main" }}
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="title-bordered mb-5 d-flex align-items-center">
+            <h1 class="h4 fw-normal">{{ .Title }}</h1>
+            <ul class="list-inline social-icons ms-auto me-3 d-none d-sm-block">
+              {{ range site.Params.social }}
+                <li class="list-inline-item">
+                  <a href="{{ .link | safeURL }}"
+                    ><i class="{{ .icon }}"></i
+                  ></a>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content mb-5">
+            {{ .Content }}
+            <h4 class="mt-5">{{ i18n "write_email" }}</h4>
+            <p>
+              <i class="fas fa-envelope-open-text me-2 text-primary"></i
+              >{{ site.Params.contact_info.email | markdownify }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <form
+            method="POST"
+            class="row gy-4"
+            action="{{ site.Params.contact_form_action }}">
+            <div class="col-12 form-group">
+              <label class="mb-2" for="name"
+                >{{ i18n "name" }} (Required)</label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-12 form-group">
+              <label class="mb-2" for="email"
+                >{{ i18n "email" }} (Required)</label
+              >
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-12 form-group">
+              <label class="mb-2" for="message">{{ i18n "message" }}</label>
+              <textarea
+                name="message"
+                id="message"
+                class="form-control"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">
+                {{ i18n "send" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

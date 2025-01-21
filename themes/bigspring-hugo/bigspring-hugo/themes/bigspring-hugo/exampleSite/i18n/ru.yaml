@@ -1,0 +1,92 @@
+- id: read_more
+  translation: Подробнее
+  
+- id: read_case_study
+  translation: Читать полностью
+  
+- id: view_product
+  translation: Посмотреть продукт
+
+- id: send
+  translation: послать
+
+- id: category
+  translation: Категория
+
+- id: tags
+  translation: Теги
+
+- id: by
+  translation: к
+
+- id: min_read
+  translation: мин Читать
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: Давай встретимся
+
+- id: prev_case
+  translation: Предыдущий
+
+- id: next_case
+  translation: Следующий
+
+- id: apply_for_position
+  translation: Подать заявление
+
+- id: view_all_positions
+  translation: Посмотреть все
+
+- id: apply_now
+  translation: Применить сейчас
+
+- id: share_this_job
+  translation: "Делиться:"
+
+- id: other_jobs
+  translation: Другие вакансии
+
+- id: all_jobs
+  translation: Все вакансии
+  
+- id: fname
+  translation: Имя
+  
+- id: full_name
+  translation: Полное имя
+  
+- id: lname
+  translation: Фамилия
+  
+- id: email
+  translation: Эл. адрес
+  
+- id: website
+  translation: Веб-сайт
+  
+- id: organization_size
+  translation: Размер организации (сотрудники)*
+  
+- id: region
+  translation: Область*
+  
+- id: message
+  translation: Сообщение
+  
+- id: submit_now
+  translation: Отправить сейчас
+  
+- id: get_demo
+  translation: Получить демо
+  
+- id: cv_note
+  translation: разрешен только doc, pdf файл и размер файла будет меньше 2 МБ
+  
+- id: upload_cv
+  translation: Загрузить резюме
+  
+- id: search_faq
+  translation: Нажмите и выполните поиск в FAQ..

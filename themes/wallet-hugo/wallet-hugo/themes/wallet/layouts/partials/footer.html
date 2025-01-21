@@ -1,0 +1,96 @@
+<footer class="section-sm bg-tertiary">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <div class="footer-widget">
+          <h5 class="mb-4 text-primary font-secondary">{{i18n `service`}}</h5>
+          <ul class="list-unstyled">
+            {{with site.GetPage "section" (string site.Params.service_section.section)}}
+            {{ range .Data.Pages }}
+            <li class="mb-2"><a href="{{.Permalink}}">{{.Title}}</a></li>
+            {{end}}
+            {{end}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <div class="footer-widget">
+          <h5 class="mb-4 text-primary font-secondary">{{i18n `about`}}</h5>
+          <ul class="list-unstyled">
+            {{ range site.Menus.about }}
+            <li class="mb-2"><a href="{{.URL | absLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <div class="footer-widget">
+          <h5 class="mb-4 text-primary font-secondary">{{i18n `help`}}</h5>
+          <ul class="list-unstyled">
+            {{ range site.Menus.help }}
+            <li class="mb-2"><a href="{{.URL | absLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+      </div>
+      {{with site.Params.subscription }}
+      {{if .enable }}
+      <div class="col-lg-4 col-md-12 newsletter-form">
+        <div style="background-color: #F4F4F4; padding: 35px;">
+          <h5 class="mb-4 text-primary font-secondary">{{i18n `subscribe`}}</h5>
+
+          <div class="pe-0 pe-xl-5">
+            <form action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control shadow-none bg-white border-end-0" placeholder="Email address">
+                <span class="input-group-text border-0 p-0">
+                  <button class="input-group-text border-0 bg-primary" type="submit" name="subscribe" aria-label="Subscribe for Newsletter"><i class="fas fa-arrow-right"></i></button>
+                </span>
+              </div>
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+              </div>
+            </form>
+          </div>
+
+          <p class="mb-0">{{.description | markdownify}}</p>
+        </div>
+        </div>
+      {{ end }}
+      {{ end }}
+    </div>
+    
+    <div class="row align-items-center mt-5 text-center text-md-start">
+      <div class="col-lg-4">
+        <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+          {{ $logo:= site.Params.logo }}
+          {{ if fileExists (add `assets/` $logo) }}
+          {{ $logo:= resources.Get $logo }}
+          {{ $option := add (string site.Params.logo_width) " webp" }}
+          {{ $logo:= $logo.Resize site.Params.logo_width }}
+          {{ $logo_webp:= $logo.Resize $option }}
+          <img loading="prelaod" decoding="async" class="img-fluid" width="{{$logo.Width}}" height="{{$logo.Height}}" src="{{$logo_webp.RelPermalink}}" alt="{{ site.Title }}" onerror="this.onerror=null;this.src='{{$logo.RelPermalink}}'">
+          {{ else }}
+          {{site.Params.logo_text | markdownify}}
+          {{ end }}
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+        <ul class="list-unstyled list-inline mb-0 text-lg-center">
+          {{ range site.Menus.footer }}
+            <li class="list-inline-item me-4"><a class="text-black" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 text-md-end mt-4 mt-md-0">
+        <ul class="list-unstyled list-inline mb-0 social-icons">
+          {{range site.Params.social }}
+          <li class="list-inline-item me-3"><a title="Explorer {{ .title | humanize }} Profile" class="text-black" href="{{ .link }}"><i class="{{ .icon }}"></i></a></li>
+          {{end}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 {{if not .Params.sidebar}}mx-auto{{end}}">
+        {{ partial "breadcrumb.html" . }}
+      </div>
+      <div class="col-lg-8 mx-auto mb-5 mb-lg-0">
+        {{ with .Params.image }}
+        <img src="{{ . | absURL }}" class="img-fluid w-100 rounded-lg mb-4">
+        {{ end }}
+        <h1 class="mb-4">{{.Title | markdownify }}</h1>
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+      {{ if .Params.sidebar }}
+      {{ partial "sidebar.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>

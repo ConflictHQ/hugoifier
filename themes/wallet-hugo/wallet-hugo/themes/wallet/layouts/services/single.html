@@ -1,0 +1,19 @@
+{{ define "main" }}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="bg-white shadow rounded-lg p-4 sticky-top" style="top: 30px;">
+          <h4 class="has-line-end">{{.Title}}</h4>
+          {{ .TableOfContents }}
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="content">{{.Content}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

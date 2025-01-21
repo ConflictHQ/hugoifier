@@ -1,0 +1,192 @@
+######################## default configuration ####################
+baseURL = "/adrian/examplesite/"
+languageCode = "en-us"
+title = "Adrian Hugo | E-commerce template"
+theme = "adrian-hugo"
+summaryLength = "20"
+paginate = 6
+disqusShortname = "themefisher-template"    #get your shortname form : disqus.com
+# google analytics
+googleAnalytics = "" # example : UA-123-45
+
+############################ Output ###############################
+[outputs]
+home = ["HTML", "AMP", "RSS", "JSON"]
+
+############################# Taxonomies ###########################
+[taxonomies]
+category = "categories"
+color = "colors"
+size = "sizes"
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/themify-icons/themify-icons.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+[[params.plugins.css]]
+link = "https://cdn.snipcart.com/themes/v3.1.0/default/snipcart.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/SyoTimer/jquery.syotimer.min.js"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "https://cdn.snipcart.com/themes/v3.1.0/default/snipcart.js"
+[[params.plugins.js]]
+link = "plugins/instafeed-js/instafeed.min.js"
+[[params.plugins.js]]
+link = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+link = "plugins/search/mark.js"
+[[params.plugins.js]]
+link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"
+
+
+############################## navigation ###############################
+
+# main menu
+[[menu.main]]
+name = "Shop"
+URL = "shop/"
+weight = 1
+
+[[menu.main]]
+name = "About"
+URL = "about/"
+weight = 2
+
+[[menu.main]]
+name = "Faq"
+URL = "faq/"
+weight = 3
+
+[[menu.main]]
+name = "Contact"
+URL = "contact/"
+weight = 4
+
+
+# category menu
+[[menu.category]]
+name = "Bag"
+URL = "categories/bag/"
+weight = 1
+
+[[menu.category]]
+name = "Shirt"
+URL = "categories/shirt/"
+weight = 2
+
+[[menu.category]]
+name = "Shoe"
+URL = "categories/shoe/"
+weight = 3
+
+[[menu.category]]
+name = "Tops"
+URL = "categories/tops/"
+weight = 4
+
+# useful links
+[[menu.useful_links]]
+name = "Shop"
+URL = "shop/"
+weight = 1
+
+[[menu.useful_links]]
+name = "About"
+URL = "about/"
+weight = 2
+
+[[menu.useful_links]]
+name = "Faq"
+URL = "faq/"
+weight = 3
+
+[[menu.useful_links]]
+name = "Contact"
+URL = "contact/"
+weight = 4
+
+# footer menu
+[[menu.footer]]
+name = "Privacy Policy"
+URL = "privacy-policy/"
+weight = 1
+
+[[menu.footer]]
+name = "Terms & Conditions"
+URL = "terms-conditions/"
+weight = 2
+
+[[menu.footer]]
+name = "Cookie Policy"
+URL = "cookie-policy/"
+weight = 3
+
+[[menu.footer]]
+name = "Terms of Sale"
+URL = "terms-of-sale/"
+weight = 4
+
+#################### default parameters ################################
+[params]
+logo = "images/logo.png"
+home = "Home"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# snipcart public api key
+snipcartAPI = "ZDgxY2ZiM2EtMWRmMi00M2ZkLWI1MDAtNzA2MDc0Y2Q1MzJlNjM3MTAzNDIwOTQ1NDA4NjM4"
+currency = "$"
+# google map
+gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+mapLatitude = "51.5223477"
+mapLongitude = "-0.1622023"
+mapMarker = "images/marker.png"
+# Google Analitycs
+googleAnalitycsID = "Your ID"
+# Contact Information
+mobile = "0124857985320"
+email = "demo@email.com"
+location = "Dhaka, Bangladedsh"
+# contact form action
+contactFormAction = "#" # contact form works with : https://formspree.io
+# footer content
+footer_content = "Iste dolores iure quis excepturi, deserunt praesentium."
+# copyright
+copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
+
+# Preloader
+[params.preloader]
+enable = true
+preloader = "" # use .png , .svg or .gif format
+
+# search
+[params.search]
+enable = true
+
+# opening hours
+[[params.openingHour]]
+day = "Monday-Friday"
+time = "8.00-20.00"
+
+[[params.openingHour]]
+day = "Saturday"
+time = "10.00-20.00"
+
+[[params.openingHour]]
+day = "Sunday"
+time = "12.00-20.00"

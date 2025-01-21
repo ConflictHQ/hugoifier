@@ -1,0 +1,71 @@
+- id: home
+  translation: Maison
+
+- id: read_more
+  translation: Savoir plus
+
+- id: first_name
+  translation: Prénom
+
+- id: last_name
+  translation: Nom de famille
+
+- id: full_name
+  translation: Nom et prénom
+
+- id: email
+  translation: Adresse e-mail
+
+- id: email_input_placeholder
+  translation: Entrez votre adresse email
+
+- id: password
+  translation: Mot de passe
+
+- id: purpose
+  translation: Raison/Objectif
+
+- id: message
+  translation: Message
+
+- id: submit
+  translation: Soumettre maintenant
+
+- id: submit_text
+  translation: Obtenir un devis
+
+- id: no_post
+  translation: Aucune publication trouvée
+
+- id: related_post
+  translation: Articles Similaires
+
+- id: recent_post
+  translation: Message récent par
+
+- id: company
+  translation: Société
+
+- id: resources
+  translation: Ressources
+
+- id: email_us
+  translation: Envoyez-nous email
+
+- id: contact_us
+  translation: Contactez-nous
+
+- id: contact_select_option_1
+  translation: Enquête générale
+
+- id: contact_select_option_2
+  translation: Demande de soutien
+
+- id: contact_select_option_3
+  translation: Opportunité de partenariat
+
+- id: apply_now
+  translation: Appliquer maintenant
+
+- id: back_to_home
+  translation: Rentrer à la maison

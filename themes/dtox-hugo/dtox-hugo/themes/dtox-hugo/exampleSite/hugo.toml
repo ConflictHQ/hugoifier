@@ -1,0 +1,178 @@
+baseURL = "https://demo.gethugothemes.com/dtox/site/"
+languageCode = "en-us"
+title = "Dtox Hugo Template"
+theme = "dtox-hugo"
+# Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
+timeZone = "America/New_York"
+# post pagination
+paginate = 6 # see https://gohugo.io/extras/pagination/
+# post excerpt
+summaryLength = 10 # see https://gohugo.io/content-management/excerpts/
+# google analytics
+googleAnalytics = "UA-123456-78" # example: UA-123456-78, for more info, read the article https://support.google.com/analytics/answer/1008080?hl=en
+# disqus short name
+disqusShortname = "themefisher-template" # we use disqus to show comments in blog posts . To install disqus please follow this tutorial https://portfolio.peter-baumgartner.net/2017/09/10/how-to-install-disqus-on-hugo/
+# disable language
+disableLanguages = [
+] # example: ["fr"] for disable french language. see https://gohugo.io/content-management/multilingual/
+hasCJKLanguage = false #  If hasCJKLanguage true, auto-detect Chinese/Japanese/Korean Languages in the content. see: https://gohugo.io/getting-started/configuration/#hascjklanguage
+
+
+############################# Build ##############################
+[build]
+noJSConfigInAssets = false
+useResourceCacheWhen = 'fallback'
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/.*\.(js|ts|jsx|tsx)'
+target = '(js|scripts|javascript)'
+[[build.cachebusters]]
+source = 'assets/.*\.(css|sass|scss)$'
+target = '(css|styles|scss|sass)'
+[[build.cachebusters]]
+source = 'assets/.*\.(.*)$'
+target = '$1'
+
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML", "RSS"]
+
+############################# Imaging ##############################
+[imaging]
+# See https://github.com/disintegration/imaging
+# Default JPEG or WebP quality setting. Default is 75.
+quality = 90
+resampleFilter = "lanczos"
+
+############################# Caches ###############################
+[caches]
+[caches.images]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+[caches.assets]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+############################# Markup ###############################
+[markup]
+[markup.goldmark.renderer]
+unsafe = true
+
+# Plugins
+[params.plugins]
+
+# CSS Plugins
+[[params.plugins.css]]
+URL = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+URL = "plugins/slick/slick.css"
+[[params.plugins.css]]
+URL = "plugins/themify-icons/themify-icons.css"
+[[params.plugins.css]]
+URL = "plugins/Venobox/venobox.css"
+[[params.plugins.css]]
+URL = "plugins/aos/aos.css"
+
+# JS Plugins
+[[params.plugins.js]]
+URL = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+URL = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+URL = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+URL = "plugins/aos/aos.js"
+[[params.plugins.js]]
+URL = "plugins/Venobox/venobox.min.js"
+
+
+# Menu
+[menu]
+[[menu.main]]
+name = "Feature"
+URL = "#feature"
+weight = 2
+
+[[menu.main]]
+name = "About"
+URL = "about/"
+weight = 3
+
+[[menu.main]]
+name = "Service"
+URL = "service/"
+weight = 4
+
+[[menu.main]]
+name = "Team"
+URL = "#team"
+weight = 5
+
+[[menu.main]]
+name = "Pricing"
+URL = "#pricing"
+weight = 6
+
+[[menu.main]]
+name = "Contact"
+URL = "contact/"
+weight = 7
+
+
+[params]
+logo = "images/logo.png"
+home = "Home"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# Google Analitycs
+googleAnalitycsID = "Your ID"
+
+# Preloader
+[params.preloader]
+enable = true
+
+# Navigation button
+[params.navBtn]
+enable = true
+btnText = "Try Free"
+URL = "#"
+
+# Banner
+[params.banner]
+title = "Take Control of your <br> Project and Team"
+content = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br> dolore eu fugiat nulla pariatur."
+bgImage = "images/hero-area/banner-bg.svg"
+image = "images/hero-area/banner-img.png"
+btnText = "explore us"
+URL = "#"
+[params.banner.bgShape]
+enable = true
+
+
+# footer
+[params.footer]
+bgImage = "images/backgrounds/footer-bg.svg"
+
+[[params.footer.socialIcon]]
+icon = "ti-facebook"
+color = "facebook"
+URL = "#"
+
+[[params.footer.socialIcon]]
+icon = "ti-twitter-alt"
+color = "twitter"
+URL = "#"
+
+[[params.footer.socialIcon]]
+icon = "ti-linkedin"
+color = "linkedin"
+URL = "#"
+
+[[params.footer.socialIcon]]
+icon = "ti-github"
+color = "black"
+URL = "#"

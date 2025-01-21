@@ -1,0 +1,70 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = "" # don't use a slash for home url
+weight = 1
+hasChildren = true
+
+[[main]]
+parent = "Home"
+name = "Home Classic"
+url = "homepage/classic/" 
+
+[[main]]
+parent = "Home"
+name = "Home Creative"
+url = "homepage/creative/" 
+
+[[main]]
+name = "About"
+url = "about/"
+weight = 3
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 4
+
+[[main]]
+name = "Tools"
+url = "tools/"
+weight = 5
+
+[[main]]
+name = "Pages"
+url = "#"
+weight = 6
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Tag"
+url = "tags/tech/"
+
+[[main]]
+parent = "Pages"
+name = "Category"
+url = "categories/hugo/"
+
+[[main]]
+parent = "Pages"
+name = "Elements"
+url = "elements/"
+ 
+# Footer Menu 
+[[footer]]
+name = "About"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Privacy"
+url = "privacy/"
+weight = 3
+
+[[footer]]
+name = "Terms & Conditions"
+url = "terms-conditions/"
+weight = 4

@@ -1,0 +1,78 @@
+################# progress ###############
+progress:
+  enable : true
+  image : "images/about/about-us.png"
+  progressbar:
+    # progress bar
+    - title : "HTML5 Expertise"
+      parcent : "85"
+      
+    # progress bar
+    - title : "jQuery Expertise"
+      parcent : "95"
+      
+    # progress bar
+    - title : "PHP Expertise"
+      parcent : "80"
+      
+    # progress bar
+    - title : "User Interface Expertise"
+      parcent : "90"
+
+
+################### video ####################
+video:
+  enable : true
+  videoThumb : "images/about/video-thumb.jpg"
+  videoLink : "https://www.youtube.com/embed/jrkvirglgaQ?autoplay=1" # embeded link
+
+
+################ testimonial ##################
+testimonial :
+  enable : true
+  title : "Our Client Testimonails"
+  testimonialItem:
+    # testimonial item
+    - name : "Mellissa Christine"
+      image : "images/testimonial/user-1.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Lara Cherris"
+      image : "images/testimonial/user-2.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Devid Json"
+      image : "images/testimonial/user-3.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Rocky Roy"
+      image : "images/testimonial/user-4.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Mellissa Christine"
+      image : "images/testimonial/user-1.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Lara Cherris"
+      image : "images/testimonial/user-2.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Devid Json"
+      image : "images/testimonial/user-3.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Rocky Roy"
+      image : "images/testimonial/user-4.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+
+
+###################### call to action ##############
+cta:
+  enable: true

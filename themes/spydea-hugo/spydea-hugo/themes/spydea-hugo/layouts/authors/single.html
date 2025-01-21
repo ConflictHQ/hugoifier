@@ -1,0 +1,108 @@
+{{ define "main" }}
+  <section class="lg:section relative overflow-hidden py-10">
+    <div class="container relative z-30">
+      <div class="row">
+        <div class="col-12 relative mx-auto">
+          <div class="shadow-default rounded-2xl bg-white px-6 py-10 sm:px-11">
+            <div class="row gy-4">
+              <div
+                data-aos="fade-up-sm"
+                class="border-border lg:col-4 xl:col-3 lg:border-border border-b border-opacity-50 pb-8 lg:border-b-0 lg:border-r lg:pb-0">
+                <div class="mb-6 h-fit w-full">
+                  {{ partial "image.html" (dict "Src" .Params.Image "Class" "mx-auto h-[180px] w-[180px] rounded-full object-cover" "Alt" .Title) }}
+                </div>
+                <div class="px-5 text-center">
+                  <h3 class="text-dark mb-4 text-xl font-semibold sm:text-2xl">
+                    {{ .Title | markdownify }}
+                  </h3>
+                  <ul
+                    class="font-secondary text-dark mt-5 flex flex-wrap items-center justify-center gap-4">
+                    {{ range .Params.social }}
+                      <li class="inline-block">
+                        <a
+                          href="{{ .link | absURL }}"
+                          target="_blank"
+                          class="shadow-xs hover:bg-dark/90 flex h-[45px] w-[45px] items-center justify-center rounded-full bg-white text-center transition-colors duration-300 hover:text-white">
+                          <i class="{{ .icon }}"></i>
+                        </a>
+                      </li>
+                    {{ end }}
+                  </ul>
+                </div>
+              </div>
+              <div
+                data-aos="fade-up-sm"
+                data-aos-delay="100"
+                class="lg:col-8 xl:col-9">
+                <div class="content lg:px-10">
+                  {{ .Content }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Shape background -->
+          <div
+            data-aos="fade-up-sm"
+            class="pointer-events-none absolute -top-6 left-[-2%] -z-10 select-none lg:top-[-15%]">
+            {{ partial "image.html" (dict "Src" "images/shapes/author-s-1.svg" "Class" "inline-svg text-quaternary w-[150px]" "Alt" "shape") }}
+          </div>
+          <div
+            data-aos="fade-up-sm"
+            class="pointer-events-none absolute -top-8 right-[-4%] -z-10 select-none lg:-top-12">
+            {{ partial "image.html" (dict "Src" "images/shapes/author-s-2.svg" "Class" "inline-svg text-quinary w-[150px]" "Alt" "shape") }}
+          </div>
+          <div
+            data-aos="fade-up-sm"
+            class="pointer-events-none absolute -bottom-8 left-[-4%] -z-10 select-none lg:bottom-[-22%]">
+            {{ partial "image.html" (dict "Src" "images/shapes/author-s-3.svg" "Class" "inline-svg text-tertiary w-[150px]" "Alt" "shape") }}
+          </div>
+          <div
+            data-aos="fade-up-sm"
+            class="pointer-events-none absolute -bottom-8 right-[-3%] -z-10 select-none lg:bottom-[-16%]">
+            {{ partial "image.html" (dict "Src" "images/shapes/author-s-4.svg" "Class" "inline-svg text-secondary w-[150px]" "Alt" "shape") }}
+          </div>
+          <!-- End Shape background -->
+        </div>
+      </div>
+    </div>
+    <!-- End Main Content -->
+  </section>
+  <!-- End Author Info -->
+  <div class="lg:section pb-20 pt-10 lg:pt-0">
+    <div class="container relative z-40">
+      {{ $posts := where site.RegularPages "Params.author" .Title }}
+      <div class="row pb-12">
+        <div class="col-12 text-center">
+          {{ if gt (len $posts) 0 }}
+            <h2 class="font-semibold" data-aos="fade-up-sm">
+              <span class="text-zinc-500 text-opacity-70">
+                {{ i18n "recent_post" }}:
+              </span>
+              {{ .Title | markdownify }}
+            </h2>
+          {{ else }}
+            <h2 class="font-semibold" data-aos="fade-up-sm">
+              {{ i18n "no_post" }}
+            </h2>
+          {{ end }}
+        </div>
+      </div>
+      <div class="row gy-4">
+        {{ range $posts }}
+          <div data-aos="fade-up-sm" class="md:col-6 lg:col-4">
+            {{ partial "components/blog-card.html" . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <!-- End Author Posts -->
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

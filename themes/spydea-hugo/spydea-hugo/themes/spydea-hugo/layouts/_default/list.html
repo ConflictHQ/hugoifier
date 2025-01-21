@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{ partial "page-header.html" . }}
+  <section
+    class="section-md relative mt-[-28rem] overflow-hidden md:mt-[-32rem]">
+    <div class="container relative z-30">
+      <div class="row gy-4" data-aos="fade-up-sm">
+        <!-- Start Post Range -->
+        {{ range .Data.Pages }}
+          <div class="md:col-6 lg:col-4">
+            {{ partial "components/blog-card" . }}
+          </div>
+        {{ end }}
+        <!-- end of post range -->
+      </div>
+      <div class="row pt-14">
+        {{ partial "components/custom-pagination.html" . }}
+      </div>
+    </div>
+
+    <!-- Start Bg Shape -->
+    <div class="pointer-events-none absolute left-0 top-[40%] select-none">
+      {{ partial "image.html" (dict "Src" "images/shapes/blog-list-s-1.svg" "Class" "inline-svg text-quaternary" "Alt" "shape") }}
+    </div>
+    <div
+      class="pointer-events-none absolute bottom-[20%] right-[-6%] select-none">
+      {{ partial "image.html" (dict "Src" "images/shapes/team-member-s-2.svg" "Class" "inline-svg text-quinary" "Alt" "shape") }}
+    </div>
+    <!-- End Bg Shape -->
+  </section>
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

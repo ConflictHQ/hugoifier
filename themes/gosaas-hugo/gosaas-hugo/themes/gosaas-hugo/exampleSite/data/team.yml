@@ -1,0 +1,94 @@
+################################# team ###################################
+team:
+  title : "Our **Team** Members"
+  subtitle : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor <br> invidunt ut labore et dolore magna aliquyam erat, sed diam"
+  teamMember:
+    # team member loop
+    - name : "Angelina Joley"
+      image : "images/team/team-member-1.jpg"
+      designation : "QA Engineer"
+      email : "angelinajoley@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "John Doe"
+      image : "images/team/team-member-2.jpg"
+      designation : "Founder & CEO"
+      email : "john@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Juley anle"
+      image : "images/team/team-member-3.jpg"
+      designation : "Graphics Designer"
+      email : "juleyanle@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Steve Alone"
+      image : "images/team/team-member-4.jpg"
+      designation : "Front End Developer"
+      email : "stevealone@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Jimmy Yumm"
+      image : "images/team/team-member-5.jpg"
+      designation : "Software Engineer"
+      email : "jimmyyumm@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Kim Domingo"
+      image : "images/team/team-member-6.jpg"
+      designation : "UI/UX Designer"
+      email : "kimdomingo@gmail.com"
+      socialLinks:
+        - icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - icon : "ti-github" # themify icon pack https://themify.me/themify-icons
+          link : "#"

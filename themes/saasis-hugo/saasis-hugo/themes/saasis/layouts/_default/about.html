@@ -1,0 +1,139 @@
+{{ define "main" }}
+
+{{ if .Params.about_us.enable }}
+{{ with .Params.about_us }}
+<section class="section" data-aos="fade-up">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          <p class="caption">{{ .subtitle | markdownify }}</p>
+          <h2 class="title">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      <div class="col-lg-10 mt-5">
+        {{$img:= resources.Get (.image) }}
+        {{$img:= $img.Resize "1050x webp"}}
+        <img loading="lazy" decoding="async" class="w-100 rounded-md border-md" src="{{$img.RelPermalink}}" alt="About Image" width="{{$img.Width}}" height="{{$img.Height}}">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if .Params.facts.enable }}
+{{ with .Params.facts }}
+<section>
+  <div class="container">
+    <div class="row g-4">
+      {{ range .fact_item }}
+      <div class="col-xl-3 col-md-6">
+        <div class="bg-white-blur rounded-sm border-sm p-4">
+          <h2>{{ .counter_append }}<span class="jsCounter" data-count="{{.counter}}">0</span>{{ .counter_prepend }}</h2>
+          <p class="text-primary fw-semibold mb-2">{{ .title | markdownify }}</p>
+          <p class="mb-0">{{ .description | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if .Params.our_story.enable }}
+{{ with .Params.our_story }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-4" data-aos="fade-up">
+        <div class="section-title">
+          <p class="caption">{{ .subtitle | markdownify }}</p>
+          <h2 class="title">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      <div class="col-lg-5 mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
+        <div class="our-story-images position-relative ps-0 ps-lg-4 ps-xl-5">          
+          {{ range .image }}
+          {{$img:= resources.Get (.item) }}
+          {{$img:= $img.Resize "315x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid rounded-sm border-md" src="{{$img.RelPermalink}}" alt="Our Story" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ with site.GetPage "brands-logos" }}
+<section class="section-bordered">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="section-title text-center">
+          <p class="caption">{{ .Title }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="brand-carousel" data-aos="cool">
+      {{ range .Params.partners }}
+      <div class="d-flex align-items-center justify-content-center">
+        {{$img:= resources.Get (.image) }}
+        {{$img:= $img.Resize "100x webp"}}
+        <img loading="lazy" decoding="async" class="img-fluid" src="{{$img.RelPermalink}}" width="{{$img.Width}}" height="{{$img.Height}}" alt="partner-image">
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ if .Params.team.enable }}
+{{ with .Params.team }}
+<section class="section" data-aos="fade">
+  <div class="container">
+    <div class="row align-items-end justify-content-between mb-5 pb-3">
+      <div class="col-xl-4 col-lg-6">
+        <div class="section-title mb-0">
+          <p class="caption">{{ .subtitle | markdownify }}</p>
+          <h2 class="title mb-0">{{ .title | markdownify }}</h2>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 mt-3 mt-lg-0">
+        <p class="mb-0">{{ .content | markdownify }}</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      {{ range .team_item }}
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-white-blur rounded-sm border p-4">
+          <div class="d-flex align-items-center mb-4 pb-4 border-bottom border-white">
+            {{$img:= resources.Get (.image) }}
+            {{$img:= $img.Resize "75x webp"}}
+            <img loading="lazy" decoding="async" class="rounded-circle me-3" src="{{$img.RelPermalink}}" alt="Team Image" width="{{$img.Width}}" height="{{$img.Height}}">
+            <div>
+              <h3 class="h5">{{ .name }}</h3>
+              <p class="mb-0">{{ .designation }}</p>
+            </div>
+          </div>
+          <p class="mb-3">{{ .description }}</p>
+          <ul class="list-unstyled list-inline social-box-icons mb-0">
+            {{ range .social_links }}
+            <li class="list-inline-item"><a class="d-inline-block" href="{{ .link }}" aria-label="Social Profile"><i class="{{ .icon }}"></i></a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}

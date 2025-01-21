@@ -1,0 +1,92 @@
+- id: read_more
+  translation: Lee mas
+  
+- id: read_case_study
+  translation: Lea el estudio de caso completo
+  
+- id: view_product
+  translation: Ver el producto
+
+- id: send
+  translation: Enviar mensaje
+
+- id: category
+  translation: Categoría
+
+- id: tags
+  translation: Etiquetas
+
+- id: by
+  translation: por
+
+- id: min_read
+  translation: min Leer
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: Vamos a quedar
+
+- id: prev_case
+  translation: Caso anterior
+
+- id: next_case
+  translation: Siguiente caso
+
+- id: apply_for_position
+  translation: Solicitar posición
+
+- id: view_all_positions
+  translation: Ver todas las posiciones
+
+- id: apply_now
+  translation: Aplica ya
+
+- id: share_this_job
+  translation: "Comparte este trabajo:"
+
+- id: other_jobs
+  translation: Otros trabajos
+
+- id: all_jobs
+  translation: Todos los trabajos
+  
+- id: fname
+  translation: Primer nombre
+  
+- id: full_name
+  translation: Nombre completo
+  
+- id: lname
+  translation: Apellido
+  
+- id: email
+  translation: Correo electrónico
+  
+- id: website
+  translation: Sitio web
+  
+- id: organization_size
+  translation: Tamaño de la organización*
+  
+- id: region
+  translation: Región*
+  
+- id: message
+  translation: Mensaje
+  
+- id: submit_now
+  translation: Aplique ahora
+  
+- id: get_demo
+  translation: Obtener demo
+  
+- id: cv_note
+  translation: solo se permite el documento, el archivo pdf y el tamaño del archivo será inferior a 2 MB
+  
+- id: upload_cv
+  translation: Subir CV
+  
+- id: search_faq
+  translation: Haga clic y busque preguntas frecuentes..

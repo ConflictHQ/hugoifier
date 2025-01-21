@@ -1,0 +1,70 @@
+{{ define "main" }}
+  {{ partial "components/page-header.html" . }}
+
+  {{ with .Params.how_it_works_video }}
+    {{ if .enable }}
+      <section class="section pb-0 video-popup">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
+              <div class="block">
+                <div class="section-title text-center" data-aos="fade-up">
+                  <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+                  <h2 class="title">{{ .title | markdownify }}</h2>
+                  <p>{{ .description | markdownify }}</p>
+                </div>
+
+                <div
+                  class="video-block"
+                  data-aos="fade-up"
+                  data-aos-delay="100">
+                  <button
+                    type="button"
+                    class="video-play-btn"
+                    data-src="{{ .video_url }}">
+                    <i class="las la-play"></i>
+                  </button>
+                  {{ partial "image.html" (dict "Src" .video_thumbnail "Alt" "Video Thumbnail" "Class" "video-thumb" "Size" "700x") }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.how_it_works }}
+    {{ if .enable }}
+      <section class="section-sm">
+        <div class="container">
+          {{ $.Scratch.Set "counter" 0 }}
+          {{ range .block }}
+            {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ $n := $.Scratch.Get "counter" }}
+            <div class="row justify-content-center align-items-center mb-4">
+              <div
+                class="col-lg-5 {{ if (modBool $n 2) }}order-lg-1{{ end }}"
+                data-aos="fade-up">
+                <div class="section-title mb-0">
+                  <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+                  <h2 class="title text-break">{{ .title | markdownify }}</h2>
+                  <p>{{ .description | markdownify }}</p>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 mt-3 mt-lg-0"
+                data-aos="fade-up"
+                data-aos-delay="100">
+                <div class="ps-0 ps-lg-3">
+                  {{ partial "image.html" (dict "Src" .image "Alt" "analytics" "Size" "575x") }}
+                </div>
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+{{ end }}

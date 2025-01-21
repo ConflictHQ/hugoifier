@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- team -->
+<section class="section pb-0">
+  <div class="container">
+    <div class="row no-gutters">
+      {{ range .Data.Pages }}
+      <div class="col-lg-3 col-sm-6">
+        <div class="card hover-shadow">
+          <img src="{{ .Params.Image | absURL }}" alt="team-member" class="card-img-top">
+          <div class="card-body text-center position-relative zindex-1">
+            <h4><a class="text-dark" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+            <i>{{ .Params.Designation | markdownify }}</i>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /team -->
+
+{{ if .Site.Data.team.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+
+{{ if .Site.Data.team.clientsLogo.enable }}
+{{ partial "clients-logo.html" . }}
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,75 @@
+######################## default configuration ####################
+baseURL = "https://examplesite.com"
+languageCode = "en-us"
+title = "Icelab Studio"
+theme = "icelab-hugo"
+summaryLength = "10"
+
+
+############################## Output ###############################
+[outputs]
+home = ["HTML", "RSS"]
+
+# unsafe html
+[markup.goldmark.renderer]
+unsafe = true
+
+
+############################## Output ###############################
+# JS Plugins
+[[params.plugins.js]]
+URL = "plugins/plugins.js"
+
+
+############################## navigation ###########################
+[[menu.main]]
+name = "About"
+URL = "about"
+weight = 2
+
+[[menu.main]]
+name = "Works"
+URL = "works"
+weight = 3
+
+[[menu.main]]
+name = "Contact"
+URL = "contact"
+weight = 4
+
+
+#################### default parameters ##############################
+[params]
+logo = "images/logo.png"
+home = "Home"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# footer content
+footer_content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus sint magnam quia doloremque."
+
+# google map
+[params.map]
+enable = true
+gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
+
+############################# social site ########################
+[[params.social]]
+name = "facebook"
+icon = "fa-facebook" # fontawesome icon pack v4.7
+link = "#"
+
+[[params.social]]
+name = "twitter"
+icon = "fa-twitter" # fontawesome icon pack v4.7
+link = "#"
+
+[[params.social]]
+name = "instagram"
+icon = "fa-instagram" # fontawesome icon pack v4.7
+link = "#"

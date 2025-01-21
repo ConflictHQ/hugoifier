@@ -1,0 +1,29 @@
+{{with .Params.brands}}
+<section class="section">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+        
+        {{ with .images }}
+        <div class="brand-carousel swiper pb-5">
+          <div class="swiper-wrapper">
+            {{ range . }}
+            <div class="block swiper-slide">
+              {{$img:= resources.Get . }}
+              {{$img:= $img.Resize "200x"}}
+              {{$imgWebp:= $img.Resize "200x webp"}}
+              <img loading="lazy" decoding="async" class="img-fluid mx-auto" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="Brand Logo" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+            </div>
+            {{ end }}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}

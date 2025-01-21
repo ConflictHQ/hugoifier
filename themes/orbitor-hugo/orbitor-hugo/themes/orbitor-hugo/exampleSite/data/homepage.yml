@@ -1,0 +1,164 @@
+####################### Banner ##########################################
+banner:
+  enable: true
+  bg_image : "images/bg/main-banner1.jpg"
+  subtitle : "The most powerful Solution"
+  title : "Digital experience with Orbitor"
+  content : "Veritatis earum aliquid doloribus molestias, eveniet molestiae aperiam ratione. Facilis
+            velit voluptatibus impedit eligendi delectus illo earum voluptatum, laudantium molestiae!"
+  button:
+    enable : true
+    label : "Learn more about Digicon"
+    link : "about"
+
+
+########################### Banner feature ################################
+banner_feature:
+  enable : true
+  feature_item:
+    # feature item loop
+    - icon : "ti-light-bulb" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Custom Effective Software development"
+      content : "Saepe nulla praesentium eaque omnis perferendis a doloremque."
+      
+    # feature item loop
+    - icon : "ti-panel" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Analyse Your Expensees On Every Device"
+      content : "Saepe nulla praesentium eaque omnis perferendis a doloremque."
+      
+    # feature item loop
+    - icon : "ti-headphone-alt" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Creating a dedicated IT business growth"
+      content : "Saepe nulla praesentium eaque omnis perferendis a doloremque."
+
+########################## features #######################################
+feature:
+  enable : true
+  subtitle : "Why choose us"
+  title : "We help you to make work easy"
+  content : "We understand what your business means to you,your requirements considering trends.Smet nemo excepturi voluptas eligendi ."
+  feature_item:
+    # feature item loop
+    - icon : "ti-light-bulb" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Data analysis"
+      content : "A complete web app solution for business"
+      
+    # feature item loop
+    - icon : "ti-panel" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Web Development"
+      content : "A complete web app solution for business"
+      
+    # feature item loop
+    - icon : "ti-search" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Content Mangement"
+      content : "A complete web app solution for business"
+      
+    # feature item loop
+    - icon : "ti-rocket" # here we use themify icon pack : https://themify.me/themify-icons
+      title : "Mobility"
+      content : "A complete web app solution for business"
+
+########################### Call to action #####################################
+call_to_action:
+  enable: true
+  title : "Assurance Service In Software Testing"
+  content : "An Independent Validation and Testing services from SISAR. Helps to reduce software development efforts"
+  button:
+    enable: true
+    label : "Portfolio"
+    link : "portfolio"
+
+################################### portfolio ####################################
+project:
+  enable: true
+  title : "We’ve Done Lot’s of Work, Let’s Check Some From Here"
+  content : "We have the best experts to elevate your business to the next level, try is and you will see! We have the best experts to elevate your"
+
+  # project item comes from "content/project" folder
+
+################################ Counter #######################################
+counter:
+  enable : true
+  counter_item :
+    # counter item loop
+    - title : "Project Done"
+      count : "1730"
+      unit : "+"
+      
+    # counter item loop
+    - title : "User Worldwide"
+      count : "125"
+      unit : "M"
+      
+    # counter item loop
+    - title : "Availble Country"
+      count : "39"
+      unit : ""
+      
+    # counter item loop
+    - title : "Award Winner"
+      count : "14"
+      unit : ""
+
+########################## Testimonial #############################################
+testimonial:
+  enable: true
+  title : "What they say about us"
+  content : "They are truely amazing in the industry ,molestiae expedita aspernatur officia, similique minima
+            laudantium. Corrupti ipsa perspiciatis commodi nesciunt rerum mollitia enim voluptate!"
+  testimonial_item:
+    # testimonial item loop
+    - name : "John Partho"
+      image : "images/team/testimonial1.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "Julio Dimple"
+      image : "images/team/testimonial2.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "John Partho"
+      image : "images/team/testimonial1.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "Julio Dimple"
+      image : "images/team/testimonial2.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "John Partho"
+      image : "images/team/testimonial1.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "Julio Dimple"
+      image : "images/team/testimonial2.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "John Partho"
+      image : "images/team/testimonial1.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."
+            
+    # testimonial item loop
+    - name : "Julio Dimple"
+      image : "images/team/testimonial2.jpg"
+      location : "Newyork USA"
+      content : "Maiores quasi placeat harum itaque, ducimus cumque quas expedita hic. Qui ullam iste provident mollitia
+            expedita facilis fuga repellat."

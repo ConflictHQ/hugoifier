@@ -1,0 +1,414 @@
+// ------------------------------------------------------------
+// Bannner 
+// ------------------------------------------------------------
+
+.banner {
+  overflow: hidden;
+}
+
+.banner p {
+  font-size: 20px;
+  opacity: .8;
+}
+
+.banner .nav-link.text-dark {
+  color: $white !important;
+}
+
+.banner .nav-link.text-dark:hover {
+  color: $white !important;
+}
+
+.banner .navbar-brand {
+  color: $white !important;
+}
+
+/* search */
+.search-wrapper {
+  cursor: text;
+  margin: auto;
+  display: inline-block;
+  max-width: 350px;
+  width: 100%;
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: rgba($dark, 0.7);
+    font-weight: 900;
+    transform: translateY(-50%);
+  }
+
+  .form-control {
+    height: 54px;
+    border: 1px solid $border-color;
+    padding-left: 40px !important;
+    border-radius: 5px;
+    width: 100%;
+    @extend .shadow;
+
+    &-sm {
+      height: 45px;
+      width: 220px;
+    }
+
+    &::placeholder {
+      color: rgba($text-dark, 0.5);
+      font-size: 15px;
+    }
+  }
+
+  .search-button {
+    border: 1px solid rgba($text-dark, 0.2);
+    color: rgba($text-dark, 0.5);
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    cursor: text;
+    font-size: 14px;
+  }
+
+  @include mobile {
+    width: 250px;
+  }
+}
+
+.single {
+  .search-wrapper {
+    max-width: 100%;
+
+    input {
+      background-color: $white !important;
+      border: 0px;
+      border-bottom: 1px solid $border-color;
+      border-radius: 0px;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+}
+
+/* /navigation */
+textarea.form-control {
+  height: 150px;
+  padding: 20px;
+}
+
+.icon {
+  font-size: 40px;
+}
+
+#accordion-wrapper .accordion {
+
+  margin-bottom: 25px;
+  transition: .3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+
+  &-item {
+    background-color: $white;
+    border: 0;
+    border-radius: 0px;
+  }
+
+  &-button {
+    font-size: 20px;
+    color: rgba($dark, 0.8);
+    background-color: transparent;
+
+    &:hover,
+    &[aria-expanded="true"] {
+      color: $color-primary;
+    }
+  }
+
+  &-body {
+    padding-top: 0px;
+    color: rgba($dark, 0.7);
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.shadow {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.059) !important;
+  }
+}
+
+.shadow-bottom {
+  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+}
+
+.list-styled ul li {
+  padding-left: 20px;
+  position: relative;
+}
+
+.list-styled ul li::before {
+  position: absolute;
+  content: '';
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: $color-primary;
+  opacity: .3;
+  left: 0;
+  top: 17px;
+}
+
+.post-meta {
+  color: $text-color;
+  font-style: italic;
+  font-size: 14px;
+}
+
+blockquote {
+  font-size: 20px !important;
+  color: $text-dark;
+  padding: 20px 40px;
+  border-left: 2px solid $color-primary;
+  margin: 40px 0;
+  font-weight: bold;
+  background: $text-light;
+}
+
+blockquote p {
+  margin-bottom: 0 !important;
+}
+
+.pagination {
+  justify-content: space-between;
+}
+
+.pagination a {
+  color: $color-primary;
+}
+
+.pagination i {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+#accordion i {
+  font-size: 14px;
+  line-height: 2;
+}
+
+table {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+table td,
+table th {
+  padding: .75rem;
+  vertical-align: top;
+  border: 1px solid #dee2e6;
+  margin-bottom: 0;
+}
+
+thead {
+  background: #ececec;
+  margin-bottom: 0;
+}
+
+tbody {
+  background: #f8f8f8;
+  margin-bottom: 0;
+}
+
+.notices {
+  margin: 2rem 0;
+  position: relative;
+}
+
+.notices p {
+  padding: 10px;
+}
+
+.notices p::before {
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  font-family: "themify";
+  font-weight: 900;
+  content: "\e717";
+  left: 10px;
+}
+
+.notices.note p {
+  border-top: 30px solid #6ab0de;
+  background: #e7f2fa;
+}
+
+.notices.note p::after {
+  content: 'Note';
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  left: 2rem;
+}
+
+
+.notices.tip p {
+  border-top: 30px solid #78C578;
+  background: #E6F9E6;
+}
+
+.notices.tip p::after {
+  content: 'Tip';
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  left: 2rem;
+}
+
+.notices.info p {
+  border-top: 30px solid #F0B37E;
+  background: #FFF2DB;
+}
+
+.notices.info p::after {
+  content: 'Info';
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  left: 2rem;
+}
+
+
+.notices.warning p {
+  border-top: 30px solid #E06F6C;
+  background: #FAE2E2;
+}
+
+.notices.warning p::after {
+  content: 'Warning';
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  left: 2rem;
+}
+
+/* /single page */
+
+/* side list */
+.sidebar-wrapper {
+  top: 67px;
+  position: sticky;
+  margin-bottom: 30px;
+}
+
+.sidebar {
+  background-color: $white;
+  position: sticky;
+  top: 50px;
+  padding: 40px 10px 20px 10px;
+
+  &>.list-styled {
+    padding-left: 40px;
+  }
+
+  .sidelist {
+    &>ul {
+      margin-left: 0px;
+      padding-left: 0px;
+    }
+  }
+}
+
+.sidelist {
+  display: block;
+}
+
+li.sidelist>a {
+  margin-left: 0px;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 20px;
+}
+
+li.sidelist li a {
+  margin: 0;
+}
+
+.sidelist li.sidelist {
+  display: block;
+}
+
+.sidelist li.sidelist.active a {
+  color: $color-primary;
+}
+
+.sidelist li.sidelist.active::before {
+  opacity: 1;
+}
+
+.page-list {
+  margin: 0px;
+  padding: 0px;
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  li a {
+    display: none;
+  }
+
+  li ul a {
+    display: block;
+  }
+}
+
+.sidelist li a {
+  color: $text-dark;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 0;
+  line-height: 1.4;
+}
+
+.back-btn {
+  position: relative;
+}
+
+.back-btn::before {
+  position: absolute;
+  font-family: 'themify';
+  content: "\e6bc";
+  font-size: 25px;
+  width: 30px;
+  background-color: $white;
+  color: inherit;
+  text-align: right;
+  z-index: 1;
+  left: 1px;
+  top: -5px;
+}
+
+i {
+  transition: .2s ease;
+}
+
+a:hover i {
+  color: $color-primary;
+}

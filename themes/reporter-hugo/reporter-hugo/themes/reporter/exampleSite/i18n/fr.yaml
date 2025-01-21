@@ -1,0 +1,20 @@
+- id: latest_articles
+  translation: Derniers Articles
+  
+- id: read_full_article
+  translation: Lire l'article complet
+  
+- id: minutes_read
+  translation: minutes lues
+  
+- id: categories
+  translation: Catégories
+  
+- id: recommended
+  translation: Conseillé
+  
+- id: know_more
+  translation: Savoir Plus
+  
+- id: send_message
+  translation: Envoyer Le Message

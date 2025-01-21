@@ -1,0 +1,15 @@
+{{ "<!-- page title -->" | safeHTML }}
+<section class="page-title overlay" {{ partial `bg-image.html` (dict `Src` (.Params.bg_image | default site.Params.metadata.bg_image) ) | safeHTMLAttr }}>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h1 class="text-white fw-bold h2">{{ .Title }}</h1>
+				<ol class="breadcrumb">
+					<li><a href="{{ site.BaseURL }}">Home</a></li>
+					<li>{{ .Title }}</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /page title -->" | safeHTML }}

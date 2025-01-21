@@ -1,0 +1,19 @@
+<!-- category -->
+<div class="widget">
+  <h4 class="widget-header text-center">Category</h4>
+  <div class="widget-body">
+    {{ if isset .Site.Taxonomies "categories" }}
+    {{ if not (eq (len site.Taxonomies.categories) 0) }}
+    <ul class="widget-list">
+      {{ range $name, $items := site.Taxonomies.categories }}
+      <li>
+        <a class="d-flex align-items-center" href="{{`categories/` | relLangURL}}{{ $name | urlize | lower }}/">
+        <span class="text-primary mr-1">#</span>{{ if index (split $name "/") 2 }}{{index (split $name "/") 2}}{{ else if index (split $name "/") 1 }}{{index (split $name "/") 1}}{{else}}{{index (split $name "/") 0}}{{end}}
+        <span class="ml-auto">({{len $items}})</span></a>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+    {{ end }}
+  </div>
+</div>

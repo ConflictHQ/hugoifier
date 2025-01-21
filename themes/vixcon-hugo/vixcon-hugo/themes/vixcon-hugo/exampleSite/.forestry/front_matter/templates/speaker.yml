@@ -1,0 +1,53 @@
+---
+label: Speaker
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: text
+  name: description
+  label: description
+  description: meta description
+- type: file
+  name: bg_image
+  label: bg_image
+- type: file
+  name: image
+  label: image
+- type: text
+  name: designation
+  label: designation
+- type: text
+  name: email
+  label: email
+- type: text
+  name: type
+  label: type
+  default: speaker
+- type: field_group_list
+  name: social
+  label: social
+  fields:
+  - type: text
+    name: icon
+    label: icon
+  - type: text
+    name: link
+    label: link
+- type: field_group_list
+  name: skill
+  label: skill
+  fields:
+  - type: text
+    name: title
+    label: title
+  - type: text
+    name: icon
+    label: icon
+  - type: textarea
+    name: content
+    label: content

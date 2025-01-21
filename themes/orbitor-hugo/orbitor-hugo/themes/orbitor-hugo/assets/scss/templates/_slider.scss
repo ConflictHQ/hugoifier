@@ -1,0 +1,85 @@
+.banner{
+  position: relative;
+  overflow: hidden;
+  background: $light;
+  background-repeat: no-repeat;
+  background-position: 80% 50%;
+  background-size: cover;
+  padding: 120px 0px;
+  min-height: 800px;
+
+  .block{
+    padding-top: 120px;
+    h1{
+      font-size: 75px;
+      line-height: 1.2;
+      font-weight: 400;
+      letter-spacing:-1.2px;
+      text-transform: capitalize;
+    }
+
+  }
+}
+
+.letter-spacing{
+  letter-spacing:2px;
+}
+
+
+.text-color{
+  color: $secondary-color;
+}
+
+
+@include mobile{
+   .banner .block h1 {
+      font-size: 38px;
+      line-height: 50px;
+  }
+
+  .banner{
+    padding: 126px 0 151px 0;
+    background: $light!important;
+  }
+}
+
+
+@include mobile-xs{
+    .banner .block h1 {
+      font-size: 28px;
+      line-height: 40px;
+  }
+
+  .banner{
+    padding: 126px 0 151px 0;
+    background: $light!important;
+  }
+
+}
+
+
+@include tablet{
+     .banner .block h1 {
+        font-size: 56px;
+        line-height: 70px;
+    }
+
+    .banner{
+      background: $light!important;
+    }
+
+}
+
+@include desktop{
+    .banner{
+      background: $light!important;
+    }
+}
+
+@include large-desktop{
+    .banner{
+      background: $light!important;
+    }
+}
+
+

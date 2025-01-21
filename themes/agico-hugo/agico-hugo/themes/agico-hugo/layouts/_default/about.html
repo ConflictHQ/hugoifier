@@ -1,0 +1,94 @@
+{{ define "main" }}
+
+{{"<!-- about agico -->" | safeHTML }}
+{{ with .Params.about }}
+{{ if .enable }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pe-lg-4 mb-4 mb-md-0">
+        <div class="position-relative" data-aos="fade-right">
+          {{ partial "image.html" (dict "Src" .video_bg_image "Alt" "videoThumbBg" "Class" `rounded-sm` ) }}
+          {{ if and .video_thumbnail }}
+          <div class="floating-video {{ if .video_link }}overlay{{end}} rounded-sm">
+            {{ partial "image.html" (dict "Src" .video_thumbnail "Alt" "video-thumb" "Class" `rounded-sm` ) }}
+            {{ if .video_link }}
+            <div class="pulse-container">
+              <div class="pulse-box">
+                <button class="play-icon icon-center" video-url="{{.video_link}}" data-bs-toggle="modal"
+                  data-bs-target="#videoModal" aria-label="open video modal">
+                  <i class="fa fa-play text-secondary fs-5"></i>
+                  <svg class="pulse-svg icon-center" viewBox="0 0 50 50" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <circle class="circle first-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                    <circle class="circle second-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                    <circle class="circle third-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                    <circle class="circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-md-6 align-self-center ps-lg-4">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">{{ .title }}</h2>
+        <p data-aos="fade-up" data-aos-delay="400">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a class="btn btn-primary btn-dark" href="{{ .link | absLangURL }}" data-aos="fade-up" data-aos-delay="600">{{
+          .label
+          }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" id="videoModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button class="modal-close" data-bs-dismiss="modal" aria-label="close modal"><i class="fa fa-times"></i></button>
+        <iframe class="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" type="text/html"
+          src="">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- about agico -->" | safeHTML }}
+
+{{"<!-- counter -->" | safeHTML }}
+{{ with .Params.funfacts }}
+{{ if .enable }}
+<section class="bg-light py-5">
+  <div class="container">
+    <div class="row justify-content-around gy-4">
+      {{ range .funfact_item }}
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4 mb-md-0 text-center">
+        <p class="h2 fw-light text-dark"><span class="counter" data-counter-time="2500">{{ .count }}</span>+</p>
+        <h6 class="text-dark fw-normal">{{ .name }}</h6>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- counter -->" | safeHTML }}
+
+{{ if .Params.service.enable }}
+  {{ with site.GetPage (string .Params.service.section)}}
+  {{ partial "components/services.html" . }}
+  <div class="section pt-0"></div>
+  {{ end }}
+{{else}}
+  <div class="section-lg-bottom"></div>
+{{ end }}
+
+{{ end }}

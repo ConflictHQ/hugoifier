@@ -1,0 +1,95 @@
+<!-- navigation -->
+<header class="navigation">
+  <div class="py-4 border-bottom border-default">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-md-5 d-none d-md-block">
+          <ul class="list-inline social-icons">
+            {{ range .Site.Params.social }}
+            <li class="list-inline-item"><a href="{{.link | safeURL}}"><i class="{{ .icon }}"></i></a></li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="col-lg-4 text-center col-md-2">
+          <a href="{{ .Site.BaseURL | relLangURL }}/"><img width="180px" class="img-fluid"
+              src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+        </div>
+        <div class="col-lg-4 col-md-5 d-none d-md-block">
+          <form action="{{ `search`| relLangURL }}" class="search-wrapper">
+            <input id="search-query" name="s" type="search" placeholder="{{ i18n `search_placeholder`}}">
+            <button type="submit"><i class="ti-search"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-bottom border-default">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-transparent">
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h5"></i> MENU
+      </button>
+      <!-- search -->
+      <div class="px-4 d-block d-md-none">
+        <button class="search-btn" id="searchOpen"><i class="ti-search"></i></button>
+        <div class="search-collapsed">
+          <form action="{{ `search`| relLangURL }}">
+            <input id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+          </form>
+          <button id="searchClose"><i class="ti-close"></i></button>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .Site.BaseURL | relLangURL }}/">{{ .Site.Params.Home }}</a>
+          </li>
+          {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }}
+            </a>
+            <div class="dropdown-menu">
+              {{ range .Children }}
+              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+
+          <!-- Language List -->
+          <li class="nav-item">
+            {{ if .IsTranslated }}
+            <select class="lang-list" id="select-language" onchange="location = this.value;">
+              {{ $siteLanguages := .Site.Languages}}
+              {{ $pageLang := .Page.Lang}}
+              {{ range .Page.AllTranslations }}
+              {{ $translation := .}}
+              {{ range $siteLanguages }}
+              {{ if eq $translation.Lang .Lang }}
+              {{ $selected := false }}
+              {{ if eq $pageLang .Lang}}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+              </option>
+              {{ else }}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+              {{ end }}
+              {{ end }}
+              {{ end }}
+              {{ end }}
+            </select>
+            {{ end }}
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->

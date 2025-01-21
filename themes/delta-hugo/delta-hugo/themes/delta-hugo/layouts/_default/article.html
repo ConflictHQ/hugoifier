@@ -1,0 +1,44 @@
+<article class="card border-0 rounded-md overflow-hidden h-100">
+  <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+    {{ with .Params.image }}
+
+    {{ partial "image.html" (dict "Src" . "Class" "card-img-top h-auto" "Alt" "blog-post") }}
+    {{else}}
+    <img class="img-fluid" src="https://via.placeholder.com/570x321.png/eee/eee" alt="image-fallback">
+    {{end}}
+  </a>
+  <div class="card-body position-relative">
+    <span class="badge text-white text-uppercase">{{ .PublishDate.Format "Jan 02, 2006" }}</span>
+    <h3 class="h5">
+      <a class="blog-title" href="{{.RelPermalink}}" title="{{.Title}}">{{.Title}}</a>
+    </h3>
+    <p class="mb-0">{{ .Plain | truncate 110 }}</p>
+  </div>
+
+  {{ with site.GetPage (string .Params.Author | urlize | lower) }}
+  <div class="card-footer bg-transparent">
+    <div class="card-author">
+      <div class="d-flex align-items-center">
+        <div class="user-image me-1">
+          {{ if .Params.image }}
+          {{ $img:= resources.Get (.Params.image) }}
+          {{ $img:= $img.Fill "30x30" }}
+          {{ $imgWebp:= $img.Fill "30x30 webp" }}
+          <a href="{{.RelPermalink}}" title="{{.Title}}">
+            <img loading="lazy" decoding="async" class="rounded-circle" src="{{ $imgWebp.RelPermalink }}"
+              alt="author image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+          </a>
+          {{ else }}
+          <i class="far fa-user-circle position-relative" style="font-size:26px;top:2px"></i>
+          {{ end }}
+        </div>
+        <div class="user-info">
+          <p class="font-weight-500 mb-0">{{i18n `by`}} {{if .Title}}<a
+              href="{{.RelPermalink}}">{{ .Title }}</a>{{else}}<span class="text-muted">{{i18n `admin`}}</span> {{end}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</article>

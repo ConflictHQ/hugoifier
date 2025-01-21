@@ -1,0 +1,161 @@
+########################### about ###############################
+about:
+  enable : true
+  image : "images/about/img-3.jpg"
+  title : "Welcome to Charite NonProfit Organization"
+  leadContent : "Charite is the world’s #1 fundraising site forcharitable causes. Raise money for over 1.5
+            million charities."
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat."
+
+
+############################# partners ##########################
+partners:
+  enable : true
+  title : "Worldwide partner"
+  content : "Assumenda reiciendis delectus dolore incidunt molestias omnis quo quaerat voluptate, eligendi perspiciatis
+            ipsa laudantium nesciunt officia, odit nemo quidem hic itaque. Fugiat."
+  partnersLogo:
+    # partner logo loop
+    - logo : "images/clients/client1.png"
+      link : "#"
+      
+    # partner logo loop
+    - logo : "images/clients/client2.png"
+      link : "#"
+      
+    # partner logo loop
+    - logo : "images/clients/client5.png"
+      link : "#"
+      
+    # partner logo loop
+    - logo : "images/clients/client4.png"
+      link : "#"
+
+
+########################## history ##############################
+history:
+  enable : true
+  historyItem:
+    # history item loop
+    - title : "Founded in 1962"
+      icon : "ti-home"
+      subtitle : "Work Since 1987 with Pride!!"
+      content : "Cum voluptas tenetur, voluptatibus mollitia odio sint, alias debitis quasi ut commodo consequat."
+      
+    # history item loop
+    - title : "Our History"
+      icon : "ti-agenda"
+      subtitle : "Mission to make smile the world"
+      content : "Cum voluptas tenetur, voluptatibus mollitia odio sint, alias debitis quasi ut commodo consequat."
+      
+    # history item loop
+    - title : "Large Community"
+      icon : "ti-hand-open"
+      subtitle : "Join our community & help others"
+      content : "Cum voluptas tenetur, voluptatibus mollitia odio sint, alias debitis quasi ut commodo consequat."
+
+############################### Team ##############################
+team:
+  enable : true
+  subtitle : "Our volunteer"
+  title : "Expert volunteer to get best service"
+  button:
+    enable : true
+    label : "Become a volunteer"
+    link : "volunteer"
+  teamMember:
+    # team member loop
+    - name : "Justin hammer"
+      designation : "Student"
+      image : "images/team/volunteer-img1.1.jpg"
+      social:
+        - name : "facebook"
+          icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "twitter"
+          icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "instagram"
+          icon : "ti-instagram" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "linkedin"
+          icon : "ti-linkedin" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Jason roy"
+      designation : "Businessman"
+      image : "images/team/volunteer-img1.2.jpg"
+      social:
+        - name : "facebook"
+          icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "twitter"
+          icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "instagram"
+          icon : "ti-instagram" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "linkedin"
+          icon : "ti-linkedin" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "Henry oswald"
+      designation : "CO founder"
+      image : "images/team/volunteer-img1.3.jpg"
+      social:
+        - name : "facebook"
+          icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "twitter"
+          icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "instagram"
+          icon : "ti-instagram" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "linkedin"
+          icon : "ti-linkedin" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+    # team member loop
+    - name : "John Doe"
+      designation : "Businessman"
+      image : "images/team/volunteer-img1.1.jpg"
+      social:
+        - name : "facebook"
+          icon : "ti-facebook" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "twitter"
+          icon : "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "instagram"
+          icon : "ti-instagram" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+          
+        - name : "linkedin"
+          icon : "ti-linkedin" # themify icon pack https://themify.me/themify-icons
+          link : "#"
+
+################### call to action ###########################
+cta:
+  enable : true
+  # cta content comes from homepage.yml
+
+############################## Gallery ######################
+gallery:
+  enable : true
+  # gallery items comes from homepage.yml

@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ range .Data.Pages }}
+      <div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
+        <div class="rounded shadow py-5 px-4">
+          <div class="icon">
+            <i class="{{ .Params.icon }}"></i>
+          </div>
+          <h3 class="mb-3">{{ .Params.title }}</h3>
+          <p class="mb-4">{{ .Params.description }}</p>
+
+          <a class="btn btn-sm btn-outline-primary" href="{{ .Permalink }}">{{ i18n "view_details" }} <i class="las la-arrow-right ms-1"></i></a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

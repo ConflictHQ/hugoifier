@@ -1,0 +1,164 @@
+{{ define "main" }}
+
+{{ if .Params.how_it_works_video.enable }}
+{{ with .Params.how_it_works_video }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-5">
+        <div class="section-title">
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+          <p>{{ .description | markdownify}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-5 mt-lg-0">
+        <div class="has-video-popup position-relative">
+          {{ if .video_thumb }}
+          {{ if fileExists (add `assets/` .video_thumb) }}
+          {{$img:= resources.Get (.video_thumb) }}
+          {{$img:= $img.Resize "530x webp"}}
+          <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="video thumb" class="rounded-lg w-100" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ end }}
+          {{ end }}
+
+          {{ if .youtube_popup.enable }}
+          {{ with .youtube_popup }}
+          <button type="button" class="video-play-btn border-0 bg-transparent" data-bs-toggle="modal" data-src="{{ .video_embed_link | safeURL }}" data-bs-target="#videoModal">
+            <svg class="text-primary" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="45" cy="45" r="45" fill="currentColor" fill-opacity="0.4"/>
+              <circle cx="44.9995" cy="45" r="37.437" fill="currentColor"/>
+              <path d="M58.2354 44.9999L38.3824 56.462L38.3824 33.5378L58.2354 44.9999Z" fill="white"/>
+            </svg>
+          </button>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start of videoModal -->
+{{ if .youtube_popup.enable }}
+{{ with .youtube_popup }}
+<div class="modal fade rounded overflow-hidden" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content border-0">
+      <div class="text-center p-3"><button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button></div>
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9 rounded-bottom overflow-hidden">
+          <iframe src="" id="showVideo" allowscriptaccess="always" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ end }}
+<!-- end of videoModal -->
+
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.loan_steps.enable }}
+{{ with .Params.loan_steps }}
+<section class="section loan-steps bg-tertiary">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-7">
+        <div class="section-title text-center">
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row justify-content-center">
+          {{ range .steps }}
+          <div class="step-item col-lg-4 col-md-6">
+            <div class="text-center">
+              <p class="count">{{ .count }}</p>
+              <h3 class="mb-3">{{ .title }}</h3>
+              <p class="mb-0">{{ .description }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.icon_box.enable }}
+{{ with .Params.icon_box }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+          <p>{{ .description | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range .icon_box_items }}
+      <div class="icon-box-item col-lg-4 col-md-6">
+        <div class="block">
+          <div class="icon">
+            <i class="{{ .icon }}"></i>
+          </div>
+          <h3 class="mb-3">{{ .title }}</h3>
+          <p class="mb-0">{{ .description }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.additional_info.enable }}
+{{ with .Params.additional_info }}
+<section class="section bg-tertiary">
+  <div class="container">
+    <div class="row justify-content-center align-items-center mb-5">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion accordion-border-bottom" id="additional_Info">
+          {{ range $i, $e := .additional_info_item }}
+          <div class="accordion-item bg-transparent">
+            <h2 class="accordion-header accordion-button h5 border-0 {{if eq $i 0 }}active{{end}}" id="heading-{{ sha1 .title | urlize }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ sha1 .title | urlize }}" aria-expanded="{{if eq $i 0 }}true{{else}}false{{end}}" aria-controls="collapse-{{ sha1 .title | urlize }}">{{ .title | markdownify }}
+            </h2>
+            <div id="collapse-{{ sha1 .title | urlize }}" class="accordion-collapse collapse border-0 {{if eq $i 0 }}show{{end}}" aria-labelledby="heading-{{ sha1 .title | urlize }}" data-bs-parent="#additional_Info">
+              <div class="accordion-body py-0 content">
+                {{ .content | markdownify }}
+              </div>
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}

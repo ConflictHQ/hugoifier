@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+<section class="section-sm bg-light">
+  <div class="container text-center">
+    <h1>{{.Title | title}}</h1>
+  </div>
+</section>
+
+<!-- regular post -->
+<section class="section-sm pt-4">
+  <div class="container">
+    <div class="row">
+      <!-- left sidebar -->
+      {{ $sidebar:= .Site.Params.sidebar }}
+      {{ $layout:= .Site.Params.layout }}
+      {{ if eq $sidebar "left" }}
+      <aside class="col-lg-3 order-2 order-lg-1">
+        {{ partial "sidebar.html" . }}
+      </aside>
+      {{ end }}
+      <!-- /left sidebar -->
+      <div
+        class="{{if or (eq $sidebar `left`) (eq $sidebar `right`)}}col-lg-9{{ else }}col-12{{end}} {{if eq $sidebar `left`}}order-1 order-lg-2{{end}} mb-5 mb-lg-0">
+        <div class="row">
+          {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post") }}
+          {{ range $index,$elements:= $paginator.Pages }}
+          {{ if eq $index 0}}
+          <div class="col-12 mb-4">
+            <article class="card">
+              <div class="card-body row">
+                <div class="col-12 mb-4">
+                  {{ with .Params.Image}}
+                  <img src="{{ . | absURL }}" class="img-fluid w-100" alt="{{ $.Title }}"
+                    style="height: 350px; object-fit: cover;">
+                  {{ end }}
+                </div>
+                <div class="col-md-8 mx-auto text-center">
+                  <small class="post-category">{{ delimit .Params.categories ", " }}</small>
+                  <h3 class="mb-3"><a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                  <small class="post-date date-style large">{{ .PublishDate.Format "January 02, 2006"}}</small>
+                  <p class="my-4">{{ .Summary | truncate 150}}</p>
+                  <a href="{{ .Permalink }}" class="btn btn-outline-primary">{{ i18n "read_more" }}</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          {{ else }}
+          <div class="col-sm-6 mb-4">
+            <article class="card">
+              <div class="card-body">
+                <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100 mb-3" alt="{{ .Title }}"
+                  style="height: 350px; object-fit: cover;">
+                <small class="post-category mb-2">{{ delimit .Params.categories ", " }}</small>
+                <h3 class="mb-2"><a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <small class="post-date mb-2">{{ .PublishDate.Format "January 02, 2006"}}</small>
+                <p class="mb-3">{{ .Summary | truncate 150}}</p>
+                <a href="{{ .Permalink }}" class="btn btn-outline-primary">{{ i18n "read_more" }}</a>
+              </div>
+            </article>
+          </div>
+          {{ end }}
+          {{ end }}
+          <div class="col-12">
+
+            <!-- pagination -->
+            {{ $paginator := .Paginator }}
+            <!-- Number of links either side of the current page. -->
+            {{ $adjacent_links := 2 }}
+            <!-- $max_links = ($adjacent_links * 2) + 1 -->
+            {{ $max_links := (add (mul $adjacent_links 2) 1) }}
+            <!-- $lower_limit = $adjacent_links + 1 -->
+            {{ $lower_limit := (add $adjacent_links 1) }}
+            <!-- $upper_limit = $paginator.TotalPages - $adjacent_links -->
+            {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+            <!-- If there's more than one page. -->
+            {{ if gt $paginator.TotalPages 1 }}
+            <ul
+              class="pagination {{if or (eq $sidebar `left`) (eq $sidebar `right`)}}{{ else }}justify-content-center{{end}}">
+              <!-- Previous page. -->
+              {{ if $paginator.HasPrev }}
+              <li class="page-item">
+                <a href="{{ $paginator.Prev.URL }}" class="page-link">
+                  &laquo;
+                </a>
+              </li>
+              {{ end }}
+              <!-- Page numbers. -->
+              {{ range $paginator.Pagers }}
+              {{ $.Scratch.Set "page_number_flag" false }}
+              <!-- Advanced page numbers. -->
+              {{ if gt $paginator.TotalPages $max_links }}
+              <!-- Lower limit pages. -->
+              <!-- If the user is on a page which is in the lower limit.  -->
+              {{ if le $paginator.PageNumber $lower_limit }}
+              <!-- If the current loop page is less than max_links. -->
+              {{ if le .PageNumber $max_links }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              <!-- Upper limit pages. -->
+              <!-- If the user is on a page which is in the upper limit. -->
+              {{ else if ge $paginator.PageNumber $upper_limit }}
+              <!-- If the current loop page is greater than total pages minus $max_links -->
+              {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              <!-- Middle pages. -->
+              {{ else }}
+              {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              {{ end }}
+              <!-- Simple page numbers. -->
+              {{ else }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              <!-- Output page numbers. -->
+              {{ if eq ($.Scratch.Get "page_number_flag") true }}
+              <li class="page-item{{ if eq . $paginator }} page-item active {{ end }}">
+                <a href="{{ .URL }}" class="page-link">
+                  {{ .PageNumber }}
+                </a>
+              </li>
+              {{ end }}
+              {{ end }}
+              <!-- Next page. -->
+              {{ if $paginator.HasNext }}
+              <li class="page-item">
+                <a href="{{ $paginator.Next.URL }}" class="page-link">
+                  &raquo;
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+          </div>
+        </div>
+      </div><!-- right sidebar -->
+      {{ if eq $sidebar "right" }}
+      <aside class="col-lg-3">
+        {{ partial "sidebar.html" . }}
+      </aside>
+      {{ end }}
+      <!-- /right sidebar -->
+    </div>
+  </div>
+</section>
+<!-- /regular post -->
+
+{{ end }}

@@ -1,0 +1,42 @@
+# services
+service:
+  enable : true
+  title : "Easy to used"
+  description : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>Excepteur sint occaecat cupidatat non proident"
+  bgImage : "images/backgrounds/service-page.svg"
+  serviceItem :
+    # service item
+    - title : "Awesome design"
+      icon : "ti-layers-alt"
+      iconColor : "blue" # only 3 color is available. ( blue, green, orange )
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      
+    # service item
+    - title : "Easy to customize"
+      icon : "ti-layers-alt"
+      iconColor : "green"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      
+    # service item
+    - title : "24 Hours Open"
+      icon : "ti-layers-alt"
+      iconColor : "orange"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      
+    # service item
+    - title : "Maximum Support"
+      icon : "ti-layers-alt"
+      iconColor : "blue"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      
+    # service item
+    - title : "Lower Budget"
+      icon : "ti-layers-alt"
+      iconColor : "green"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      
+    # service item
+    - title : "Great service"
+      icon : "ti-layers-alt"
+      iconColor : "green"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br><br>There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."

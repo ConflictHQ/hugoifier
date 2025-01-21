@@ -1,0 +1,110 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "À propos"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "How It Works"
+url = "how-it-works/"
+weight = 3
+
+[[main]]
+name = "Caractéristiques"
+url = "features/"
+weight = 4
+
+[[main]]
+weight = 6
+name = "Pages"
+hasChildren = true
+
+[[main]]
+weight = 1
+parent = "Pages"
+name = "Blog"
+url = "blog/"
+
+[[main]]
+weight = 1
+parent = "Pages"
+name = "Pricing"
+url = "pricing/"
+
+[[main]]
+weight = 2
+parent = "Pages"
+name = "Testimonials"
+url = "testimonials/"
+
+[[main]]
+weight = 3
+parent = "Pages"
+name = "Elements"
+url = "elements/"
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 7
+
+
+# footer menus
+[[about]]
+name = "Our Story"
+url = "about/"
+weight = 1
+
+[[about]]
+name = "Testimonials"
+url = "testimonials/"
+weight = 2
+
+[[about]]
+name = "How It Works"
+url = "how-it-works/"
+weight = 3
+
+[[about]]
+name = "Elements"
+url = "elements/"
+weight = 4
+
+
+[[service]]
+name = "Digital Analytics"
+url = "features/"
+weight = 1
+
+[[service]]
+name = "Digital Marketing"
+url = "features/"
+weight = 2
+
+[[service]]
+name = "Custom Project"
+url = "features/"
+weight = 3
+
+[[service]]
+name = "Marketing Toolbox"
+url = "features/"
+weight = 4
+
+
+[[help]]
+name = "Pricing"
+url = "pricing/"
+weight = 1
+
+[[help]]
+name = "Blog"
+url = "blog/"
+weight = 2
+
+[[help]]
+name = "Contact"
+url = "contact/"
+weight = 4

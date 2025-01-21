@@ -1,0 +1,78 @@
+{{ define "main" }}
+
+<section>
+  <div class="container">
+    <div class="row py-5 justify-content-center border-top border-default">
+      <div class="col-lg-3 col-md-4">
+        <h2>{{.Title}}</h2>
+      </div>
+      <div class="col-lg-7 col-md-8">
+        <form action="{{ site.Params.contact_form_action }}" method="POST" class="row">
+          <div class="form-group col-md-6 mb-4">
+            <label for="first-name">{{ i18n "first_name"}}</label>
+            <input type="text" name="first-name" id="first-name" class="form-control" placeholder="Alexender">
+          </div>
+          <div class="form-group col-md-6 mb-4">
+            <label for="last-name">{{ i18n "last_name"}}</label>
+            <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Grahambel">
+          </div>
+          <div class="form-group col-md-6 mb-4">
+            <label for="email">{{ i18n "email"}}</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="alexender@email.com">
+          </div>
+          <div class="form-group col-md-6 mb-4">
+            <label for="subject">{{ i18n "subject"}}</label>
+            <input type="text" name="subject" id="subject" class="form-control" placeholder="Project Request">
+          </div>
+          <div class="form-group col-12 mb-4">
+            <label for="message">{{ i18n "message"}}</label>
+            <textarea name="message" id="message" class="form-control"
+              placeholder="Lorem Ipsum is simply dummy text of the printing and...……."></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">{{ i18n "send"}}<i class="ti-arrow-right ml-2"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row py-5 justify-content-center border-top border-default">
+      <div class="col-lg-3 col-md-4">
+        <h2>{{ i18n "address" }}</h2>
+      </div>
+      <div class="col-lg-7 col-md-8">
+        <ul class="list-unstyled content">
+          {{with site.Params.mobile }}<li class="mb-2">{{. | markdownify}}</li>{{end}}
+          {{with site.Params.email }}<li class="mb-2">{{. | markdownify}}</li>{{end}}
+          {{with site.Params.address }}<li class="mb-2">{{. | markdownify}}</li>{{end}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ if site.Params.map.enable }}
+{{ with site.Params.map }}
+<section>
+  <div class="container">
+    <div class="row py-5 justify-content-center border-top border-default">
+      <div class="col-lg-3 col-md-4">
+        <h2>{{ i18n "map" }}</h2>
+      </div>
+      <div class="col-lg-7 col-md-8">
+        <div style="height:400px;" id="map_canvas" data-latitude="{{.map_latitude}}"
+          data-longitude="{{.map_longitude}}" data-marker="{{.map_marker | absURL}}"
+          data-marker-name="{{ site.Title }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }} 
+
+{{ end }}

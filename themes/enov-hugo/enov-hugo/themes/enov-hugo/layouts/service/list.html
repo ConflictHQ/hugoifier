@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+<!--  Section Services Start -->
+<section class="section service">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ range $index, $element:= $data.service.services }}
+      {{ $delay := mul $index 100 }}
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex mb-5" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+          <i class="{{ .icon }} text-lg"></i>
+          <div class="ml-5">
+            <h4 class="mb-3">{{ .title | markdownify }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!--  Section Services End -->
+
+<!-- pricing -->
+{{ if $data.service.pricing.enable }}
+{{ with $data.pricing.pricing }}
+<section class="section pricing position-relative">
+  <div class="hero-img bg-overlay h70"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 text-center">
+        <div class="section-title">
+          <h2 class="mb-3 text-white">{{ .title | markdownify }}</h2>
+          <p class="text-white-50">{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      {{ range $index, $element:= .pricing_table }}
+      {{ $delay := mul $index 100}}
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card text-center mb-md-0 mb-3 border-0 shadow-sm-2" data-aos="fade-down"
+          data-aos-delay="{{ $delay }}" data-aos-offset="200">
+          <div class="card-body py-5">
+            <div class="pricing-header mb-4 border-bottom pb-4 {{if .highlight}} active {{ end }}">
+              <span class="mb-3 h5 plan">{{ .pack }}</span>
+              <p class="text-muted">{{ .duration | markdownify }}</p>
+              <h1><small>$</small>{{ .price }}</h1>
+            </div>
+            <ul class="list-unstyled lh-45 mt-3 text-black">
+              {{ range .services }}
+              <li>{{ . | markdownify }}</li>
+              {{ end }}
+            </ul>
+            {{ with .button }}
+            <a href="{{ .link | safeURL }}" class="btn btn-solid-border mt-3">{{ .label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /pricing -->
+
+<!-- service step -->
+{{ if $data.service.steps.enable }}
+{{ with $data.service.steps }}
+<section class="section feature pt-0">
+  <div class="container">
+    <div class="row">
+      {{ $.Scratch.Set "counter" 0 }}
+      {{ range $index, $element := .step }}
+      {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+      {{ $delay:= mul $index 100 }}
+      <div class="col-lg-4 text-center mb-4 mb-lg-0 col-md-6" data-aos="fade-right" data-aos-delay="{{ $delay }}">
+        <span class="text-lg font-weight-bold">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}</span>
+        <h3 class="mt-2 mb-4">{{ .title | markdownify }}</h3>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /service step -->
+
+{{ end }}

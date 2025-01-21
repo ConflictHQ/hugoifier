@@ -1,0 +1,34 @@
+<footer class="bg-primary">
+	<div class="container section">
+		<div class="row">
+			<div class="col-lg-10 mx-auto text-center">
+				<a class="mb-4 d-inline-block" href="{{ site.BaseURL | relLangURL }}">
+					{{ if site.Params.logo }}
+					<img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo | absURL}}"
+						alt="{{ site.Title }}">
+					{{ else }}
+					{{site.Title}}
+					{{ end }}
+				</a>
+				<ul class="navbar-nav navbar-footer">
+					{{ range site.Menus.footer }}
+					<li class="nav-item">
+						<a class="nav-link"
+							href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+					</li>
+					{{ end }}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="copyright content">{{ site.Params.copyright | markdownify }}
+  {{ if site.Params.theme_copyright }}
+    | Theme by
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://gethugothemes.com/"
+      >GetHugoThemes</a
+    >
+  {{ end }}</div>
+</footer>

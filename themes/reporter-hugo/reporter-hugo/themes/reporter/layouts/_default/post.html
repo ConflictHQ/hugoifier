@@ -1,0 +1,54 @@
+<div class="col-md-6 mb-4">
+  <article class="card article-card article-card-sm h-100">
+    <a href="{{.Permalink}}">
+      <div class="card-image">
+        {{ if .Content }}
+        <div class="post-info">
+          <span class="text-uppercase">{{.PublishDate.Format "02 Jan 2006"}}</span>
+          <span class="text-uppercase">{{ .ReadingTime }} {{i18n `minutes_read`}}</span>
+        </div>
+        {{ end }}
+
+        {{ $image:= .Params.image }}
+        {{ if $image }}
+        {{ if hasPrefix $image "http" }}
+        <img loading="lazy" decoding="async" src="{{ $image | safeURL }}" alt="{{ .Title }}" class="w-100">
+        {{ else }}
+        {{ if fileExists (add `assets/` .Params.image) }}
+        {{$img:= resources.Get (.Params.image) }}
+        {{$img:= $img.Fill "420x280 webp"}}
+        <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail" class="w-100"
+          width="{{$img.Width}}" height="{{$img.Height}}">
+        {{ else }}
+        <span class="image-fallback">{{.Title | title}}</span>
+        {{ end }}
+        {{ end }}
+        {{ else }}
+        <span class="image-fallback">{{.Title | title}}</span>
+        {{ end }}
+      </div>
+    </a>
+    <div class="card-body px-0 pb-0">
+      {{ if .Params.categories }}
+      <ul class="post-meta mb-2">
+        <li>
+          {{ range $i,$e:= .Params.categories }}
+          <a href="{{`categories/` | relLangURL}}{{ replace (index (split . `/`) 0) ` ` `-`}}/">{{- index (split . "/") 0 -}}</a>
+
+          {{ if (index (split . "/") 1)}}
+          <a href="{{`categories/` | relLangURL}}{{. | urlize | lower}}/">{{- index (split . "/") 1 -}}</a>
+          {{ end }}
+          {{ end }}
+        </li>
+      </ul>
+      {{ end }}
+      <h2><a class="post-title" href="{{.Permalink}}">{{ .Title | title }}</a></h2>
+      {{ if .Content }}
+      <p class="card-text">{{.Summary | truncate 120}}</p>
+      <div class="content">
+        <a class="read-more-btn" href="{{.RelPermalink}}">{{i18n `read_full_article`}}</a>
+      </div>
+      {{ end }}
+    </div>
+  </article>
+</div>

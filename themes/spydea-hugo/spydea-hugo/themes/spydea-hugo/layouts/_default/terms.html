@@ -1,0 +1,59 @@
+{{ define "main" }}
+  {{ partial "page-header.html" . }}
+  <section class="section-md relative z-20 mt-[-28rem] md:mt-[-32rem]">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div
+            data-aos="fade-up-sm"
+            data-aos-delay="100"
+            class="shadow-default rounded-2xl bg-white px-8 py-8 sm:px-14 sm:py-14 lg:px-20 lg:py-16">
+            <div class="content prose">
+              <ul>
+                {{/* categories */}}
+                {{ if eq .Permalink (`categories/` | absLangURL) }}
+                  {{ range site.Taxonomies.categories.ByCount }}
+                    <li class="m-3 inline-block">
+                      <a
+                        href="{{ .Page.Permalink }}"
+                        class="bg-theme-light text-dark   block rounded px-4 py-2 text-xl">
+                        {{ .Page.Title }}
+                        <span class="bg-body  ml-2 rounded px-2">
+                          {{ .Count }}
+                        </span>
+                      </a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+                {{/* tags */}}
+                {{ if eq .Permalink (`tags/` | absLangURL) }}
+                  {{ range site.Taxonomies.tags.ByCount }}
+                    <li class="m-3 inline-block">
+                      <a
+                        href="{{ .Page.Permalink }}"
+                        class="bg-theme-light text-dark   block rounded px-4 py-2 text-xl">
+                        {{ .Page.Title }}
+                        <span class="bg-body  ml-2 rounded px-2">
+                          {{ .Count }}
+                        </span>
+                      </a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Main Content -->
+  </section>
+  <!-- End Terms & Conditions -->
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

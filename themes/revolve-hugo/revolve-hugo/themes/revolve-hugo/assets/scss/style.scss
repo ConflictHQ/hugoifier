@@ -1,0 +1,99 @@
+/*
+Author       : Revolve
+Template Name: Minimal Blog Template
+Author URI : https://themefisher.com/
+Description: Revolve,blog,minimal,multipage,contact 
+Version      : 1.0
+*/
+
+
+/*------------------------------------------------------------------
+[TABLE OF CONTENTS]
+
+1. BASE
+
+  1.1. Typography
+  1.2. Common Styles
+
+2. HEADER
+
+  2.1. Navigation
+  2.2. Site Search
+  2.3. Top Navigation
+
+3. TRANDING NEWS
+
+4. POST STYLES
+
+  4.1. Post Title
+  4.2. Post Meta
+  4.3. Post Overlay
+  4.4. Post Block
+  4.5. Post List
+  4.6. Post Slider
+  4.7. Side Post Slider
+  4.8. Pagination
+
+5. POST SINGLE STYLES
+
+  5.1. Single Post Title
+  5.2. Feature Image
+  5.3. Post Ads
+  5.4. Post Tag
+  5.5. Post Share Widget
+  5.6. Post Navigation
+  5.7. Author Box
+  5.8. Comment Styles
+
+6. FEATURE POST STYLES
+
+7. POST CATEGORY STYLES
+
+8. SIDEBAR
+
+  8.1. Social Pages
+  8.2. Sidebar Widget Common Styles
+  8.3. Sidebar Nav
+  8.4. Newsletter
+  8.5. Tags
+  8.6. Review Post 
+  8.7. Top Authors
+
+9. VIDEO GALLERY
+
+10. CONTACT
+
+11. FOOTER
+
+12. RESPONSIVE STYLES
+
+-------------------------------------------------------------------*/
+
+@import 'variables.scss';
+
+@import 'mixins.scss';
+
+@import 'typography.scss';
+
+@import 'common.scss';
+
+@import 'templates/header.scss';
+@import 'templates/banner.scss';
+
+@import 'templates/blog.scss';
+@import 'templates/posts.scss';
+
+@import 'templates/post-single.scss';
+
+@import 'templates/pages.scss';
+
+@import 'templates/contact.scss';
+
+@import 'templates/footer.scss';
+
+@import 'responsive';
+
+
+
+
+

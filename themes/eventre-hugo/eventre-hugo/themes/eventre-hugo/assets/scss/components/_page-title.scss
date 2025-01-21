@@ -1,0 +1,29 @@
+.page-title{
+	position: relative;
+	padding: 165px 0 65px;
+	h3, li, a{
+		color: $light;
+	}
+	.title{
+		h3{
+			font-weight: 500;
+			text-transform: uppercase;
+		}
+	}
+	.breadcrumb{
+		background: transparent;
+		.breadcrumb-item{
+			float: none;
+			display: inline-block;
+			text-transform: uppercase;
+			&.active{
+				color: $light;
+			}
+		}
+		.breadcrumb-item+.breadcrumb-item::before{
+			content: "\f105";
+			font-family: FontAwesome;
+			color: $light;
+		}
+	}
+}

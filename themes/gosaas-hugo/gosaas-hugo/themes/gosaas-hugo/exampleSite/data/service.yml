@@ -1,0 +1,47 @@
+################################ Service ##################################
+service:
+  enable : true
+  title : "How our Service **Works**?"
+  subtitle : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+  serviceItem:
+    # service item loop
+    - title : "Promotion Campaign"
+      icon : "ti-announcement" # themify icon pack https://themify.me/themify-icons
+      iconColor : "primary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+      
+    # service item loop
+    - title : "Clint Communication"
+      icon : "ti-comments" # themify icon pack https://themify.me/themify-icons
+      iconColor : "secondary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+      
+    # service item loop
+    - title : "Data Analysis"
+      icon : "ti-bar-chart" # themify icon pack https://themify.me/themify-icons
+      iconColor : "tertiary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+      
+    # service item loop
+    - title : "Calendaring"
+      icon : "ti-calendar" # themify icon pack https://themify.me/themify-icons
+      iconColor : "secondary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+      
+    # service item loop
+    - title : "Scheduling"
+      icon : "ti-write" # themify icon pack https://themify.me/themify-icons
+      iconColor : "tertiary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+      
+    # service item loop
+    - title : "Time Counting"
+      icon : "ti-alarm-clock" # themify icon pack https://themify.me/themify-icons
+      iconColor : "primary" # color available : primary, secondary, tertiary
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+
+
+################################## About App ##############################
+aboutApp:
+  enable : true
+  # about app data coming from 'data/homepage.yml'

@@ -1,0 +1,54 @@
+{{ define "main" }}
+
+<section class="section portfolio-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" class="img-fluid w-100">
+      </div>
+
+      <div class="col-lg-6">
+        <div class="project-info">
+          <h3 class="mb-4">{{ .Title }}</h3>
+          {{ .Content }}
+          <div class="row mt-4">
+            <div class="col-lg-6">
+              <div class="info">
+                <h5 class="mb-0">Client</h5>
+                <p>{{ .Params.Client }}</p>
+              </div>
+
+              <div class="info">
+                <h5 class="mb-0">Year</h5>
+                <p>{{ .Params.Year }}</p>
+              </div>
+              {{ if and ( ne .Params.Project_url "" ) ( ne .Params.Project_url "#" ) }}
+              <div class="mt-4">
+                <a href="{{ .Params.Project_url | safeURL }}" class="btn btn-main btn-small">View project</a>
+              </div>
+              {{ end }}
+            </div>
+
+            <div class="col-lg-6">
+              <div class="info">
+                <h5 class="mb-0">Category</h5>
+                <p>{{ .Params.Category }}</p>
+              </div>
+              <div class="info">
+                <h5>Share</h5>
+
+                {{ $url := printf "%s" .Permalink | absLangURL }}
+                <a href="https://facebook.com/sharer/sharer.php?u={{ $url }}"><i class="ti-facebook"></i></a>
+                <a href="ttps://twitter.com/intent/tweet/?text={{ .Title }}&amp;url={{ $url }}"><i class="ti-twitter"></i></a>
+                <a href="https://reddit.com/submit/?url={{ $url }}&amp;resubmit=true&amp;title={{ .Title }}"><i class="ti-reddit"></i></a>
+                <a href="mailto:?subject={{ .Title }}&amp;body={{ $url }}"><i class="ti-email"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

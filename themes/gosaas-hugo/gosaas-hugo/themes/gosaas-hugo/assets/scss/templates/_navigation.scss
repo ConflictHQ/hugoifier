@@ -1,0 +1,35 @@
+.navigation {
+  transition: .3s ease;
+  &.fixed-top{
+    @include desktop {
+      position: sticky !important;
+    }
+  }
+  @include desktop {
+    background: $light;
+  }
+}
+
+.nav-bg {
+  background-color: $light;
+}
+
+.nav-item{
+  margin: 0;
+
+  .nav-link{
+    text-transform: capitalize;
+    font-size: 16px;
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: $text-color-dark;
+  &:hover{
+    color: $primary-color;
+  }
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 20px;
+}

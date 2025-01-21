@@ -1,0 +1,57 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<div class="section pb-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <div class="text-center mb-5" data-aos="cool">
+          <h2 class="mb-4" style="line-height:1.5">{{.Title}}</h2>
+          <span>{{.PublishDate.Format "02 January 2006"}}</span>
+        </div>
+        
+        {{with .Params.images}}
+        <div class="mb-5 text-center" data-aos="fade">
+          <div class="post-slider rounded-lg overflow-hidden">
+            {{ range .}}
+            {{$img:= resources.Get . }}
+            {{$img:= $img.Resize "1000x webp"}}
+            <img loading="lazy" src="{{$img.RelPermalink}}" alt="post-thumb" width="{{$img.Width}}" height="{{$img.Height}}">
+            {{ end }}
+          </div>
+        </div>
+        {{end}}
+      
+        <div class="content" data-aos="fade">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section pt-0" data-aos="fade">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="border rounded bg-white-blur py-4 px-3 py-md-5 px-md-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- regular page -->
+{{ else }}
+{{ .Render "default" }}
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

@@ -1,0 +1,39 @@
+{{ "<!-- latest post -->" | safeHTML }}
+<div class="widget">
+  <h5 class="widget-title"><span>{{ i18n "latest_article" }}</span></h5>
+  {{ "<!-- post-item -->" | safeHTML }}
+  {{ range first 3 ( where site.RegularPages "Section" "blog" )}}
+  <ul class="list-unstyled widget-list">
+    <li class="d-flex widget-post align-items-center">
+      <a class="text-black" href="{{ .RelPermalink }}">        
+        {{ if .Params.images }}
+        <div class="widget-post-image flex-shrink-0 me-3">
+          {{ range first 1 .Params.images }}
+          {{ if fileExists (add `assets/` .) }}
+            {{ $img:= resources.Get (.) }}
+            {{ $img:= $img.Fill "80x80 webp" }}
+            <img class="rounded" loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail"  width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ else }}
+            <div class="image-fallback me-3" style="height: 80px; width: 80px;">
+              <img class="w-100 rounded" src="https://via.placeholder.com/80x80.jpg/eee/eee">
+              <span>{{.Title | markdownify}}</span>
+            </div>
+          {{ end }}
+          {{ end }}
+        </div>
+        {{ else }}
+        <div class="image-fallback me-3" style="height: 80px; width: 80px;">
+          <img class="w-100 rounded" src="https://via.placeholder.com/80x80.jpg/eee/eee">
+          <span>{{.Title | markdownify}}</span>
+        </div>
+        {{ end }}
+      </a>
+
+      <div class="flex-grow-1">
+        <h5 class="h6 mb-0"><a class="text-black" href="{{ .Permalink }}">{{ .Title }}</a></h5>
+        <small>{{ .PublishDate.Format "January 2, 2006" }}</small>
+      </div>
+    </li>
+  </ul>
+  {{ end }}
+</div>

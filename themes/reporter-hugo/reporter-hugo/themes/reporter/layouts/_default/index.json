@@ -1,0 +1,22 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections -}}
+
+{{ $image:= .Params.image }}
+{{ if $image }}
+{{ if hasPrefix $image "http" }}
+{{ $.Scratch.Set "image" ($image | safeURL) }}
+{{ else }}
+{{ if fileExists (add `assets/` .Params.image) }}
+{{ $img:= resources.Get (.Params.image) }}
+{{ $img:= $img.Fill "420x280 webp"}}
+{{ $.Scratch.Set "image" ($img.RelPermalink) }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ $image := $.Scratch.Get "image" }}
+
+{{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "image" $image "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

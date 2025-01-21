@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="{{ with site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{- partial "head.html" . -}}
+
+<body>
+  {{- partial "preloader.html" . -}}
+
+  {{ "<!-- navigation -->" | safeHTML }}
+  <header class="navigation {{if and .Params.ishome (site.Params.banner.enable)}}position-absolute w-100{{end}}">
+    <div class="container">
+      {{ if eq .Params.navbar "1" }}
+      <!-- navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}"><img class="img-fluid"
+            src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}"></a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="fa fa-bars h3 text-dark"></i>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            {{ range site.Menus.main }}
+            {{ if .HasChildren }}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                {{ .Name }}
+              </a>
+              <div class="dropdown-menu">
+                {{ range .Children }}
+                <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+                {{ end }}
+              </div>
+            </li>
+            {{ else }}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+            {{ end }}
+
+            <!-- Language List -->
+            {{ if .IsTranslated }}
+            <li class="nav-item lang-list">
+              <select id="select-language" onchange="location = this.value;">
+                {{ $siteLanguages := site.Languages}}
+                {{ $pageLang := .Page.Lang}}
+                {{ range .Page.AllTranslations }}
+                {{ $translation := .}}
+                {{ range $siteLanguages }}
+                {{ if eq $translation.Lang .Lang }}
+                {{ $selected := false }}
+                {{ if eq $pageLang .Lang}}
+                <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>
+                  {{ .LanguageName }}
+                </option>
+                {{ else }}
+                <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}
+                </option>
+                {{ end }}
+                {{ end }}
+                {{ end }}
+                {{ end }}
+              </select>
+            </li>
+            {{ end }}
+          </ul>
+
+          {{ if site.Params.search }}
+          {{ "<!-- search -->" | safeHTML }}
+          <div class="search px-4">
+            <button id="searchOpen" class="search-btn"><i class="fa fa-search"></i></button>
+            <div class="search-wrapper">
+              <form action="{{ `search`| relLangURL }}" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search"
+                  placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="fa fa-close text-dark"></i></button>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </nav>
+      {{ else }}
+      <div class="text-center desktop-view pt-2">
+        <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}"><img class="img-fluid"
+            src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}"></a>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <a class="navbar-brand mobile-view" href="{{ site.BaseURL | relLangURL }}"><img class="img-fluid"
+            src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}"></a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="fa fa-bars h3 text-dark"></i>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav mx-auto">
+            {{ range site.Menus.main }}
+            {{ if .HasChildren }}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                {{ .Name }}
+              </a>
+              <div class="dropdown-menu">
+                {{ range .Children }}
+                <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+                {{ end }}
+              </div>
+            </li>
+            {{ else }}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+            {{ end }}
+            <!-- Language List -->
+            {{ if .IsTranslated }}
+            <li class="nav-item lang-list">
+              <select id="select-language" onchange="location = this.value;">
+                {{ $siteLanguages := site.Languages}}
+                {{ $pageLang := .Page.Lang}}
+                {{ range .Page.AllTranslations }}
+                {{ $translation := .}}
+                {{ range $siteLanguages }}
+                {{ if eq $translation.Lang .Lang }}
+                {{ $selected := false }}
+                {{ if eq $pageLang .Lang}}
+                <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>
+                  {{ .LanguageName }}
+                </option>
+                {{ else }}
+                <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}
+                </option>
+                {{ end }}
+                {{ end }}
+                {{ end }}
+                {{ end }}
+              </select>
+            </li>
+            {{ end }}
+          </ul>
+
+          {{ if site.Params.search }}
+          {{ "<!-- search -->" | safeHTML }}
+          <div class="search px-4">
+            <button id="searchOpen" class="search-btn"><i class="fa fa-search"></i></button>
+            <div class="search-wrapper">
+              <form action="{{ `search`| relLangURL }}" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search"
+                  placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="fa fa-close text-dark"></i></button>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </nav>
+      {{ end }}
+    </div>
+  </header>
+  {{ "<!-- /navigation -->" | safeHTML }}
+
+
+  <!-- banner -->
+  {{ if .Params.banner }}
+  {{ with site.Params.banner }}
+  <section class="banner mb-5" style="background-image: url('{{ .bg_image | absURL }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center">
+          <h1 class="mb-5">{{ .title | markdownify }}</h1>
+          <ul class="list-inline social-icons">
+            {{ range site.Params.social }}
+            <li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="fa {{.icon}}"></i></a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+  <!-- /banner -->
+
+  <!-- post layout -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        {{ if eq .Params.post "1"}}
+        {{ range (where site.RegularPages "Section" "post") }}
+        <div class="col-lg-5 col-sm-6">
+          <article class="card">
+            {{ if .Params.image }}
+            <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+            {{ end }}
+            <div class="card-body text-center">
+              <ul class="card-meta">
+                {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}
+                <li><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | humanize }}</a></li>
+                {{end}}
+              </ul>
+              <h4 class="card-title mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+              <p>{{ .Summary }}</p>
+              <ul class="post-meta">
+                <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}
+                </li>
+                <li><i class="fa fa-clock-o"></i>{{ .Page.ReadingTime }}
+                  {{ i18n "minute_read" }}</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        {{ end }}
+        {{ end }}
+
+        {{ if eq .Params.post "2"}}
+        {{ range $index,$elements:= (where site.RegularPages "Section" "post") }}
+        <div class="col-lg-10 mx-auto">
+          {{ if and (not site.Params.banner.enable) (eq $index 0 )}}
+          <div class="card card-xl">
+            {{ else }}
+            <div class="card card-lg mb-5">
+              {{ end }}
+              {{ if .Params.image }}
+              <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+              {{ end }}
+              <div class="card-body text-center">
+                <ul class="card-meta">
+                  {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}
+                  <li><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | humanize }}</a></li>
+                  {{end}}
+                </ul>
+                <h4 class="card-title mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+                <p>{{ .Summary }}</p>
+                <ul class="post-meta">
+                  <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}</li>
+                  <li><i class="fa fa-clock-o"></i>{{ .Page.ReadingTime }}
+                    {{ i18n "minute_read" }}</li>
+                </ul>
+                <a href="{{ .Permalink }}" class="btn btn-link">{{ i18n "read_more" }} <i
+                    class="fa fa-long-arrow-right ml-2"></i></a>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /post layout -->
+
+  <!-- instagram feed -->
+  {{ if site.Params.instafeed.enable }}
+  {{ if eq .Params.instafeed "1" }}
+  <section class="section-sm instafeed-full">
+  {{ else }}
+  <section class="section-sm">
+    {{ end }}
+    {{ with site.Params.instafeed }}
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">{{ i18n "instagram_post" }}</h2>
+      </div>
+      <div class="instagram-slider" id="instafeed" data-accessToken="{{.access_token}}">
+      </div>
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+  <!-- /instagram feed -->
+
+  {{- partial "footer.html" . -}}
+</body>
+
+</html>

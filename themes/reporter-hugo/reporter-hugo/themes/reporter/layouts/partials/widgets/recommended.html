@@ -1,0 +1,60 @@
+<div class="col-lg-12 col-md-6">
+  <div class="widget">
+    <h2 class="section-title mb-3">{{i18n `recommended`}}</h2>
+    <div class="widget-body">
+      <div class="widget-list">
+        {{ $related := (where site.RegularPages "Section" "articles") | intersect (where site.Pages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+        {{ range $i, $e:= last 5 $related }}
+        {{ if eq $i 0}}
+        
+        <article class="card mb-4">
+          <div class="card-image">
+            <div class="post-info">
+              <span class="text-uppercase">{{ math.Round (div (countwords .Content) 220.0) }} {{i18n `minutes_read`}}</span>
+            </div>
+      
+            {{ if .Params.image }}
+            {{ if fileExists (add `assets/` .Params.image) }}
+            {{$img:= resources.Get (.Params.image) }}
+            {{$img:= $img.Fill "420x280 webp"}}
+            <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail" class="w-100" width="{{$img.Width}}" height="{{$img.Height}}">
+            {{ else }}
+            <span class="image-fallback">{{.Title | title}}</span>
+            {{ end }}
+            {{ else }}
+            <span class="image-fallback">{{.Title | title}}</span>
+            {{ end }}
+          </div>
+          <div class="card-body px-0 pb-1">
+            <h3><a class="post-title post-title-sm" href="{{.Permalink}}">{{ .Title | title }}</a></h3>
+            <p class="card-text">{{.Summary | truncate 80}}</p>
+            <div class="content">
+              <a class="read-more-btn" href="{{.RelPermalink}}">{{i18n `read_full_article`}}</a>
+            </div>
+          </div>
+        </article>
+  
+        {{ else }}
+        <a class="media align-items-center" href="{{.Permalink}}">
+          {{ if .Params.image }}
+          {{ if fileExists (add `assets/` .Params.image) }}
+          {{$img:= resources.Get (.Params.image) }}
+          {{$img:= $img.Fill "80x80 webp"}}
+          <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail" class="w-100" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ else }}
+          <span class="image-fallback image-fallback-xs">{{.Title | title}}</span>
+          {{ end }}
+          {{ else }}
+          <span class="image-fallback image-fallback-xs">{{.Title | title}}</span>
+          {{ end }}
+          <div class="media-body ml-3">
+            <h3 style="margin-top:-5px">{{.Title}}</h3>
+            <p class="mb-0 small">{{.Plain | markdownify | truncate 50}}</p>
+          </div>
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>

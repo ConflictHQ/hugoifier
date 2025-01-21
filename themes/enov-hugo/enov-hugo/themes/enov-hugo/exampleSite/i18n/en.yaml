@@ -1,0 +1,26 @@
+- id: read_more
+  translation: Read More
+- id: posted_by
+  translation: Posted by
+- id: contact_us
+  translation: Contact Us
+- id: send_message
+  translation: Send Message
+- id: search
+  translation: search
+- id: latest_post
+  translation: Latest Posts
+- id: categories
+  translation: Categories
+- id: tags
+  translation: Tags
+- id: company
+  translation: Company
+- id: quick_links
+  translation: Quick Links
+- id: follow_us
+  translation: Follow us
+- id: all
+  translation: All
+- id: view_project
+  translation: view project

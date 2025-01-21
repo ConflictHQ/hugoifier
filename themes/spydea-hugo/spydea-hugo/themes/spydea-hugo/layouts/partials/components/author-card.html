@@ -1,0 +1,27 @@
+<div
+  class="shadow-default overflow-hidden rounded-xl bg-white p-3 pb-0 transition-all duration-300 hover:-translate-y-1">
+  <div class="h-full max-h-[900px] w-full">
+    {{ partial "image.html" (dict "Src" .image "Class" "h-full w-full rounded-xl rounded-b-none object-cover" "Alt" .name) }}
+  </div>
+  <div class="px-5 py-8">
+    <h3 class="text-dark mb-4 text-xl font-semibold sm:text-2xl">
+      {{ .name | markdownify }}
+    </h3>
+    <p>
+      {{ .description | markdownify | truncate 50 }}
+    </p>
+    <ul class="font-secondary text-dark mt-5 flex flex-wrap items-center gap-4">
+      {{ range .social }}
+        <li>
+          <a
+            href="{{ .link | absURL }}"
+            target="_blank"
+            class="bg-quinary/10 hover:bg-dark/90 inline-block h-[45px] w-[45px] rounded-full text-center leading-[45px] transition-colors duration-300 hover:text-white">
+            <i class="{{ .icon }}"></i>
+            <span class="sr-only">{{ .icon }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

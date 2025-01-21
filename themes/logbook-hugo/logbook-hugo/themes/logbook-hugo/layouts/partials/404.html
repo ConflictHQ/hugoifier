@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1>{{ i18n `page_not_found` }}</h1>
+        <div class="mb-5">
+          {{ partial "image.html" (dict "Src" site.Params.page_not_found_image "Alt" "404 page not found" "Size" "600x") }}
+        </div>
+        <a href="{{ site.BaseURL | relLangURL }}" class="btn btn-primary"
+          >{{ i18n "back_to_home" }}</a
+        >
+      </div>
+    </div>
+  </div>
+</section>

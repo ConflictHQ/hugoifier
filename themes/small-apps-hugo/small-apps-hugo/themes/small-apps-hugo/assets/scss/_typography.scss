@@ -1,0 +1,126 @@
+html {
+	font-size: $font-size;
+}
+
+// Body 
+body {
+	font-family: $font-primary;
+	font-weight: 400;
+	line-height: 1.75;
+	background: $body-bg;
+	color: $text-color;
+	-webkit-font-smoothing: antialiased;
+	scroll-behavior: smooth;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $dark;
+	font-weight: 300;
+}
+
+h1,
+.fs-1 {
+	font-size: 45px;
+
+	@include tablet {
+		font-size: 35px;
+	}
+}
+
+h2,
+.fs-2 {
+	font-size: 40px;
+	line-height: 50px;
+
+	@include tablet {
+		font-size: 30px;
+	}
+}
+
+h3,
+.fs-3 {
+	font-size: 20px;
+	line-height: 30px;
+
+	@include tablet {
+		font-size: 18px;
+	}
+}
+
+// List in descending order to prevent extra sort function
+$type-levels: 6, 5, 4;
+
+@each $level in $type-levels {
+	$font-size: $font-size * $font-scale;
+
+	// Output heading styles
+	h#{$level},
+	.h#{$level} {
+		font-size: $font-size;
+		line-height: calc(2px + 2ex + 2px);
+		margin-bottom: 0.65em;
+
+		// responsive for h1, h2, h3, h4
+		&:not(h5, .h5, h6, .h6) {
+			@include desktop {
+				font-size: calc(#{$font-size} * 0.9);
+				margin-bottom: 0.55em;
+			}
+
+			@include tablet {
+				font-size: calc(#{$font-size} * 0.8);
+			}
+		}
+
+		// responsive for h5, h6
+		@include desktop {
+			font-size: calc(#{$font-size} * 0.95);
+			margin-bottom: 0.55em;
+		}
+
+		@include tablet {
+			font-size: calc(#{$font-size} * 0.9);
+		}
+	}
+}
+
+// Others 
+p,
+a,
+li,
+blockquote,
+label {
+	font-size: 16px;
+	letter-spacing: 0;
+	line-height: 25px;
+	color: $text-color;
+	margin-bottom: 0;
+}
+
+small,
+.small {
+	font-size: 14px;
+}
+
+cite {
+	font-size: 14px;
+	font-style: normal;
+}
+
+.lora {
+	font-family: $font-secondary;
+	font-style: italic;
+}
+
+// Placeholder Color Change
+.form-control::-webkit-input-placeholder {
+	color: $text-color;
+	line-height: 25px;
+	font-size: 16px;
+}

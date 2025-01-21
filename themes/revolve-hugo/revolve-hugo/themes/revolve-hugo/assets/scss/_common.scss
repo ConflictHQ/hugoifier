@@ -1,0 +1,161 @@
+/* 1.2. Common styles
+================================================== */
+body{
+	background:$white;
+	color: lighten($color: $text-color, $amount: 20);
+}
+
+html, body {
+    height: 100%;
+}
+
+a {
+  transition: all .3s ease-in-out;
+  color: $black;
+
+  &:link, &:visited {
+    text-decoration: none;
+  }
+
+
+  &:hover {
+      color: $primary-color;
+    }
+  
+  &.read-more {
+    margin-top:10px;
+    display: inline-block;
+    color: $primary-color;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight:600;
+    letter-spacing: 2px;
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.section-padding {
+  padding: 70px 0;
+  position: relative;
+}
+.section-sm {
+  padding:30px 0;
+}
+
+
+a:focus {
+  outline: 0;
+}
+
+
+img{
+  max-width: 100%;
+}
+
+
+/* Input form */
+
+.form-control {
+  box-shadow: none;
+  border: 1px solid transparent;
+  padding: 12px 20px;
+  background:  #f0f1f4;
+  font-size: 14px;
+  border-radius: 2px;
+  &:focus {
+    box-shadow: none;
+    border: 1px solid $primary-color;
+  }
+}
+
+
+blockquote {
+  position: relative;
+  padding: 0px 50px 30px 40px;
+  margin: 50px 0 40px;
+  font-size: 20px;
+  line-height: 34px;
+  font-family: $extra-font;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+  
+}
+
+/* Button */
+
+.btn{
+  border-radius: 0px;
+  padding: 10px 30px;
+  font-weight:600;
+  text-transform: uppercase;
+  color: $white;
+  transition: 350ms;
+  letter-spacing: 1px;
+  font-size: 13px;
+  border:1px solid transparent;
+}
+
+
+.btn-primary {
+  background: $primary-color;
+  &:hover{
+    background:$black;
+    color: $white;
+    border-color:$black;
+  }
+}
+
+.btn-dark {
+  background: $text-color;
+}
+
+.btn-dark:hover, .btn-white.btn-primary:hover {
+  background: #272d33;
+  color: $white;
+}
+
+.btn-grey {
+  background: $primary-color;
+  border-color:$primary-color;
+  color: $white;
+
+  &:hover{
+    background: transparent;
+    border-color:$primary-color;
+    color: $black;
+  }
+}
+
+
+// Slick Carousel outline remove
+.slick-slide{
+  outline: 0;
+}
+
+.letter-spacing{
+  letter-spacing:3px;
+}
+
+.font-sm{
+  font-size: 12px!important;
+}
+.text-color{
+  color: $primary-color;
+}
+
+.bg-grey{
+  background: #f8efea;
+}
+.gray-bg{
+  background:#f5f5f5;
+}
+
+.padding-bottom{
+  padding-bottom: 120px;
+}
+.padding-top{
+  padding-top: 120px;
+}

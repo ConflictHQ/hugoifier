@@ -1,0 +1,39 @@
+############# English navigation ##############
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+name = "Faq"
+url = "faq/"
+weight = 2
+
+[[main]]
+name = "contact"
+url = "contact/"
+weight = 3
+
+# Dropdown menu
+[[main]]
+weight = 4
+name = "docs"
+hasChildren = true
+
+  [[main]]
+  parent = "docs"
+  name = "Installation"
+  url = "installation/"
+  weight = 1
+
+  [[main]]
+  parent = "docs"
+  name = "Billing and Pricing"
+  url = "billing-pricing/"
+  weight = 2
+
+  [[main]]
+  parent = "docs"
+  name = "Features"
+  url = "features/"
+  weight = 3

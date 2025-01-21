@@ -1,0 +1,30 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ with $data.homepage.feature }}
+<section class="section intro">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="pt-5 mb-4 mb-lg-0">
+          <h2 class="mt-3 text-md font-secondary">{{ .title | markdownify }}</h2>
+        </div>
+      </div>
+
+      <div class="col-lg-6 ml-auto">
+        <div class="row">
+          {{ range $index, $element:= .feature_item }}
+          {{ $delay := mul $index 100 }}
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+            <div class="intro-item mb-4 mb-lg-0">
+              <i class="{{ .icon }} text-color"></i>
+              <h4 class="mt-4">{{ .title | markdownify }}</h4>
+              <p>{{ .content | markdownify }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

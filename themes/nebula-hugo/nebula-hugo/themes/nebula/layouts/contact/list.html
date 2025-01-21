@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<div class="pr-lg-5 pr-4 py-4">
+  <form action="{{ .Site.Params.contact_form_action }}" method="POST" class="bg-dark p-lg-5 p-4 row">
+    <div class="col-12">
+      <h2 class="section-title">{{ .Title | markdownify }}</h2>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="first-name">First Name</label>
+      <input type="text" name="first-name" id="first-name" class="form-control" placeholder="Alexender">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="last-name">Last Name</label>
+      <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Grahambel">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="alexender@email.com">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="subject">Subject</label>
+      <input type="text" name="subject" id="subject" class="form-control" placeholder="Project Request">
+    </div>
+    <div class="form-group col-12">
+      <label for="message">Message</label>
+      <textarea name="message" id="message" class="form-control"
+        placeholder="Lorem Ipsum is simply dummy text of the printing and...……."></textarea>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Send now</button>
+    </div>
+  </form>
+</div>
+
+{{ end }}

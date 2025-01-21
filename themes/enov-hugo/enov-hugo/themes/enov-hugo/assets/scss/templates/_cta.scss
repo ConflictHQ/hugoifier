@@ -1,0 +1,59 @@
+
+.cta-block{
+	margin-top: 80px;
+
+	.btn:hover{
+		background: $light;
+		color: $primary-color;
+	}
+}
+
+.videoplay{
+	background: $primary-color;
+	color: $light;
+	display: inline-block;
+	text-align: center;
+	width: 90px;
+	height: 90px;
+	font-size: 42px;
+	padding-top: 25px;
+	border-radius: 100%;
+	position: absolute;
+	left:10px;
+
+	&:hover{
+		color:$light!important;
+		cursor: pointer;
+	}
+	&:focus{
+		color:$light!important;
+	}
+}
+
+.cta-content-block{
+	padding-left: 70px;
+}
+
+
+.font-primary{
+	font-family: $primary-font;
+}
+.font-secondary{
+	font-family: $secondary-font;
+}
+
+.cta h2{
+	text-transform: none;
+}
+
+
+@include mobile-xs{
+	.cta-content-block {
+	    padding-left: 86px;
+	}
+
+	.cta .btn{
+		margin-bottom: 20px;
+		display: block;
+	}
+}

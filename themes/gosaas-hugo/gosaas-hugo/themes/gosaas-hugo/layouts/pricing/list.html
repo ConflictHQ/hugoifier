@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ partial "pricing.html" . }}
+
+<!-- about app -->
+{{ if .Site.Data.service.aboutApp.enable }}
+{{ partial "aboutApp.html" . }}
+{{ end }}
+<!-- /about app -->
+
+{{ end }}

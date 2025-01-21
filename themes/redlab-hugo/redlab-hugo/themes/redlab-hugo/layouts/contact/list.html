@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-between">
+      {{ if .Site.Params.map.enable }}
+      <div class="col-lg-7 mobile-height mb-5 mb-lg-0" id="map_canvas" 
+      data-latitude="{{ .Site.Params.map.map_latitude }}"
+      data-longitude="{{ .Site.Params.map.map_longitude }}"
+      data-marker="{{ .Site.Params.map.map_marker | absURL }}"
+      data-marker-name="{{ .Site.Title }}"></div>
+      {{ end }}
+      <div class="col-lg-4">
+        <div class="p-5 bg-secondary">
+          <h3 class="text-white border-bottom pb-4 mb-5">{{i18n "keep_in_touch"}}</h3>
+          <div class="mb-4">
+            <h6 class="text-white">{{ i18n "address" }}</h6>
+            <p>{{ .Site.Params.address | markdownify }}</p>
+          </div>
+          <div class="mb-4">
+            <h6 class="text-white">{{ i18n "email" }}</h6>
+            <p>{{ .Site.Params.email | markdownify }}</p>
+          </div>
+          <div class="mb-4">
+            <h6 class="text-white">{{ i18n "mobile" }}</h6>
+            <p>{{ .Site.Params.mobile | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Leave A Message</h2>
+      </div>
+      <div class="col-lg-12 text-center">
+        <form action="{{ .Site.Params.contact_form_action }}" class="row">
+          <div class="col-lg-6">
+            <input type="text" class="form-control mb-4" placeholder="Your email">
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control mb-4" placeholder="Your Name">
+          </div>
+          <div class="col-lg-12">
+            <input type="text" class="form-control mb-4" placeholder="Subject">
+          </div>
+          <div class="col-lg-12">
+            <textarea name="message" class="form-control mb-4" placeholder="Message"></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit Now</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

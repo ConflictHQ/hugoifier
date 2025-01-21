@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+<section class="section speakers white">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 section-title">
+        {{.Content}}
+			</div>
+		</div>
+		<div class="row">
+      {{ range .Data.Pages }}
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<!-- Speaker 1 -->
+				<div class="speaker-item">
+					<div class="image">
+						<img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="img-fluid">
+						<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+                {{ range first 4 .Params.social }}
+                <li class="list-inline-item"><a href="{{.link | safeURL }}"><i class="fa {{.icon}}"></i></a></li>
+                {{ end }}
+							</ul>
+						</div>
+					</div>
+					<div class="content text-center">
+						<h5><a href="{{ .Permalink }}">{{.Title }}</a></h5>
+						<p>{{ .Params.Designation | markdownify }}</p>
+					</div>
+				</div>
+      </div>
+      {{ end }}
+		</div>
+	</div>
+</section>
+
+{{ end }}

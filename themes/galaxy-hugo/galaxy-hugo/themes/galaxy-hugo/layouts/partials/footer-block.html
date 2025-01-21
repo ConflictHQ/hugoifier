@@ -1,0 +1,38 @@
+<footer class="section-sm bg-dark mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 text-center">
+        <h5>{{ .Site.Params.footer_menu_1 }}</h5>
+        <ul class="list-unstyled footer-list">
+          {{ range .Site.Menus.footer_1 }}
+          <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <h5>{{ .Site.Params.footer_menu_2 }}</h5>
+        <ul class="list-unstyled footer-list">
+          {{ range .Site.Menus.footer_2 }}
+          <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <h5>{{ .Site.Params.footer_menu_3 }}</h5>
+        <ul class="list-unstyled footer-list">
+          {{ range .Site.Menus.footer_3 }}
+          <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <h5>{{ .Site.Params.footer_menu_4 }}</h5>
+        <ul class="list-unstyled footer-list">
+          {{ range .Site.Menus.footer_4 }}
+          <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

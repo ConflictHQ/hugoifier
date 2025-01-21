@@ -1,0 +1,51 @@
+{{ define "main" }}
+
+<div class="col-lg-12">
+  <section class="page-header">
+    <div class="my-4 py-5">
+      <h4 class="title">{{ i18n "search_result_for" }} 
+        <span class="mark">
+          <script>
+            var keyword = (window.location.search).substr(3);
+            var result = keyword.replace("+", " ");
+            document.write(result);
+          </script>
+        </span>
+      </h4>
+    </div>
+  </section>
+  <div class="row" id="search-results"></div>
+  <script id="search-result-template" type="text/x-js-template">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <article class="card post-card" id="summary-${key}">
+        <a href="${link}">
+          ${ isset image }<img loading="lazy" class="w-100" src="${image}" alt="${title}">${end}
+        </a>
+        <div class="card-body mb-3">
+          <h3 class="h4 mb-2">
+            <a class="post-title" href="${link}" title="${title}">${title}</a>
+          </h3>
+      
+          <p class="mb-0">${snippet}</p>
+        </div>
+        <div class="card-footer">
+          <ul class="card-meta list-inline mb-0">
+            <li class="list-inline-item">
+              <span class="card-meta-date">{{ i18n "category" }}: ${categories}</span>
+            </li>
+            <li class="list-inline-item">
+              <span class="card-meta-date">{{ i18n "tag" }}: ${tags}</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </script>
+</div>
+
+{{ "<!-- Search index -->" | safeHTML }}
+<script>
+  var indexURL = {{"index.json" | absLangURL}}
+</script>
+
+{{ end }}

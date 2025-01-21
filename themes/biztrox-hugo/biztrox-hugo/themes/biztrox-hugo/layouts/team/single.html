@@ -1,0 +1,86 @@
+{{ define "main" }}
+
+{{ "<!-- team single -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      {{ "<!-- sidebar -->" | safeHTML }}
+      <aside class="col-lg-4">
+        {{ "<!-- team member info -->" | safeHTML }}
+        <div class="bg-gray rounded mb-50">
+          {{ partial "image.html" (dict "Src" .Params.Image "Alt" "team-member" "Class" `w-100 rounded-top`) }}
+          <div class="py-2 px-4 pb-3">
+            {{ range .Params.Information }}
+            <div class="py-3 border-bottom-not-last">
+              <p class="d-inline-block font-primary m-0">
+                <i class="me-2 {{ .icon }}"></i>{{ .label }}
+              </p>
+              <span class="fw-bold text-dark float-end">{{ .data }}</span>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ "<!-- cv -->" | safeHTML }}
+        {{ if .Params.Cv }}
+        <div class="rounded border py-3 px-4 mb-50 d-flex gap-2">
+          <i class="d-inline-block me-1 text-dark ti-files" style="font-size: 20px;"></i>
+          <div>
+            <p class="mb-1 h4 d-inline-block">{{ i18n "cv" }}</p>
+            <a class="font-secondary text-color d-block" href="{{ .Params.Cv | absURL }}">{{ i18n "download_pdf"
+              }}</a>
+          </div>
+        </div>
+        {{ end }}
+      </aside>
+      {{ "<!-- /sidebar -->" | safeHTML }}
+
+      {{ "<!-- team member details -->" | safeHTML }}
+      <div class="col-lg-8">
+        <h2 class="h2">{{ .Title }}</h2>
+        <span class="text-primary h6 mb-30">{{ .Params.Designation }}</span>
+        <p class="mb-40">{{ .Params.Bio | markdownify }}</p>
+        <div class="row">
+          {{ "<!-- contact info -->" | safeHTML }}
+          <div class="col-md-6">
+            <h3 class="h4">{{ i18n "contact_info" }}</h3>
+            <ul class="ps-0 mb-40">
+              {{ range .Params.Contacts }}
+              <li class="font-secondary text-color my-3">
+                <i class="me-3 {{ .icon }}"></i>{{ .id }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ "<!-- social icon -->" | safeHTML }}
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h3 class="mb-20 h4">{{ i18n "follow_on_social" }}</h3>
+            <ul class="list-inline">
+              {{ range .Params.Social }}
+              <li class="list-inline-item me-2">
+                <a class="social-icon-lg bg-dark text-dark" href="{{ .link | safeURL }}" aria-label="{{ .title }}"><i class="{{ .icon }}"></i></a>
+                {{.title}}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        <div class="post-content">
+          {{ .Content }}
+        </div>
+        {{ range .Params.Skill }}
+        <div class="progressbar">
+          <p class="progressbar-title h5">{{ .label }}</p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" style="width: {{ .percentage }};">
+              <div class="progress-bar-value">{{ .percentage }}</div>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /team single -->" | safeHTML }}
+
+{{ end }}

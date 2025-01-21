@@ -1,0 +1,55 @@
+{{ define "main" }}
+  {{ partial "page-header.html" . }}
+  <section
+    class="section-md relative mt-[-28rem] overflow-hidden md:mt-[-32rem]">
+    <div class="container relative z-20">
+      <div class="row gy-4">
+        {{ range where site.RegularPages "Section" "integration" }}
+          <div data-aos="fade-up-sm" class="md:col-6 lg:col-4">
+            <div
+              class="shadow-default overflow-hidden rounded-xl bg-white p-10">
+              <div
+                class="mb-6 flex flex-wrap items-center justify-between gap-y-4">
+                {{ partial "image.html" (dict "Src" .Params.Image "Class" "rounded-xl" "Alt" "icon") }}
+                <a
+                  href="{{ .Permalink | relURL }}"
+                  class="btn btn-outline-primary">
+                  <i class="fa-solid fa-plus mr-1 text-sm"></i>
+                  {{ .Params.button_label | markdownify }}
+                </a>
+              </div>
+              <h3
+                class="font-primary text-dark mb-4 text-xl font-semibold sm:text-2xl">
+                <a href="{{ .Permalink | relURL }}"
+                  >{{ .Params.sub_title | markdownify }}</a
+                >
+              </h3>
+              <p>
+                {{ .Params.Description | markdownify }}
+              </p>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <!-- Start Bg Shape -->
+      <div
+        class="pointer-events-none absolute left-[-4%] top-[30%] -z-10 select-none">
+        {{ partial "image.html" (dict "Src" "images/shapes/integration-s-1.svg" "Class" "inline-svg text-tertiary" "Alt" "shape") }}
+      </div>
+      <div
+        class="pointer-events-none absolute bottom-[30%] right-[-5%] -z-10 select-none">
+        {{ partial "image.html" (dict "Src" "images/shapes/integration-s-2.svg" "Class" "inline-svg text-quaternary" "Alt" "shape") }}
+      </div>
+      <!-- End Bg Shape -->
+    </div>
+  </section>
+  <!-- End Integration Section -->
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,289 @@
+{{ define "main" }}
+
+{{ with .Params.banner }}
+<!-- hero area -->
+<section class="hero-area bg-primary overflow-hidden" id="parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h1 class="text-white font-secondary">{{ .title | safeHTML }}</h1>
+      </div>
+    </div>
+  </div>
+  <div class="layer-bg w-100">
+    {{ partial "image.html" (dict "Src" "images/illustrations/leaf-bg.png" "Alt" "bg-shape" "Class" `w-100`) }}
+  </div>
+  <div class="layer" id="l2">
+    <img src="{{`images/illustrations/dots-cyan.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l3">
+    <img src="{{`images/illustrations/leaf-orange.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l4">
+    <img src="{{`images/illustrations/dots-orange.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l5">
+    <img src="{{`images/illustrations/leaf-yellow.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l6">
+    <img src="{{`images/illustrations/leaf-cyan.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l7">
+    <img src="{{`images/illustrations/dots-group-orange.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l8">
+    <img src="{{`images/illustrations/leaf-pink-round.svg` | relURL}}" alt="bg-shape">
+  </div>
+  <div class="layer" id="l9">
+    <img src="{{`images/illustrations/leaf-cyan-2.svg` | relURL}}" alt="bg-shape">
+  </div>
+
+  <!-- social icon -->
+  <ul class="social-icon list-unstyled ms-3 ms-sm-5 mt-3 position-relative zindex-1">
+    {{ range site.Params.social }}
+    <li class="mb-3"><a class="text-white" href="{{.link | safeURL }}"><i class="{{.icon}}"></i><span class="visually-hidden">{{.title}}</span></a></li>
+    {{ end }}
+  </ul>
+  <!-- /social icon -->
+</section>
+<!-- /hero area -->
+{{ end }}
+
+{{ if .Params.about.enable }}
+<!-- about -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto text-center">
+        {{ with .Params.about }}
+        <p class="font-secondary lead text-dark">{{.content | markdownify}}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .URL | absURL }}" class="btn btn-transparent">{{.label}}</a>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /about -->
+{{ end }}
+
+
+{{ if .Params.skill.enable }}
+{{ with .Params.skill }}
+<!-- skills -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      {{ range .item }}
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="{{.color}}">
+            <div class="wave" data-progress="{{.progress}}"></div>
+          </div>
+          <div class="card-footer bg-white p-4">
+            <h3 class="h5 card-title m-0">{{.title }} ({{.progress}})</h3>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /skills -->
+{{ end }}
+{{ end }}
+
+{{ if .Params.experience.enable }}
+{{ with .Params.experience }}
+<!-- experience -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      {{ range .item }}
+      <div class="col-lg-3 col-md-4 text-center">
+        {{ partial "image.html" (dict "Src" .logo "Alt" "icon") }}
+        <p class="mb-0">{{.duration}}</p>
+        <h3 class="h5">{{.title }}</h3>
+        <h4 class="h6 text-light">{{.company }}</h4>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /experience -->
+{{ end }}
+{{ end }}
+
+{{ if .Params.education.enable }}
+{{ with .Params.education }}
+<!-- education -->
+<section class="section position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      {{ range .item }}
+      <div class="col-lg-6 col-md-6 mb-80">
+        <div class="d-flex">
+          <div class="me-lg-5 me-3">
+            <i class="ti-medall icon icon-light icon-bg bg-white shadow rounded-circle d-block"></i>
+          </div>
+          <div>
+            <p class="text-dark mb-1">{{.year}}</p>
+            <h3 class="h5">{{ .title }}</h3>
+            <p class="mb-0 text-light">{{.academy}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <!-- bg image -->
+  {{ partial "image.html" (dict "Src" "images/backgrounds/education-bg.png" "Alt" "bg-image" "Class" `edu-bg-image
+  w-100`) }}
+</section>
+<!-- /education -->
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.service.enable }}
+{{ with .Params.service }}
+<!-- services -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      {{ range .item }}
+      <div class="col-md-4 mb-4">
+        <div class="card {{if .highlighted }} active-bg-primary {{end}} hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="{{.icon }} icon mb-5 d-inline-block"></i>
+            <h3 class="h5 mb-4">{{.title}}</h3>
+            <p>{{.content | markdownify}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /services -->
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.portfolio.enable }}
+<!-- portfolio -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .Params.portfolio.title | markdownify }}</h2>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+      {{ $item:= .Params.portfolio.item_show }}
+      {{ range first $item (where .Site.RegularPages "Section" "portfolio") }}
+      <div class="col-lg-4 col-6 mb-4 shuffle-item">
+        <div class="position-relative rounded hover-wrapper">
+          {{ partial "image.html" (dict "Src" .Params.image "Alt" "portfolio-image" "Class" `rounded w-100 d-block`)
+          }}
+          <div class="hover-overlay">
+            <div class="hover-content">
+              <a class="btn btn-light btn-sm" href="{{ .Permalink | safeURL }}">view project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /portfolio -->
+{{ end }}
+
+
+{{ if .Params.testimonial.enable }}
+{{ with .Params.testimonial }}
+<!-- testimonial -->
+<section class="section bg-primary position-relative testimonial-bg-shapes">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title text-white mb-5">{{ .title | markdownify }}</h2>
+      </div>
+      <div class="col-lg-10 mx-auto swiper testimonial-slider">
+        <div class="swiper-wrapper">
+          {{ range .item }}
+          <div class="swiper-slide">
+            <div class="text-center testimonial-content">
+              <i class="ti-quote-right text-white icon mb-4 d-inline-block"></i>
+              <p class="text-white mb-4">{{.content | markdownify}}</p>
+              {{ partial "image.html" (dict "Src" .image "Alt" "client-image" "Class" `rounded-circle mb-4
+              d-inline-block`)
+              }}
+              <h3 class="h5 text-white">{{.name }}</h3>
+              <span class="fs-6 text-secondary d-block text-light mb-4 designation">{{ .designation }}</span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+  <!-- bg shapes -->
+  {{ partial "image.html" (dict "Src" "images/backgrounds/map.png" "Alt" "map" "Class" `bg-map`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-v.svg" "Alt" "map" "Class" `bg-shape-1`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-orange.svg" "Alt" "map" "Class" `bg-shape-2`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-sm.svg" "Alt" "map" "Class" `bg-shape-3`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-pink-round.svg" "Alt" "map" "Class" `bg-shape-4`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-cyan.svg" "Alt" "map" "Class" `bg-shape-5`) }}
+</section>
+<!-- /testimonial -->
+{{ end }}
+{{ end }}
+
+
+{{ if .Params.clients_logo_slider.enable }}
+<!-- client logo slider -->
+<section class="section pb-0">
+  <div class="container">
+    {{ partial "components/client-slider.html" . }}
+  </div>
+</section>
+<!-- /client logo slider -->
+{{ end }}
+
+{{ if .Params.blog.enable }}
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{.Params.blog.title | markdownify }}</h2>
+      </div>
+      {{ range first 3 (where .Site.RegularPages "Section" "blog")}}
+      {{ .Render "post" }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+{{ end }}
+
+
+{{ end }}

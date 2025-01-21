@@ -1,0 +1,69 @@
+/* Button style */
+.btn {
+  font-size: 16px;
+  font-family: $primary-font;
+  text-transform: capitalize;
+  padding: 12px 25px;
+  border-radius: 5px;
+  border: 1px solid;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+}
+
+.btn-sm{
+  padding: 8px 20px;
+}
+
+.btn-primary {
+  background: $primary-color;
+  color: $white;
+  border-color: $primary-color;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: $primary-color !important;
+    border-color: $primary-color !important;
+  }
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: $text-color;
+  border-color: $primary-color;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: $primary-color !important;
+    border-color: $primary-color !important;
+    color: $white;
+  }
+}
+
+
+
+.btn-outline-tertiary {
+  background: transparent;
+  color: $tertiary-color;
+  border-color: $tertiary-color;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: $tertiary-color !important;
+    border-color: $tertiary-color !important;
+    color: $white;
+  }
+}

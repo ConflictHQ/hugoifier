@@ -1,0 +1,84 @@
+/*------------------------------------------------------------------
+Theme Name:	Adrian E-Commerce Template
+Version:	2.0
+Last change:	14/09/2017 
+Author :	Themefisher
+Website :	www.themefisher.com
+-------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Body
+	2. Header 
+		2.1. Navigation 
+		2.2. Menu 
+		2.3. Cart 
+	3. Banner
+		3.1 Slick Slider
+	4. Products
+		4.1 Product Item
+		4.2 Single Product
+	5. Pricing
+	6. Clients
+	7. Instagram Feed 
+	8. User Dashboard
+		8.1 User Profile
+		8.2 Dashboard
+		8.3 Orders Details
+		8.4 Downloads
+	9. Account Page
+	10. Shop
+		10.1 Checkout
+		10.2 Shopping Cart
+		10.3 Product Checkout Details
+		10.4 Purchase Confirmation
+	11.404 Page
+	12. Contact 
+		12.1  Contact Form 
+		12.2 Contact Details
+		12.3 Social Icons
+	13.Footer
+	
+
+-------------------------------------------------------------------*/
+
+
+@import 'variables.scss';
+
+@import 'media-query.scss';
+
+@import 'typography.scss';
+
+@import 'common.scss';
+
+@import 'templates/header.scss';
+
+@import 'templates/navigation.scss';
+
+@import 'templates/slider.scss';
+
+@import 'templates/products.scss';
+
+@import 'templates/single-product.scss';
+
+@import 'templates/about.scss';
+
+@import 'templates/instagram.scss';
+
+@import 'templates/shopping.scss';
+
+@import 'templates/404.scss';
+
+@import 'templates/contact.scss';
+@import 'templates/pages.scss';
+
+@import 'templates/footer.scss';
+
+
+
+
+
+

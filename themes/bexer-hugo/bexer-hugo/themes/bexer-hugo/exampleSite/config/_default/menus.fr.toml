@@ -1,0 +1,67 @@
+############# French navigation ##############
+
+# main menu
+[[main]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Service"
+url = "service/"
+weight = 3
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 4
+
+[[main]]
+name = "Team"
+url = "team/"
+weight = 6
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 7
+
+[[main]]
+weight = 8
+name = "Pages"
+hasChildren = true
+
+  [[main]]
+  parent = "Pages"
+  name = "All Projects"
+  url = "project/"
+  weight = 1
+
+  [[main]]
+  parent = "Pages"
+  name = "Terms of Service"
+  url = "terms/"
+  weight = 2
+
+  [[main]]
+  parent = "Pages"
+  name = "Privacy Policy"
+  url = "privacy-policy/"
+  weight = 3
+
+  [[main]]
+  parent = "Pages"
+  name = "Elements"
+  url = "blog/elements/"
+  weight = 4
+
+# footer menu
+[[footer]]
+name = "Terms of Service"
+url = "terms/"
+weight = 1
+
+[[footer]]
+name = "Privacy Policy"
+url = "privacy-policy/"
+weight = 2

@@ -1,0 +1,24 @@
+{{ with .Site.Data.service.service }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="title">{{ .title | markdownify }}</h2>
+        <p>{{ .subtitle | markdownify }}</p>
+      </div>
+      {{ range first 3 .serviceItem }}
+      <!-- service item -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card text-center">
+          <div class="card-body p-lg-5 px-3 py-4">
+            <i class="icon {{ .icon }} bg-{{.iconColor}} mb-4"></i>
+            <h4 class="card-title mb-3">{{ .title | markdownify }}</h4>
+            <p class="card-text">{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

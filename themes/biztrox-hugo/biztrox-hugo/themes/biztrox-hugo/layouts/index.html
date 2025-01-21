@@ -1,0 +1,293 @@
+{{ define "main" }}
+
+{{ if .Params.slider.enable }}
+<section>
+	<div class="hero-slider swiper position-relative">
+		<div class="swiper-wrapper">
+			<!-- slider item -->
+			{{ range $index, $ele := .Params.slider.slider_item }}
+			<div class="swiper-slide anim hero-slider-item py-160" {{ partial `bg-image.html` (dict `Src` .bg_image ) |
+				safeHTMLAttr }} data-icon="{{ .pagination_icon }}" data-text="{{ .pagination_name }}">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="hero-content">
+								<span class="h4 anim-item
+								{{if eq $index 0}}
+									anim-slide-right anim-delay-1
+								{{else if eq $index 1}}
+									anim-slide-left anim-delay-1
+								{{else if eq $index 2}}
+									anim-slide-top anim-delay-1
+								{{else if eq $index 3}}
+									anim-slide-bottom anim-delay-1
+								{{end}} text-uppercase mb-1">
+									{{ .subtitle | markdownify }}</span>
+
+								<h1 class="anim-item
+								{{if eq $index 0}}
+									anim-slide-right anim-delay-3 
+								{{else if eq $index 1}}
+									anim-slide-left anim-delay-3 
+								{{else if eq $index 2}}
+									anim-slide-top anim-delay-3 
+								{{else if eq $index 3}}
+									anim-slide-bottom anim-delay-3 
+								{{end}} fw-bold mb-3">
+									{{ .title | markdownify }}</h1>
+
+								<p class="anim-item
+								{{if eq $index 0}}
+									anim-slide-right anim-delay-6
+								{{else if eq $index 1}}
+									anim-slide-left anim-delay-6
+								{{else if eq $index 2}}
+									anim-slide-top anim-delay-6
+								{{else if eq $index 3}}
+									anim-slide-bottom anim-delay-6 
+								{{end}}  text-dark mb-50">
+									{{ .content | markdownify }}
+								</p>
+
+								{{ if .button.enable }}
+								<a href="{{ .button.link | relLangURL }}" class="anim-item
+								{{if eq $index 0}}
+									anim-slide-right anim-delay-9
+								{{else if eq $index 1}}
+									anim-slide-left anim-delay-9
+								{{else if eq $index 2}}
+									anim-slide-top anim-delay-9
+								{{else if eq $index 3}}
+									anim-slide-bottom anim-delay-9 
+								{{end}} anim-item anim-slide-right btn btn-outline text-uppercase">{{ .button.label }}</a> {{ end }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{ end }}
+		</div>
+		<ul class="swiper-pagination"></ul>
+		<div class="swiper-navigation">
+			<button type='button' class='prevArrow' aria-label="navigation button">
+				<i class='ti-arrow-left'></i>
+			</button>
+			<button type='button' class='nextArrow' aria-label="navigation button">
+				<i class='ti-arrow-right'></i>
+			</button>
+		</div>
+	</div>
+</section>
+{{ end }}
+
+{{ $service:= .Params.service }}
+{{ if $service.enable }}
+<!-- service -->
+<section class="section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-12 text-center">
+				<span class="section-title-sm h5">{{ $service.subtitle | markdownify }}</span>
+				<h2 class="section-title section-title-border">{{ $service.title | markdownify }}</h2>
+			</div>
+			{{ range $index, $element:= where site.RegularPages "Section" $service.section }}
+			{{ if lt $index 3 }}
+			{{ .Render "service" }}
+			{{ end }}
+			{{ end }}
+		</div>
+	</div>
+</section>
+<!-- /service -->
+{{ end }}
+
+{{ if .Params.about.enable }}
+{{ "<!-- about -->" | safeHTML }}
+{{ with .Params.about }}
+<section class="about section-sm overlay" {{ partial `bg-image.html` (dict `Src` .bg_image ) | safeHTMLAttr }}>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 ms-auto">
+				<div class="rounded p-sm-5 px-3 py-5 bg-secondary">
+					<h3 class="section-title section-title-border-half text-white">{{ .title | markdownify }}</h3>
+					<p class="text-white mb-40">{{ .content | markdownify }}</p>
+					<ul class="list-unstyled" style="columns: 2;">
+						{{ range .bullet_point }}
+						<li class="font-secondary mb-10 text-white"><i class="text-primary me-2 ti-arrow-circle-right"></i>{{ . }}
+						</li>
+						{{ end }}
+					</ul>
+					{{ if .button.enable }}
+					{{ with .button }}
+					<a href="{{ .link | relLangURL }}" class="btn btn-primary mt-4">{{ .label }}</a>
+					{{ end }}
+					{{ end }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ end }}
+{{ "<!-- /about -->" | safeHTML }}
+{{ end }}
+
+{{ if .Params.skill.enable }}
+{{ partial "components/skill.html" . }}
+{{ end }}
+
+{{ $project:= .Params.project }}
+{{ if $project.enable }}
+<!-- work -->
+<section class="section bg-gray">
+	<div class="container-fluid position-relative">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<span class="section-title-sm h5">{{ $project.title | markdownify }}</span>
+				<h2 class="section-title section-title-border-gray">{{ $project.subtitle | markdownify }}</h2>
+			</div>
+		</div>
+		<!-- work slider -->
+		<div class="work-slider swiper">
+			<div class="swiper-wrapper">
+				{{ range $index, $element:= where site.RegularPages "Type" $project.section }}
+				<div class="swiper-slide">
+					<div class="position-relative">
+						{{ partial "image.html" (dict "Src" .Params.image "Alt" "project-image" "Class" `w-100`) }}
+						<div class="project-info">
+							<a href="{{ .Permalink }}" class="h4">{{ .Title }}</a>
+							{{with .Params.Category}}<p><i class="ti-tag"></i>{{ . | humanize }}</p>{{ end }}
+						</div>
+					</div>
+				</div>
+				{{ end }}
+			</div>
+		</div>
+		<ul class="swiper-pagination"></ul>
+	</div>
+	</div>
+</section>
+{{ end }}
+<!-- /work -->
+
+{{ if .Params.mission.enable }}
+{{ partial "components/mission.html" . }}
+{{ end }}
+
+{{ with .Params.promo_video }}
+{{ if .enable }}
+{{ "<!-- promo-video -->" | safeHTML }}
+<section class="promo-video overlay section" {{ partial `bg-image.html` (dict `Src` .bg_image ) | safeHTMLAttr }}>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="text-white mb-20 fw-normal">{{ .title |safeHTML }}</h1>
+				<div class="d-flex">
+					<button type="button" data-bs-toggle="modal" data-bs-target="#videoModal" class="play-icon me-4" video-url="{{.video_URL}}" aria-label="video play button">
+						<i class="ti-control-play"></i>
+					</button>
+					<p class="text-white align-self-center h4">{{ .video_title | markdownify }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="modal fade" id="videoModal">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content rounded-0">
+			<div class="modal-body rounded-0 p-0">
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<i class="ti-close"></i>
+				</button>
+				<div class="ratio ratio-16x9">
+					<iframe allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{ "<!-- /promo-video -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ if .Params.testimonial.enable }}
+{{ partial "components/testimonial.html" . }}
+{{ end }}
+
+{{ with .Params.call_to_action }}
+{{ if .enable }}
+{{ "<!-- cta -->" | safeHTML }}
+<section class="cta overlay-primary py-50 text-center text-lg-start" {{ partial `bg-image.html` (dict `Src` .bg_image )
+	| safeHTMLAttr }}>
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-lg-6">
+				<h3 class="text-white">{{ .title | markdownify }}</h3>
+			</div>
+			<div class="col-lg-6 text-lg-end align-self-center">
+				{{ if .button.enable }}
+				{{ with .button }}
+				<a href="{{ .link | relLangURL }}" class="btn btn-light text-uppercase">{{ .label }}</a>
+				{{ end }}
+				{{ end }}
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /cta -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ $blog:= .Params.blog }}
+{{ if $blog.enable }}
+<!-- blog -->
+<section class="section bg-gray">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-12 text-center">
+				<span class="section-title-sm h5">{{ $blog.subtitle | markdownify }}</span>
+				<h2 class="section-title section-title-border-gray">{{ $blog.title | markdownify }}</h2>
+			</div>
+
+			{{ range $index, $element:= where site.RegularPages "Section" $blog.section }}
+			{{ if lt $index 3}}
+			<!-- blog-item -->
+			<div class="col-lg-4 col-sm-6 mb-4">
+				{{ .Render "post" }}
+			</div>
+			{{ end }}
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}
+<!-- /blog -->
+
+{{ with .Params.clients_logo_slider }}
+{{ if .enable }}
+{{ "<!-- client logo slider -->" | safeHTML}}
+<section class="bg-white py-4">
+	<div class="container">
+		<div class="client-logo-slider swiper align-self-center">
+			<div class="swiper-wrapper align-items-center">
+				{{ range .client_logos }}
+				<div class="swiper-slide">
+					{{ if and ( ne .link "" ) ( ne .link "#" ) }}
+					<a href="{{ .link | safeURL }}" target="_blank" class="text-center d-block outline-0 py-3 px-2">
+						{{ partial "image.html" (dict "Src" .logo "Alt" "client-logo" "Class" "d-unset") }}
+					</a>
+					{{ else }}
+					<span class="text-center d-block outline-0 py-3 px-2">
+						{{ partial "image.html" (dict "Src" .logo "Alt" "client-logo" "Class" "d-unset") }}
+					</span>
+					{{ end }}
+				</div>
+				{{ end }}
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /client logo slider -->" | safeHTML}}
+{{ end }}
+{{ end }}
+
+{{ end }}

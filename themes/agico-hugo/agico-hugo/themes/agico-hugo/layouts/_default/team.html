@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+{{"<!-- team -->" | safeHTML}}
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      {{ range $index, $element:= .Params.team_member }}
+      {{ $delay := mul $index 200}}
+      {{"<!-- team member -->" | safeHTML}}
+      <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="{{$delay}}">
+        <div class="team-member text-center"> 
+          {{ partial "image.html" (dict "Src" .image "Alt" .name  "Class" "w-100 rounded-sm" "Size" "450x") }}
+          <div class="team-member-content p-4">
+            <h5 class="team-member-name text-white">{{.name}}</h5>
+            <p class="team-member-designation text-light">{{ .designation }}</p>
+            <ul class="list-inline team-member-social">
+              {{ range .social }}
+              <li class="list-inline-item"><a href="{{.link | safeURL }}" class="p-2"><i class="{{ .icon }} text-white"></i></a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{"<!-- /team -->" | safeHTML}}
+
+{{ end }}

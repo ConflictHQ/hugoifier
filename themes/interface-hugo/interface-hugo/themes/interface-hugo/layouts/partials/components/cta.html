@@ -1,0 +1,85 @@
+{{ with (site.GetPage "cta").Params.cta }}
+  {{ if .enable }}
+    <section class="cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="section rounded-5 bg-primary position-relative overflow-hidden cta-block">
+              <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                  <p class="section-subtitle text-white">
+                    {{ .subtitle | markdownify }}
+                  </p>
+                  <h2 class="section-title text-center text-white mb-5">
+                    {{ .title | markdownify }}
+                  </h2>
+
+                  {{ range $i, $e := .buttons }}
+                    <a
+                      class="btn m-2 {{ if eq $i 0 }}
+                        btn-white
+                      {{ else }}
+                        btn-outline-white
+                      {{ end }}"
+                      href="{{ .link | safeHTML }}">
+                      {{ .label | markdownify }}
+                    </a>
+                  {{ end }}
+                </div>
+              </div>
+
+              <svg
+                class="left-top"
+                width="202"
+                height="252"
+                viewBox="0 0 202 252"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M198.072 64.5C202.359 71.9256 202.359 81.0744 198.072 88.5L111.178 239.004C106.891 246.43 98.968 251.004 90.3936 251.004L-83.3936 251.004C-91.968 251.004 -99.891 246.43 -104.178 239.004L-191.072 88.5C-195.359 81.0744 -195.359 71.9256 -191.072 64.5L-104.178 -86.0041C-99.891 -93.4298 -91.9679 -98.0041 -83.3936 -98.0041L90.3936 -98.0041C98.968 -98.0041 106.891 -93.4298 111.178 -86.0041L198.072 64.5Z"
+                  fill="#1D76F9" />
+              </svg>
+
+              <svg
+                class="right-top text-quaternary"
+                width="199"
+                height="233"
+                viewBox="0 0 199 233"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M332.072 72C336.359 79.4256 336.359 88.5744 332.072 96L260.428 220.09C256.141 227.516 248.218 232.09 239.644 232.09L96.3564 232.09C87.782 232.09 79.859 227.516 75.5718 220.09L3.92818 96C-0.358986 88.5744 -0.358986 79.4256 3.92819 72L75.5718 -52.0904C79.859 -59.516 87.782 -64.0904 96.3564 -64.0904L239.644 -64.0904C248.218 -64.0904 256.141 -59.516 260.428 -52.0904L332.072 72Z"
+                  fill="currentColor" />
+              </svg>
+
+              <svg
+                class="left-bottom text-secondary"
+                width="124"
+                height="147"
+                viewBox="0 0 124 147"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M121.381 96C124.239 100.95 124.239 107.05 121.381 112L70.6188 199.923C67.7607 204.873 62.4786 207.923 56.7624 207.923L-44.7624 207.923C-50.4787 207.923 -55.7607 204.873 -58.6188 199.923L-109.381 112C-112.239 107.05 -112.239 100.95 -109.381 96L-58.6188 8.07694C-55.7607 3.12652 -50.4786 0.0769424 -44.7624 0.0769426L56.7624 0.076947C62.4786 0.0769473 67.7607 3.12653 70.6188 8.07695L121.381 96Z"
+                  fill="currentColor" />
+              </svg>
+
+              <svg
+                class="right-bottom text-tertiary"
+                width="103"
+                height="110"
+                viewBox="0 0 103 110"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M141.536 58C143.679 61.7128 143.679 66.2872 141.536 70L111.964 121.22C109.821 124.933 105.859 127.22 101.572 127.22L42.4282 127.22C38.141 127.22 34.1795 124.933 32.0359 121.22L2.46409 70C0.320508 66.2872 0.320508 61.7128 2.46409 58L32.0359 6.78014C34.1795 3.06732 38.141 0.780139 42.4282 0.780139L101.572 0.780142C105.859 0.780142 109.821 3.06733 111.964 6.78014L141.536 58Z"
+                  fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

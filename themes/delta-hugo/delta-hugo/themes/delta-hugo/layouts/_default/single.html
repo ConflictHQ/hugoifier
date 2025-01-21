@@ -1,0 +1,106 @@
+{{ define "main-sm" }}
+
+{{ partial "essentials/header.html" . }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<!-- strat of blog-details -->
+<section class="section-sm pt-0">
+  <div class="container container-delta">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 mb-5 pb-3">
+        {{ with .Params.image }}
+        {{ partial "image.html" (dict "Src" . "Class" "w-100 rounded-lg" "Alt" "blog-post") }}
+        {{end}}
+      </div>
+      <div class="col-lg-8">
+        <div class="mb-5">
+          <h2 class="mb-3">{{.Title | markdownify}}</h2>
+          <span class="text-muted">{{ .PublishDate.Format "02 January, 2006" }} <span class="mx-1 text-dark-50">|</span> {{.ReadingTime}} {{i18n `min_read`}}</span>
+        </div>
+
+        <div class="content">
+          {{.Content}}
+        </div>
+
+        {{ with site.GetPage (string .Params.Author | urlize | lower) }}
+        {{if .Title}}
+        <div class="post-author d-flex border rounded-lg mt-5">
+          <div class="author-image">
+            {{ if .Params.image }}
+            {{ $img:= resources.Get (.Params.image) }}
+            {{ $img:= $img.Fill "80x80" }}
+            {{ $imgWebp:= $img.Fill "80x80 webp" }}
+            <img loading="lazy" decoding="async" class="rounded-circle mb-2" src="{{ $imgWebp.RelPermalink }}" alt="author image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+            {{ else }}
+            <i class="far fa-user-circle mb-1" style="font-size:82px"></i>
+            {{ end }}
+          </div>
+          <div>
+            <h3 class="h5 title mb-1"><a href="{{.RelPermalink}}" class="text-dark">{{ .Title }}</a></h3>
+          
+            <div class="content">{{ .Content | truncate 135}}</div>
+            
+            <ul class="list-inline social-links justify-content-start mt-3 mb-0">
+              {{ range .Params.social }}
+              <li class="list-inline-item"><a class="d-inline-block" href="{{ .link | safeURL}}"><i class="{{ .icon }}"></i></a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+
+      </div>
+
+
+      {{ if .Site.DisqusShortname }}
+      <div class="col-lg-8" data-aos="fade-in">
+        <!-- comments -->
+        <div class="disqus-block border rounded-lg mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section pt-5">
+  <div class="container">
+    <div class="row justify-content-center" data-aos="fade-in">
+      <div class="col-12">
+        <div class="section-title text-center">
+          <h2 class="title">{{i18n `related_posts`}}</h2>
+        </div>
+      </div>
+      
+      {{ $related := (where site.RegularPages "Section" "in" site.Params.mainSections) | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+      {{ range shuffle (first 3 $related) }}
+      <div class="col-lg-4 col-md-6 blog-card has-border">
+        {{ .Render "article" }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- end of blog-section -->
+
+<!-- regular page -->
+{{ else }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

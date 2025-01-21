@@ -1,0 +1,38 @@
+// Color Variables
+{{ with site.Params.variables }}
+$primary-color: {{.primary_color | default "#35B729"}};
+$secondary-color: {{.secondary_color | default "#E2E2E2"}};
+$tertiary-color: {{.tertiary_color | default "#FFCC4C"}};
+$quaternary-color: {{.quaternary_color | default "#5AB0FF"}};
+$text-color: {{.text_color | default "#888888"}};
+$text-color-dark: {{.text_color_dark | default "#040404"}};
+$text-color-light: {{.text_color_light | default "#555555"}};
+$body-color: {{.body_color | default "#fff"}};
+$border-color: {{.border_color | default "#ACB9C4"}};
+$black: {{.black | default "#000"}};
+$dark: {{.dark | default "#233242"}};
+$white: {{.white | default "#fff"}};
+$light: {{.light | default "#eee"}};
+
+
+// Font Variables
+$primary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .primary_font | default "Lato"}}', {{.primary_font_type | default "sans-serif"}};
+$secondary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .secondary_font | default "Lato"}}', {{.secondary_font_type | default "sans-serif"}};
+$icon-font: '{{.icon_font | default "Font Awesome 5 Free"}}';
+{{ end }}
+
+@import 'bootstrap/bootstrap';
+
+@import 'mixins';
+
+@import 'typography';
+
+@import 'buttons';
+
+@import 'common';
+
+@import 'templates/navigation.scss';
+
+@import 'templates/main.scss';
+
+@import 'custom.scss';

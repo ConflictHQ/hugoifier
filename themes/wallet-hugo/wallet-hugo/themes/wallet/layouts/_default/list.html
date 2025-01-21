@@ -1,0 +1,153 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="me-lg-4">
+          <div class="row gy-5">
+            <!-- start range -->
+            {{ $paginator := .Paginate .Data.Pages }}
+            {{ range $paginator.Pages }}
+
+            <div class="col-md-6" data-aos="fade">
+              <article class="blog-post">
+                {{ if .Params.images }}
+                <div class="post-slider slider-sm rounded">
+                  {{ range .Params.images }}
+                  {{ if fileExists (add `assets/` .) }}
+                    {{ $img:= resources.Get (.) }}
+                    {{ $img:= $img.Fill "420x280 webp" }}
+                    <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail"  width="{{$img.Width}}" height="{{$img.Height}}">
+                  {{ else }}
+                    <div class="image-fallback">
+                      <img class="rounded" src="https://via.placeholder.com/300x200.jpg/eee/eee">
+                      <span>{{.Title | markdownify}}</span>
+                    </div>
+                  {{ end }}
+                  {{ end }}
+                </div>
+                {{ else }}
+                <div class="image-fallback">
+                  <img class="w-100 rounded" src="https://via.placeholder.com/300x200.jpg/eee/eee">
+                  <span>{{.Title | markdownify}}</span>
+                </div>
+                {{ end }}
+                
+                <div class="pt-4">
+                  <p class="mb-3">{{.PublishDate.Format "02 Jan, 2006"}}</p>
+                  <h2 class="h4"><a class="text-black" href="{{.Permalink}}">{{.Title}}</a></h2>
+
+                  <p>{{.Plain | truncate 85}}</p>
+              
+                  <a href="{{.Permalink}}" class="text-primary fw-bold" aria-label="Read the full article by clicking here">{{ i18n `read_more` }}</a>
+                </div>
+              </article>
+            </div>
+
+            {{ end }}
+            <!-- end of range -->
+
+            <div class="col-12">
+              <nav class="mt-4">
+                {{"<!-- pagination -->" | safeHTML }}
+                {{ $paginator := .Paginator }}
+                <!-- Number of links either side of the current page. -->
+                {{ $adjacent_links := 2 }}
+                <!-- $max_links = ($adjacent_links * 2) + 1 -->
+                {{ $max_links := (add (mul $adjacent_links 2) 1) }}
+                <!-- $lower_limit = $adjacent_links + 1 -->
+                {{ $lower_limit := (add $adjacent_links 1) }}
+                <!-- $upper_limit = $paginator.TotalPages - $adjacent_links -->
+                {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+                <!-- If there's more than one page. -->
+                {{ if gt $paginator.TotalPages 1 }}
+                <nav class="mb-md-50">
+                  <ul class="pagination justify-content-center">
+                    <!-- Previous page. -->
+                    {{ if $paginator.HasPrev }}
+                    <li class="page-item"><a class="page-link" href="{{ $paginator.Prev.URL }}" aria-label="Pagination Arrow">
+                      <i class="fas fa-angle-left"></i>
+                    </a></li>
+                    {{ end }}
+                    <!-- Page numbers. -->
+                    {{ range $paginator.Pagers }}
+                    {{ $.Scratch.Set "page_number_flag" false }}
+                    <!-- Advanced page numbers. -->
+                    {{ if gt $paginator.TotalPages $max_links }}
+                    <!-- Lower limit pages. -->
+                    <!-- If the user is on a page which is in the lower limit.  -->
+                    {{ if le $paginator.PageNumber $lower_limit }}
+                    <!-- If the current loop page is less than max_links. -->
+                    {{ if le .PageNumber $max_links }}
+                    {{ $.Scratch.Set "page_number_flag" true }}
+                    {{ end }}
+                    <!-- Upper limit pages. -->
+                    <!-- If the user is on a page which is in the upper limit. -->
+                    {{ else if ge $paginator.PageNumber $upper_limit }}
+                    <!-- If the current loop page is greater than total pages minus $max_links -->
+                    {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+                    {{ $.Scratch.Set "page_number_flag" true }}
+                    {{ end }}
+                    <!-- Middle pages. -->
+                    {{ else }}
+                    {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+                    {{ $.Scratch.Set "page_number_flag" true }}
+                    {{ end }}
+                    {{ end }}
+                    <!-- Simple page numbers. -->
+                    {{ else }}
+                    {{ $.Scratch.Set "page_number_flag" true }}
+                    {{ end }}
+                    <!-- Output page numbers. -->
+                    {{ if eq ($.Scratch.Get "page_number_flag") true }}
+                    <li class="page-item{{ if eq . $paginator }} active {{ end }}">
+                      <a href="{{ .URL }}" class="page-link">
+                        {{ .PageNumber }}
+                      </a>
+                    </li>
+                    {{ end }}
+                    {{ end }}
+                    <!-- Next page. -->
+                    {{ if $paginator.HasNext }}
+                    <li class="page-item"><a class="page-link" href="{{ $paginator.Next.URL }}" aria-label="Pagination Arrow">
+                      <i class="fas fa-angle-right"></i>
+                    </a></li>
+                    {{ end }}
+                  </ul>
+                </nav>
+                {{ end }}
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <!-- widget -->
+        {{ $widget:= site.Params.widgets.sidebar }}
+        {{- partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

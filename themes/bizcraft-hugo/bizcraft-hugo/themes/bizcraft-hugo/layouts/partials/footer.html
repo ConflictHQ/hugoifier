@@ -1,0 +1,106 @@
+<!-- Footer start -->
+<footer id="footer" class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-12 footer-widget">
+				<h3 class="widget-title">{{i18n `recent_post`}}</h3>
+        {{ range first 3 ( where .Site.RegularPages "Section" "blog" )}}
+				<div class="latest-post-items media mb-3">
+					<div class="latest-post-content media-body">
+						<h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+						<p class="post-meta">
+							<span class="author">Posted by <a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.Author | title }}</a></span>
+							<span class="post-meta-cats">in&nbsp;{{ range $index, $elements:= .Params.Categories }}<a
+								href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"> {{ if ne $index 0 }}, {{ end }}
+								{{ . | title }}</a> {{ end}}</span>
+						</p>
+					</div>
+				</div><!-- Latest Post end -->
+				{{ end }}
+			</div>
+			<!--/ End Recent Posts-->
+
+
+			<div class="col-md-4 col-sm-12 footer-widget">
+				<h3 class="widget-title">{{i18n `flickr_photos`}}</h3>
+
+				<div class="img-gallery">
+					<div class="img-container">
+						{{ range .Site.Params.flickr_photos}}
+						<a class="thumb-holder" data-rel="prettyPhoto" href="{{ .image | absURL }}">
+							<img src="{{ .image | absURL }}" alt="">
+						</a>
+						{{ end }}
+					</div>
+				</div>
+			</div>
+			<!--/ end flickr -->
+
+			<div class="col-md-3 col-sm-12 footer-widget footer-about-us">
+				<h3 class="widget-title">{{i18n `about_us`}}</h3>
+				<p>{{ .Site.Params.footer_content | markdownify }}</p>
+				<h4>Address</h4>
+				<p>{{ .Site.Params.address | markdownify }}</p>
+				<div class="mb-4">
+					<h4>Email:</h4>
+					<p>{{ .Site.Params.email | markdownify }}</p>
+				</div>
+				<div class="mb-4">
+					<h4>Phone No.</h4>
+					<p>{{ .Site.Params.phone | markdownify }}</p>
+				</div>
+			</div>
+			<!--/ end about us -->
+		</div><!-- Row end -->
+	</div><!-- Container end -->
+</footer><!-- Footer end -->
+
+
+<!-- Copyright start -->
+<section id="copyright" class="copyright angle">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<ul class="footer-social unstyled">
+					<li>
+						{{ range .Site.Params.social }}
+						<a title="{{ .name }}" href="{{ .link | absURL }}">
+							<span class="icon-pentagon wow bounceIn"><i class="fa {{.icon}}"></i></span>
+						</a>
+						{{ end }}
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--/ Row end -->
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<div class="copyright-info">{{ .Site.Params.copyright | markdownify }}</div>
+			</div>
+		</div>
+		<!--/ Row end -->
+		<div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix position-fixed">
+			<button class="btn btn-primary" title="Back to Top"><i class="fa fa-angle-double-up"></i></button>
+		</div>
+	</div>
+	<!--/ Container end -->
+</section>
+<!--/ Copyright end -->
+
+</div><!-- Body inner end -->
+
+{{ "<!-- Google Map API -->" | safeHTML }}
+{{ if .Site.Params.map.enable }}
+{{ with .Site.Params.map.gmap_api }}
+<script src="{{ . | safeURL }}"></script>
+{{ end }}
+{{ end }}
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range .Site.Params.plugins.js}}
+<script src="{{ .link | absURL }}"></script>
+{{ end }}
+
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>

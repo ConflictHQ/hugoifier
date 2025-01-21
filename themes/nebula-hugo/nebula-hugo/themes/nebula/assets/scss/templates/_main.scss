@@ -1,0 +1,408 @@
+body.light {
+  .post-title {
+    color: $day-text-color;
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .list-icon li a {
+    color: $day-text-color-light;
+    border-color: $day-border-color;
+    &:hover{
+      color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  .menu li a {
+    color: $day-text-color-dark;
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .content {
+    a {
+      color: $day-text-color;
+      border-color: $day-border-color;
+    }
+    table,tr{
+      border-color: $day-border-color;
+    }
+
+    thead,
+    blockquote {
+      background: $light;
+    }
+  }
+  .skill-item{
+    background-color: $light;
+    p{
+      border-color: $day-border-color;
+    }
+  }
+}
+
+.post-title {
+  position: relative;
+  padding-left: 20px !important;
+  color: $text-color;
+  display: block;
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    left: 0;
+    top: 11px;
+    transform: translateY(-50%);
+  }
+}
+
+.sticky-wrapper {
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.author-wrapper {
+  position: relative;
+  display: inline-block;
+
+  .author-bg {
+    position: relative;
+    z-index: -1;
+    border-radius: 50%;
+  }
+
+  .author-img {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+    border-radius: 50%;
+    max-width: 94%;
+    height: 94%;
+    z-index: 1;
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 5s linear infinite;
+  -moz-animation: rotating 5s linear infinite;
+  -ms-animation: rotating 5s linear infinite;
+  -o-animation: rotating 5s linear infinite;
+  animation: rotating 5s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.list-icon li a {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  border: 1px solid $border-color;
+  text-align: center;
+  display: block;
+  color: $text-color-light;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+}
+
+.menu li {
+  a {
+    color: lighten($color: $text-color-light, $amount: 20);
+    padding: 10px;
+    display: block;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &:first-child a {
+    padding-left: 0;
+  }
+}
+
+.card {
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+
+  &-header,
+  &-footer,
+  &-body {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &-img-top {
+    border-radius: 0;
+  }
+}
+
+.content {
+
+  * {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-bottom: 10px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  a {
+    color: $text-color;
+    border-bottom: 1px dotted $border-color;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  ol,
+  ul {
+    padding-left: 20px;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  ul {
+    padding-left: 0;
+    margin-bottom: 20px;
+    list-style-type: none;
+
+    li {
+      padding-left: 20px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: '';
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background: $primary-color;
+        left: 3px;
+        top: 8px;
+      }
+    }
+
+  }
+
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid $border-color;
+  }
+
+  table td,
+  table th {
+    padding: .75rem;
+    vertical-align: top;
+    margin-bottom: 0;
+  }
+
+  tr:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    font-weight: 500;
+  }
+
+  thead {
+    background: $dark;
+    margin-bottom: 0;
+
+    tr {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  tbody {
+    margin-bottom: 0;
+  }
+
+  .notices {
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .notices p {
+    padding: 10px;
+    margin-bottom: 0;
+  }
+
+  .notices p::before {
+    position: absolute;
+    top: 2px;
+    color: $white;
+    font-family: "themify";
+    font-weight: 900;
+    content: "\e717";
+    left: 10px;
+  }
+
+  .notices.note p {
+    border-top: 30px solid #6ab0de;
+    background: $dark;
+  }
+
+  .notices.note p::after {
+    content: 'Note';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+
+  .notices.tip p {
+    border-top: 30px solid #78C578;
+    background: $dark;
+  }
+
+  .notices.tip p::after {
+    content: 'Tip';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+  .notices.info p {
+    border-top: 30px solid #F0B37E;
+    background: $dark;
+  }
+
+  .notices.info p::after {
+    content: 'Info';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+
+  .notices.warning p {
+    border-top: 30px solid #E06F6C;
+    background: $dark;
+  }
+
+  .notices.warning p::after {
+    content: 'Warning';
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    left: 2rem;
+  }
+
+
+  blockquote {
+    font-size: 20px !important;
+    color: $text-color;
+    padding: 20px 40px;
+    border-left: 2px solid $primary-color;
+    margin: 40px 0;
+    font-weight: bold;
+    background: $dark;
+
+    p {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  pre {
+    display: block;
+    padding: 9.5px;
+    margin: 10px 0px 10px;
+    white-space: pre-wrap;
+  }
+
+  code {
+    margin-bottom: 0 !important;
+    font-size: 100%;
+  }
+}
+
+.skill-item{
+  padding: 20px;
+  background-color: $dark;
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  h3,p{
+    margin-bottom: 0;
+  }
+  p{
+    border-left: 1px solid $border-color;
+    padding-left: 20px;
+    margin-left: 20px;
+  }
+}

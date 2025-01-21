@@ -1,0 +1,45 @@
+.post-tags {
+	a{
+		margin-right: 15px;
+	}
+}
+
+.list-posts-share{
+	a{
+		padding: 0px 10px;
+	}
+}
+
+.author-social{
+	padding-right: 10px;
+	font-size: 14px;
+}
+
+.post-pagination .prev-post {
+    float: left;
+    width: 48%;
+}
+
+.post-pagination .next-post {
+    float: right;
+    text-align: right;
+    width:48%;
+}
+
+.comment-area-box{
+	.media-body {
+		h4{
+			font-size: 18px;
+		}
+	}
+}
+
+.comment-form{
+	.form-control{
+		background: $white;
+	}
+}
+
+.text-underline{
+	text-decoration: underline !important;
+}

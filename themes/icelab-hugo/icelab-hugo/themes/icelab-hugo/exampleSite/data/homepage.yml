@@ -1,0 +1,78 @@
+######################## Banner ############################
+banner:
+  enable : true
+  bg_image: "images/hero/hero-bg-2.jpg"
+  title : "Creative<br>Studio"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua."
+  button:
+    enable : true
+    label : "Our Works"
+    link : "works"
+
+################### Service #################################
+service:
+  enable : true
+  bg_image : "images/shape-big.png"
+  subtitle : "What We Do"
+  title : "Design Is How<br>Things Work"
+  service_item:
+    # service item loop
+    - name : "UX & UI Design"
+      icon : "images/icon-1.svg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+
+    # service item loop
+    - name : "PSD to HTML"
+      icon : "images/icon-2.svg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+      
+    # service item loop
+    - name : "Wordpress"
+      icon : "images/icon-3.svg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+
+
+############################# portfolio ############################
+portfolio:
+  enable : true
+  subtitle : "Portfolio"
+  title : "Our Recent Works"
+
+  # portfolio item comes from `content/work/` folder
+
+
+############################ testimonial ###########################
+testimonial:
+  enable : true
+  subtitle : "Testimonials"
+  title : "LoveQuote <br> From Clients"
+  testimonial_item:
+    # testimonial item loop
+    - name : "Good Win"
+      image : "images/testimonial/quote-person.png"
+      designation : "CEO, Align org"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      
+    # testimonial item loop
+    - name : "Good Win"
+      image : "images/testimonial/quote-person.png"
+      designation : "CEO, Align org"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      
+    # testimonial item loop
+    - name : "Good Win"
+      image : "images/testimonial/quote-person.png"
+      designation : "CEO, Align org"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+
+################# call to action ##################################3
+call_to_action:
+  enable : true
+  title : "Interseted In Teaming Up?"
+  content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus asperiores dignissimos cupiditate! Necessitatibus distinctio molestiae omnis tempora facere in cum?"
+  button:
+    enable : true
+    label : "Let's Chat"
+    link : "contact"

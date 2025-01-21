@@ -1,0 +1,43 @@
+<footer class="bg-primary-light py-5">
+  <div class="container">
+    <div class="row">
+      {{ with site.Params.social }}
+      <div class="col-12 text-center mb-5">
+        <ul class="social-links is-circled list-unstyled list-inline font-weight-500">
+          {{ range . }}
+          <li class="list-inline-item"><a href="{{.link}}" title="{{.title}}">
+            <i class="icon {{.icon}}"></i> {{.title}}
+          </a></li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+
+
+      {{ if not .IsHome }}
+      {{ if site.Params.subscription.enable }}
+      {{ with site.Params.subscription }}
+      <!-- subscription form -->
+      <form class="newsletter-block mx-auto mb-5" action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
+        <h5 class="h4 mb-3 text-center font-primary">{{ i18n `subscribe_title` }}</h5>
+        <div class="input-group">
+          <input type="text" class="form-control bg-transparent pl-3" placeholder="{{ i18n `enter_your_email`}}" aria-label="{{ i18n `enter_your_email`}}" required>
+          <div class="input-group-append">
+            <button type="submit" class="input-group-text pr-3" aria-label="News-letter"><i class="far fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+        </div>
+      </form>
+      {{ end }}
+      {{ end }}
+      {{ end }}
+
+      <div class="col-12 text-center">
+        <p class="mb-0 font-weight-500">{{site.Params.copyright | markdownify}}</p>
+      </div>
+    </div>
+  </div>
+</footer>

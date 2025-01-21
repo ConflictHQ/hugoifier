@@ -1,0 +1,109 @@
+<footer class="bg-dark px-1 wave-block">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center text-lg-start mb-5 mb-lg-0">
+        <a class="footer-brand" href="{{ site.BaseURL | relLangURL }}" title="{{site.Title}}">
+          {{ partial "logo.html" (dict "Src" site.Params.logo_dark ) }}
+        </a>
+      </div>
+      {{with site.Params.social}}
+      <div class="col-lg-6">
+        <ul class="list-inline social-links d-flex flex-wrap justify-content-center justify-content-lg-end mb-0">
+          {{range .}}
+          <li class="list-inline-item"><a href="{{.link}}" title="{{.name | humanize}}"><i class="{{.icon}}"></i></a></li>
+          {{end}}
+        </ul>
+      </div>
+      {{end}}
+    </div>
+    <div class="footer-menu">
+      <div class="row gy-4 row-cols-1 row-cols-sm-3 row-cols-lg-5">
+        {{with site.Menus.footer_menu_1}}
+        <div class="col block">
+          <h4 class="footer-menu-title text-white">{{i18n `footer_menu_1_title`}}</h4>
+          <ul class="list-unstyled mb-0">
+            {{range .}}
+            <li><a href="{{.URL | relLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+        {{with site.Menus.footer_menu_2}}
+        <div class="col block">
+          <h4 class="footer-menu-title text-white">{{i18n `footer_menu_2_title`}}</h4>
+          <ul class="list-unstyled mb-0">
+            {{range .}}
+            <li><a href="{{.URL | relLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+        {{with site.Menus.footer_menu_3}}
+        <div class="col block">
+          <h4 class="footer-menu-title text-white">{{i18n `footer_menu_3_title`}}</h4>
+          <ul class="list-unstyled mb-0">
+            {{range .}}
+            <li><a href="{{.URL | relLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+        {{with site.Menus.footer_menu_4}}
+        <div class="col block">
+          <h4 class="footer-menu-title text-white">{{i18n `footer_menu_4_title`}}</h4>
+          <ul class="list-unstyled mb-0">
+            {{range .}}
+            <li><a href="{{.URL | relLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+        {{with site.Menus.footer_menu_5}}
+        <div class="block">
+          <h4 class="footer-menu-title text-white">{{i18n `footer_menu_5_title`}}</h4>
+          <ul class="list-unstyled mb-0">
+            {{range .}}
+            <li><a href="{{.URL | relLangURL}}">{{.Name}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="content has-bg-dark text-center">
+            {{if site.Params.theme_copyright }}
+            {{site.Params.copyright}}
+            {{ end }} | <a target="_blank" rel="noopener noreferrer" href="https://gethugothemes.com/">GetHugoThemes</a>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="has-wave">
+    <svg class="wave-left text-white" style="opacity:0.15" width="313" height="230" viewBox="0 0 313 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-14.8194 14.9839C3.13821 37.9424 36.9915 27.6999 61.6547 27.5681C84.2532 27.4016 106.769 35.7678 122.993 51.6513C138.323 66.5174 146.99 89.3198 139.352 110.086C131.009 132.997 107.852 148.309 83.7288 148.845C72.5181 149.081 58.5368 146.113 50.8212 137.176C42.421 127.407 45.0441 112.296 53.7244 103.604C70.3422 87.0585 102.952 91.1301 123.155 97.9693C145.591 105.666 164.921 121.085 172.951 143.847C181.535 167.923 174.754 193.715 169.644 217.622C166.685 231.087 164.023 244.891 165.095 258.789C166.016 270.831 170.68 282.45 177.16 292.612C190.153 312.814 212.5 327.616 236.798 329.331C248.749 330.2 249.041 348.944 236.936 348.163C195.469 345.218 158.214 313.978 148.665 273.181C143.449 251.044 148.105 228.831 152.906 207.045C157.341 187.105 163.047 163.876 153.199 144.516C144.114 126.658 125.512 116.747 106.475 112.813C96.88 110.89 86.1704 110.224 76.5058 112.43C70.8344 113.762 58.0659 121.748 68.0603 127.018C84.7687 135.773 108.523 126.454 118.163 111.279C128.021 95.7732 122.768 77.6448 110.371 65.3791C93.9698 49.189 72.473 45.2436 50.2436 46.9349C23.3926 48.9432 -9.28315 52.3721 -28.1024 28.2753C-31.2832 24.1825 -31.9544 18.9474 -28.03 14.9438C-24.8161 11.6571 -17.8793 10.9235 -14.8194 14.9839Z" fill="currentColor"/>
+    </svg>
+    <svg class="wave-right text-white" style="opacity:0.15" width="291" height="170" viewBox="0 0 291 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40.6178 -98.5373C26.3888 -74.758 17.9858 -47.7259 16.9774 -19.9086C16.1931 1.51518 20.3386 27.5378 38.6011 41.4464C50.9255 50.7562 72.5492 51.2049 83.305 39.0909C86.4422 35.6137 92.3803 22.1538 84.5375 20.247C80.7281 19.3496 76.5826 24.0606 74.4539 26.6404C70.4204 31.3514 67.6195 37.2963 65.4907 43.1289C61.9054 53.1117 61.9054 64.2162 72.8853 68.9272C82.1846 72.9652 93.2766 71.7313 102.8 69.2637C125.656 63.431 148.512 49.4102 162.181 29.7811C163.638 27.6499 164.198 25.7431 165.206 23.4998C165.654 22.4903 163.414 23.3876 166.215 24.0606C164.87 23.7241 163.638 23.7241 162.293 23.7241C157.139 24.0606 152.21 26.5283 148.4 30.0054C140.782 37.2963 139.661 48.5129 144.927 57.4862C150.529 67.0204 161.733 69.3758 172.041 69.2637C184.029 69.1515 195.905 66.6839 208.005 66.6839C222.795 66.5717 236.239 71.0584 248.228 79.583C259.992 87.9955 270.188 98.4269 281.504 107.512C305.704 126.917 333.266 142.396 362.284 153.164C372.368 156.866 367.998 173.242 357.803 169.428C325.311 157.202 295.06 140.041 268.059 118.168C255.51 107.961 244.306 95.2863 229.741 87.9955C215.96 81.0412 200.275 83.7332 185.597 85.1913C171.144 86.6495 155.347 87.0981 142.686 78.6856C129.914 70.161 123.079 54.9064 125.32 39.7639C127.449 24.8458 138.877 12.7318 153.106 8.35734C159.94 6.22618 168.455 5.66532 174.73 9.59115C181.788 13.8535 183.357 22.6025 180.892 30.0054C176.298 44.0262 162.069 56.028 150.641 64.6648C138.317 73.9746 123.976 81.0411 109.074 85.0791C95.7415 88.6684 81.0642 90.0144 67.9556 84.8548C53.3904 79.1343 44.9874 65.6743 46.78 49.971C48.5727 34.7164 57.0877 17.4428 69.7482 8.24514C82.5208 -0.952511 99.8869 3.98282 104.032 19.6861C111.315 46.9426 82.4087 65.6744 58.6563 65.0014C29.1898 64.2162 9.6948 40.2125 3.30853 13.0683C-4.31018 -19.0113 1.96406 -54.2315 14.6246 -84.1799C17.9858 -92.0316 21.7951 -99.6589 26.1647 -106.95C31.5426 -116.26 46.1078 -107.847 40.6178 -98.5373Z" fill="currentColor"/>
+    </svg>
+  </div>
+</footer>
+
+<!-- start of videoModal -->
+<div class="modal fade rounded overflow-hidden" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content border-0 bg-transparent">
+      <div class="text-center p-3"><button type="button" class="border-0 modal-close-btn" data-bs-dismiss="modal" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button></div>
+      <div class="modal-body bg-dark p-0 rounded">
+        <div class="ratio ratio-16x9 rounded overflow-hidden">
+          <iframe src="" id="showVideo" allowscriptaccess="always" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of videoModal -->

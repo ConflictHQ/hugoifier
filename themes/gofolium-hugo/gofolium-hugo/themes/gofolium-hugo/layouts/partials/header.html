@@ -1,0 +1,60 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<header class="sticky-top bg-black">
+  <div class="container">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}/"><img class="img-fluid"
+          src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav mx-auto">
+          {{ if .IsHome }}
+          {{ range .Site.Menus.main }}
+          <li class="nav-item"><a class="nav-link" href="#{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+
+          {{ else }}
+
+          {{ range .Site.Menus.main }}
+          <li class="nav-item"><a class="nav-link" href="{{ $.Site.BaseURL | relLangURL }}#{{ .URL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+          <li class="nav-item">
+            <!-- Language List -->
+            {{ if .IsTranslated }}
+            <select class="bg-transparent nav-link nav-lang" id="select-language" onchange="location = this.value;">
+              {{ $siteLanguages := .Site.Languages}}
+              {{ $pageLang := .Page.Lang}}
+              {{ range .Page.AllTranslations }}
+              {{ $translation := .}}
+              {{ range $siteLanguages }}
+              {{ if eq $translation.Lang .Lang }}
+              {{ $selected := false }}
+              {{ if eq $pageLang .Lang}}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+              </option>
+              {{ else }}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+              {{ end }}
+              {{ end }}
+              {{ end }}
+              {{ end }}
+            </select>
+            {{ end }}
+          </li>
+        </ul>
+
+        {{ if .Site.Params.navigation_button.enable }}
+        {{ "<!-- navigation button -->" | safeHTML }}
+        <a href="{{ .Site.Params.navigation_button.link | absURL }}"
+          class="btn btn-primary ml-lg-4">{{ .Site.Params.navigation_button.label }}</a>
+        {{ end }}
+      </div>
+    </nav>
+  </div>
+</header>
+{{ "<!-- /navigation -->" | safeHTML }}

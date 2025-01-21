@@ -1,0 +1,7 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "schedule.html" . }}
+
+{{ end }}

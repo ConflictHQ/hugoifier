@@ -1,0 +1,36 @@
+---
+label: Post
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: text
+  name: description
+  label: description
+  description: meta description
+- type: file
+  name: bg_image
+  label: bg_image
+  description: Page header background image
+- type: file
+  name: image
+  label: image
+  description: Post thumbnail
+- type: text
+  name: author
+  label: author
+  description: 'Ex: John Doe'
+- type: list
+  name: categories
+  label: categories
+- type: list
+  name: tags
+  label: tags
+- type: text
+  name: type
+  label: type
+  default: post

@@ -1,0 +1,44 @@
+<div class="sidebar">
+  <!-- Category Widget -->
+  <div class="widget category">
+    <!-- Widget Header -->
+    <h5 class="widget-header">Categories</h5>
+    {{- if isset site.Taxonomies "categories" }}
+    {{- if not (eq (len site.Taxonomies.categories) 0) }}
+    <ul class="category-list m-0 p-0">
+      {{- range $name, $items := site.Taxonomies.categories }}
+      <li><a href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | title | humanize }}</a></li>
+      {{ end}}
+    </ul>
+    {{ end}}
+    {{ end}}
+  </div>
+  <!-- Latest post -->
+  <div class="widget latest-post">
+    <h5 class="widget-header">Latest Post</h5>
+    <!-- Post -->
+    {{ range first 3 ( where site.RegularPages "Section" "blog" )}}
+    <div class="media">
+      <img src="{{ .Params.image | absURL }}" class="img-fluid" alt="post-thumb" style="height: 80px; width: 75px; object-fit: cover;">
+      <div class="media-body">
+        <h6><a href="{{ .Permalink }}">{{ .Title }}</a></h6>
+        <p href="{{ .Permalink }}"><span class="fa fa-calendar"></span>{{ .PublishDate.Format "02 Jan, 2006" }}</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  <!-- Popular Tag Widget -->
+  <div class="widget tags">
+    <!-- Widget Header -->
+    <h5 class="widget-header">Popular Tags</h5>
+    {{- if isset site.Taxonomies "tags" }}
+    {{- if not (eq (len site.Taxonomies.tags) 0) }}
+    <ul class="list-inline">
+      {{- range $name, $items := site.Taxonomies.tags }}
+      <li class="list-inline-item"><a href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | humanize }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    {{- end }}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="col-lg-4 col-sm-5 mt-5 mt-sm-0">
+  {{ with .Site.GetPage "/about" }}
+  <div class="widget">
+    <img class="author-thumb" src="{{ .Params.Image | absURL }}" alt="">
+    <h2 class="widget-title">{{ i18n "about_me" }}</h2>
+    <p>{{ .Summary }} </p>
+    <a href="{{.Permalink }}" class="btn btn-primary">{{ i18n "know_more" }}</a>
+  </div>
+  {{ end }}
+
+  {{ if .Site.Params.subscription.enable }}
+  {{ with .Site.Params.subscription }}
+  <div class="widget bg-dark p-4">
+    <h2 class="widget-title">{{ i18n "subscribe_blog"}}</h2>
+    <p>{{ i18n "subscribe_content" | markdownify }}</p>
+    <form action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
+      <input type="email" class="form-control mb-3">
+      <button type="submit" name="subscribe" class="btn btn-primary">{{ i18n "subscribe"}}<i class="ti-arrow-right ml-2"></i></button>
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+      </div>
+    </form>
+  </div>
+  {{ end }}
+  {{ end }}
+
+  {{ if gt (len (where .Site.RegularPages "Type" "featured")) 0 }}
+  <div class="widget">
+    <h2 class="widget-title">{{ i18n "featured_post"}}</h2>
+    {{ range where .Site.RegularPages "Type" "featured" }}
+    <article class="card text-left mb-5">
+     {{ with .Params.image }} <img src="{{ . | absURL }}" alt="{{$.Title}}" class="card-img-top mb-3"> {{ end }}
+      <div class="card-body p-0">
+        <h3 class="mb-3"><a href="{{ .Permalink }}" class="post-title">{{ .Title }}</a></h3>
+        <ul class="post-meta list-inline mb-3">
+          <li class="list-inline-item"><i class="ti-time mr-2"></i>{{ .PublishDate.Format "02 JAN, 2006"}}</li>
+          <li class="list-inline-item"><i class="ti-folder"></i>
+            {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+              href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a>
+            {{end}}</li>
+        </ul>
+        <a href="{{ .Permalink }}" class="btn btn-primary">{{ i18n "read_more" }}<i class="ti-arrow-right ml-2"></i></a>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>

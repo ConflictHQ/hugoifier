@@ -1,0 +1,22 @@
+.sidebar-widget{
+  &.categories{
+    ul li{
+      margin-bottom: 15px;
+    }
+  }
+
+
+
+  &.search{
+    position: relative;
+    background: #f7f9f3;
+
+    a{
+      position: absolute;
+      display: inline-block;
+      right: 40px;
+      top: 34px;
+    }
+  }
+}
+

@@ -1,0 +1,132 @@
+# default configuration
+baseURL = "http://demo.themefisher.com/thomson-hugo/"
+languageCode = "en-us"
+theme = "thomson-hugo"
+title = "Thomson-Minimal Hugo Portfolio Temaplate"
+summaryLength = "10"
+paginate = 4
+
+# css plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/themify/css/themify-icons.css"
+[[params.plugins.css]]
+link = "plugins/owl-carousel/owl.carousel.min.css"
+[[params.plugins.css]]
+link = "plugins/owl-carousel/owl.theme.default.min.css"
+[[params.plugins.css]]
+link = "plugins/animated-text/animated-text.css"
+[[params.plugins.css]]
+link = "plugins/magnific-popup/magnific-popup.css"
+
+
+# js plugin
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/owl-carousel/owl.carousel.min.js"
+[[params.plugins.js]]
+link = "plugins/shuffle/shuffle.min.js"
+[[params.plugins.js]]
+link = "plugins/animated-text/animated-text.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"
+[[params.plugins.js]]
+link = "plugins/magnific-popup/magnific-popup.min.js"
+
+
+# menu
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "About"
+url = "about"
+weight = 2
+
+[[menu.main]]
+name = "Blog"
+url = "blog"
+weight = 3
+
+[[menu.main]]
+name = "Portfolio"
+url = "portfolio"
+weight = 4
+
+[[menu.main]]
+name = "Contact"
+url = "contact"
+weight = 5
+
+[[menu.main]]
+name = "Dropdown"
+url = "#"
+weight = 6
+
+  [[menu.main]]
+  parent = "Dropdown"
+  name = "Child 1"
+  url = "#"
+  weight = 1
+
+  [[menu.main]]
+  parent = "Dropdown"
+  name = "Child 2"
+  url = "#"
+  weight = 2
+
+
+
+# default parameters
+[params]
+home = "Home"
+logo = "images/logo.png"
+# contact info
+mobile = "+880 2544 658 256"
+email = "steve.fruits@email.com"
+address = "125/A, CA Commercial Area, California, USA"
+# meta description
+author = "themefisher"
+description = "This is meta description"
+# google analitycs
+google_analitycs_id = ""
+# contact form action 
+contact_form_action = "#" # contact form works with : https://formspree.io
+# copyright
+copyright = "Copyrighht &copy; 2020 a theme by [themefisher](https://themefisher.com)"
+
+# preloader
+[params.preloader]
+enable = true
+preloader = "" # use png, jpg, svg or gif format
+
+# google map
+[params.gmap]
+enable = true
+gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
+
+# social site
+[[params.social]]
+icon = "ti-facebook"
+link = "#"
+
+[[params.social]]
+icon = "ti-instagram"
+link = "#"
+
+[[params.social]]
+icon = "ti-dribbble"
+link = "#"
+
+[[params.social]]
+icon = "ti-twitter-alt"
+link = "#"

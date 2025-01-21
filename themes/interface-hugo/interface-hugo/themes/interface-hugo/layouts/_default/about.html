@@ -1,0 +1,271 @@
+{{ define "main" }}
+  {{ partial "components/page-header" . }}
+
+
+  <!-- about us -->
+  {{ with .Params.about_us }}
+    <section class="section has-backdrop pt-0">
+      <div class="container">
+        <div class="row justify-content-center mb-3">
+          <div class="col-lg-10 text-center">
+            <p class="section-subtitle text-secondary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          {{ range $i, $e := .images }}
+            <div class="col-lg-3 col-6">
+              <div class="{{ if not (modBool $i 2) }}pt-4 mt-2{{ end }}">
+                {{ partial "image" (dict "Src" . "Alt" "about image" "Class" "shadow-lg rounded-4 w-100") }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+
+      <svg
+        class="backdrop text-tertiary"
+        style="top:0;right:0"
+        width="490"
+        height="670"
+        viewBox="0 0 490 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.25"
+          d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+          fill="currentColor"></path>
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end about_us -->
+
+  <!-- brands -->
+  {{ with .Params.brands }}
+    <section class="section pt-0">
+      <div class="container">
+        <div class="row justify-content-center mb-3">
+          <div class="col-lg-10 text-center">
+            <p class="section-subtitle text-secondary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+        </div>
+        <div class="row gy-4 justify-content-center align-items-center">
+          {{ range .images }}
+            <div class="col-lg-2 col-md-3 col-sm-3 col-4 text-center">
+              {{ partial "image" (dict "Src" . "Alt" "about image") }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+  <!-- end brands -->
+
+  <!-- about_info -->
+  {{ with .Params.about_info }}
+    {{ if .enable }}
+      <section class="about-info has-backdrop">
+        <div class="section container">
+          <div
+            class="row gx-0 gx-lg-5 gy-5 align-items-xl-center justify-content-center">
+            <div class="col-lg-4 text-center">
+              <div class="about-info-image rounded-5 d-inline-block">
+                {{ partial "image" (dict "Src" .image "Alt" "about info image" "Resize" false) }}
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="ps-0 ps-xl-4">
+                <p class="section-subtitle text-tertiary">
+                  {{ .subtitle | markdownify }}
+                </p>
+                <h2 class="section-title">{{ .title | markdownify }}</h2>
+                <div class="content">
+                  {{ .content | markdownify }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <svg
+          class="backdrop text-primary"
+          width="552"
+          height="524"
+          viewBox="0 0 552 524"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            opacity="0.25"
+            d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+            fill="currentColor" />
+        </svg>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end about_info -->
+
+  <!-- our_values -->
+  {{ with .Params.our_values }}
+    {{ if .enable }}
+      <section class="section our-values overflow-hidden">
+        <div class="container">
+          <div class="row gx-4 gx-lg-5 flex-nowrap mb-3 align-items-center">
+            <div class="col-lg-5">
+              <p class="section-subtitle text-secondary">
+                {{ .subtitle | markdownify }}
+              </p>
+              <h2 class="section-title">{{ .title | markdownify }}</h2>
+            </div>
+            <div class="col-lg-9">
+              <div class="swiper our_values_swiper">
+                <div class="swiper-wrapper">
+                  {{ range .value_lists }}
+                    <div class="swiper-slide">
+                      <div class="block bg-white rounded-4 p-4">
+                        <div class="icon mb-3">
+                          <i class="text-primary {{ .icon }}"></i>
+                        </div>
+                        <p class="text-capitalize fw-bold text-dark mb-2">
+                          {{ .title | markdownify }}
+                        </p>
+                        <p class="mb-0 small">{{ .content | markdownify }}</p>
+                      </div>
+                    </div>
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end our_values -->
+
+  <!-- team -->
+  {{ with .Params.team }}
+    {{ if .enable }}
+      <section class="section pb-4">
+        <div class="container">
+          <div class="row justify-content-center mb-3">
+            <div class="col-lg-10 text-center">
+              <p class="section-subtitle text-quaternary">
+                {{ .subtitle | markdownify }}
+              </p>
+              <h2 class="section-title text-center">
+                {{ .title | markdownify }}
+              </h2>
+            </div>
+          </div>
+          <div class="row gy-4">
+            <div class="col-xl-3 col-lg-4">
+              <ul class="nav nav-pills team-filter" id="teamTab" role="tablist">
+                <li class="nav-item w-100" role="presentation">
+                  <button
+                    class="nav-link text-start active"
+                    id="all-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#all"
+                    type="button"
+                    role="tab"
+                    aria-controls="all"
+                    aria-selected="true">
+                    <i class="fa-solid fa-border-all me-2"></i> All
+                  </button>
+                </li>
+                {{ range .team_lists }}
+                  <li class="nav-item w-100" role="presentation">
+                    <button
+                      class="nav-link text-start"
+                      data-bs-toggle="tab"
+                      data-bs-target="#team-{{ .title | urlize | sha1 }}-tab"
+                      type="button"
+                      role="tab"
+                      aria-selected="false">
+                      <i class="{{ .icon }} me-2"></i>
+                      {{ .title | markdownify }}
+                    </button>
+                  </li>
+                {{ end }}
+              </ul>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+              <!-- Tab panes -->
+              <div class="tab-content p-0 border-0">
+                <div
+                  class="tab-pane fade show active"
+                  id="all"
+                  role="tabpanel"
+                  aria-labelledby="all">
+                  <div class="row gy-4">
+                    {{ range .team_lists }}
+                      {{ range .team_members }}
+                        <div
+                          class="col-xl-4 col-lg-6 col-sm-6 text-center team-item">
+                          <div class="block bg-white p-4 rounded-4">
+                            <div class="text-center">
+                              {{ partial "image" (dict "Src" .image "Alt" "about image" "Size" "120x120" "Class" "rounded-circle mt-2 mb-4") }}
+                            </div>
+                            <p class="fw-bold text-dark mb-1">
+                              {{ .name | markdownify }}
+                            </p>
+                            <p class="small mb-0">
+                              {{ .designation | markdownify }}
+                            </p>
+                          </div>
+                        </div>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+                {{ range .team_lists }}
+                  <div
+                    class="tab-pane fade"
+                    id="team-{{ .title | urlize | sha1 }}-tab"
+                    role="tabpanel"
+                    aria-labelledby="{{ .title | urlize | sha1 }}-tab">
+                    <div class="row">
+                      {{ range .team_members }}
+                        <div
+                          class="col-xl-4 col-lg-6 col-sm-6 text-center team-item">
+                          <div class="block bg-white p-4 rounded-4">
+                            <div class="text-center">
+                              {{ partial "image" (dict "Src" .image "Alt" "about image" "Size" "120x120" "Class" "rounded-circle mt-2 mb-4") }}
+                            </div>
+                            <p class="fw-bold text-dark mb-1">
+                              {{ .name | markdownify }}
+                            </p>
+                            <p class="small mb-0">
+                              {{ .designation | markdownify }}
+                            </p>
+                          </div>
+                        </div>
+                      {{ end }}
+                    </div>
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end team -->
+
+  <!-- how it testimonials -->
+  {{ partial "components/testimonial" . }}
+  <!-- end testimonials -->
+
+  {{ partial "components/cta" }}
+
+{{ end }}

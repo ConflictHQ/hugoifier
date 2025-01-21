@@ -1,0 +1,29 @@
+{{ "<!-- recent post -->" | safeHTML }}
+<div class="widget">
+  <h2 class="widget-title">{{ i18n "recent_post" }}</h2>
+  {{ "<!-- post-item -->" | safeHTML }}
+  {{ range first 3 ( where site.RegularPages "Section" "post" )}}
+  {{$Permalink := .Permalink}}
+  <article class="widget-card">
+    <div class="d-flex">
+      {{ if .Params.images }}
+        {{ range first 1 .Params.images }}
+        <a href="{{$Permalink}}"> 
+          {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `card-img-sm`) }}
+        </a>
+        {{ end }}
+      {{ else }}
+      <div class="image-fallback-sm"><span>{{.Title | truncate 1}}</span></div>
+      {{ end }}
+      <div class="flex-1 ms-3">
+        <h3 class="h5"><a class="post-title" href="{{.Permalink}}">{{ .Title }}</a></h3>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="fa-regular fa-calendar-alt"></i>{{ .PublishDate.Format "02 Jan, 2006" }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  {{ end }}
+</div>

@@ -1,0 +1,63 @@
+#########################3 history ############################
+history:
+  enable : true
+  image: "images/history-image.png"
+  subtitle : "History"
+  title : "Give us a task & <br> we'll implement it"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore agna liquam fina water. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute irure dolor in reprehenderit. in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+          
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
+
+
+################################ Team ###########################
+team:
+  enable : true
+  subtitle : "Our Strenght"
+  title : "Meet Our Team"
+  team_member:
+    # team member loop
+    - name : "Mehedi Titash"
+      image : "images/team/team-member-01.jpg"
+      image_bg : "images/team/team-member-01-bg.jpg"
+      designation : "CEO & Chief"
+      
+    # team member loop
+    - name : "Jarina Khatun"
+      image : "images/team/team-member-02.jpg"
+      image_bg : "images/team/team-member-02-bg.jpg"
+      designation : "Content Writter"
+      
+    # team member loop
+    - name : "Fahad Alam"
+      image : "images/team/team-member-03.jpg"
+      image_bg : "images/team/team-member-03-bg.jpg"
+      designation : "Ui/UX Designer"
+
+
+############################### philosophy ###########################
+philosophy:
+  enable : true
+  subtitle : "Philosophy"
+  title : "We design for human, So user first"
+  image : "images/philosophy-image.jpg"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore agna liquam fina water. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute irure dolor in reprehenderit. in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+          
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
+
+
+############################ Clients ################################
+clients:
+  enable : true
+  subtitle : "Our Clients"
+  title : "They Trust Us"
+  clients_logo:
+    - images/clients/client-logo-01.jpg
+    - images/clients/client-logo-02.jpg
+    - images/clients/client-logo-03.jpg
+    - images/clients/client-logo-04.jpg
+    - images/clients/client-logo-05.jpg
+    - images/clients/client-logo-06.jpg
+    - images/clients/client-logo-07.jpg
+    - images/clients/client-logo-08.jpg

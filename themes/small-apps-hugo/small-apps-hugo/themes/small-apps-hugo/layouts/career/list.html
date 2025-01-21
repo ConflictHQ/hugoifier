@@ -1,0 +1,185 @@
+{{ define "main" }} 
+{{ partial "components/page-title.html" . }}
+
+{{ "<!-- Career Promo -->" | safeHTML }}
+{{ if .Params.promo.enable }}
+{{ with .Params.promo }}
+<section class="section career-featured pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <div class="content">
+            <h2>{{ .title | markdownify }}</h2>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+          <div class="video">
+            {{ partial "image.html" (dict "Src" .video_thumb "Alt" "video-thumbnail" "Class" `shadow`) }}
+            <div class="video-button video-box">
+              <a href="javascript:void(0)">
+                <i class="fa-solid fa-play" data-video="{{ .video_embed_url }}"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Career Promo -->" | safeHTML }}
+
+
+{{ "<!-- Gallery -->" | safeHTML }}
+{{ if .Params.gallery.enable }}
+{{ with .Params.gallery }}
+<section class="gallery">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+      {{ range .gallery_item }}
+      <div class="col-md-4"> 
+        {{ partial "image.html" (dict "Src" .image "Alt" "gallery image") }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Gallery -->" | safeHTML }}
+
+
+{{"<!-- Amenities -->" | safeHTML }}
+{{ if .Params.amenities.enable }}
+{{ with .Params.amenities }}
+<section class="company-fun-facts section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>{{ .title }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      {{ range .amenities_item }}
+      <div class="col-lg-3 col-md-6">
+        <div class="fun-fact">
+          <i class="{{ .icon }}"></i>
+          <h3>{{ .title | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- End of Amenities -->" | safeHTML }}
+
+
+{{ "<!-- Job lists -->" | safeHTML }}
+{{ if .Params.job.enable }}
+{{ with .Params.job }}
+<section class="job-list section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-10 m-auto">
+        <div class="block">
+          <div class="title text-center">
+            <h2>{{ .title }}</h2>
+          </div>
+          {{ $.Scratch.Set "counter" 0 }}
+          {{ range .job_post }}
+          {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+          <div class="job">
+            <div class="content">
+              <h3>{{ .title }}</h3>
+              <p>{{ .location | markdownify }}</p>
+            </div>
+            <div class="apply-button">
+              <a href="#" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                data-bs-target="#job-{{$.Scratch.Get `counter`}}">{{ i18n "view_details" }}</a>
+              {{ "<!-- Modal -->" | safeHTML }}
+              <div class="modal fade jd-modal" id="job-{{$.Scratch.Get `counter`}}" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{ .title }}</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="close modal">
+                        <span>&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="block-2">
+                        <div class="title">
+                          <p>{{ i18n "location" }}</p>
+                        </div>
+                        <div class="details">
+                          <p>{{ .location }}</p>
+                        </div>
+                      </div>
+                      <div class="block-2">
+                        <div class="title">
+                          <p>{{ i18n "about_you" }}</p>
+                        </div>
+                        <div class="details">
+                          <p>{{ .details }}</p>
+                        </div>
+                      </div>
+                      <div class="block-2">
+                        <div class="title">
+                          <p>{{ i18n "experience_title"}}</p>
+                        </div>
+                        <div class="details">
+                          <ul>
+                            {{ range .experiences }}
+                            <li><span class="tf-ion-ios-arrow-forward"></span>{{ . | markdownify }}</li>
+                            {{ end }}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="form-title">
+                        <h3>{{ i18n "apply" }}</h3>
+                      </div>
+                      <form action="{{ .form_action }}">
+                        <div class="row">
+                          <div class="col-lg-6 col-md-12">
+                            <input class="form-control main" type="text" placeholder="Name" required>
+                          </div>
+                          <div class="col-lg-6 col-md-12">
+                            <input class="form-control main" type="email" placeholder="Email Address" required>
+                          </div>
+                          <div class="col-lg-6 col-md-12">
+                            <input class="form-control main" type="text" placeholder="Portfolio Website Link" required>
+                          </div>
+                          <div class="col-lg-6 col-md-12">
+                            <input class="form-control main" type="text" placeholder="Github/Stackoverflow Link"
+                              required>
+                          </div>
+                          <div class="col-md-12">
+                            <textarea class="form-control main" name="about" id="" rows="10"
+                              placeholder="Write Something About You"></textarea>
+                          </div>
+                          <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-primary btn-lg">{{ i18n "apply" }}</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Job lists -->" | safeHTML }}
+
+{{ end }}

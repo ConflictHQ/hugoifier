@@ -1,0 +1,58 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<section id="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        {{ $.Scratch.Set "counter" 0 }}
+        {{ range $data.career.career }}
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+        <h3 class="title-border">{{ .title | markdownify }}</h3>
+        <p>{{ .content | markdownify }}</p>
+        <div class="accordion" id="accordion{{$.Scratch.Get `counter`}}">
+          {{ $.Scratch.Set "counter2" 0 }}
+          {{ range .job_accordion }}
+          {{ $.Scratch.Set "counter2" (add ($.Scratch.Get "counter2") 1) }}
+          <div class="card border rounded mb-2">
+            <div class="card-header p-0">
+              <a class="h4 mb-0 font-weight-bold text-uppercase d-block p-2 pl-5" data-toggle="collapse"
+                data-target="#collapse{{$.Scratch.Get `counter`}}{{$.Scratch.Get `counter2`}}" aria-expanded="false" aria-controls="collapse{{$.Scratch.Get `counter`}}{{$.Scratch.Get `counter2`}}">{{ .name }}</a>
+            </div>
+            <div id="collapse{{$.Scratch.Get `counter`}}{{$.Scratch.Get `counter2`}}" class="collapse" data-parent="#accordion{{$.Scratch.Get `counter`}}">
+              <div class="card-body">
+                <ul class="list-unstyled arrow">
+                  {{ range .bullet_point }}
+                  <li>{{ . | markdownify }}</li>
+                  {{ end }}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+          <div class="gap-20"></div>
+          <p><a href="{{ .apply_url | safeURL }}" class="btn btn-primary solid">Apply Now <i class="fa fa-long-arrow-right"></i></a></p>
+        </div>
+        <div class="gap-40"></div>
+        {{ end }}
+      </div>
+      <!--/ Content col end -->
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="sidebar sidebar-right">
+          <!-- category start -->
+          <div class="widget">
+            {{ .Content }}
+          </div><!-- tags end -->
+        </div>
+        <!--/ Sidebar end -->
+      </div>
+      <!--/ Sidebar col end -->
+    </div>
+    <!--/ row end -->
+  </div>
+  <!--/ container end -->
+</section>
+
+{{ end }}

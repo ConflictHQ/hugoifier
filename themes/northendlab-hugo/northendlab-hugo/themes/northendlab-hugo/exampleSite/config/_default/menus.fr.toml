@@ -1,0 +1,74 @@
+############# English navigation ##############
+# ----- Main Menu ----- 
+[[main]]
+name = "Maison"
+url = "/"
+weight = 1
+hasChildren = true
+
+[[main]]
+parent = "Maison"
+name = "Accueil Classique"
+url = "homepage/classic/"
+weight = 1
+
+[[main]]
+parent = "Maison"
+name = "Accueil Créatif"
+url = "homepage/creative/"
+weight = 2
+
+[[main]]
+name = "Quelque"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Contacter"
+url = "contact/"
+weight = 3
+
+[[main]]
+name = "Outils"
+url = "tools/"
+weight = 4
+
+[[main]]
+name = "Pages"
+url = "#"
+weight = 5
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Mots clés"
+url = "tags/tech/"
+weight = 1
+
+[[main]]
+parent = "Pages"
+name = "Catégorie"
+url = "categories/hugo/"
+weight = 2
+
+[[main]]
+parent = "Pages"
+name = "Éléments"
+url = "elements/"
+weight = 3
+
+# ----- Footer Menu -----
+[[footer]]
+name = "Quelque"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Vie privée"
+url = "privacy/"
+weight = 2
+
+[[footer]]
+name = "Termes et conditions"
+url = "terms-conditions/"
+weight = 3

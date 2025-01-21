@@ -1,0 +1,342 @@
+{{ define "main" }}
+
+{{ if .Params.banner.enable }}
+{{ with .Params.banner }}
+{{ $image1 := resources.Get "images/brushes/banner.svg" }}
+
+<!-- start of banner -->
+<section class="banner bg-cover-bottom has-shapes bg-light-gray has-bg-brash bg-brash-bottom"
+  style="background-image: url('{{ $image1.RelPermalink }}')" data-aos="fade-in" data-aos-delay="150">
+  <div class="container h-100">
+    <div class="d-block d-lg-flex no-gutters align-items-center h-100">
+      <div class="col-12 col-xl-8 col-lg-8 order-lg-1">
+        <div class="banner-image has-video-popup has-shapes mb-4 mb-md-5 mb-lg-0">
+          {{ if .video.enable }}
+          {{ with .video }}
+          <button type="button" class="video-play-btn" data-bs-toggle="modal" data-src="{{ .video_embed_link }}"
+            data-bs-target="#videoModal"><svg width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+            </svg>
+          </button>
+          {{ end }}
+          {{ end }}
+
+          {{ partial "image.html" (dict "Src" .image "Alt" "banner image") }}
+
+          <div class="shape-lg bg-cyan rounded-circle"></div>
+          <div class="shape-md bg-orange rounded-circle"></div>
+          <div class="shape-sm bg-yellow rounded-circle"></div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-lg-6 order-lg-0">
+        <h2 class="h1 mb-20">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+
+        {{if .form.enable }}
+        {{with .form }} 
+        <form action="{{.form_action}}" method="post" class="needs-validation mt-30" novalidate>
+          <div class="input-group d-block d-sm-flex">
+            <input type="email" class="form-control bg-transparent" placeholder="name@email.com" required>
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-primary has-icon ms-15">{{.button_label}}
+                <span class="icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12.5522 6.66669L20.5522 14.6667C21.0329 15.1473 21.0699 15.9036 20.6632 16.4267L20.5522 16.5523L12.5522 24.5523L10.6666 22.6667L17.7228 15.6095L10.6666 8.55231L12.5522 6.66669Z"
+                      fill="currentColor" />
+                  </svg></span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="divider-text mt-25 mb-25"><span class="bg-light-gray">OR</span></div>
+        {{ end }}
+        {{ end }}
+
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{.link | absLangURL}}"
+          class="btn btn-outline-secondary d-flex align-items-center justify-content-center">
+          {{with .icon}}
+          {{ partial "image.html" (dict "Src" . "Alt" "icon" "Class" `me-2`) }}
+          {{end}} {{.label}}
+        </a>
+
+        <p class="content has-underdot-link text-muted mt-15">{{ .content | markdownify }}</p>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="shape-1 shape-sm bg-yellow rounded-circle"></div>
+  <div class="shape-3 shape-sm-2 bg-orange rounded-circle"></div>
+  <div class="shape-4 shape-sm-2 bg-orange rounded-circle"></div>
+  <div class="shape-5 shape-xs bg-yellow rounded-circle"></div>
+  <div class="shape-6 shape-xs bg-cyan rounded-circle"></div>
+  <div class="shape-7 shape-xs-2 bg-cyan rounded-circle"></div>
+  <div class="shape-8 shape-xs-2 bg-orange rounded-circle"></div>
+</section>
+<!-- end of banner -->
+
+<!-- start of videoModal -->
+{{ if .video.enable }}
+<div class="modal fade rounded" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered border-0" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0 bg-transparent">
+        <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="ratio ratio-16x9">
+          <iframe  id="showVideo" allowscriptaccess="always" allow="autoplay"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+<!-- end of videoModal -->
+{{ end }}
+{{ end }}
+
+<!-- start of brand-carousel -->
+{{ if .Params.clients_logo_slider.enable }}
+{{ with .Params.clients_logo_slider }}
+<section class="section-padding overflow-hidden">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" data-aos="fade-left">
+        <div class="brand-carousel">
+          {{ range .logos }}
+          <div class="brand-item d-flex align-items-center justify-content-center">
+            {{ partial "image.html" (dict "Src" . "Alt" "brand logo" "Resize" false) }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end of brand-carousel -->
+
+<!-- start of how-it-works tab -->
+{{ if .Params.homepage_tab.enable }}
+{{ with .Params.homepage_tab }}
+<section class="section-padding how-it-works-tab pt-0 overflow-hidden" data-aos="fade-in">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-9 text-center mb-40">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+      <div class="col-lg-11">
+        <ul class="nav nav-pills justify-content-center mb-20" id="pills-tab" role="tablist">
+          {{ range $i, $e:= .tablist }}
+          <li class="nav-item mb-20" role="presentation">
+            <a class="nav-link {{if eq $i 0}}active{{end}}" id="pill-{{.title| urlize}}" data-bs-toggle="pill"
+              href="#{{.title| urlize}}" role="tab" aria-controls="{{.title| urlize}}" aria-selected="true">
+              <i class="circle-shape"></i>{{.name}}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+          {{ range $i, $e:= .tablist }}
+          <div class="tab-pane fade {{if eq $i 0}}show active{{end}}" id="{{.title | urlize}}" role="tabpanel"
+            aria-labelledby="pill-{{.title | urlize}}">
+            <div class="row align-items-center">
+              <div class="col-lg-8 anim-to-top">
+                {{ partial "image.html" (dict "Src" .image "Alt" "how it works" "Class" `rounded-lg shadow`) }}
+              </div>
+              <div class="col-lg-4 mt-4 mt-lg-0 anim-to-bottom">
+                <h2 class="section-title">{{ .title | markdownify }}</h2>
+                <p class="mb-30">{{ .content | markdownify }}</p>
+                {{ if .button.enable }}
+                {{ with .button }}
+                <a href="{{ .link | absLangURL }}" class="btn btn-primary has-icon">{{ .label }}
+                  <span class="icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12.5522 6.66669L20.5522 14.6667C21.0329 15.1473 21.0699 15.9036 20.6632 16.4267L20.5522 16.5523L12.5522 24.5523L10.6666 22.6667L17.7228 15.6095L10.6666 8.55231L12.5522 6.66669Z"
+                        fill="currentColor" />
+                    </svg>
+                  </span>
+                </a>
+                {{ end }}
+                {{ end }}
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end of how-it-works tab -->
+
+<!-- start of tools-use -->
+{{ if .Params.tools.enable }}
+{{ with .Params.tools }}
+{{ $image1 := resources.Get "images/brushes/section-top.svg" }}
+{{ $image2 := resources.Get "images/brushes/section-bottom.svg" }}
+
+<section class="section-padding tools-use-section has-shapes bg-light-gray has-bg-brash bg-brash-y"
+  style="background-image: url('{{$image1.RelPermalink}}'), url('{{$image2.RelPermalink}}');">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+      <div class="col-lg-6">
+        <ul class="inCircle-tools d-block d-sm-flex align-items-center justify-content-center" id="inCircle-element">
+          {{ range $i, $e:= .logos}}
+          <li
+            class="{{if modBool $i 2}} {{if eq $i 0}} has-centered lg {{else}}sm{{end}}{{else}}md{{end}} d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle">
+            {{ partial "image.html" (dict "Src" . "Alt" "tools-use") }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="shape-1 shape-xs bg-yellow rounded-circle"></div>
+  <div class="shape-2 shape-sm bg-orange rounded-circle d-none d-md-block"></div>
+  <div class="shape-3 shape-xs-2 bg-orange rounded-circle"></div>
+  <div class="shape-4 shape-xs bg-cyan rounded-circle"></div>
+  <div class="shape-5 shape-xs bg-cyan rounded-circle"></div>
+  <div class="shape-6 shape-md bg-yellow rounded-circle d-none d-md-block"></div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end of tools-use -->
+
+<!-- start of growth-rate -->
+{{ if .Params.achivement.enable }}
+{{ with .Params.achivement }}
+<section class="section-padding pb-50" data-aos="fade-in">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title">{{ .title | markdownify }}</h2>
+            <p class="border-bottom pb-30 me-0 me-lg-5">{{ .content | markdownify }}</p>
+            <div class="has-colored-text growth-rate-counter">
+              {{ range .funfacts }}
+              <div class="d-inline-block block-sm me-30 mt-30">
+                <h2 class="has-text-color font-weight-bold">
+                  <span class="counter" data-counter-time="1500">{{.count}}</span>{{.extension}}
+                </h2>
+                <p class="mt-10">{{ .name | markdownify }}</p>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          <div class="col-lg-6 mt-5 mt-lg-0">
+            <div class="row colored-icon-box">
+              {{ range $i, $e:= .services }}
+              <div class="col-sm-6" data-aos-delay="{{mul $i 100}}">
+                <div class="icon-box text-center shadow px-3 px-md-5 px-lg-2 py-5 mb-30">
+                  <i class="{{ .icon }} icon"></i>
+                  <h4 class="font-weight-bold">{{ .name | markdownify }}</h4>
+                </div>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end of growth-rate -->
+
+<!-- start of image-info -->
+{{ if .Params.workflow.enable }}
+{{ with .Params.workflow }}
+{{ $image1 := resources.Get "images/brushes/section-top.svg" }}
+{{ $image2 := resources.Get "images/brushes/section-bottom.svg" }}
+
+<section class="section-padding image-info-section has-shapes bg-light-gray has-bg-brash bg-brash-y"
+  style="background-image: url('{{$image1 | relURL}}'), url('{{$image2 | relURL}}');"
+  data-aos="fade-in">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-md-7">
+        <div class="has-shapes">
+          {{ partial "image.html" (dict "Src" .image "Alt" "tools-use" "Class" `py-4 my-2`) }}
+
+          <div class="shape-1 shape-sm bg-yellow rounded-circle"></div>
+          <div class="shape-2 shape-xs-2 bg-cyan rounded-circle"></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-5">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shape-3 shape-xs-2 bg-yellow rounded-circle"></div>
+  <div class="shape-4 shape-sm-2 bg-cyan rounded-circle"></div>
+  <div class="shape-5 shape-sm bg-orange rounded-circle"></div>
+  <div class="shape-6 shape-xs bg-yellow rounded-circle"></div>
+  <div class="shape-7 shape-xs-2 bg-cyan rounded-circle"></div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end of image-info -->
+
+{{ if .Params.about_us.enable }}
+{{ with .Params.about_us }}
+<!-- start section -->
+<section class="section-padding" data-aos="fade-in">
+  <div class="container">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-lg-5 col-md-8 col-sm-10 mb-5">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p class="pb-20 border-bottom mb-20">{{ .content | markdownify }}</p>
+        <ul class="check-list list-unstyled">
+          {{ range .bulletpoints }}
+          <li class="mb-15">
+            <svg width="16" height="11" viewBox="0 0 18 13" class="text-primary me-2" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6.125L6.91892 11L16 2" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            {{ . | markdownify }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-5 col-md-8 col-sm-10">
+        <div class="d-inline-block has-shadow shadow-right has-shapes">
+          {{ partial "image.html" (dict "Src" .image "Alt" "tools-use" "Class" `rounded-2`) }}
+          <div class="shape-1 shape-md bg-yellow rounded-circle"></div>
+          <div class="shape-2 shape-xl bg-cyan rounded-circle"></div>
+          <div class="shape-3 shape-lg bg-orange rounded-circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- end section -->
+
+{{partial "components/testimonial.html" . }}
+
+{{ end }}

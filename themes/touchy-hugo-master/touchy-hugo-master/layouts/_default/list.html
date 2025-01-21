@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+{{ if eq .Section "categories"}}
+<section class="section-sm pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1>Category Archives: {{ .Title }}</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{site.BaseURL}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{.Title}}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        {{ $paginator:= .Paginate .Data.Pages }}
+        {{ range $paginator.Pages }}
+        {{ .Render "post" }}
+        {{ end }}
+
+        {{ template "_internal/pagination.html" . }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+{{ partial "page-header.html" . }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

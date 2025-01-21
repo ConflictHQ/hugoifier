@@ -1,0 +1,155 @@
+{{ define "main" }}
+  {{ partial "components/page-header" . }}
+  <section class="section pt-0 has-backdrop">
+    <div class="container container-delta">
+      <div class="row gy-4">
+        <div class="col-lg-8">
+          <div class="pe-0 pe-lg-2">
+            <div class="content">{{ .Content }}</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="bg-white p-4 rounded-4 mb-4">
+            <form action="{{ site.Params.career_form_action }}" method="POST">
+              <div class="form-group mb-3">
+                <label for="name">
+                  {{ i18n `first_name` }}
+                  <span class="text-danger ms-1"> *</span>
+                </label>
+                <input
+                  class="form-control bg-white rounded-sm text-dark shadow-none"
+                  id="name"
+                  type="text"
+                  required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="last-name">
+                  {{ i18n `last_name` }}<span class="text-danger ms-1">*</span>
+                </label>
+                <input
+                  class="form-control bg-white rounded-sm text-dark shadow-none"
+                  id="last-name"
+                  type="text"
+                  required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="email">
+                  {{ i18n `email` }}
+                  <span class="text-danger ms-1">* </span>
+                </label>
+                <input
+                  class="form-control bg-white rounded-sm text-dark shadow-none"
+                  id="email"
+                  type="email"
+                  required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="cv">
+                  {{ i18n `upload_cv` }}
+                  <span class="text-danger ms-1"> *</span>
+                </label>
+                <input
+                  class="text-dark my-1 small"
+                  type="file"
+                  name="cv"
+                  id="cv"
+                  required />
+                <small class="d-block">{{ i18n `cv_note` }}</small>
+              </div>
+
+              <button
+                class="btn btn-primary w-100 rounded-sm"
+                type="submit"
+                aria-label="{{ i18n `apply_now` }}">
+                {{ i18n `apply_now` }}
+              </button>
+            </form>
+
+            <div
+              class="share-this-post d-flex flex-wrap align-items-center rounded-sm mt-4">
+              <span class="m-1 mt-0 text-dark">
+                {{ i18n `share_this_job` }}
+              </span>
+              <ul class="m-1 mt-0 list-inline d-inline-block">
+                {{ $url := printf "%s" .RelPermalink | absLangURL }}
+                <li class="list-inline-item me-1">
+                  <a
+                    class="share-icon"
+                    href="https://facebook.com/sharer/sharer.php?u={{ $url }}">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item me-1">
+                  <a
+                    class="share-icon"
+                    href="https://twitter.com/intent/tweet/?text={{ .Title }}&amp;url={{ $url }}">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item me-1">
+                  <a
+                    class="share-icon"
+                    href="mailto:?subject={{ .Title }}&amp;body={{ $url }}">
+                    <i class="fas fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-4">
+            <h4 class="h5 mb-4">{{ i18n `other_jobs` }}</h4>
+            {{ range first 5 (where site.RegularPages "Section" "career" | intersect (where site.Pages ".Title" "!=" .Title)) }}
+              <div>
+                <div class="features-box mb-1">
+                  <a
+                    href="{{ .RelPermalink }}"
+                    class="block border-bottom border-light mb-3 pb-3 text-reset d-block">
+                    <p class="text-dark mb-2 lh-base">
+                      {{ .Title | markdownify }}
+                    </p>
+                    <ul class="list-unstyled list-inline mb-0 small">
+                      <li class="list-inline-item me-2">
+                        <i class="fas fa-clock small text-quaternary"></i>
+                        <span class="ms-1">
+                          {{ .Params.job_nature | markdownify }}
+                        </span>
+                      </li>
+                      <li class="list-inline-item">
+                        <i class="fas fa-tags small text-tertiary"></i>
+                        <span class="ms-1">
+                          {{ .Params.category | markdownify }}
+                        </span>
+                      </li>
+                    </ul>
+                  </a>
+                </div>
+              </div>
+            {{ end }}
+
+
+            <a
+              href="{{ `career` | relLangURL }}/#open-positions"
+              class="btn btn-primary mt-2 w-100">
+              {{ i18n `view_all_positions` }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="backdrop text-primary"
+      style="bottom:100px;left:0;opacity:1"
+      width="270"
+      height="670"
+      viewBox="0 0 270 670"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.22"
+        d="M-65.3333 4.23413e-05C119.866 3.42459e-05 270 149.985 270 335C270 520.015 119.866 670 -65.3333 670C-149.742 670 -246.047 638.844 -325.87 587.416C-421.185 526.006 -493 435.691 -493 335C-493 236.006 -325.251 261.462 -232.333 200.134C-151.593 146.844 -151.44 4.61051e-05 -65.3333 4.23413e-05Z"
+        fill="currentColor" />
+    </svg>
+  </section>
+{{ end }}

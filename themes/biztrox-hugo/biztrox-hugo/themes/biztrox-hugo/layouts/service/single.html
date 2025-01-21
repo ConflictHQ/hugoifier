@@ -1,0 +1,95 @@
+{{ define "main" }}
+
+{{ "<!-- service single -->" | safeHTML }}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			{{ "<!-- sidebar -->" | safeHTML }}
+			<aside class="col-lg-4 order-lg-1 order-2">
+				<ul class="service-menu ps-0 border rounded mb-50 overflow-hidden">
+					{{ range (where site.RegularPages "Type" "service")}}
+					<li class="border-bottom-not-last">
+						<a class="d-block font-primary text-dark p-4" href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+					</li>
+					{{ end }}
+				</ul>
+
+				<script>
+					(function () {
+						const links = document.getElementsByTagName('a')
+						const currentUrl = location.href
+						for (const link of links) {
+							if (link.href === currentUrl) {
+								link.classList.add('active')
+							}
+						}
+					}())
+				</script>
+
+				{{ if .Params.Brochure }}
+				{{ "<!-- Brochure -->" | safeHTML }}
+				<div class="rounded border py-3 px-4 mb-50 d-flex gap-1">
+					<i class="d-inline-block me-2 text-dark ti-files" style="font-size: 20px;"></i>
+					<div>
+						<h3 class="mb-1 d-inline-block h4">{{ i18n "service_brochure" }}</h3>
+						<a class="font-secondary text-color d-block" href="{{ .Params.Brochure | absURL }}">{{ i18n
+							"download_pdf" }}</a>
+					</div>
+				</div>
+				{{ end }}
+
+				{{ if .Params.RegularDay }}
+				{{ "<!-- Opening Hours -->" | safeHTML }}
+				<div class="mb-50">
+					<h3 class="mb-20 h5">{{ i18n "opening_hours" }}</h3>
+					<ul class="border rounded px-4 py-3">
+						<li class=" font-secondary my-3 text-color">
+							<span class="d-inline-block fw-light text-dark" style="width: 130px;">{{ .Params.RegularDay }}:</span>{{
+							.Params.RegularTime }}
+						</li>
+						<li class=" font-secondary my-3 text-color">
+							<span class="d-inline-block fw-light text-dark" style="width: 130px;">{{ .Params.HalfDay }}:</span>{{
+							.Params.HalfTime }}
+						</li>
+						<li class="text-danger font-secondary my-3">
+							<span class="d-inline-block fw-light text-dark" style="width: 130px;">{{ .Params.OffDay }}:</span>Closed
+						</li>
+					</ul>
+				</div>
+				{{ end }}
+
+				<div class="mb-50">
+					<h3 class="mb-20 h5">{{ i18n "free_consultation" }}</h3>
+					<form action="{{ site.Params.contact_form_action | safeURL }}" class="row">
+						<div class="col-lg-12">
+							<input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+						</div>
+						<div class="col-lg-12">
+							<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
+						</div>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+						</div>
+						<div class="col-lg-12">
+							<textarea name="question" id="question" class="form-control p-2" placeholder="Your Question Here..."
+								style="height: 150px;"></textarea>
+						</div>
+						<div class="col-lg-12">
+							<button class="btn btn-primary" type="submit">{{ i18n "submit" }}</button>
+						</div>
+					</form>
+				</div>
+			</aside>
+			{{ "<!-- service single content -->" | safeHTML }}
+			<div class="col-lg-8 order-lg-2 order-1">
+				{{ partial "image.html" (dict "Src" .Params.Image "Alt" "service" "Class" `w-100 mb-60 rounded-top`) }}
+				<div class="post-content">
+					{{ .Content }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /service single -->" | safeHTML }}
+
+{{ end }}

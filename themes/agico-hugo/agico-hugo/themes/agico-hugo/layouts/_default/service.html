@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+{{ partial "components/services.html" . }}
+
+{{"<!-- features -->"| safeHTML}}
+{{ if .Params.feature.enable }}
+{{ with .Params.feature }}
+<section class="bg-light section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">{{ .title }}</h2>
+      </div>
+      {{ range $index, $element:= .feature_item }}
+      {{ $delay := mul $index 100}}
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="{{$delay}}">
+        <div class="text-center shadow card py-3 border-0 rounded-sm">
+          <div class="card-body">
+            <i class="icon-lg icon-bg-square mb-3 d-inline-block icon-{{.icon_color}}">
+              <i class="{{ .icon }}"></i>
+            </i>
+            <h4 class="mb-3">{{ .title }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- /features -->"| safeHTML}}
+
+{{ end }}

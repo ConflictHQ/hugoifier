@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<section id="main-container">
+  <div class="container">
+    <!-- Map start here -->
+    {{ if .Site.Params.map.enable }}
+    {{ with .Site.Params.map }}
+    <div class="map" id="map" data-latitude="{{ .map_latitude }}"
+      data-longitude="{{ .map_longitude }}" data-marker="{{ .map_marker | absURL }}"
+      data-marker-name="{{ $.Site.Title }}">
+    </div>
+
+    <div class="gap-40"></div>
+    {{ end }}
+    {{ end }}
+    <!--/ Map end here -->
+
+    <div class="row">
+      <div class="col-md-7">
+        <form id="contact-form" action="{{ .Site.Params.contact_form_action }}" method="post" role="form">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>{{i18n `name`}}</label>
+                <input class="form-control" name="name" id="name" placeholder="" type="text" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>{{i18n `email`}}</label>
+                <input class="form-control" name="email" id="email" placeholder="" type="email" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>{{i18n `subject`}}</label>
+                <input class="form-control" name="subject" id="subject" placeholder="" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{i18n `message`}}</label>
+            <textarea class="form-control" name="message" id="message" placeholder="" rows="10" required></textarea>
+          </div>
+          <div class="text-right"><br>
+            <button class="btn btn-primary solid blank" type="submit">{{i18n `send_message`}}</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-5">
+        <div class="contact-info">
+          <h3>{{i18n `contact_details`}}</h3>
+          <p>{{ .Content }}</p>
+          <br>
+          <p><i class="fa fa-home info"></i> {{ .Site.Params.address | markdownify }} </p>
+          <p><i class="fa fa-phone info"></i> {{ .Site.Params.phone | markdownify }} </p>
+          <p><i class="fa fa-envelope-o info"></i> {{ .Site.Params.email | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ container end -->
+</section>
+
+{{ end }}

@@ -1,0 +1,16 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Hargo Hugo E-Commerce Theme"
+license = "MIT"
+licenselink = "https://github.com/themefisher/Hargo-hugo-ecommerce-theme/blob/master/LICENSE"
+description = "Hargo is an E-commerce theme powered by Hugo and Snipcart. It's fully functional, users can order items and also payments throw this theme"
+homepage = "https://gethugothemes.com/products/hargo/"
+demosite = "https://demo.gethugothemes.com/hargo/"
+tags = ["Ecommerce", "bootstrap", "blog", "contact", "responsive", "gethugothemes", "clean" , "Single Product", "Minimal", "light", "google analytics", "disqus", "mobile", "fast", "customizable", "white", "flex", "pages", "hugo themes", "hugo templates", "netlify", "Themefisher"]
+features = ["Ecommerce", "responsive", "bootstrap-4"]
+min_version = "0.115.1 extended"
+
+[author]
+  name = "Themefisher"
+  homepage = "https://themefisher.com"

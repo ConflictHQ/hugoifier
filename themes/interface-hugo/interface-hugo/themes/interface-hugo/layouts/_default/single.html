@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <!-- regular page -->
+  {{ partial "components/page-header.html" . }}
+  <section class="section-sm pt-0">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /regular page -->
+{{ end }}

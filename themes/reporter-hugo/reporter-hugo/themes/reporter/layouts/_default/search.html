@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 mb-4">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="border-bottom border-primary d-inline-block"><script>
+          var keyword = (window.location.search).substr(3);
+          var result = keyword.replaceAll("+", " ");
+          document.write(result);
+        </script></h1>
+      </div>
+      <div class="{{if .Params.sidebar}}col-lg-8 mb-lg-0 mb-5{{else}}col-12{{end}}">
+        <div id="search-results" class="row"></div>
+        <script id="search-result-template" type="text/x-js-template">
+          <div class="col-md-6 mb-4">
+            <article class="card article-card article-card-sm h-100" id="summary-${key}">
+              
+              <div class="card-image">
+                ${ isset image }<img loading="lazy" src="${image}" alt="${title}">${ end }
+              </div>
+              
+              <div class="card-body px-0 pb-0">
+                <h2><a class="post-title" href="${link}">${title}</a></h2>
+                <p class="card-text">${snippet}</p>
+                <div class="content">
+                  <a class="read-more-btn" href="${link}">{{i18n `read_full_article`}}</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </script>
+      </div>
+      {{ if .Params.sidebar }}
+      {{ partial "sidebar.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ "<!-- Search index -->" | safeHTML }}
+<script>
+  var indexURL = {{"index.json" | absLangURL}}
+</script>
+
+{{ end }}

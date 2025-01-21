@@ -1,0 +1,29 @@
+- id: read_more
+  translation: Read More
+
+- id: related
+  translation: Related Articles
+
+- id: posted_by
+  translation: Posted by this author
+
+- id: view_details
+  translation: View Details
+
+- id: location
+  translation: Location
+
+- id: about_you
+  translation: About You
+
+- id: experience_title
+  translation: You will need to Have
+
+- id: apply
+  translation: Apply Now
+
+- id: contact_form
+  translation: Drop us a mail
+
+- id: submit
+  translation: Submit

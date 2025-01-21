@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+{{ partial "components/page-header.html" . }}
+
+<section class="section">
+  <div class="container container-delta">
+    <div class="row gy-3 align-items-center mb-5">
+      <div class="col-xl-6 col-lg-8 text-center mx-auto">
+        {{with .Params.pricing}}
+        <div class="section-title mb-0">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+        {{end}}
+      </div>
+    </div>
+    <div class="row gy-3">
+      {{range .Params.pricing_card}}
+      <div class="col-lg-4 col-md-6">
+        <div class="pricing-card text-center rounded-md shadow-md pt-5 px-4 {{if .populer}}popular{{end}}" {{if .populer}}data-text="{{i18n `most_popular`}}"{{end}}>
+          <h3 class="h4">{{.name}}</h3>
+
+          <p class="h5 font-secondary fw-bold">{{.currency}}{{.price}}</p>
+          
+          <p class="small">{{.content | markdownify}}</p>
+          {{if .buy_now_btn_link}}
+          <a class="btn btn-primary d-block" href="{{.buy_now_btn_link | absLangURL}}/">{{.buy_now_btn_label}}</a>
+          {{end}}
+          {{if .free_trial_btn_link}}
+          <a class="btn btn-link d-block mt-1" href="{{.free_trial_btn_link | absLangURL}}/">{{.free_trial_btn_label}} &nbsp;<i class="fas fa-arrow-right small"></i></a>
+          {{end}}
+
+          <div class="features mt-1 text-start">
+            {{.features | markdownify}}
+          </div>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+
+{{with .Params.faq}}
+{{if .enable}}
+<section class="pt-5">
+  <div class="container container-delta">
+    <div class="row justify-content-between">
+      <div class="col-xl-5 col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+        <p class="subtitle">{{.subtitle | markdownify}}</p>
+        <h1 class="title text-xl mb-3">{{.title | markdownify}}</h1>
+        <p class="mb-4">{{.description | markdownify}}</p>
+
+        {{with .button}}
+        {{if .enable}}
+        <a href="{{.link | relLangURL}}" class="btn btn-primary m-1">
+          {{.label}} <i class="arrow-right {{.icon}}"></i>
+        </a>
+        {{end}}
+        {{end}}
+      </div>
+      <div class="col-xl-6 col-lg-6">
+        <div class="accordion" id="faq">
+          {{ range $i, $e := .faq_list }}
+          <div class="accordion-item border-0">
+            <h4 class="accordion-header mb-0" id="heading-{{ sha1 .title | urlize }}_">
+              <button class="accordion-button pe-0 shadow-none h6 font-secondary mb-0 {{if ne $i 0 }}collapsed{{end}}" type="button" data-bs-toggle="collapse" data-bs-target="#id-{{ sha1 .title | urlize }}_" aria-expanded="{{if eq $i 0 }}true{{else}}false{{end}}" aria-controls="id-{{ sha1 .title | urlize }}_">
+                {{.title | markdownify}}
+              </button>
+            </h4>
+            <div id="id-{{ sha1 .title | urlize }}_" class="accordion-collapse collapse {{if eq $i 0 }}show{{end}}" aria-labelledby="heading-{{ sha1 .title | urlize }}_" data-bs-parent="#faq">
+              <div class="accordion-body pt-0 content">
+                {{.content | markdownify}}
+              </div>
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{ partial "call-to-action-2.html" . }}
+
+{{ end }}

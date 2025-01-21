@@ -1,0 +1,20 @@
+// Counter Section 
+.counter{
+	padding: 130px 0px;
+}
+.counter-item{
+	.counter-stat{
+		font-size: 50px;
+	}
+
+	p{
+		margin-bottom: 0px;
+	}
+
+}
+
+.bg-counter{
+	background-repeat:no-repeat;
+	background-size: cover;
+	@extend .overly-3;
+}

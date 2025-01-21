@@ -1,0 +1,117 @@
+{{ define "main" }}
+
+  <!-- contact -->
+  <section class="section-lg contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-title">{{ with .Site.Data.contact.contact.title }}{{ . }} {{end }}</h2>
+        </div>
+      </div>
+      <div class="row contact-bg p-5 rounded mb-5">
+        <div class="col-lg-7 mb-4 mb-lg-0">
+          <form action="{{ with .Site.Data.contact.contact.formAction }}{{ . }} {{end }}" method="POST">
+            <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Your Name">
+            <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Your Email">
+            <input type="text" class="form-control mb-3" id="subject" name="subject" placeholder="Subject">
+            <textarea name="message" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
+            <button type="submit" value="send" class="btn btn-secondary">SEND MESSAGE</button>
+          </form>
+        </div>
+        <div class="col-lg-5">
+          <p class="mb-5">{{ with .Site.Data.contact.contact.content }}{{ . }} {{end }}</p>
+          <a href="tel:{{ with .Site.Data.contact.contact.phone }}{{ . }} {{end }}" class="text-color h5 d-block">{{ with .Site.Data.contact.contact.phone }}{{ . }} {{end }}</a>
+          <a href="mailto:{{ with .Site.Data.contact.contact.email }}{{ . }} {{end }}" class="mb-5 text-color h5 d-block">{{ with .Site.Data.contact.contact.email }}{{ . }} {{end }}</a>
+          <p>{{ with .Site.Data.contact.contact.address }}{{ . | safeHTML }} {{end }}</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        {{ range .Site.Data.contact.bulletPoint }}
+        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+          <div class="card p-4 border-blue">
+            <h5><i class="{{ .icon }} round-icon {{ .iconColor }} mr-2"></i> {{ .title }}</h5>
+            <p class="mb-0">{{ .content }}</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    <!-- background shapes -->
+    <svg class="contact-bg-1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="112px" height="112px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+    d="M78.783,62.989 L30.711,50.108 L65.902,14.918 L78.783,62.989 Z"/>
+    </g>
+    </svg>
+    <svg class="contact-bg-3"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="81px" height="81px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="81px" height="81px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(0, 42, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(28, 255, 49)"
+    d="M39.000,14.000 C43.971,14.000 48.000,18.029 48.000,23.000 C48.000,27.971 43.971,32.000 39.000,32.000 C34.029,32.000 30.000,27.971 30.000,23.000 C30.000,18.029 34.029,14.000 39.000,14.000 Z"/>
+    </g>
+    </svg>
+    <svg class="contact-bg-5"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="112px" height="112px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+    d="M78.783,62.989 L30.711,50.108 L65.902,14.917 L78.783,62.989 Z"/>
+    </g>
+    </svg>
+    <!-- <img class="contact-bg-1 up-down-animation" src="{{ `images/background-shape/feature-bg-2.png` | relURL }}" alt="background-shape"> -->
+    <img class="contact-bg-2 left-right-animation" src="{{ `images/background-shape/green-half-cycle.png` | relURL }}" alt="background-shape">
+    <!-- <img class="contact-bg-3 up-down-animation" src="{{ `images/background-shape/green-dot.png` | relURL }}" alt="background-shape"> -->
+    <img class="contact-bg-4 left-right-animation" src="{{ `images/background-shape/service-half-cycle.png` | relURL }}" alt="background-shape">
+    <!-- <img class="contact-bg-5 up-down-animation" src="{{ `images/background-shape/feature-bg-2.png` | relURL }}" alt="background-shape"> -->
+  </section>
+  <!-- /contact -->
+
+{{ end }}

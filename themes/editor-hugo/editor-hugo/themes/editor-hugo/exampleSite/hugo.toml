@@ -1,0 +1,322 @@
+######################## default configuration ####################
+baseURL = "https://demo.gethugothemes.com/editor/site/"
+title = "Editor - Personal Blog Hugo Theme"
+theme = "editor-hugo"
+# Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
+timeZone = "America/New_York"
+# post pagination
+paginate = 6 # see https://gohugo.io/extras/pagination/
+# post excerpt
+summaryLength = 10 # see https://gohugo.io/content-management/excerpts/
+# google analytics
+googleAnalytics = "UA-123456-78" # example: UA-123456-78, for more info, read the article https://support.google.com/analytics/answer/1008080?hl=en
+# disqus short name
+disqusShortname = "themefisher-template" # we use disqus to show comments in blog posts . To install disqus please follow this tutorial https://portfolio.peter-baumgartner.net/2017/09/10/how-to-install-disqus-on-hugo/
+# disable language
+disableLanguages = [
+] # example: ["fr"] for disable french language. see https://gohugo.io/content-management/multilingual/
+hasCJKLanguage = false #  If hasCJKLanguage true, auto-detect Chinese/Japanese/Korean Languages in the content. see: https://gohugo.io/getting-started/configuration/#hascjklanguage
+
+
+############################# Build ##############################
+[build]
+noJSConfigInAssets = false
+useResourceCacheWhen = 'fallback'
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/.*\.(js|ts|jsx|tsx)'
+target = '(js|scripts|javascript)'
+[[build.cachebusters]]
+source = 'assets/.*\.(css|sass|scss)$'
+target = '(css|styles|scss|sass)'
+[[build.cachebusters]]
+source = 'assets/.*\.(.*)$'
+target = '$1'
+
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+############################# Imaging ##############################
+[imaging]
+# See https://github.com/disintegration/imaging
+# Default JPEG or WebP quality setting. Default is 75.
+quality = 90
+resampleFilter = "lanczos"
+
+############################# Caches ###############################
+[caches]
+[caches.images]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+[caches.assets]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+
+############################# Markup ###############################
+[markup]
+[markup.goldmark.renderer]
+unsafe = true
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jquery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+link = "plugins/search/mark.js"
+[[params.plugins.js]]
+link = "plugins/search/search.js"
+
+#################### default parameters ################################
+[params]
+favicon = "images/logo-sm.svg"
+logo_text = "Editor"
+logo = "images/logo.svg"
+logo_height = "26px"
+logo_rotate = true
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact info
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "hello@editor.com"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# Search
+search = true
+# Main section
+mainSections = ["blogs"]
+# custom script on header
+custom_script= ""
+
+# site variables
+[params.variables]
+# color variables
+primary_color = "#c98664"
+secondary_color = "#c98665"
+white = "#ffffff"
+black = "#000000"
+dark = "#2B2C2E"
+gray = "#66676d"
+light = "#a8aab2"
+
+# font-size variables
+h1 = "68px"
+h1_lg = "52px"
+h1_md = "40px"
+h2 = "42px"
+h2_md = "36px"
+h3 = "32px"
+h3_md = "28px"
+h4 = "24px"
+h5 = "18px"
+h6 = "16px"
+
+# font variable
+# Give your font name from google font. add font weight using ":wght@" and separate by ";"
+# example: "Work Sans:wght@400;600;700"
+primary_font = "Lora:wght@500;600"
+secondary_font = "Work Sans:wght@400;500;600"
+icon_font = "Font Awesome 5 Free"
+
+# Preloader
+[params.preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# Subscription
+[params.subscription]
+enable = true
+# mailchimp subsciption
+mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
+mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
+
+# cookies
+[params.cookies]
+enable = false
+expire_days = 2
+
+
+######################## sidebar widgets #########################
+[params.widgets]
+sidebar = ["about-me", "recent-post", "categories", "tags"]
+# available widget : search,about-me,authors,categories,tags,recent-post,social,promotion,subscription
+
+############################# social site ########################
+[[params.social]]
+title = "Facebook"
+icon = "fab fa-facebook" # Fhemify icon : https://themify.me/themify-icons
+link = "https://facebook.com"
+
+[[params.social]]
+title = "Twitter"
+icon = "fab fa-twitter" # Fhemify icon : https://themify.me/themify-icons
+link = "https://twitter.com"
+
+[[params.social]]
+title = "Instagram"
+icon = "fab fa-instagram" # Fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://instagram.com"
+
+[[params.social]]
+title = "Github"
+icon = "fab fa-github" # Fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://github.com"
+
+
+################################### English language #####################################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 1
+# copyright
+copyright = "Copyright &copy;2021 <br> Designed &amp; Developed by [Gethugothemes](https://gethugothemes.com/)"
+
+
+############# English navigation ##############
+# main menu
+[[Languages.en.menu.main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[Languages.en.menu.main]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[Languages.en.menu.main]]
+name = "Blogs"
+url = "blogs/"
+weight = 3
+
+[[Languages.en.menu.main]]
+weight = 4
+name = "Pages"
+hasChildren = true
+  
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  weight = 1
+  url = "tags/artwork/"
+  name = "Tag"
+  
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  weight = 2
+  url = "categories/lifestyle/"
+  name = "Category"
+  
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  weight = 3
+  url = "elements/"
+  name = "Elements"
+  
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  weight = 4
+  url = "terms/"
+  name = "Terms & Conditions"
+  
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  weight = 5
+  url = "privacy/"
+  name = "Privacy"
+  
+[[Languages.en.menu.main]]
+name = "Contact"
+url = "contact/"
+weight = 5
+
+
+
+################################### French language #####################################
+[Languages.fr]
+languageName = "Fr"
+languageCode = "fr-fr"
+contentDir = "content/french"
+weight = 2
+# copyright
+copyright = "Droits d'auteur &copy;2021 <br> Conçu et Développé par [Gethugothemes](https://gethugothemes.com/)"
+
+
+############# French navigation ##############
+# main menu
+[[Languages.fr.menu.main]]
+name = "Maison"
+url = ""
+weight = 1
+
+[[Languages.fr.menu.main]]
+name = "Quelque"
+url = "about/"
+weight = 2
+
+[[Languages.fr.menu.main]]
+name = "Les Blogs"
+url = "blogs/"
+weight = 3
+
+[[Languages.fr.menu.main]]
+weight = 4
+name = "Pages"
+hasChildren = true
+  
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  weight = 1
+  url = "tags/artwork/"
+  name = "Mots clés"
+  
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  weight = 2
+  url = "categories/lifestyle/"
+  name = "Catégorie"
+  
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  weight = 3
+  url = "elements/"
+  name = "Éléments"
+  
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  weight = 4
+  url = "terms/"
+  name = "Termes et Conditions"
+  
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  weight = 5
+  url = "privacy/"
+  name = "Vie privée"
+  
+[[Languages.fr.menu.main]]
+name = "Contacter"
+url = "contact/"
+weight = 5

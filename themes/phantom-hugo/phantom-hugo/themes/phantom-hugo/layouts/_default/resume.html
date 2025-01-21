@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-resume relative">
+      <!-- .close -->
+      <a href="{{ site.BaseURL }}" class="page-close"><i class="tf-ion-close"></i></a>
+      <!-- /.close -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+            {{ partial "page-header.html" . }}
+          </div>
+        </div> <!-- /.row -->
+
+        <div class="row">
+          {{ with .Params.Educations }}
+          <div class="col-xs-12 col-sm-6" style="margin-bottom: 20px;">
+            <div class="history-block">
+              <div class="section-title light clear">
+                <h3>{{ .title | markdownify }}</h3>
+              </div>
+              <!-- /.section-title -->
+              <div class="history-scroller">
+                {{ range .academy }}
+                <div class="history-item">
+                  <div class="history-icon">
+                    <span class="history-hex"></span>
+                    <i class="{{ .icon }}"></i>
+                  </div>
+                  <div class="history-text">
+                    <h5>{{ .name  | markdownify}}</h5>
+                    <span>{{ .duration }}</span>
+                    <p>{{ .description | markdownify }}</p>
+                  </div>
+                </div>
+                {{ end }}
+              </div>
+            </div> <!-- /.history-block -->
+          </div> <!-- /.col -->
+          {{ end }}
+          
+          {{ with .Params.Experiences }}
+          <div class="col-xs-12 col-sm-6" style="margin-bottom: 20px;">
+            <div class="history-block">
+              <div class="section-title light clear">
+                <h3>{{ .title | markdownify }}</h3>
+              </div>
+              <!-- /.section-title -->
+              <div class="history-scroller">
+                {{ range .experience }}
+                <div class="history-item">
+                  <div class="history-icon">
+                    <span class="history-hex"></span>
+                    <i class="{{ .icon }}"></i>
+                  </div>
+                  <div class="history-text">
+                    <h5>{{ .name }}</h5>
+                    <span>{{ .duration }}</span>
+                    <p>{{ .description | markdownify }}</p>
+                  </div>
+                </div>
+                {{ end }}
+              </div>
+            </div> <!-- /.history-block -->
+          </div> <!-- /.col -->
+          {{ end }}
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+      {{ partial "page-nav.html" . }}
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main> <!-- /.site-wrapper -->
+
+{{ end }}

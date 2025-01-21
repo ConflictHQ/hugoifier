@@ -1,0 +1,57 @@
+{{ define "main" }}
+
+{{ if not .Params.Image }}
+<section class="section-sm bg-light">
+  <div class="container text-center">
+    <small class="post-category mb-2">{{ delimit .Params.categories ", " }}</small>
+    <h1>{{.Title | title}}</h1>
+    <small class="post-date">{{ .PublishDate.Format "January 02, 2006"}}</small>
+  </div>
+</section>
+{{ end }}
+
+<section class="py-4">
+  <div class="container">
+    <div class="row">
+      {{ if .Params.Image }}
+      <div class="col-12 mb-4">
+        <img src="{{ .Params.Image | absURL }}" alt="{{ $.Title }}" class="img-fluid w-100">
+      </div>
+      {{ end }}
+      <!-- left sidebar -->
+      {{ $sidebar:= .Site.Params.sidebar }}
+      {{ $layout:= .Site.Params.layout }}
+      {{ if eq $sidebar "left" }}
+      <aside class="col-lg-3 order-2 order-lg-1">
+        {{ partial "sidebar.html" . }}
+      </aside>
+      {{ end }}
+      <!-- /left sidebar -->
+      <div
+        class="{{if or (eq $sidebar `left`) (eq $sidebar `right`)}}col-lg-9{{ else }}col-lg-9 mx-auto{{end}} {{if eq $sidebar `left`}}order-1 order-lg-2{{end}} mb-5 mb-lg-0">
+        {{ if .Params.Image }}
+        <small class="post-category mb-2">{{ delimit .Params.categories ", " }}</small>
+        <h1 class="h2">{{.Title}}</h1>
+        <small class="post-date mb-4">{{ .PublishDate.Format "January 02, 2006"}}</small>
+        {{ end }}
+        <div class="content">{{.Content}}</div>
+
+        <!-- comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+      <!-- right sidebar -->
+      {{ if eq $sidebar "right" }}
+      <aside class="col-lg-3">
+        {{ partial "sidebar.html" . }}
+      </aside>
+      {{ end }}
+      <!-- /right sidebar -->
+    </div>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,106 @@
+{{ define "main" }}
+
+<section class="banner bg-quaternary-soft rounded-lg wave-block overflow-hidden">
+  {{ partial "essentials/header.html" . }}
+
+  {{with .Params.banner}}
+  <div class="container container-delta block">
+    <div class="row align-items-center text-center text-lg-start">
+      <div class="col-lg-6">
+        <div class="pe-0 pe-lg-5">
+          <p class="subtitle">{{.subtitle | markdownify}}</p>
+          <h1 class="title text-xl mb-3">{{.title | markdownify}}</h1>
+          <p class="mb-4">{{.description | markdownify}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+        {{with .image}}
+        {{$img:= resources.Get . }}
+        {{$img:= $img.Resize "498x"}}
+        {{$imgWebp:= $img.Resize "498x webp"}}
+        <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="Banner Image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+        {{end}}
+      </div>
+    </div>
+  </div>
+  {{end}}
+
+  <div class="has-wave">    
+    <svg class="wave-left" width="274" height="395" viewBox="0 0 274 395" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.6" d="M-160.703 49.9832C-102.183 25.7147 -35.1189 14.7857 26.6255 33.4291C82.7274 50.3045 126.094 93.2164 147.051 147.379C157.53 174.218 162.85 202.826 162.689 231.595C162.528 245.256 162.205 260.364 157.369 273.221C155.273 278.846 151.888 284.311 146.406 287.043C142.537 288.972 136.089 289.936 132.703 286.4C124.643 277.721 133.026 258.756 138.507 251.042C145.762 240.756 157.53 233.041 170.105 231.756C198.8 228.863 223.466 252.81 236.04 276.114C262.963 326.097 249.26 396.492 203.798 431.368C198.639 435.386 195.899 441.654 199.445 447.922C202.347 453.065 210.891 456.119 216.05 452.261C267.477 412.885 287.951 339.919 264.091 279.489C251.517 247.828 225.723 217.291 191.062 209.416C155.273 201.219 119.161 222.756 108.521 257.792C103.524 274.185 104.33 295.722 119.323 306.651C133.348 316.776 153.5 313.401 166.074 302.472C180.261 290.097 183.969 270.328 185.742 252.488C187.516 235.292 187.193 217.934 185.097 200.898C176.714 132.592 140.764 66.6978 80.4704 30.8576C5.66784 -13.6614 -89.4475 -5.46471 -167.152 26.679C-173.117 29.0898 -177.469 34.7149 -175.535 41.465C-173.923 47.2509 -166.829 52.5547 -160.703 49.9832Z" fill="currentColor"/>
+    </svg>
+    
+    <svg class="wave-right" width="329" height="366" viewBox="0 0 329 366" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.85" d="M525.288 205.211C475.043 243.798 413.092 271.712 348.627 269.685C290.069 267.905 237.074 237.679 202.812 190.787C185.744 167.573 173.201 141.317 165.911 113.487C162.531 100.25 158.932 85.5736 160.276 71.9025C160.844 65.9266 162.7 59.7721 167.287 55.7143C170.525 52.85 176.505 50.2496 180.69 52.7887C190.722 59.0855 187.533 79.5738 184.235 88.4441C179.89 100.257 170.519 110.755 158.706 115.251C131.737 125.473 101.714 108.725 83.5359 89.4699C44.5941 48.1576 39.6108 -23.385 74.497 -68.839C78.4401 -74.0552 79.465 -80.8191 74.4169 -85.9556C70.2829 -90.1723 61.2394 -90.9104 57.2548 -85.8494C17.7716 -34.5048 16.8803 41.2741 55.5672 93.4698C75.9079 120.798 108.726 143.618 144.244 142.254C180.935 140.909 210.243 110.76 211.452 74.1631C212.036 57.0349 205.684 36.4411 188.373 29.7651C172.205 23.6149 153.614 32.0905 144.296 45.9015C133.796 61.527 135.331 81.5814 138.235 99.2722C140.973 116.342 145.777 133.025 152.211 148.938C177.987 212.746 229.767 267.091 297.282 286.105C381.058 309.747 470.811 277.212 537.548 226.052C542.686 222.179 545.435 215.619 541.819 209.6C538.764 204.428 530.54 201.141 525.288 205.211Z" fill="currentColor"/>
+    </svg>
+  </div>
+</section>
+
+<section class="section pb-0">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title text-center">
+          <h2 class="title mb-0">{{i18n `all_jobs`}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row gy-3 justify-content-between">
+      {{ range .RegularPages }}
+      <div class="col-lg-4 col-md-6 features-box">
+        <a href="{{.RelPermalink}}" class="block rounded-md shadow-md text-reset p-3 p-md-4 d-block h-100">
+          <h3 class="h5">{{.Title | markdownify}}</h3>
+          <ul class="list-unstyled list-inline mb-0">
+            <li class="list-inline-item me-2">
+              <i class="fas fa-paper-plane small text-quaternary"></i>
+              <span style="margin-left:2px">{{.Params.job_nature | markdownify}}</span>
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-tags small text-tertiary"></i>
+              <span style="margin-left:2px">{{.Params.category | markdownify}}</span>
+            </li>
+          </ul>
+          <hr class="my-3">
+          <span class="btn btn-sm btn-primary rounded-sm">{{i18n `apply_now`}}</span>
+        </a>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+
+{{if .Params.why_join_us.enable}}
+{{with .Params.why_join_us}}
+<section class="section pb-0">
+  <div class="container container-delta">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-6">
+        <div class="section-title">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+        {{with .content}}<div class="content">{{. | markdownify}}</div>{{end}}
+
+        {{if .button_link}}
+        <a href="{{.button_link}}" class="btn btn-primary mt-5">{{.button_label}} <i class="arrow-right fas fa-arrow-right"></i></a>
+        {{end}}
+      </div>
+      <div class="col-lg-5 mt-5 mt-lg-0">
+        {{with .image}}
+        <div class="text-center">
+          {{$img:= resources.Get . }}
+          {{$img:= $img.Resize "500x"}}
+          {{$imgWebp:= $img.Resize "500x webp"}}
+          <img loading="lazy" decoding="async" class="w-100 rounded-md" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="Banner Image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+        </div>
+        {{end}}
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{ partial "call-to-action-2.html" . }}
+
+{{end}}

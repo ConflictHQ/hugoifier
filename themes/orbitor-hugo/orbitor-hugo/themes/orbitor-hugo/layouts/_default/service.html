@@ -1,0 +1,167 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- service style 1 -->
+{{ if .Params.featured_service.enable }}
+{{ with .Params.featured_service }}
+<section class="section service-2">
+  <div class="container">
+    {{ $.Scratch.Set "counter" 0 }}
+    {{ range $index, $element := .service_item }}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+    {{if (modBool $index 2)}}
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="service-img mb-5 mb-lg-0">
+          <img loading="lazy" src="{{ .image | absURL }}" alt="{{.title | markdownify }}" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="service-info ">
+          <span class="text-color font-weight-bold">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}</span>
+          <h3 class="text-md mb-4 mt-2">{{.title | markdownify }}</h3>
+          <div class="content">{{ .content | markdownify }}</div>
+        </div>
+      </div>
+    </div>
+    {{ else }}
+    <div class="content-padding position-relative">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="service-info mb-5 mb-lg-0">
+            <span class="text-color font-weight-bold">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}</span>
+            <h3 class="text-md mb-4 mt-2">{{ .title | markdownify }}</h3>
+            <div class="content">{{ .content | markdownify }}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="service-img">
+            <img loading="lazy" src="{{ .image | absURL }}" alt="{{.title | markdownify }}" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /service style 1 -->
+
+<!-- case study -->
+{{ if .Params.casestudy.enable }}
+{{ with .Params.casestudy }}
+<section class="section case-study">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="case-study-content text-center mb-5">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    {{ range $index, $element := .case }}
+    {{if (modBool $index 2)}}
+    <div class="case-timeline">
+      <div class="case-timeline-divider"></div>
+      <div class="case-timeline-dot"></div>
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="case-img">
+            <img loading="lazy" src="{{ .image | absURL }}" alt="{{ .title | markdownify }}" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="case-content">
+            <h4 class="mb-3">{{ .title | markdownify }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ else }}
+    <div class="case-timeline">
+      <div class="case-timeline-divider"></div>
+      <div class="case-timeline-dot"></div>
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="case-content">
+            <h4 class="mb-3">{{ .title | markdownify }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+        <div class="col-lg-6  order-1 order-lg-2">
+          <div class="case-img">
+            <img loading="lazy" src="{{ .image | absURL }}" alt="{{ .title | markdownify }}" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /case study -->
+
+<!-- service style 2 -->
+{{ if .Params.service.enable }}
+{{ with .Params.service }}
+<section class="section service">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="heading">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      {{ range .service_item }}
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item-list">
+          <i class="{{ .icon }}"></i>
+          <p>{{ .title | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /service style 2 -->
+
+<!-- call to action -->
+{{ if .Params.call_to_action.enable }}
+{{ with .Params.call_to_action }}
+<section class="cta-2 bg-light">
+  <div class="container">
+    <div class="cta-block py-5">
+      <div class="row align-items-center ">
+        <div class="col-lg-8">
+          <span class="text-color">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-2 mb-4 mb-lg-0">{{ .title | markdownify }}</h2>
+        </div>
+        {{ if .button.enable }}
+        <div class="col-lg-4">
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-main btn-round-full float-lg-right">{{ .label }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /call to action -->
+
+{{ end }}

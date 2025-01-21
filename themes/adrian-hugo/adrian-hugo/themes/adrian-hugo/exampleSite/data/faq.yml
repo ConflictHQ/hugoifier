@@ -1,0 +1,41 @@
+############################# Faqs ##########################
+faq:
+  enable: true
+  faqItem:
+    # faq item loop
+    - question: "Order Status"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas iusto, alias, tempora fuga quam eveniet
+        neque excepturi aliquid. Eligendi, mollitia."
+
+    # faq item loop
+    - question: "Shipping & Delivery"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam voluptatibus, incidunt similique nobis sint
+        quisquam nam ab error consequuntur sit ullam ex eum exercitationem, excepturi explicabo beatae eos aspernatur
+        odit ad perspiciatis, neque saepe magni enim. Maiores quia, quae sequi."
+
+    # faq item loop
+    - question: "Payments"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus repellat id, laboriosam ipsa
+        repudiandae quisquam, suscipit officiis, praesentium itaque facilis distinctio dolorum. Velit reiciendis
+        libero laudantium corporis, delectus impedit sunt."
+
+    # faq item loop
+    - question: "Returns & Exchanges"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas iusto, alias, tempora fuga quam eveniet
+        neque excepturi aliquid. Eligendi, mollitia."
+
+    # faq item loop
+    - question: "Privacy Policy"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae blanditiis quod saepe, inventore ipsum sint
+        cum iste quae ratione nobis laborum minima autem totam similique, quia neque deleniti! Provident, suscipit."
+
+    # faq item loop
+    - question: "Refund Policy"
+      answer:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas iusto, alias, tempora fuga quam eveniet
+        neque excepturi aliquid. Eligendi, mollitia."

@@ -1,0 +1,67 @@
+
+################  Navigation French  ##################
+
+# main menu
+[[main]]
+URL = "about/"
+name = "À propos"
+weight = 1
+
+[[main]]
+URL = "team/"
+name = "Équipe"
+weight = 2
+
+[[main]]
+URL = "blog/"
+name = "Blog"
+weight = 3
+
+[[main]]
+URL = "career/"
+name = "Carrière"
+weight = 4
+
+[[main]]
+URL = "contact/"
+name = "Contact"
+weight = 5
+
+# dropdown menu
+[[main]]
+hasChildren = true
+name = "Pages"
+weight = 6
+
+[[main]]
+URL = "privacy/"
+name = "Intimité"
+parent = "Pages"
+weight = 1
+
+[[main]]
+URL = "faq/"
+name = "FAQ"
+parent = "Pages"
+weight = 2
+
+# footer menu
+[[footer]]
+URL = "about/"
+name = "À propos"
+
+[[footer]]
+URL = "contact/"
+name = "Contact"
+
+[[footer]]
+URL = "privacy/"
+name = "Intimité"
+
+[[footer]]
+URL = "blog/"
+name = "Blog"
+
+[[footer]]
+URL = "faq/"
+name = "FAQ"

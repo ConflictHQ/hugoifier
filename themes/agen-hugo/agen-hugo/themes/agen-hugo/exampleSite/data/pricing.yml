@@ -1,0 +1,65 @@
+################# pricing ###################
+pricingTable:
+  # pricing table
+  - title : "Basic"
+    subtitle : "Basic and simple website"
+    price : "30"
+    # service list
+    serviceList:
+      - service : "Mobile-Optimized Website"
+      - service : "Powerful Website Metrics"
+      - service : "Free Custom Domain"
+      - service : "24/7 Customer Support"
+      - service : "Fully Integrated E-Cormmerce"
+      - service : "Sell unlimited Product"
+
+    button:
+      label : "Try it now"
+      link : "#"
+
+
+  # pricing table
+  - title : "Regular"
+    subtitle : "Basic and simple website"
+    price : "60"
+    # service list
+    serviceList:
+      - service : "Mobile-Optimized Website"
+      - service : "Powerful Website Metrics"
+      - service : "Free Custom Domain"
+      - service : "24/7 Customer Support"
+      - service : "Fully Integrated E-Cormmerce"
+      - service : "Sell unlimited Product"
+
+    button:
+      label : "Try it now"
+      link : "#"
+
+      
+  # pricing table
+  - title : "Gold"
+    subtitle : "Basic and simple website"
+    price : "90"
+    # service list
+    serviceList:
+      - service : "Mobile-Optimized Website"
+      - service : "Powerful Website Metrics"
+      - service : "Free Custom Domain"
+      - service : "24/7 Customer Support"
+      - service : "Fully Integrated E-Cormmerce"
+      - service : "Sell unlimited Product"
+
+    button:
+      label : "Try it now"
+      link : "#"
+
+
+############################## call to action ############################
+cta:
+  enable: true
+  # cta content comes from 'hompage.yml'
+
+#################### clients logo ###############################
+clientsLogo:
+  enable : true
+  # clints logo content comes from 'project.yml'

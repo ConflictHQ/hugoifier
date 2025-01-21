@@ -1,0 +1,241 @@
+{{ define "main" }}
+
+{{ with .Params.hero_slider }}
+{{ if .enable }}
+{{ "<!-- slider -->" | safeHTML }}
+<section>
+  <div class="hero-slider">
+    {{ range .slider_item }}
+    {{ "<!-- slider item -->" | safeHTML }}
+    <div class="hero-slider-item bg-cover hero-section" style="background-image: url('{{ .bg_image_webp | absURL }}');">
+      <!-- this image is for trigger this section fallback background image -->
+      <img class="d-none" src="{{ .bg_image_webp | absURL }}"
+        onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url({{ .bg_image | absURL }})'">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6" data-duration-in=".3" data-animation-in="{{ .animation }}" data-delay-in=".1">
+            <h4 class="mb-0 letter-spacing">{{ .subtitle | markdownify }}</h4>
+            <h1 class="mb-4">{{ .title | markdownify }}</h1>
+            <p class="mb-5">{{ .content | markdownify }}</p>
+            {{ if .button.enable }}
+            <a href="{{ .button.link | absLangURL }}" class="btn btn-primary-outline" data-duration-in=".3"
+              data-animation-in="{{ .button.animation }}" data-delay-in=".4">{{ .button.label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ "<!-- /slider -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ with .Params.banner_feature}}
+{{ if .enable}}
+{{ "<!-- banner feature -->" | safeHTML }}
+<section class="banner-feature-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ range .feature_item }}
+      {{ "<!-- feature item -->" | safeHTML }}
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="bg-white py-5 px-4 text-center box-shadow banner-feature">
+          {{ with .icon }}
+          <div class="icon-bg mb-4 water-wave">
+            <i class="{{ . }} icon text-primary"></i>
+          </div>
+          {{ end }}
+          <h4 class="mb-4">{{ .name | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /banner feature -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ if .Params.about.enable }}
+{{ "<!-- about us -->" | safeHTML }}
+<section class="section pt-0">
+  {{ partial "about-section.html" . }}
+</section>
+{{ "<!-- /about us -->" | safeHTML }}
+{{ end }}
+
+{{ with .Params.funfacts }}
+{{ if .enable }}
+{{ "<!-- funfacts -->" | safeHTML }}
+<section class="funfacts">
+  <div class="container">
+    <div class="row bg-secondary p-5">
+      {{ range .funfacts_item }}
+      {{ "<!-- funfacts item -->" | safeHTML }}
+      <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+        <div class="d-flex align-items-center">
+          <i class="{{ .icon }} icon-lg mr-3 text-primary"></i>
+          <div>
+            <h3 class="text-white mb-0"><span class="count" data-count="{{ .count }}">0</span>+</h3>
+            <span class="text-white">{{ .name }}</span>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /funfacts -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ with .Params.feature }}
+{{ if .enable }}
+{{ "<!-- feature -->" | safeHTML }}
+<section class="section">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-4 offset-lg-2 order-lg-1 order-2">
+        <div class="section-title-border"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p class="mb-5">{{ .content | markdownify }}</p>
+        <ul class="list-unstyled">
+          {{ range .feature_item }}
+          {{ "<!-- feature item -->" | safeHTML }}
+          <li class="d-flex align-items-center mb-5">
+            <div class="text-center mr-4">
+              <div class="icon-bg water-wave"><i class="{{ .icon }} icon text-primary"></i></div>
+            </div>
+            <div>
+              <h4>{{ .name | markdownify }}</h4>
+              {{ .content | markdownify }}
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-5 pr-lg-0 order-lg-2 order-1 mb-5 mb-lg-0">
+        <div class="feature-img-bg box-shadow">
+          <img loading="lazy" class="img-fluid w-100" src="{{ .image_webp | absURL }}"
+            onerror="this.src='{{ .image | absURL }}'" alt="feature-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ "<!-- /feature -->" | safeHTML }}
+{{ end }}
+
+{{ if .Params.service.enable }}
+{{ partial "service.html" . }}
+{{ end }}
+
+{{ if .Params.team.enable }}
+{{ partial "team-section.html" . }}
+{{ end }}
+
+{{ "<!-- case study -->" | safeHTML }}
+{{ if .Params.project.enable}}
+<section class="section pt-0">
+  <div class="pb-4 bg-gray-white">
+    <div class="container">
+      <div class="row">
+        {{ with site.GetPage (string .Params.project.section) }}
+        <div class="col-md-8">
+          <div class="section-title-border"></div>
+          <h4 class="section-title-sm">{{ .Params.title | markdownify }}</h4>
+          <h2>{{ .Params.subtitle | markdownify }}</h2>
+        </div>
+        {{end}}
+        {{ with .Params.project }}
+        {{ if .button.enable }}
+        {{ with .button }}
+        <div class="col-md-4 text-right align-self-end d-md-block d-none">
+          <a href="{{ .link | absLangURL }}" class="btn btn-primary mb-3 hover-ripple">{{ .label }}</a>
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid px-0">
+    <div class="row no-gutters">
+      {{$show_item:= .Params.project.show_item}}
+      {{ with site.GetPage (string .Params.project.section) }}
+      {{ range first ($show_item | default 4) .Data.Pages }}
+      {{ "<!-- project-item -->" | safeHTML }}
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        {{ .Render "project"}}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{end}}
+{{ "<!-- /case study -->" | safeHTML }}
+
+{{ if .Params.testimonial.enable }}
+{{ partial "testimonial.html" . }}
+{{ end }}
+
+{{ if .Params.cta.enable }}
+{{ with .Params.cta }}
+{{ "<!-- call to action -->" | safeHTML }}
+<section class="section overlay-secondary bg-fixed" style="background-image: url('{{ .bg_image_webp | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 col-11 text-center mx-auto">
+        <h2 class="section-title text-white">{{ .title | markdownify }}</h2>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-primary hover-ripple">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /call to action -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ "<!-- blog -->" | safeHTML }}
+{{$show_item:= .Params.service.show_item}}
+{{ if .Params.blog.enable }}
+{{ with site.GetPage (string .Params.blog.section) }}
+<section class="section bg-gray-white position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="section-title-border mx-auto"></div>
+        <h4 class="section-title-sm">{{ .Params.subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .Params.title }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      {{ "<!-- blog post -->" | safeHTML }}
+      {{ range first ($show_item | default 3) .Data.Pages }}
+      <article class="col-lg-4 col-sm-6 mb-lg-0 mb-4 zindex-1">
+        {{ .Render "post" }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+  {{ "<!-- background shapes -->" | safeHTML }}
+  <img loading="lazy" class="img-fluid blog-shape-left" src="{{`images/backgrounds/blog-bg-left.webp` | relURL }}"
+    alt="" onerror="this.src='{{`images/backgrounds/blog-bg-left.png` | relURL }}'">
+  <img loading="lazy" class="img-fluid blog-shape-right" src="{{`images/backgrounds/blog-bg-right.webp` | relURL }}"
+    alt="" onerror="this.src='{{`images/backgrounds/blog-bg-right.png` | relURL }}'">
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- /blog -->" | safeHTML }}
+
+{{ end }}

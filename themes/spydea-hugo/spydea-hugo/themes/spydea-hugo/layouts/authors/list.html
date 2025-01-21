@@ -1,0 +1,58 @@
+{{ define "main" }}
+  {{ partial "page-header.html" . }}
+  <section class="section-md mt-[-28rem] md:mt-[-32rem]">
+    <div class="container relative z-40">
+      <div class="row gy-5">
+        {{ range where site.RegularPages "Section" "authors" }}
+          <div data-aos="fade-up-sm" class="md:col-6 lg:col-4 xl:col-3">
+            <div
+              class="overflow-hidden rounded-xl bg-white px-3 py-8 text-center shadow-sm transition-all duration-300 hover:shadow-md">
+              {{ $authorSlug := .Title | urlize | lower }}
+              <div
+                href="{{ site.BaseURL | relLangURL }}/authors/{{ $authorSlug }}"
+                class="inline-block h-[180px] max-h-[900px] w-[180px] rounded-full">
+                {{ partial "image.html" (dict "Src" .Params.Image "Class" "h-[180px] w-[180px] rounded-full object-cover" "Alt" .Title) }}
+              </div>
+              <div class="px-5 pt-8 text-center">
+                <h3 class="text-dark mb-4 text-xl font-semibold sm:text-2xl">
+                  <a href="{{ site.BaseURL }}authors/{{ $authorSlug }}"
+                    >{{ .Title | markdownify }}</a
+                  >
+                </h3>
+                <p>
+                  {{ .Content | truncate 30 }}
+                  <a
+                    class="inline-block underline"
+                    href="{{ site.BaseURL | relLangURL }}/authors/{{ $authorSlug }}"
+                    >Read More</a
+                  >
+                </p>
+                <ul
+                  class="font-secondary text-dark mt-5 flex flex-wrap items-center justify-center gap-4">
+                  {{ range .Params.social }}
+                    <li class="inline-block">
+                      <a
+                        href="{{ .link | absURL }}"
+                        target="_blank"
+                        class="shadow-xs hover:bg-dark/90 flex h-[45px] w-[45px] items-center justify-center rounded-full bg-white text-center transition-colors duration-300 hover:text-white">
+                        <i class="{{ .icon }}"></i>
+                      </a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <!-- End Authors Section -->
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

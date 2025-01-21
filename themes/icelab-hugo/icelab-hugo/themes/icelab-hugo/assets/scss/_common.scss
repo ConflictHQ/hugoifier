@@ -1,0 +1,119 @@
+body{
+    background: $body-color;
+    color: $text-color;
+    overflow-x: hidden;
+    // position: relative;
+}
+
+.section{
+    padding: 100px 0;
+    @include tablet{
+        padding: 80px 0;
+    }
+    @include mobile{
+        padding: 50px 0;
+    }
+}
+
+.section-title{
+    h6{
+        font-family: $secondary-font;
+        letter-spacing: 5px;
+        color: $primary-color;
+        text-transform: uppercase;
+        span{
+            display: inline-block;
+        }
+    }
+    h1, h2{
+        span{
+            display: inline-block;
+        }
+    }
+}
+
+.dividers{
+    display: flex;
+    align-items: center;
+    width: 1170px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    .divider{
+        border-right: 1px solid #f3f3f3;
+        flex-basis: 25%;
+        height: 100vh;
+        // opacity: .20;
+        &:first-child{
+            border-left: 1px solid #f3f3f3;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: $primary-color;
+} 
+
+// Headroomjs Styles
+.headroom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .5s ease-in-out;
+}
+.headroom--unpinned {
+    top: -100px;
+}
+.headroom--pinned {
+    top: 0;
+}
+
+// Page Title Styles
+.page-title{
+    padding: 220px 0 180px;
+    background-image: url("../images/backgrounds/page-title-bg.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    h1{
+        color: $white;
+    }
+}
+
+// BreadCrumb
+.breadcrumb{
+    background: transparent;
+    justify-content: center;
+    margin-bottom: 0;
+    li{
+        text-transform: uppercase;
+        font-size: 12px;
+        a{
+            font-size: 12px;
+            color: $primary-color;
+            text-decoration: none;
+        }
+    }
+}
+
+// Form Control
+.form-control{
+    margin-bottom: 20px;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    padding: 12px 0;
+    font-family: $primary-font;
+    &:focus{
+        outline: 0;
+        box-shadow: none;
+        border-color: $primary-color;
+    }
+}

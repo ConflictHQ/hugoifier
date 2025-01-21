@@ -1,0 +1,185 @@
+{{ define "main" }}
+{{ partial "components/page-title.html" . }}
+
+{{ "<!-- Our Story -->" | safeHTML }}
+{{ if .Params.our_story.enable }}
+{{ with .Params.our_story }}
+<section class="section about p-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="content">
+          <h2>{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="about-slider swiper">
+          <div class="swiper-wrapper">
+            {{ range .image_slider }}
+            <div class="swiper-slide item">
+              {{ partial "image.html" (dict "Src" .image "Alt" "slider image" "Size" "x400") }}
+            </div>
+            {{ end }}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Our Story -->" | safeHTML }}
+
+
+{{ "<!-- Behind Story -->" | safeHTML }}
+{{ if .Params.behind_story.enable }}
+{{ with .Params.behind_story }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title mb-0">
+          <h2>{{ .title | safeHTML | markdownify }}</h2>
+          <p>{{ .content | safeHTML | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Behind Story -->" | safeHTML }}
+
+
+{{ "<!-- about us -->" | safeHTML }}
+{{ if .Params.about_us.enable }}
+{{ with .Params.about_us }}
+<section class="section create-stories pt-0">
+  <div class="container">
+    <div class="row">
+      {{ range .about_item }}
+      <div class="col-lg-6">
+        <div class="block">
+          {{ partial "image.html" (dict "Src" .image "Alt" .title) }}
+          <h3>{{ .title | safeHTML | markdownify }}</h3>
+          <p>{{ .content | safeHTML | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of about us -->" | safeHTML }}
+
+
+{{ "<!-- Quotes Slider -->" | safeHTML }}
+{{ if .Params.quote_slider.enable }}
+<section class="section quotes pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 m-auto text-center">
+        <div class="quote-slider swiper">
+          <div class="swiper-wrapper">
+            {{ range .Params.quote_slider.slider_item }}
+            <div class="swiper-slide item">
+              <h2>{{ .quote }}</h2>
+              <cite>-{{ .quote_by }}</cite>
+            </div>
+            {{ end }}
+          </div>
+          <div class="swiper-pagination">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ "<!-- End of Quotes Slider -->" | safeHTML }}
+
+
+{{ "<!-- Client Slider -->" | safeHTML }}
+{{ if .Params.clients_logo_slider.enable }}
+{{ with .Params.clients_logo_slider }}
+<section class="section clients bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 m-auto text-center">
+        <h3>{{ .title }}</h3>
+        <div class="client-slider swiper">
+          <div class="swiper-wrapper">
+            {{ range .logos }}
+            <div class="swiper-slide item">
+              {{ partial "image.html" (dict "Src" . "Alt" "client-logo") }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Client Slider -->" | safeHTML }}
+
+
+{{ "<!-- Investors -->" | safeHTML }}
+{{ if .Params.investors.enable }}
+{{ with .Params.investors }}
+<section class="section investors">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>{{ .title | safeHTML | markdownify }}</h2>
+          <p>{{ .content | safeHTML | markdownify }}</p>
+        </div>
+      </div>
+      {{ range .investor }}
+      <div class="col-lg-3 col-md-6">
+        <div class="block text-center">
+          <div class="image shadow hover-zoom">
+            {{ partial "image.html" (dict "Src" .image "Alt" .name) }}
+          </div>
+          <h3>{{ .name | safeHTML | markdownify }}</h3>
+          <p>{{ .designation | safeHTML | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Investors -->" | safeHTML }}
+
+
+{{ "<!-- call to action -->" | safeHTML }}
+{{ if .Params.call_to_action.enable }}
+{{ with .Params.call_to_action }}
+<section class="section cta-hire bg-gary">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>{{ .title | safeHTML | markdownify }}</h2>
+        <p>{{ .content | safeHTML | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-primary btn-xl">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of call to action -->" | safeHTML }}
+
+{{ end }}

@@ -1,0 +1,48 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<aside>
+  <div class="sidenav">
+    <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}/"><img class="img-fluid" width="150px"
+        src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+    <ul class="navbar-nav">
+      {{ $current := . }}
+      {{ range .Site.Menus.main }}
+      {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
+      {{ $active = or $active (eq .Name $current.Title) }}
+      <li class="nav-item">
+        <a class="nav-link {{ if $active }}active{{ end }}" href="{{ .URL | absURL }}">{{ .Name }}</a>
+      </li>
+      {{ end }}
+
+      <li class="nav-item">
+        <!-- Language List -->
+        {{ if .IsTranslated }}
+        <select class="lang-list" id="select-language" onchange="location = this.value;">
+          {{ $siteLanguages := .Site.Languages}}
+          {{ $pageLang := .Page.Lang}}
+          {{ range .Page.AllTranslations }}
+          {{ $translation := .}}
+          {{ range $siteLanguages }}
+          {{ if eq $translation.Lang .Lang }}
+          {{ $selected := false }}
+          {{ if eq $pageLang .Lang}}
+          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+          </option>
+          {{ else }}
+          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </select>
+        {{ end }}
+      </li>
+    </ul>
+
+    <ul class="list-inline social-icons">
+      {{ range .Site.Params.social }}
+      <li class="list-inline-item"><a href="{{.link | safeURL}}"><i class="{{ .icon }}"></i></a></li>
+      {{ end }}
+    </ul>
+  </div>
+</aside>
+{{ "<!-- /navigation -->" | safeHTML }}

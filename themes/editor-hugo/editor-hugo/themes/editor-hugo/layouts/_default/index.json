@@ -1,0 +1,14 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections -}}
+
+{{ with .Params.images }}
+{{ range first 1 . }}
+{{ $.Scratch.Set "image" (. | absURL) }}
+{{ end }}
+{{ end }}
+{{ $image:= $.Scratch.Get "image" }}
+
+  {{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "image" $image "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

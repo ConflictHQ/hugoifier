@@ -1,0 +1,166 @@
+# Features 
+feature:
+  enable : true
+  title : "Awesome Features"
+  description : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>Excepteur sint occaecat cupidatat non proident"
+  featureItem:
+    # feature item
+    - title : "Awesome Design"
+      icon : "ti-ruler-pencil"
+      content : "Consectetur adipiscing elit donec tempus pellentesque dui."
+      
+    # feature item
+    - title : "Easy Customize"
+      icon : "ti-layout-cta-left"
+      content : "Consectetur adipiscing elit donec tempus pellentesque dui."
+      
+    # feature item
+    - title : "Bug free Code"
+      icon : "ti-split-v-alt"
+      content : "Consectetur adipiscing elit donec tempus pellentesque dui."
+      
+    # feature item
+    - title : "Organized Layouts"
+      icon : "ti-layers-alt"
+      content : "Consectetur adipiscing elit donec tempus pellentesque dui."
+
+# Marketing section
+marketing:
+  enable : true
+  image: "images/marketing/marketing.png"
+  bgImage : "images/backgrounds/seo-bg.svg"
+  title : "A Complete Range Of SEO Marketing Services!"
+  content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.<br> There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+
+# services
+service:
+  enable : true
+  title : "Powerful Layout From Top To Bottom"
+  content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+  serviceList:
+    # service list
+    - title : "Responsive on any device"
+      icon : "ti-layout-tab-window"
+      
+    # service list
+    - title : "Very easy to customize"
+      icon : "ti-layout-placeholder"
+      
+    # service list
+    - title : "Effective support"
+      icon : "ti-support"
+
+  # service image
+  image: "images/service/service.png"
+  # background image
+  bgImage : "images/backgrounds/service-bg.svg"
+
+# team
+team:
+  enable : true
+  title : "Our Team"
+  description : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu<br> fugiat nulla pariatur. Excepteur sint occaecat"
+  bgImage : "images/backgrounds/team-bg.svg"
+  member:
+    # team member
+    - name : "Becroft"
+      designation : "web designer"
+      image : "images/team/team-1.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+      
+    # team member
+    - name : "Erik Ligas"
+      designation : "web designer"
+      image : "images/team/team-2.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+      
+    # team member
+    - name : "John Doe"
+      designation : "web developer"
+      image : "images/team/team-3.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+      
+    # team member
+    - name : "Becroft"
+      designation : "web designer"
+      image : "images/team/team-1.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+      
+    # team member
+    - name : "Erik Ligas"
+      designation : "web designer"
+      image : "images/team/team-2.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+      
+    # team member
+    - name : "John Doe"
+      designation : "web developer"
+      image : "images/team/team-3.jpg"
+      content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. S eparated they"
+
+# pricing
+pricing:
+  enable  : true
+  title : "Our Pricing"
+  description : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu <br> fugiat nulla pariatur. Excepteur sint occaecat "
+  table:
+    # pricing table
+    - title : "Free"
+      value : "00"
+      content : "Far far away, behind the wordmountains, far from the countries Vokalia and"
+      btnText : "Get Started"
+      URL : "#"
+      
+    # pricing table
+    - title : "Standard"
+      value : "75"
+      content : "Far far away, behind the wordmountains, far from the countries Vokalia and"
+      btnText : "Get Started"
+      URL : "#"
+      
+    # pricing table
+    - title : "Premium"
+      value : "99"
+      content : "Far far away, behind the wordmountains, far from the countries Vokalia and"
+      btnText : "Get Started"
+      URL : "#"
+
+# client logo slider
+clientSlider:
+  enable : true
+  list:
+    - logo : "images/clients-logo/client-logo-1.png"
+      URL : "#"
+
+    - logo : "images/clients-logo/client-logo-2.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-3.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-4.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-5.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-1.png"
+      URL : "#"
+
+    - logo : "images/clients-logo/client-logo-2.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-3.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-4.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-logo-5.png"
+      URL : "#"
+
+# newsletter subscription form
+newsletter:
+  enable : true
+  title : "Subscribe to our newsletter"
+  description : "Receive updates, news and deals"

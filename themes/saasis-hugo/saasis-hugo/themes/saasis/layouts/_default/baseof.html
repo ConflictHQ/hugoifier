@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+
+<head>
+	{{ partial "head.html" . }}
+
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+	{{ partialCached "style.html" . }}
+	{{ else }}
+	{{ partial "style.html" . }}
+	{{ end }}
+</head>
+
+<body {{with site.Params.page_background.page_class}}class="{{.}}"{{end}}{{with site.Params.page_background.page_background_image}}{{$bg_img:= resources.Get . }}{{$c_img:= $bg_img.Resize `1000x webp`}}style="background-image:url('{{$bg_img.RelPermalink}}')"{{end}}{{with site.Params.page_background.page_background_color}}style="background-color:{{.}}"{{end}}>
+	{{if .IsHome }}
+	{{ partialCached "preloader.html" . }}
+	{{end}}
+	<div class="main-content">
+		{{ partial "header.html" . }}
+
+		{{if and (not .IsHome) (ne .Section "blog") }}
+		{{ partial "page-header.html" . }}
+		{{end}}
+		{{ block "main" . }}{{ end }}
+	</div>
+		
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+		{{ partialCached "footer.html" . }}
+		{{ partialCached "script.html" . }}
+	{{ else }}
+		{{ partial "footer.html" . }}
+		{{ partial "script.html" . }}
+	{{ end }}
+</body>
+
+</html>

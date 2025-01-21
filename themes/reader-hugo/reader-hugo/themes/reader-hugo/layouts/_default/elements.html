@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+{{ partial "components/page-header" . }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-10 mx-auto">
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

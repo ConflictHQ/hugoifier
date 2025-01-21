@@ -1,0 +1,50 @@
+.about-img {
+	box-shadow: 0 15px 38px 0 rgba(0, 0, 0, 0.1);
+
+	.img-block {
+		position: absolute;
+		content: "";
+		bottom: -70px;
+		right: 0px;
+		left: 30%;
+		width: 100%;
+		border: 10px solid $white;
+
+		@include desktop {
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80%;
+			bottom: -20px;
+		}
+	}
+}
+
+.stroke-text {
+	color: transparent;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #ddd;
+	font-size: 120px;
+	font-weight: 800;
+	text-transform: uppercase;
+	line-height: 1;
+
+	@include tablet {
+		font-size: 90px;
+	}
+	@include mobile {
+		font-size: 50px;
+	}
+}
+
+.text-lg {
+	font-size: 52px;
+	line-height: 1.1;
+}
+
+.ml-90 {
+	margin-left: 160px;
+
+	@include desktop {
+		margin-left: 0;
+	}
+}

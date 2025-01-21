@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+@font-face {
+  	font-family: 'JaapokkiRegular';
+	src: url('../fonts/jaapokki/jaapokki-regular.eot');
+    src: url('../fonts/jaapokki/jaapokki-regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/jaapokki/jaapokki-regular.woff') format('woff'),
+         url('../fonts/jaapokki/jaapokki-regular.ttf') format('truetype'),
+         url('../fonts/jaapokki/jaapokki-regular.svg#JaapokkiRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, p{
+	font-family: 'Lato', sans-serif;
+	font-weight: 400; 
+	font-size: 15px;
+	line-height: 1.6em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'JaapokkiRegular';
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+h1,.h1{
+    font-size: 36px;
+    line-height: 48px;
+}
+
+h2,.h2{
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+h3,.h3{
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+h4,.h4{
+    font-size: 18px;
+    line-height: 28px;
+}
+
+h5,.h5{
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.icon-xl{
+    font-size: 200px;
+}

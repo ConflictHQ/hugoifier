@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="mb-4 border-bottom border-primary d-inline-block text-capitalize">{{ if index (split .Title "/") 2 }}{{index (split .Title "/") 2}}{{ else if index (split .Title "/") 1 }}{{index (split .Title "/") 1}}{{else}}{{index (split .Title "/") 0}}{{end}}</h1>
+      </div>
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="row">
+          {{ $paginator:= .Paginate .Data.Pages }}
+          {{ range $paginator.Pages }}
+          {{ .Render "post"}}
+          {{ end }}
+
+          <div class="col-12">
+            {{ partial "pagination.html" . }}
+          </div>
+        </div>
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

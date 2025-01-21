@@ -1,0 +1,136 @@
+{{ with site.Params.cta }}
+  {{ if .enable }}
+    <section class="call-to-action has-bg-color overflow-hidden">
+      <div class="container-xxl position-relative">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="block">
+              <div class="section-title text-center mb-0" data-aos="fade-up">
+                <h2 class="title underline-none">{{ .title | markdownify }}</h2>
+                <p>{{ .content | markdownify }}</p>
+                <a href="{{ .button_link }}" class="btn btn-primary mt-4"
+                  >{{ .button }}</a
+                >
+              </div>
+            </div>
+
+            <div class="has-circle has-bg-anim" data-aos="fade-in">
+              <svg
+                class="text-primary"
+                style="opacity:.12"
+                width="100%"
+                height="100%"
+                viewBox="0 0 1381 283"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1379 0.998871C1346.3 58.3528 1186.5 172.501 961.409 121.133C645.85 49.1205 596.5 68.5008 448.172 194.674C386.651 247.006 248.005 308.633 1 265.688"
+                  stroke="currentColor"
+                  stroke-width="4"
+                  stroke-dasharray="10 10" />
+              </svg>
+              <span class="circle-1 ratio-32"></span>
+              <span class="circle-2 ratio-85 fill"></span>
+              <span class="circle-3 ratio-47"></span>
+              <span class="circle-4 ratio-20 fill"></span>
+              <span class="circle-5 ratio-73"></span>
+              <span class="circle-6 ratio-37"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
+
+
+<footer
+  class="footer pb-5 {{ if site.Params.cta.enable }}
+  {{ else }}
+    mt-0
+  {{ end }}">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="border-top pb-5"></div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="pe-4">
+          <a
+            class="navbar-brand d-inline-block mb-4"
+            href="{{ site.BaseURL | relLangURL }}">
+            {{ partial "logo.html" }}
+          </a>
+          <p class="mb-0">{{ site.Params.footer_info | markdownify }}</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 mt-5 mt-sm-0">
+        <div class="footer-widget">
+          <h4 class="mb-4">{{ i18n `socials` }}</h4>
+
+          {{ with site.Params.contact_info.email }}
+            <ul class="footer-links list-unstyled mb-4">
+              {{ range first 1 . }}
+                {{ if . }}
+                  <li><a href="mailto:{{ . }}">{{ . }}</a></li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
+
+          {{ with site.Params.social }}
+            <ul class="social-links list-inline">
+              {{ range . }}
+                <li class="list-inline-item">
+                  <a href="{{ .link }}" title="{{ .title }}">
+                    <i class="{{ .icon }}"></i>
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-sm-6 mt-5 mt-lg-0">
+        <div class="footer-widget">
+          <h4 class="mb-4">{{ i18n `quick_links` }}</h4>
+
+          <ul class="footer-links list-unstyled">
+            {{ range site.Menus.footer }}
+              <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 mt-5 mt-lg-0">
+        <div class="footer-widget">
+          <h4 class="mb-4">{{ i18n `location_contact` }}</h4>
+
+          {{ with site.Params.contact_info }}
+            <ul class="footer-links list-unstyled">
+              <li>{{ .address | markdownify }}</li>
+              {{ range first 1 .phone }}
+                {{ if . }}
+                  <li><a href="tel:{{ . }}">{{ . }}</a></li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="py-4 border-top text-center">
+          <p class="mb-0 content">{{ site.Params.copyright | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

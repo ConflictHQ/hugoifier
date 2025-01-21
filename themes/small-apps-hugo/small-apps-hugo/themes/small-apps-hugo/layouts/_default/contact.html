@@ -1,0 +1,80 @@
+{{ define "main" }}
+{{ partial "components/page-title.html" . }}
+
+{{ "<!-- Address and Map -->" | safeHTML }}
+<section class="address">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="block">
+          <div class="address-block text-center">
+            <div class="icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="details">
+              <h3>{{ .Site.Params.contact_info.mobile | markdownify }}</h3>
+              <h3>{{ .Site.Params.contact_info.email | markdownify }}</h3>
+            </div>
+          </div>
+          <div class="address-block text-center">
+            <div class="icon">
+              <i class="fa-regular fa-map"></i>
+            </div>
+            <div class="details">
+              <h3>{{ .Site.Params.contact_info.address | safeHTML }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ "<!-- Google Map -->" | safeHTML }}
+      {{ if .Site.Params.google_map.enable }}
+      {{with .Site.Params.google_map}}
+      <div class="col-md-6">
+        <div class="rounded-xs mobile-height h-100 mb-5 mb-lg-0">
+          <iframe class="h-100" width="100%" frameborder="0" scrolling="no" src="{{.embed_url}}">
+          </iframe>
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ with .Site.Params.contact_form_action }}
+<section class="contact-form section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="mb-4">{{ i18n "contact_form" }}</h2>
+      </div>
+      <div class="col-12">
+        <form action="{{ . }}" class="row">
+          {{ "<!-- Name -->" | safeHTML }}
+          <div class="col-md-6">
+            <input class="form-control main" type="text" placeholder="Name" required>
+          </div>
+          {{ "<!-- Email -->" | safeHTML }}
+          <div class="col-md-6">
+            <input class="form-control main" type="email" placeholder="Your Email Address" required>
+          </div>
+          {{ "<!-- subject -->" | safeHTML }}
+          <div class="col-md-12">
+            <input class="form-control main" type="text" placeholder="Subject" required>
+          </div>
+          {{ "<!-- Message -->" | safeHTML }}
+          <div class="col-md-12">
+            <textarea class="form-control main" name="message" rows="10" placeholder="Your Message"></textarea>
+          </div>
+          {{ "<!-- Submit Button -->" | safeHTML }}
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary btn-lg">{{ i18n "submit" }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

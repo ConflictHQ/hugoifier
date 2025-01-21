@@ -1,0 +1,104 @@
+.footer{
+    background: $footer-bg;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    .footer-dividers{
+        @extend .dividers;
+        position: absolute;
+        height: 100%;
+        .divider{
+            height:100%;
+            border-right: 1px solid #293034;
+            &:first-child{
+                border-left: 1px solid #293034;
+            }
+        }
+    }
+    .shape-small{
+        position: absolute;
+        top: 0;
+        right: 20%;
+    }
+    .logo{
+        @include desktop{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+    .content{
+        text-align: right;
+        @include desktop{
+            text-align: center;
+        }
+        .footer-nav{
+            margin-bottom: 35px;
+            ul{
+                li{
+                    a{
+                        padding: 0 25px;
+                        color: $white;
+                        font-weight: 500; font-size: 14px;
+                        text-decoration: none;
+                    }
+                    &:last-child{
+                        a{
+                            padding: 0 0 0 25px;
+                        }
+                    }
+                }
+            }
+        }
+        p{
+            width: 70%;
+            font-size: 14px;
+            line-height: 25px;
+            margin-bottom: 25px;
+            margin-left: auto;
+            @include desktop{
+                margin-right: auto;
+            }
+        }
+        ul.social-links{
+            li{
+                a{
+                    background: $white;
+                    border-radius: 100%;
+                    display: block;
+                    height: 35px;
+                    text-align: center;
+                    transition: all .3s ease;
+                    width: 35px;
+                    i{
+                        color: #242424;
+                        font-size: 12px;
+                        line-height: 35px;
+                    }
+                    &:hover{
+                        background: $primary-light;
+                        transform: translateY(-5px);
+                    }
+                }
+                &:not(:last-child){
+                    margin-right: 20px;
+                }
+            }
+        }
+        .scroll-top{
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all .3s ease;
+            display: inline-block;
+            svg{
+                fill: $white;
+                transition: all .3s ease;
+            }
+            &:hover{
+                transform: translateY(-2px);
+                svg{
+                    fill: $primary-light;
+                }
+            }
+        }
+    }
+}

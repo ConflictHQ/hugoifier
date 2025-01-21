@@ -1,0 +1,13 @@
+{{ "<!-- Promotion -->" | safeHTML }}
+{{ with site.Params.promotion}}
+<div class="promotion">
+  {{ if .image }}
+  {{ partial "image.html" (dict "Src" .image "Alt" "promotion image" "Class" `w-100`) }}
+  {{ end }}
+  <div class="promotion-content">
+    <h3 class="text-white mb-3 h5">{{.title | markdownify}}</h5>
+    <p class="text-white mb-4">{{.content | markdownify}}</p>
+    <a href="{{.button_link | safeURL }}" class="btn btn-primary">{{ .button_label }}</a>
+  </div>
+</div>
+{{ end }}

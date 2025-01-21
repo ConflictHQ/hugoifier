@@ -1,0 +1,14 @@
+{
+  "name": "{{site.Title}}",
+  "short_name": "{{site.Title}}",
+  "lang": "{{ site.LanguageCode | default `en-us` }}",
+  "theme_color": "{{ site.Params.variables.primary_color }}",
+  "background_color": "{{ site.Params.variables.body_color }}",
+  "icons": [{
+    "src": "{{ site.Params.favicon }}",
+    "sizes": "96x96",
+    "type": "image/png"
+  }],
+  "display": "standalone",
+  "start_url": "{{ site.BaseURL | relLangURL }}?utm_source=web_app_manifest"
+}

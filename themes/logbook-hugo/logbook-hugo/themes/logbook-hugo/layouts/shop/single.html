@@ -1,0 +1,70 @@
+{{ define "main" }}
+  <!-- snipcart css -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.snipcart.com/themes/v3.0.27/default/snipcart.css" />
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 mb-4 mb-md-0 col-md-6">
+          <div class="swiper single-product-slider">
+            <div class="swiper-wrapper">
+              {{ range .Params.Images }}
+                <div class="swiper-slide">
+                  {{ partial "image.html" (dict "Src" . "Alt" "product image" "Size" "990x") }}
+                </div>
+              {{ end }}
+            </div>
+          </div>
+          <div class="swiper single-product-slider-pagination mt-4">
+            <div class="swiper-wrapper">
+              {{ range .Params.Images }}
+                <div class="swiper-slide">
+                  {{ partial "image.html" (dict "Src" . "Alt" "product image" "Size" "90x") }}
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1 col-md-6">
+          <h2>{{ .Title }}</h2>
+          <div class="price my-4">
+            {{ if .Params.discount_price }}
+              <span class="h3 text-primary"
+                >{{ site.Params.snipcart.currency }}{{ .Params.discount_price }}</span
+              ><s class="ms-2 h5"
+                >{{ site.Params.snipcart.currency }}{{ .Params.price }}</s
+              >
+            {{ else }}
+              <span class="h3 text-primary"
+                >{{ site.Params.snipcart.currency }}{{ .Params.price }}</span
+              >
+            {{ end }}
+          </div>
+
+          <div class="content">{{ .Content }}</div>
+          <button
+            class="snipcart-add-item btn btn-primary mt-3 md-3"
+            data-item-id="{{ .Title | anchorize }}"
+            data-item-name="{{ .Title }}"
+            data-item-image="{{ with .Params.images }}
+              {{ range first 1 . }}
+                {{ $img:= resources.Get . }}{{ $img:= $img.Resize `100x webp` }}{{ $img.RelPermalink }}
+              {{ end }}
+            {{ end }}"
+            data-item-price="{{ .Params.discount_price | default .Params.price }}"
+            data-item-url="{{ .Permalink }}"
+            data-item-description="{{ .Params.Description | markdownify }}">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- snipcart js -->
+  <script
+    defer
+    src="https://cdn.snipcart.com/themes/v3.0.27/default/snipcart.js"></script>
+{{ end }}

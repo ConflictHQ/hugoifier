@@ -1,0 +1,280 @@
+{{ define "main" }}
+  {{ partial "components/page-header" . }}
+  <!-- work with us -->
+  {{ with .Params.work_with_us }}
+    {{ if .enable }}
+      <section class="work-with-us section pt-0 has-backdrop">
+        <div class="container">
+          {{ range .info_blocks }}
+            <div
+              class="row gx-0 gx-lg-5 gy-5 align-items-xl-center justify-content-center mt-4 mt-lg-0">
+              <div class="col-lg-6 order-1 order-lg-0">
+                <div class="ps-0 ps-xl-4">
+                  <h2 class="h3 section-title pb-0">
+                    {{ .title | markdownify }}
+                  </h2>
+                  <div class="content">
+                    {{ .content | markdownify }}
+                  </div>
+
+                  {{ with .button }}
+                    <a href="{{ .link }}" class="btn btn-primary mt-4">
+                      {{ .label }}
+                    </a>
+                  {{ end }}
+                </div>
+              </div>
+              <div class="col-lg-6 text-center order-0 order-lg-1">
+                <div class="info-images">
+                  <div>
+                    {{ partial "image" (dict "Src" .image_01 "Alt" "info image" "Resize" false "Class" "rounded-5") }}
+                  </div>
+                  <div>
+                    {{ partial "image" (dict "Src" .image_02 "Alt" "info image" "Resize" false "Class" "rounded-5") }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ end }}
+        </div>
+
+        <svg
+          class="backdrop text-tertiary"
+          style="top:0;right:0"
+          width="490"
+          height="670"
+          viewBox="0 0 490 670"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            opacity="0.25"
+            d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+            fill="currentColor"></path>
+        </svg>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end work with us -->
+
+  <!-- why join us -->
+  {{ with .Params.why_join_us }}
+    {{ if .enable }}
+      <section class="section has-backdrop pt-5">
+        <div class="container">
+          <div class="row justify-content-center mb-3">
+            <div class="col-lg-8 text-center">
+              <p class="section-subtitle text-primary">
+                {{ .subtitle | markdownify }}
+              </p>
+              <h2 class="section-title text-center">
+                {{ .title | markdownify }}
+              </h2>
+            </div>
+          </div>
+          <div class="row gy-4 justify-content-center">
+            {{ range $i, $e := .benefits }}
+              <div class="col-lg-4 col-md-6 text-center">
+                <span
+                  class="d-inline-block h4 mb-3
+        {{ if or (eq $i 0) (eq $i 4) (eq $i 8) }}text-primary{{ end }}
+        {{ if or (eq $i 1) (eq $i 5) (eq $i 9) }}text-tertiary{{ end }}
+        {{ if or (eq $i 2) (eq $i 6) (eq $i 10) }}text-secondary{{ end }}
+        {{ if or (eq $i 3) (eq $i 7) (eq $i 11) }}text-quaternary{{ end }}
+        ">
+                  <i class="{{ .icon }}"></i>
+                </span>
+                <h3 class="h6 mb-2">{{ .title | markdownify }}</h3>
+                <div class="content">
+                  {{ .content | markdownify }}
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <svg
+          class="backdrop text-primary"
+          style="bottom:0;left:0;opacity:1"
+          width="270"
+          height="670"
+          viewBox="0 0 270 670"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            opacity="0.22"
+            d="M-65.3333 4.23413e-05C119.866 3.42459e-05 270 149.985 270 335C270 520.015 119.866 670 -65.3333 670C-149.742 670 -246.047 638.844 -325.87 587.416C-421.185 526.006 -493 435.691 -493 335C-493 236.006 -325.251 261.462 -232.333 200.134C-151.593 146.844 -151.44 4.61051e-05 -65.3333 4.23413e-05Z"
+            fill="currentColor" />
+        </svg>
+
+        <div class="container-fluid pt-4">
+          <div class="row gy-4 mt-5">
+            {{ range .life_at }}
+              <div class="col-sm-4">
+                {{ partial "image" (dict "Src" . "Alt" "Life At" "Resize" false "Class" "rounded-5 shadow-lg w-100") }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end why join us -->
+
+  <!-- open position -->
+  {{ if .Params.open_positions.enable }}
+    <section id="open_positions" class="open-positions has-overlay">
+      <div class="section container">
+        <div class="row">
+          <div class="col-lg-8 text-center mx-auto">
+            <p class="section-subtitle text-quaternary">
+              {{ .Params.open_positions.subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .Params.open_positions.title | markdownify }}
+            </h2>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <ul
+            class="nav nav-pills mb-4 justify-content-center gap-3"
+            id="pills-tab"
+            role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link rounded-pill px-4 text-dark active small"
+                id="pills-all-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#pills-all"
+                type="button"
+                role="tab"
+                aria-controls="pills-all-tab"
+                aria-selected="true">
+                All Jobs
+              </button>
+            </li>
+            {{ $allCareerPages := .RegularPages }}
+            {{ range $i, $e := $allCareerPages.GroupByParam "category" }}
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link rounded-pill px-4 text-dark small"
+                  id="pills-{{ .Key | sha1 }}-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-{{ .Key | sha1 }}_"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-{{ .Key | sha1 }}_"
+                  aria-selected="false">
+                  {{ .Key }}
+                </button>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <div class="tab-content border-0" id="pills-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="pills-all"
+            role="tabpanel"
+            aria-labelledby="pills-all-tab">
+            <div class="row gy-4 justify-content-center">
+              {{ range .RegularPages }}
+                <div class="col-lg-10">
+                  <div class="job-card rounded-4 p-4 d-block position-relative">
+                    <div
+                      class="d-flex align-items-center flex-wrap gap-2 gap-lg-4">
+                      <div class="job-card-title">
+                        <h3 class="fs-6 fw-normal mb-0">
+                          <a href="{{ .RelPermalink }}" class="text-reset">
+                            {{ .Title | markdownify }}
+                          </a>
+                        </h3>
+                        <span class="small">{{ .Params.category }}</span>
+                      </div>
+                      <ul
+                        class="list-unstyled list-inline mb-3 mb-sm-0 me-auto">
+                        <li class="list-inline-item me-3">
+                          <i class="fa-regular fa-clock text-primary fs-6"></i>
+                          <span class="ms-1 fs-6">
+                            {{ .Params.job_nature | markdownify }}
+                          </span>
+                        </li>
+                        <li class="list-inline-item">
+                          <i class="fas fa-location-dot text-tertiary fs-6"></i>
+                          <span class="ms-1 fs-6">
+                            {{ .Params.location | markdownify }}
+                          </span>
+                        </li>
+                      </ul>
+                      <a
+                        href="{{ .RelPermalink }}"
+                        class="btn btn-sm btn-primary rounded-sm stretched-link position-static">
+                        {{ i18n `view_listing` }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ range $i, $e := $allCareerPages.GroupByParam "category" }}
+            <div
+              class="tab-pane fade"
+              id="pills-{{ .Key | sha1 }}_"
+              role="tabpanel"
+              aria-labelledby="pills-{{ .Key | sha1 }}-tab">
+              <div class="row gy-4 justify-content-center">
+                {{ range .Pages }}
+                  <div class="col-lg-10">
+                    <div
+                      class="job-card rounded-5 p-4 d-block position-relative">
+                      <div
+                        class="d-flex align-items-center flex-wrap gap-2 gap-lg-4">
+                        <div class="job-card-title">
+                          <h3 class="fs-6 fw-normal mb-0">
+                            <a href="{{ .RelPermalink }}" class="text-reset">
+                              {{ .Title | markdownify }}
+                            </a>
+                          </h3>
+                          <span class="small">{{ .Params.category }}</span>
+                        </div>
+                        <ul
+                          class="list-unstyled list-inline mb-3 mb-sm-0 me-auto">
+                          <li class="list-inline-item me-3">
+                            <i
+                              class="fa-regular fa-clock text-primary fs-6"></i>
+                            <span class="ms-1 fs-6">
+                              {{ .Params.job_nature | markdownify }}
+                            </span>
+                          </li>
+                          <li class="list-inline-item">
+                            <i
+                              class="fas fa-location-dot text-tertiary fs-6"></i>
+                            <span class="ms-1 fs-6">
+                              {{ .Params.location | markdownify }}
+                            </span>
+                          </li>
+                        </ul>
+                        <a
+                          href="{{ .RelPermalink }}"
+                          class="btn btn-sm btn-primary rounded-sm stretched-link position-static">
+                          {{ i18n `view_listing` }}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+  <!-- end open position -->
+
+  <!-- how it testimonials -->
+  {{ partial "components/testimonial" . }}
+  <!-- end testimonials -->
+
+{{ end }}

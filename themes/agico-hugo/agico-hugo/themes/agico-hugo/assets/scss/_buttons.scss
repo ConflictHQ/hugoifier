@@ -1,0 +1,173 @@
+.btn {
+  font-size: 16px;
+  font-family: $font-primary;
+  text-transform: capitalize;
+  padding: 14px 45px;
+  border-radius: 45px;
+  font-weight: 500;
+  border: 2px solid;
+  position: relative;
+  z-index: 1;
+  transition: .3s ease-in;
+  overflow: hidden;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    box-shadow: none !important;
+  }
+
+  &:active {
+    box-shadow: none;
+    background: none;
+  }
+
+  img,
+  svg,
+  i {
+    margin-right: 10px;
+    font-size: 30px;
+    vertical-align: middle;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.btn-lg {
+  padding: 20px 40px;
+}
+
+.btn-sm {
+  padding: 5px 20px;
+}
+
+.btn-primary {
+  border: 0;
+  color: $white;
+  background-color: transparent !important;
+
+  &:not(&[type="submit"]) {
+    border: 2px solid $color-secondary !important;
+
+    &:hover {
+      border: 2px solid $color-secondary !important;
+
+      &:after {
+        left: 102%;
+      }
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 102%;
+    height: 100%;
+    background: $btn-gradient-primary;
+    z-index: -1;
+    transition: ease 0.3s;
+  }
+
+  &.btn-dark {
+    &:hover {
+      color: $color-secondary !important;
+    }
+  }
+}
+
+.btn-outline-primary {
+  color: $color-secondary;
+  border: 2px solid $color-secondary !important;
+
+  &:hover {
+    color: $white !important;
+    background: none !important;
+    border: 2px solid $color-secondary;
+
+    i {
+      color: $white !important;
+    }
+
+    &:after {
+      left: 0;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -102%;
+    width: 102%;
+    height: 100%;
+    background: $btn-gradient-primary;
+    z-index: -1;
+    transition: ease 0.3s;
+  }
+}
+
+.btn-white {
+  background: $white !important;
+  color: $color-primary !important;
+  border: 1px solid $white !important;
+
+  &:hover {
+    color: $white !important;
+
+    i {
+      color: $white !important;
+    }
+
+    &:after {
+      left: 0;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -102%;
+    width: 102%;
+    height: 100%;
+    background: $color-primary !important;
+    z-index: -1;
+    transition: ease 0.3s;
+  }
+}
+
+.btn-outline-white {
+  color: $white !important;
+  border: 1px solid $white !important;
+
+  &:hover {
+    color: $color-primary !important;
+    background: none !important;
+    border: 2px solid $color-secondary;
+
+    i {
+      color: $color-primary !important;
+    }
+
+    &:after {
+      left: 0;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -102%;
+    width: 102%;
+    height: 100%;
+    background: $white;
+    z-index: -1;
+    transition: ease 0.3s;
+  }
+}

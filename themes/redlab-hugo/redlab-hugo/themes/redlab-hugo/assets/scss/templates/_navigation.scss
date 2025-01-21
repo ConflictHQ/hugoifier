@@ -1,0 +1,176 @@
+.navigation {
+  transition: .3s ease;
+  &.fixed-top{
+    @include desktop {
+      position: sticky !important;
+    }
+  }
+  @include desktop {
+    background: $secondary-color;
+  }
+}
+
+.nav-bg {
+  background-color: $secondary-color;
+  box-shadow: 0px 10px 20px 0px rgba(0, 141, 236, 0.10);
+
+  .navbar {
+    padding: 10px 0;
+  }
+}
+
+.navbar{
+  padding: 25px 0;
+  transition: .3s ease;
+  
+  .dropdown {
+    &:hover {
+      .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+
+    &-menu {
+      box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
+      padding: 15px;
+      border: 0;
+      top: 50px;
+      left: -10px;
+      border-radius: 0;
+      display: block;
+      visibility: hidden;
+      transition: .3s ease;
+      opacity: 0;
+      transform: scale(.95);
+      background: $secondary-color;
+
+      @include desktop {
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transform-origin: unset;
+      }
+
+      &.show {
+        visibility: hidden;
+
+        @include desktop {
+          visibility: visible;
+          display: block;
+        }
+      }
+    }
+
+    &-item {
+      position: relative;
+      color: $white;
+      transition: .2s ease;
+      padding: 10px;
+
+      @include desktop {
+        text-align: center;
+      }
+
+      &:hover {
+        color: $white;
+        background: $primary-color;
+        padding-left: 15px;
+      }
+    }
+  }
+}
+
+.nav-item{
+  margin: 0;
+  position: relative;
+  &::before{
+    position: absolute;
+    content: "";
+    left: 10%;
+    bottom: 10px;
+    height: 2px;
+    width: 80%;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .3s ease;
+    background: $primary-color;
+    @include desktop {
+      display: none;
+    }
+  }
+  &.active,&:hover{
+    &::before{
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  .nav-link{
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 15px;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: $white;
+  &:hover{
+    color: $white;
+  }
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 20px;
+}
+
+
+/* search */
+.search-btn {
+  border: 0;
+  background: transparent;
+  color: $white;
+}
+
+.search-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: 2;
+  visibility: hidden;
+  transition: .2s ease;
+  opacity: 0;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.search-box {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: $white;
+  font-size: 20px;
+  padding: 0;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.search-close {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  page-break-after: 10px;
+  font-size: 20px;
+}

@@ -1,0 +1,151 @@
+// Header Default Style
+.announcement {
+  @apply relative z-30 bg-black py-2 text-white;
+
+  a {
+    @apply underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      @apply no-underline;
+    }
+  }
+
+  * {
+    font-size: 15px !important;
+
+    @media screen and (max-width: 575px) {
+      font-size: 14px !important;
+    }
+  }
+}
+
+.header {
+  @apply relative;
+
+  a:not(.btn),
+  .nav-link,
+  .nav-dropdown-link {
+    @apply text-[15px] xl:text-[18px];
+  }
+
+  &.sticky-header {
+    @apply sticky top-[-1px] transition-colors duration-200;
+  }
+
+  &.header-fixed-top {
+    @apply z-[999];
+    box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.03);
+    background-color: white !important;
+
+    .line-bg {
+      display: none;
+    }
+    .navbar {
+      @apply py-3;
+    }
+    .navbar-wrapper {
+      @apply rounded-t-none;
+    }
+  }
+}
+
+.navbar {
+  @apply flex flex-wrap items-center justify-center py-4 transition-[padding] duration-200 lg:py-6;
+}
+
+.navbar-wrapper {
+  @apply absolute left-0 top-[100%] ml-auto flex h-0 w-full flex-1 flex-col-reverse overflow-hidden bg-white p-0 opacity-0 transition-opacity duration-300 lg:visible lg:static lg:h-auto lg:w-auto lg:flex-row lg:overflow-visible lg:bg-transparent lg:p-0 lg:opacity-100 lg:drop-shadow-none;
+}
+
+// Navbar Toggler
+.navbar-toggler {
+  @apply border-dark rounded-md border-2 border-opacity-75 p-1 lg:hidden;
+}
+
+.navbar-brand {
+  img {
+    @apply max-h-full w-[130px] max-w-full xl:w-[158px];
+  }
+}
+
+.navbar-nav {
+  @apply order-3 mx-auto flex w-full flex-col items-center text-center md:text-left lg:order-2 lg:ml-auto lg:mr-0 lg:w-auto lg:flex-row lg:bg-transparent;
+}
+
+.nav-item {
+  @apply nav-dropdown relative text-center lg:text-left;
+
+  &:first-child .nav-link {
+    @apply lg:pl-0;
+  }
+}
+
+.nav-link {
+  @apply text-dark block px-4 py-2 text-center font-normal transition hover:text-black lg:py-4 xl:px-6;
+
+  .arrow-icon {
+    @apply relative -z-10 text-[12px];
+  }
+}
+
+// Dropdown
+.nav-dropdown {
+  @apply z-10 mr-0;
+
+  .nav-link {
+    @apply cursor-pointer select-none;
+
+    .arrow-icon {
+      @apply ml-[6px] transition-transform duration-300;
+    }
+  }
+}
+
+.nav-dropdown-list {
+  @apply z-10 m-auto hidden w-[250px] rounded-lg bg-white p-3 lg:invisible lg:absolute lg:m-0 lg:block lg:opacity-0;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nav-dropdown-item {
+  @apply hover:bg-primary/5 hover:text-dark rounded-md transition duration-200 hover:bg-opacity-20;
+}
+
+.nav-dropdown-link {
+  @apply text-dark block w-full px-4 py-1 font-normal transition lg:py-2;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-wrapper.active {
+    @apply h-auto rounded-xl p-3 opacity-100;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.07);
+
+    max-height: calc(100vh - 250%);
+    overflow: auto;
+  }
+
+  .nav-dropdown.active {
+    & > .nav-link .arrow-icon {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown-list {
+      @apply block;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nav-dropdown:hover .nav-link .arrow-icon {
+    @apply rotate-180 transform;
+  }
+}
+
+// Language Switcher
+.language-switcher {
+  @apply relative ml-auto mt-0 hidden cursor-pointer border-none bg-transparent pl-6 pr-12 text-base font-medium lg:mx-0 lg:block;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23222' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-size: 22px;
+  background-position: 45px;
+}

@@ -1,0 +1,46 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ with $data.faq.faq }}
+<section class="section faq">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <div class="heading">
+          <span class="stroke-text">{{ .title_outline }}</span>
+          <h3 class="mb-4 h2 mt-2">{{ .title | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {{ $.Scratch.Set "counter" 0 }}
+        {{ range .faq_item }}
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+        <div class="mb-4">
+          <h4 class="mb-3 border-bottom pb-3">{{$.Scratch.Get `counter`}}. {{ .title | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+        {{ end }}
+      </div>
+      {{ if .support.enable }}
+      {{ with .support }}
+      <div class="col-lg-8">
+        <div class="info">
+          <h4 class="mt-5 mb-4">{{ .title | markdownify }}</h4>
+          {{ with .button }}
+          <a href="{{ .link | absLangURL }}" class="btn btn-hero btn-rounded">{{ .label }}</a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

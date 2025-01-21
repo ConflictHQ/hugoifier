@@ -1,0 +1,40 @@
+################################### English language #####################################
+[en]
+languageName = "EN"
+languageCode = "en-US"
+contentDir = "content/english"
+weight = 1
+[en.params]
+########### footer content ##########
+footer_menu_left = "Company"
+footer_menu_middle = "Products"
+footer_menu_right = "Support"
+footer_content = "Lorem ipsum dolor sit amet, consectetur elit consjat tristique eget amet."
+
+
+################################### Deutsch language #####################################
+[de]
+languageName = "DE"
+languageCode = "de-DE"
+contentDir = "content/deutsch"
+weight = 2
+[de.params]
+########### footer content ##########
+footer_menu_left = "Firma"
+footer_menu_middle = "Produkte"
+footer_menu_right = "Support"
+footer_content = "Lorem ipsum dolor sit amet, consectetur elit consjat tristique eget amet."
+
+
+################################### Chinese language #####################################
+[zh-cn]
+languageName = "CN"
+languageCode = "zh-CN"
+contentDir = "content/chinese"
+weight = 3
+[zh-cn.params]
+########### footer content ##########
+footer_menu_left = "公司"
+footer_menu_middle = "产品"
+footer_menu_right = "支持"
+footer_content = "痛苦本身就是爱"

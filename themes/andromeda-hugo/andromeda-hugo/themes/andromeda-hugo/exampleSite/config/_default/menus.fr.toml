@@ -1,0 +1,120 @@
+############# French navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+name = "About"
+url = "about/"
+weight = 4
+
+[[main]]
+name = "How It Works"
+url = "how-it-works/"
+weight = 5
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 7
+
+[[main]]
+weight = 9
+name = "Pages"
+hasChildren = true
+
+  [[main]]
+  parent = "Pages"
+  name = "Career"
+  url = "career/"
+  weight = 1
+
+  [[main]]
+  parent = "Pages"
+  name = "Pricing"
+  url = "pricing/"
+  weight = 2
+
+  [[main]]
+  parent = "Pages"
+  name = "Blog Details"
+  url = "blog/post-1/"
+  weight = 3
+
+  [[main]]
+  parent = "Pages"
+  name = "Author Single"
+  url = "author/abdullah-al-shifat/"
+  weight = 4
+
+  [[main]]
+  parent = "Pages"
+  name = "Job Details"
+  url = "career/job-post-1/"
+  weight = 5
+
+  [[main]]
+  parent = "Pages"
+  name = "Case Studies"
+  url = "case-studies/"
+  weight = 6
+
+  [[main]]
+  parent = "Pages"
+  name = "Case Studies Details"
+  url = "case-studies/case-1/"
+  weight = 7
+
+  [[main]]
+  parent = "Pages"
+  name = "Terms & Conditions"
+  url = "terms-and-conditions/"
+  weight = 8
+
+  [[main]]
+  parent = "Pages"
+  name = "Changelog"
+  url = "changelog/"
+  weight = 9
+
+  [[main]]
+  parent = "Pages"
+  name = "Sign In"
+  url = "signin/"
+  weight = 10
+
+  [[main]]
+  parent = "Pages"
+  name = "Elements"
+  url = "elements/"
+  weight = 11
+  
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 15
+
+
+# footer menu
+[[footer]]
+name = "About"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "How It Works"
+url = "how-it-works/"
+weight = 2
+
+[[footer]]
+name = "Terms & Conditions"
+url = "terms-and-conditions/"
+weight = 3
+
+[[footer]]
+name = "Changelog"
+url = "changelog/"
+weight = 4

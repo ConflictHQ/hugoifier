@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-12">
+    <nav class="mt-4">
+      {{"<!-- pagination -->" | safeHTML }}
+      {{ $paginator := .Paginator }}
+      <!-- Number of links either side of the current page. -->
+      {{ $adjacent_links := 2 }}
+      <!-- $max_links = ($adjacent_links * 2) + 1 -->
+      {{ $max_links := (add (mul $adjacent_links 2) 1) }}
+      <!-- $lower_limit = $adjacent_links + 1 -->
+      {{ $lower_limit := (add $adjacent_links 1) }}
+      <!-- $upper_limit = $paginator.TotalPages - $adjacent_links -->
+      {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+      <!-- If there's more than one page. -->
+      {{ if gt $paginator.TotalPages 1 }}
+      <nav class="mb-md-50">
+        <ul class="pagination justify-content-center">
+          <!-- Previous page. -->
+          {{ if $paginator.HasPrev }}
+          <li class="page-item"><a class="page-link" href="{{ $paginator.Prev.URL }}" aria-label="Pagination Arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </a></li>
+          {{ end }}
+          <!-- Page numbers. -->
+          {{ range $paginator.Pagers }}
+          {{ $.Scratch.Set "page_number_flag" false }}
+          <!-- Advanced page numbers. -->
+          {{ if gt $paginator.TotalPages $max_links }}
+          <!-- Lower limit pages. -->
+          <!-- If the user is on a page which is in the lower limit.  -->
+          {{ if le $paginator.PageNumber $lower_limit }}
+          <!-- If the current loop page is less than max_links. -->
+          {{ if le .PageNumber $max_links }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+          {{ end }}
+          <!-- Upper limit pages. -->
+          <!-- If the user is on a page which is in the upper limit. -->
+          {{ else if ge $paginator.PageNumber $upper_limit }}
+          <!-- If the current loop page is greater than total pages minus $max_links -->
+          {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+          {{ end }}
+          <!-- Middle pages. -->
+          {{ else }}
+          {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+          {{ end }}
+          {{ end }}
+          <!-- Simple page numbers. -->
+          {{ else }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+          {{ end }}
+          <!-- Output page numbers. -->
+          {{ if eq ($.Scratch.Get "page_number_flag") true }}
+          <li class="page-item{{ if eq . $paginator }} active {{ end }}">
+            <a href="{{ .URL }}" class="page-link">
+              {{ .PageNumber }}
+            </a>
+          </li>
+          {{ end }}
+          {{ end }}
+          <!-- Next page. -->
+          {{ if $paginator.HasNext }}
+          <li class="page-item"><a class="page-link" href="{{ $paginator.Next.URL }}" aria-label="Pagination Arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      {{ end }}
+    </nav>
+  </div>
+</div>

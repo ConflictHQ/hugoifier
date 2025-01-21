@@ -1,0 +1,72 @@
+/* Button style */
+.btn {
+  font-size: 16px;
+  font-family: $font-primary;
+  text-transform: capitalize;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: 1px solid;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 0;
+    text-decoration: none;
+    opacity: 0.9;
+    box-shadow: none !important;
+  }
+}
+
+.btn-sm{
+  font-size: 15px;
+  padding: 6px 10px;
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: $white;
+  border-color: $color-primary;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: $color-primary !important;
+    border-color: $color-primary !important;
+  }
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: $color-primary;
+  border-color: $color-primary;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: $color-primary !important;
+    border-color: $color-primary !important;
+    color: $white;
+  }
+}
+
+
+.btn-transparent {
+  background: transparent;
+  color: $color-primary;
+  border: 0;
+  border-bottom: 1px solid $color-primary;
+  border-radius: 0;
+  padding: 2px;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &.active {
+    background: transparent; 
+  }
+}

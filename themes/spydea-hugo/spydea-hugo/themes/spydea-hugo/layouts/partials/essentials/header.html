@@ -1,0 +1,172 @@
+{{ partial "components/bg-lines.html" (dict "Class" "line-bg fixed left-0 top-1/2 z-10 flex h-screen w-full -translate-y-1/2 justify-between") }}
+<!-- End background lines -->
+
+{{ with site.Params.announcement }}
+  {{ if .enable }}
+    <div class="announcement">
+      <div class="container-fluid">
+        <div class="relative flex items-center justify-between sm:text-center">
+          <span class="mx-auto pr-10">
+            {{ .content | markdownify }}
+          </span>
+          <button
+            class="close-btn flex h-[20px] min-w-[20px] items-center justify-center rounded-full border-2 border-white text-white opacity-80"
+            aria-label="close toast button"
+            type="button">
+            <i class="fa-solid fa-xmark !text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}
+<!-- End Announcement  -->
+
+{{/* Check if navbar fixed enabled or not in params.toml file */}}
+{{ $stickyHeader := "" }}
+{{ if site.Params.navbar_fixed }}
+  {{ $stickyHeader = "sticky-header" }}
+{{ end }}
+
+
+<header
+  class="header {{ $stickyHeader }} {{ if (or (eq .Page.Kind `404`) (and (eq .Page.Kind `page`) (eq .Type `authors`))) }}
+    bg-transparent
+  {{ else }}
+    bg-quaternary/20
+  {{ end }} z-50">
+  <nav class="navbar container relative z-30">
+    <a href="{{ site.BaseURL | relLangURL }}" class="navbar-brand mr-auto">
+      {{ partial "logo.html" }}
+    </a>
+    <!-- End logo -->
+    {{ partial "components/language-switcher" (dict "Context" . "Class" "block border-0 bg-right px-6 pl-0 mr-4 text-base lg:hidden") }}
+    <!-- End Language Switcher -->
+
+    <button class="navbar-toggler group relative" aria-label="navbar toggler">
+      <div
+        class="relative flex h-[30px] w-[30px] transform items-center justify-center overflow-hidden rounded-full ring-0 transition-all duration-200">
+        <div
+          class="flex h-[15px] w-[18px] origin-center transform flex-col justify-between overflow-hidden transition-all duration-300 group-[.active]:h-[21px]">
+          <div
+            class="bg-dark h-[2px] w-7 origin-left transform transition-all duration-300 group-[.active]:translate-x-10"></div>
+          <div
+            class="bg-dark h-[2px] w-7 transform rounded transition-all delay-75 duration-300 group-[.active]:translate-x-10"></div>
+          <div
+            class="bg-dark h-[2px] w-7 origin-left transform transition-all delay-150 duration-300 group-[.active]:translate-x-10"></div>
+          <div
+            class="absolute top-2.5 flex w-0 -translate-x-10 transform items-center justify-between transition-all duration-500 group-[.active]:w-12 group-[.active]:translate-x-0">
+            <div
+              class="bg-dark absolute h-[2px] w-5 rotate-0 transform transition-all delay-300 duration-500 group-[.active]:rotate-45"></div>
+            <div
+              class="bg-dark absolute h-[2px] w-5 -rotate-0 transform transition-all delay-300 duration-500 group-[.active]:-rotate-45"></div>
+          </div>
+        </div>
+      </div>
+    </button>
+    <!-- End Navbar Toggler -->
+
+    <div class="navbar-wrapper">
+      <ul class="navbar-nav">
+        {{ $currentPage := . }}
+        {{ range site.Menus.main }}
+          {{ $menuURL := .URL | absLangURL }}
+          {{ $pageURL := $currentPage.Permalink | absLangURL }}
+          {{ $active := eq $menuURL $pageURL }}
+
+          {{ if .HasChildren }}
+            <li class="nav-item nav-dropdown group">
+              <span
+                class="nav-link 
+                {{ range .Children }}
+                  {{ $childURL := .URL | absLangURL }}
+                  {{ $active := eq $childURL $pageURL }}
+                  {{ if $active }}active{{ end }}
+                {{ end }} inline-flex items-center">
+                {{ .Name }}
+                <i class="fa-solid fa-chevron-down arrow-icon"></i>
+              </span>
+              <ul
+                class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100">
+                {{ range .Children }}
+                  {{ $childURL := .URL | absLangURL }}
+                  {{ $active := eq $childURL $pageURL }}
+
+
+                  <li class="nav-dropdown-item">
+                    <a
+                      {{ if findRE `^http` .URL }}
+                        target="_blank" rel="noopener"
+                      {{ end }}
+                      href="{{ if findRE `^#` .URL }}
+                        {{ if not $.IsHome }}
+                          {{ site.BaseURL | relLangURL }}
+                        {{ end }}{{ .URL }}
+                      {{ else }}
+                        {{ .URL | relLangURL }}
+                      {{ end }}"
+                      class="nav-dropdown-link {{ if $active }}active{{ end }}">
+                      {{ .Name }}
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            </li>
+          {{ else }}
+            <li class="nav-item">
+              <a
+                {{ if findRE `^http` .URL }}
+                  target="_blank" rel="noopener"
+                {{ end }}
+                href="{{ if findRE `^#` .URL }}
+                  {{ if not $.IsHome }}
+                    {{ site.BaseURL | relLangURL }}
+                  {{ end }}{{ .URL }}
+                {{ else }}
+                  {{ .URL | relLangURL }}
+                {{ end }}"
+                class="nav-link {{ if $active }}active{{ end }}"
+                >{{ .Name }}</a
+              >
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+      <!-- End Navbar Nav -->
+
+      <div
+        class="order-2 mx-auto mb-[0.75rem] flex flex-col items-center lg:mx-0 lg:mb-0 lg:flex-row">
+        {{ partial "components/language-switcher" (dict "Context" . "Class" "hidden lg:block") }}
+        <!-- End Language Switcher -->
+        <div
+          class="flex flex-col justify-center gap-5 pt-4 text-center lg:flex-row lg:gap-7 lg:pt-0 lg:text-left">
+          {{ with site.Params.navigation_button }}
+            {{ if .enable }}
+              <a
+                href="{{ .link | relLangURL }}"
+                class="btn btn-outline-primary w-[200px] min-[340px]:w-[300px] lg:w-auto">
+                {{ .label | markdownify }}
+              </a>
+            {{ end }}
+          {{ end }}
+          {{ with site.Params.navigation_button_outline }}
+            {{ if .enable }}
+              <a
+                href="{{ .link | relLangURL }}"
+                class="btn btn-primary w-[200px] min-[340px]:w-[300px] lg:w-auto">
+                {{ .label | markdownify }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <!-- End Navbar Wrapper -->
+  </nav>
+  <!-- End Main Header  -->
+
+  {{ if not (or (eq .Page.Kind `404`) (and (eq .Page.Kind `page`) (eq .Type `authors`))) }}
+    {{ partial "components/bg-lines.html" (dict "Color" "bg-line-yellow" "Class" "line-bg absolute z-20") }}
+  {{ end }}
+</header>
+<!-- End Header -->

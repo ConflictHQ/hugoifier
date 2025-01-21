@@ -1,0 +1,19 @@
+<!-- clients -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="client-logo-slider d-flex align-items-center">
+          {{ range .Site.Data.project.clientsLogo.slider }}
+          {{ if and ( ne .link "" ) ( ne .link "#" ) }}
+          <a href="{{ .link | safeURL }}" class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid" src="{{ .logo | absURL }}" alt="client-logo"></a>
+          {{ else }}
+          <span class="text-center d-block outline-0 p-4"><img class="d-unset img-fluid" src="{{ .logo | absURL }}" alt="client-logo"></span>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /clients -->

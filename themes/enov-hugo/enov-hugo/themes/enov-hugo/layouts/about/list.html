@@ -1,0 +1,110 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+<!-- about -->
+{{ if $data.about.about.enable }}
+{{ with $data.about.about }}
+<section class="section about-2 position-relative">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-10 text-center">
+        <h1>{{ .title | markdownify }}</h1>
+        <p class="mb-5 lead mt-4 font-weight-normal">{{ .content | markdownify }}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      {{ range $index, $element:= .about_item }}
+      {{ $delay:= mul $index 200 }}
+      <div class="col-lg-4 mb-4 mb-lg-0 col-md-6" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+        <img src="{{ .image | absURL }}" alt="{{ .title | markdownify }}" class="img-fluid rounded">
+        <div class="about-info-item mt-4">
+          <h3 class="mb-3">{{ .title | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /about -->
+
+<!-- section Counter Start -->
+{{ if $data.about.funfacts.enable }}
+{{ with $data.homepage.funfacts }}
+<section class="counter bg-counter" style="background-image: url('{{ .bg_image | absURL }}');">
+  <div class="container">
+    <div class="row">
+      {{ range $index, $element := .funfact_item }}
+      {{ $delay := mul $index 100 }}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="counter-item mb-5 mb-lg-0 " data-aos="fade-up" data-aos-delay="{{ $delay }}">
+          <i class="{{ .icon }} text-white text-md float-left"></i>
+          <div class="pl-5 ml-2">
+            <h3 class="mt-2 mb-0 text-white"><span class="counter-stat" data-count="{{ .count }}">0</span> {{ .unit }}</h3>
+            <p class="text-white-50 mb-0">{{ .title }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- section Counter End  -->
+
+<!-- team -->
+{{ if $data.about.team.enable }}
+{{ partial "team.html" . }}
+{{ end }}
+
+<!-- Section Testimonial Start -->
+{{ if $data.about.testimonial.enable }}
+{{ with $data.about.testimonial }}
+<section class="testimonial section bg-gray bg-4 bg-cover" style="background-image: url('{{ .bg_image | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="testimonial-wrap text-center">
+          {{ range .testimonial_item }}
+          <div class="testimonial-item position-relative">
+            <i class="ti-quote-left text-color text-lg"></i>
+            <p class="mt-4">{{ .content | markdownify }}</p>
+            <div class="testimonial-author">
+              <h5 class="mb-0 text-capitalize">{{ .name }}</h5>
+              <p>{{ .designation | markdownify }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Section Testimonial End -->
+
+<!-- clients -->
+{{ if $data.about.clients_logo.enable }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      {{ range .Site.Params.clients_logo }}
+      <div class="col-lg-3 col-md-4 col-sm-4">
+        <img src="{{ .logo | absURL }}" alt="logo" class="img-fluid w-100">
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /clients -->
+
+{{ end }}

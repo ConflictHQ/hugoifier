@@ -1,0 +1,41 @@
+- id: read_more
+  translation: Read More
+  
+- id: about_me
+  translation: About Me
+
+- id: featured_post
+  translation: Featured Posts
+
+- id: subscribe_blog
+  translation: Subscribe Blog
+
+- id: subscribe_content
+  translation: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+- id: subscribe
+  translation: Subscribe Now
+
+- id: search_placeholder
+  translation: Type & Hit Enter...
+
+- id: first_name
+  translation: First Name
+
+- id: last_name
+  translation: Last Name
+
+- id: email
+  translation: Email Address
+
+- id: subject
+  translation: Subject
+
+- id: message
+  translation: Message
+
+- id: send
+  translation: send message
+
+- id: know_more
+  translation: know more

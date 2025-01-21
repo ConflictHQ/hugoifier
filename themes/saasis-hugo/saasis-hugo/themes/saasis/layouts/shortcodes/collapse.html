@@ -1,0 +1,12 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="collapse-wrapper">
+  <a class="d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#{{ .Get 0 | urlize }}" role="button">
+    <div class="me-2">{{ .Get 0 | markdownify }}</div> <i class="fas fa-plus"></i>
+  </a>
+  <div class="collapse" id="{{ .Get 0 | urlize }}">
+    <div class="block">
+      {{ .Inner | markdownify }}
+    </div>
+  </div>
+</div>

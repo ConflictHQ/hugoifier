@@ -1,0 +1,155 @@
+{{ define "main" }}
+
+<!-- banner -->
+{{ if .Site.Data.homepage.banner.enable }}
+{{ with .Site.Data.homepage.banner }}
+<section class="position-relative banner">
+  <img src="{{ .bgImage | absURL }}" alt="" class="bg-image-bottom">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 text-center text-lg-left mb-5 mb-lg-0">
+        <h1 class="title">{{ .title | markdownify }}</h1>
+        <p>{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | safeURL }}" class="btn btn-primary">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-lg-4 text-center text-lg-left">
+        <img class="img-fluid" src="{{ .image | absURL }}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /banner -->
+
+<!-- clients logo -->
+{{ if .Site.Data.homepage.clientsLogo.enable }}
+{{ with .Site.Data.homepage.clientsLogo }}
+<section>
+  <div class="container">
+    <ul class="list-inline text-center">
+      {{ range .logos }}
+      <li class="list-inline-item p-3"><img class="img-fluid" src="{{ .logo | absURL }}" alt=""></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /clients logo -->
+
+<!-- service -->
+{{ if .Site.Data.homepage.service.enable }}
+{{ partial "service.html" . }}
+{{ end }}
+<!-- /service -->
+
+<!-- about -->
+{{ if .Site.Data.homepage.about.enable }}
+{{ with .Site.Data.homepage.about }}
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-2 order-lg-1 text-center text-lg-left">
+        <h2 class="title">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+        {{ if .button }}
+        {{ with .button }}
+        <a href="{{ .link | absURL }}" class="btn btn-primary">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 text-center">
+        <img class="img-fluid" src="{{ .image | absURL }}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /about -->
+
+<!-- call to action -->
+{{ if .Site.Data.homepage.cta.enable }}
+{{ with .Site.Data.homepage.cta }}
+<section class="position-relative pb-5">
+  <img src="{{ .bgImage | absURL }}" alt="" class="bg-image-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center">
+        <h3 class="title">{{ .title | markdownify }}</h3>
+        {{ if .button }}
+        {{ with .button }}
+        <a href="{{ .link | absURL }}" class="btn btn-primary">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /call to action -->
+
+<!-- about app -->
+{{ if .Site.Data.homepage.aboutApp.enable }}
+{{ partial "aboutApp.html" . }}
+{{ end }}
+<!-- /about app -->
+
+<!-- testimonial -->
+{{ if .Site.Data.homepage.testimonial.enable }}
+{{ with .Site.Data.homepage.testimonial }}
+<section class="section overflow-hidden">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto position-relative">
+        <img src="{{`images/testimonial/bg-left.png` | absURL }}" class="testimonial-bg-left" alt="">
+        <img src="{{`images/testimonial/bg-right.png` | absURL }}" class="testimonial-bg-right" alt="">
+        <img src="{{`images/testimonial/quotation.png` | absURL }}" class="quote" alt="">
+        <h2 class="title mb-5 text-center">{{ .title | markdownify }}</h2>
+        <div class="testimonial-slider">
+          {{ range .sliderItem }}
+          <!-- slider item -->
+          <div class="media d-flex">
+            <img src="{{ .image | absURL }}" alt="" class="mr-3 rounded-circle">
+            <div class="media-body">
+              <p class="lead text-dark font-weight-normal">{{ .content | markdownify }}</p>
+              <h6>{{ .name }}</h6>
+              <span>{{ .designation | markdownify }}</span>
+              <ul class="list-inline rating {{ .rating | lower}} mt-3">
+                <li class="list-inline-item mx-0"><i class="ti-star"></i></li>
+                <li class="list-inline-item mx-0"><i class="ti-star"></i></li>
+                <li class="list-inline-item mx-0"><i class="ti-star"></i></li>
+                <li class="list-inline-item mx-0"><i class="ti-star"></i></li>
+                <li class="list-inline-item mx-0"><i class="ti-star"></i></li>
+              </ul>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /testimonial -->
+
+<!-- pricing -->
+{{ if .Site.Data.homepage.pricing.enable }}
+{{ partial "pricing.html" . }}
+{{ end }}
+<!-- /pricing -->
+
+<!-- contact -->
+{{ if .Site.Data.homepage.contact.enable }}
+{{ partial "contact.html" . }}
+{{ end }}
+<!-- /contact -->
+
+{{ end }}

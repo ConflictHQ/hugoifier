@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+<section class="section" data-aos="fade">
+  <div class="container">
+    <div class="row gy-5">
+      {{ range .Params.testimonials }}
+      <div class="col-lg-4 col-md-6">
+        <div class="text-center">
+          <div class="bg-white-blur border-sm rounded-sm p-4 pb-5">
+            <p class="mb-2">{{.content}}</p>
+          </div>
+          <div class="position-relative" style="margin-top:-40px">
+            {{$img:= resources.Get (.image) }}
+            {{$img:= $img.Resize "80x webp"}}
+            <img loading="lazy" decoding="async" class="rounded-circle border-sm mx-auto" src="{{$img.RelPermalink}}" alt="testimonial-image" data-aos="cool" width="{{$img.Width}}" height="{{$img.Height}}">
+            <h3 class="h5 mt-3 mb-2">{{.name}}</h3>
+            <p class="mb-0">{{.designation}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

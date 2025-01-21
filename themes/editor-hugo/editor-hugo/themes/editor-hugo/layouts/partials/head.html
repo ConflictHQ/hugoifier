@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<title>{{ .Title }}</title>
+
+<!-- mobile responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="{{ with .Params.Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+{{ with site.Params.author }}
+<meta name="author" content="{{ . }}">{{ end }}
+
+<meta name="theme-name" content="editor-hugo" />
+
+<!--Favicon-->
+<link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+<link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+
+<!-- multilingual SEO optimizations -->
+{{ if .IsTranslated }}
+{{ range .Page.AllTranslations }}
+<link rel="alternate" title="{{.Title}}" hreflang="{{.Lang}}" href="{{.RelPermalink}}">
+{{ end }}
+{{ end }}
+
+{{ with .Params.image }}
+<meta property="og:image" content="{{ . | absURL }}" />
+{{ end }}
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/google_analytics_async.html" . }}
+{{ site.Params.custom_script | safeHTML }}

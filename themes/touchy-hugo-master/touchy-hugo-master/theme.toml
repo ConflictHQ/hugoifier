@@ -1,0 +1,13 @@
+name = "Touchy Hugo"
+license = "MIT"
+licenselink = "https://github.com/gethugothemes/touchy-hugo/blob/master/LICENSE"
+description = "A clean and minimal Hugo blog theme for single author. This theme can showcase your blog in a smooth way. This theme is also 100% mobile responsive, powered by bootstrap."
+homepage = "https://gethugothemes.com/products/touchy-hugo/"
+demosite = "https://demo.gethugothemes.com/touchy/"
+tags = ['landing-page', 'google-analytics', 'fast', 'modern', 'minimal', 'minimalistic', 'business', 'agency-template', 'themefisher', 'hugo-theme', 'hugo-templates', 'bootstrap', 'blog', 'responsive', 'portfolio', 'single-page', 'dark', 'clean', 'simple', 'company', 'creative', 'contact-form', 'custom-themes', 'mobile', 'gethugothemes']
+features = ['bootstrap','responsive']
+min_version = "0.118.0"
+
+[author]
+  name = "Gethugothemes"
+  homepage = "https://gethugothemes.com/"

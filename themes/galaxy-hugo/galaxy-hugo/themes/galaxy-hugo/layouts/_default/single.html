@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="img-fluid w-100 mb-4">
+        <h1 class="mb-4">{{ .Title | markdownify }}</h1>
+        <ul class="post-meta list-inline mb-3">
+          <li class="list-inline-item"><i class="ti-time mr-2"></i>{{ .PublishDate.Format "02 JANUARY, 2006"}}</li>
+          <li class="list-inline-item"><i class="ti-folder"></i>
+            {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+              href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a>
+            {{end}}</li>
+        </ul>
+        <div class="content">{{ .Content }}</div>
+
+        <!-- comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

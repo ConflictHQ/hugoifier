@@ -1,0 +1,20 @@
+{{ "<!-- recent post -->" | safeHTML }}
+<div class="widget">
+  <h5 class="widget-title">{{ i18n "recent_post" }}</h5>
+  {{ "<!-- post-item -->" | safeHTML }}
+  {{ range first 3 ( where site.RegularPages "Type" "in" site.Params.mainSections )}}
+  <article class="widget-card mt-4">
+    <div class="d-flex">
+      {{ with .Params.image }}
+      {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `rounded-circle circle70`) }}
+      {{ end }}
+      <div class="ms-3">
+        <h6 class="fs-6 fw-normal mb-1"><a class="post-title" href="{{.Permalink}}">{{ .Title }}</a></h6>
+        <div class="post-meta small">
+          <a href="{{ `author/` | absLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author | title }}</a> <span class="mx-1">|</span> {{ .PublishDate.Format "Jan 2, 2006" }}
+        </div>
+      </div>
+    </div>
+  </article>
+  {{ end }}
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+{{ partial "head.html" . }}
+{{ partialCached "style.html" . }}
+
+<body>
+	{{ partialCached "preloader.html" . }}
+	{{ partial "header.html" . }}
+
+  <!-- checking blog -->
+  {{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+  <div class="section pb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="mb-5">
+            <h2 class="mb-4" style="line-height:1.5">{{.Title}}</h2>
+            <span>{{.PublishDate.Format "02 January 2006"}} <span class="mx-2">/</span> </span>
+            <p class="list-inline-item">{{ i18n "category" }} :
+              {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+                href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a>
+              {{end}}</p>
+            <p class="list-inline-item">{{i18n "tags"}} : {{ range $i,$p:= .Params.Tags }}{{if ne $i 0}},{{end}}<a href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a> {{end}}
+            </p>
+          </div>
+          
+          <div class="mb-5 text-center">
+            {{ if .Params.images }}
+            <div class="post-slider rounded overflow-hidden">
+              {{ range .Params.images }}
+              {{ if fileExists (add `assets/` .) }}
+                {{ $img:= resources.Get (.) }}
+                {{ $img:= $img.Fill "420x280 webp" }}
+                <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail"  width="{{$img.Width}}" height="{{$img.Height}}">
+              {{ else }}
+                <div class="image-fallback">
+                  <img class="rounded" src="https://via.placeholder.com/300x200.jpg/eee/eee">
+                  <span>{{.Title | markdownify}}</span>
+                </div>
+              {{ end }}
+              {{ end }}
+            </div>
+            {{ else }}
+            <div class="image-fallback">
+              <img class="w-100 rounded" src="https://via.placeholder.com/300x200.jpg/eee/eee">
+              <span>{{.Title | markdownify}}</span>
+            </div>
+            {{ end }}
+          </div>
+        
+          <div class="content">
+            {{.Content}}
+          </div>
+
+          <!-- comments -->
+          {{ if .Site.DisqusShortname }}
+          <div class="mt-5">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- regular page -->
+  {{ else }}
+	{{ partial "page-header.html" . }}
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="content">
+            {{.Content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /regular page -->
+
+	{{ partial "footer.html" . }}
+	{{ partialCached "script.html" . }}
+</body>
+
+</html>

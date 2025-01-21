@@ -1,0 +1,41 @@
+{{ with .Params.mission }}
+{{ "<!-- mission -->" | safeHTML }}
+<section class="mission section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="section-title-sm h5">{{ .subtitle | markdownify }}</span>
+        <h2 class="section-title section-title-border-half">{{ .title | markdownify }}</h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="mb-40">{{ .content | markdownify }}</p>
+        {{ "<!-- accordion -->" | safeHTML }}
+        <div id="accordion" class="mb-md-50">
+          {{ range $index, $element := .accordion }}
+          <div class="card border-0 mb-4">
+            <div class="card-header bg-gray border p-0">
+              <a class="card-link h5 d-block text-dark mb-0 py-10 px-4" data-bs-toggle="collapse" {{if eq $index
+                0}}aria-expanded="true" {{end}}href="#collapse{{ add $index 1 }}">
+                <i class="ti-minus ti-plus text-primary me-2"></i>
+                <i class="ti-plus text-primary me-2"></i> {{ .title }}
+              </a>
+            </div>
+            <div id="collapse{{ add $index 1 }}" class="collapse {{if eq $index 0}}show{{ end }}"
+              data-bs-parent="#accordion">
+              <div class="card-body font-secondary text-color ps-0 pb-0">
+                {{ .description | markdownify }}
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ "<!-- chart -->" | safeHTML }}
+      <div class="col-lg-6 align-self-end">
+        {{ partial "image.html" (dict "Src" .image "Alt" "chart" "Class" `w-100`) }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /mission -->" | safeHTML }}
+{{ end }}

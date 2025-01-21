@@ -1,0 +1,19 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="col-md-6">
+  <!-- Collapse -->
+  <div class="card">
+    <!-- Collapse Header -->
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" href="#{{ .Get 0 | anchorize }}">
+          <span class="fa fa-plus-circle"></span>{{ .Get 0 | markdownify }}
+        </a>
+      </h5>
+    </div>
+    <!-- Collapse Body -->
+    <div id="{{ .Get 0 | anchorize }}" class="collapse" data-parent="#accordion">
+      <div class="card-body">{{ .Inner | markdownify }}</div>
+    </div>
+  </div>
+</div>

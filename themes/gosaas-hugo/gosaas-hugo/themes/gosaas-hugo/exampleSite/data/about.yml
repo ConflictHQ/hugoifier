@@ -1,0 +1,19 @@
+################################## About ##############################
+about:
+  enable : true
+  aboutItem:
+    # about item loop
+    - title : "What We can **do for you**?"
+      image : "images/illustrations/about-img.png"
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur sadipscing elitr ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
+      
+    # about item loop
+    - title : "What is our **Mission**?"
+      image : "images/illustrations/about-img-2.png"
+      content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur sadipscing elitr ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
+
+
+################################ Service ##################################
+service:
+  enable : true
+  # service data comes from 'data/service.yml'

@@ -1,0 +1,33 @@
+################################## Pricing ################################
+pricing:
+  enable : true
+  title : "Choose The **Best Plan** For <br> Your Business"
+  pricingTable :
+    # pricing table loop
+    - name : "Starter Plan"
+      price : "$29"
+      content : "**1 year** of support and updates for **1 website**"
+      button:
+        label : "Buy now"
+        link : "#"
+        
+    # pricing table loop
+    - name : "Advance Plan"
+      price : "$49"
+      content : "**1 year** of support and updates for **1 website**"
+      button:
+        label : "Buy now"
+        link : "#"
+        
+    # pricing table loop
+    - name : "Pro Plan"
+      price : "$69"
+      content : "**1 year** of support and updates for **1 website**"
+      button:
+        label : "Buy now"
+        link : "#"
+
+################################## About App ##############################
+aboutApp:
+  enable : true
+  # about app data coming from 'data/homepage.yml'

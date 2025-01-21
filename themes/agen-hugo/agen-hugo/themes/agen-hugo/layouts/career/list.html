@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      {{ range .Data.Pages }}
+      <div class="col-12 bg-white p-4 mb-3">
+        <div class="media align-items-center flex-column flex-sm-row">
+          <div class="media-body text-center text-sm-left mb-4 mb-sm-0">
+            <h4 class="text-secondary">{{ .Title }}</h4>
+            <p class="mb-0">{{ .Params.Company | markdownify }}</p>
+          </div>
+          <a href="{{ .Permalink }}" class="btn btn-outline-primary">Apply Now</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

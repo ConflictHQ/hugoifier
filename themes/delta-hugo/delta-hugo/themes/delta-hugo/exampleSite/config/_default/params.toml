@@ -1,0 +1,134 @@
+#################### default parameters ################################
+# favicon
+favicon = "images/favicon.png"
+# logo
+logo = "images/logo.png"
+logo_dark = "images/logo-light.png"
+# use `x` with logo_width, example: "100x"
+# Note: logo_width is not work with .svg file
+logo_width = "147x"
+# logo text will only show when logo is missing.
+logo_text = "delta"
+# purgeCSS
+purge_css = false
+# content-gallery
+content_gallery = true
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>" 
+custom_script= "" 
+
+# Main Sections
+mainSections= ["blog"]
+
+# copyright
+theme_copyright = true
+
+# career form action
+career_form_action = "#!" # career form works with https://formspree.io or any formspree-alternatives
+
+# OpenGraph / Twitter Card metadata
+description = "This is meta description"
+author = "Themefisher"
+image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
+
+# Preloader
+[preloader]
+enable = true
+preloader = "images/logo.png" # use jpg, png, svg or gif format.
+
+# contact info
+[contact_info]
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "info@email.com"
+# contact form action
+contact_form_action = "#!" # contact form works with https://formspree.io or any formspree-alternatives
+
+# Navigation buttons
+[navigation_button]
+enable = true
+label = "Log In"
+link = "#!"
+icon = "far fa-user"
+
+[navigation_button_two]
+enable = true
+label = "Sign Up Now"
+link = "#!"
+
+# Call to action
+[call_to_action]
+enable = true
+title = "Delta help us to organize our <br> remote design sprint."
+subtitle = "Pellentesque in ipsum id orci porta dapibus.porttitor lectus nibh. <br> Praesent sapien massa, convallis a pellentesque nec nisi."
+button_label = "Contact Us"
+button_link = "contact/"
+image = "images/cta.png"
+
+
+# seo meta data for OpenGraph / Twitter Card
+[metadata]
+keywords = [ "Hugo", "Themefisher", "GetHugoThemes"]
+description = "This is meta description"
+author = "Themefisher"
+image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
+
+# matomo tracking: see https://matomo.org/
+[matomo]
+enable = false
+url = "" # your matomo url
+id = "" # your matomo id
+
+# baidu analytics: see https://tongji.baidu.com/
+[baidu]
+enable = false
+analytics_id = "" # Your ID
+
+# plausible analytics: see https://plausible.io/
+[plausible]
+enable = false
+domain = "" # yourdomain.com
+
+# counter analytics: see https://counter.dev/setup.html
+[counter]
+enable = false
+username = "" # your username
+
+# site verifications
+[site_verification]
+google = "" # Your verification code
+bing = "" # Your verification code
+baidu = "" # Your verification code
+facebook = "" # Your verification code
+
+# cookies
+[cookies]
+enable = false
+expire_days = 2
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"
+
+############################# social site ########################
+[[social]]
+title = "facebook"
+icon = "fab fa-facebook" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#!"
+
+[[social]]
+title = "twitter"
+icon = "fab fa-twitter" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#!"
+
+[[social]]
+title = "instagram"
+icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#!"
+
+[[social]]
+title = "github"
+icon = "fab fa-github" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#!"
+
+[[social]]
+title = "linkedin"
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#!"

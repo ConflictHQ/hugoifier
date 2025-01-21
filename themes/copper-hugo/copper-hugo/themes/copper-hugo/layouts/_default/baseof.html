@@ -1,0 +1,30 @@
+<!-- 
+PROJECT: Copper Hugo
+VERSION: 2.0.0
+AUTHOR: Gethugothemes
+AUTHOR WEBSITE: https://gethugothemes.com
+-->
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+
+<head>
+	{{ partial "essential/head.html" . }}
+	{{ partialCached "essential/style.html" . }}
+</head>
+
+<body data-spy="scroll" data-bs-target="#navbar-spy" class="position-relative {{if not site.Params.preloader.enable}}{{end}}">
+	{{ partialCached "components/preloader.html" . }}
+  {{ .Scratch.Set "bg" "bg-light-gray" }}
+	{{ partial "essential/header.html" . }}
+	<main>
+		{{ if not .IsHome }}
+		{{ partial "components/page-header.html" . }}
+		{{ end }}
+		{{ block "main" . }}{{ end }}
+	</main>
+
+	{{ partial "essential/footer.html" . }}
+	{{ partialCached "essential/script.html" . }}
+</body>
+
+</html>

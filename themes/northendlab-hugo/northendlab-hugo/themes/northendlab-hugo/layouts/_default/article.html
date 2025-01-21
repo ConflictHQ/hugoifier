@@ -1,0 +1,12 @@
+<article class="post-item mb-4 pb-2">
+  <h2 class="h4 fw-normal"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+  <div class="mb-3 post-meta">
+    <a href="{{ `author/` | absLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author | title }}</a> <span class="mx-1">|</span>
+    {{ .PublishDate.Format "Jan 2, 2006" }} <span class="mx-1">|</span> {{ range .Params.Categories }}
+    <a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}/">{{ . | title }}</a>
+    {{ end }}
+  </div>
+  <p>{{.Summary}}</p>
+  <a href="{{ .Permalink }}" class="btn btn-sm btn-transparent ps-0">read more</a>
+  <div style="height: 1px;background-color: #acb9c456; margin-top:40px"></div>
+</article>

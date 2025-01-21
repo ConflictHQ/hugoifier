@@ -1,0 +1,84 @@
+<!-- cta -->
+{{ if .Site.Params.cta.enable }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="title">{{ .Site.Params.cta.title | markdownify }}</h2>
+        <a href="{{ .Site.Params.cta.link | absURL }}" class="btn btn-primary">{{ .Site.Params.cta.label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- cta -->
+
+<!-- footer -->
+<footer class="position-relative">
+  <img src="{{ .Site.Params.footer.bgImage | absURL }}" alt="" class="img-fluid bg-image-bottom">
+  <div class="container">
+    <div class="row mb-100">
+      <div class="col-lg-4 pr-lg-5 col-md-6 mb-5 mb-lg-0">
+        <a class="mb-4 d-block" href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+        <p>{{ .Site.Params.footer.content | markdownify }}</p>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 mb-5 mb-lg-0">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled footer-menu">
+          {{ range .Site.Menus.footer }}
+          <li><a href="{{.URL | absURL}}">{{.Name}}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 mb-5 mb-lg-0">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled footer-menu">
+          {{ range .Site.Params.social }}
+          <li><a href="{{.link | safeURL}}">{{.name}}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="mb-4">Lets Subscribe Your Email</h6>
+        <div class="input-group mb-5">
+          <input type="text" class="subscription-form flex-fill" placeholder="Your Email Address">
+          <div class="input-group-append">
+            <button class="input-group-text btn btn-primary rounded-0"><img class="img-fluid" src="{{`images/arrow.svg` | absURL }}" alt=""></button>
+          </div>
+        </div>
+        <ul class="list-inline">
+          {{ range .Site.Params.footer.card }}
+          <li class="list-inline-item mb-3"><img src="{{ .image | absURL}}" class="img-fluid" alt=""></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="position-relative zindex-1 text-center pb-5">{{ .Site.Params.copyright | markdownify }}</div>
+  </div>
+</footer>
+<!-- /footer -->
+
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range .Site.Params.plugins.js}}
+<script src="{{ .URL | absURL }}"></script>
+{{ end }}
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>
+{{ "<!-- google analitycs -->" | safeHTML }}
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', '{{ .Site.Params.googleAnalitycsID }}', 'auto');
+  ga('send', 'pageview');
+</script>

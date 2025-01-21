@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-contact relative">
+      <!-- .close -->
+      <a href="{{ site.BaseURL }}" class="page-close"><i class="tf-ion-close"></i></a>
+      <!-- /.close -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+            {{ partial "page-header.html" . }}
+          </div>
+        </div> <!-- /.row -->
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+            {{ range .Params.contact_info }}
+            <div class="contact-block">
+              <div class="media">
+                <div class="media-left">
+                  <i class="{{ .icon }}"></i>
+                </div>
+                <div class="media-body">
+                  <h4>{{ .name }}</h4>
+                  <p><a href="{{ .action | safeURL }}">{{ .id }}</a></p>
+                </div>
+              </div>
+            </div>
+            {{ end }}
+
+            <ul class="contact-social">
+              {{ range .Params.social }}
+              <li>
+                <span class="contact-social-hex"></span>
+                <a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-7 col-md-7 col-md-offset-1 col-lg-offset-2">
+            <div class="section-title clear">
+              <h3>Send me a meesage</h3>
+              <span class="bar-dark"></span>
+              <span class="bar-primary"></span>
+            </div>
+
+            <form id="contact-form" class="row contact-form no-gutter" action="{{ site.Params.contact_form_action }}" method="post">
+              <div class="col-xs-12 col-sm-6">
+                <div class="input-field name">
+                  <span class="input-icon" id="name"><i class="tf-profile-male"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter your name">
+                </div>
+              </div> <!-- ./col- -->
+              <div class="col-xs-12 col-sm-6">
+                <div class="input-field email">
+                  <span class="input-icon" id="email"><i class="tf-envelope2"></i></span>
+                  <input type="email" class="form-control" name="email" placeholder="Your email address">
+                </div>
+              </div> <!-- ./col- -->
+              <div class="col-xs-12 col-sm-12">
+                <div class="input-field">
+                  <span class="input-icon" id="subject"><i class="tf-pricetags"></i></span>
+                  <input type="text" class="form-control" name="subject" placeholder="Enter the discussion title">
+                </div>
+              </div> <!-- ./col- -->
+              <div class="col-xs-12 col-sm-12">
+                <div class="input-field message">
+                  <span class="input-icon"><i class="tf-pencil2"></i></span>
+                  <textarea name="message" id="message" class="form-control" placeholder="Write your message"></textarea>
+                </div>
+              </div> <!-- ./col- -->
+              <div class="col-xs-12 col-sm-12">
+                <div class="input-field">
+                  <span class="btn-border">
+                    <button type="submit" class="btn btn-primary btn-custom-border text-uppercase">Send Message now</button>
+                  </span>
+                </div>
+                <div class="msg-success">Your Message was sent successfully</div>
+                <div class="msg-failed">Something went wrong, please try again later</div>
+              </div> <!-- ./col- -->
+            </form> <!-- /.row -->
+          </div> <!-- /.col- -->
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+      {{ partial "page-nav.html" . }}
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main> <!-- /.site-wrapper -->
+
+
+{{ end }}

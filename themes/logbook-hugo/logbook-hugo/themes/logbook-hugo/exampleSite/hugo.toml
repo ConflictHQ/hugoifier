@@ -1,0 +1,81 @@
+# This file is for render site varibles and plugins
+# don't remove this file.
+# The presence of this file is for compatibility with Blogdown and Forestry.
+#
+# The actual configuration files are stored in the `config/_default/` folder.
+
+
+######################### site variables ##############################
+# customize your color and font from here.
+[params.variables]
+color_primary = "#ce8460"
+body_color = "#fff"
+text_color = "#696c6d"
+text_dark = "#1c1d1f"
+text_light = "#888c8e"
+border_color = "#ddd"
+black = "#000"
+white = "#fff"
+light = "#f0f0f0"
+
+# font variables
+# base font size for full website, 
+font_size = "16px" # default is 16px
+
+# Font Scale Sizes
+# "minorSecond": 1.067,
+# "majorSecond": 1.125,
+# "minorThird": 1.2,
+# "majorThird": 1.25,
+# "perfectFourth": 1.333,
+# "augmentedFourth": 1.414,
+# "perfectFifth": 1.5,
+# "goldenRatio": 1.618
+font_scale = "1.2" # default is "minorThird": 1.2
+
+# go to https://fonts.google.com/ to find the font you want to use. select your font and copy only the bold part from the URL. and paste it here.
+
+# example: "Open Sans:wght@400;500;600"
+font_primary = "Open Sans:wght@400"
+font_primary_type = "sans-serif" # [serif/sans-serif]
+font_secondary = "Montserrat:wght@400"
+font_secondary_type = "sans-serif" # [serif/sans-serif]
+font_icon = "Font Awesome 6 Free"
+
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/swiper/swiper-bundle.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/brands.css" 
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/icons.css" 
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/regular.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/solid.css"
+[[params.plugins.css]]
+link = "plugins/glightbox/glightbox.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "js/search.js"
+[[params.plugins.js]]
+link = "plugins/swiper/swiper-bundle.js"
+[[params.plugins.js]]
+link = "plugins/glightbox.js"
+[[params.plugins.js]]
+link = "plugins/cookie.js"
+[[params.plugins.js]]
+link = "plugins/webfont-loader/webfont-loader-2.min.js"
+[[params.plugins.js]]
+link = "plugins/lazy-loader.js"
+[[params.plugins.js]]
+link = "https://cpwebassets.codepen.io/assets/embed/ei.js"
+attributes = "async"
+[[params.plugins.js]]
+link = "plugins/glightbox/glightbox.js"
+[[params.plugins.js]]
+link = "js/gallery-slider.js"

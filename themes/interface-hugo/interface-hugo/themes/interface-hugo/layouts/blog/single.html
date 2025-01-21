@@ -1,0 +1,231 @@
+{{ define "main" }}
+  <section class="page-header-bg has-overlay has-backdrop">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="space"></div>
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="backdrop text-quaternary"
+      width="552"
+      height="524"
+      viewBox="0 0 552 524"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.75"
+        d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+        fill="currentColor" />
+    </svg>
+  </section>
+
+  <!-- checking blog -->
+  {{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+    <!-- strat of blog-details -->
+    <section class="pb-4 pt-0 has-backdrop">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="mb-5">
+              <h1 class="text-center h2" style="padding-bottom: 40px;">
+                {{ .Title | markdownify }}
+              </h1>
+
+              {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Resize" "false" "Class" "rounded-3 shadow-md w-100 card-image") }}
+
+              {{ $PublishDate := .PublishDate.Format "02 Jan, 2006" }}
+              {{ with site.GetPage (string .Params.Author | urlize | lower) }}
+                <div
+                  class="d-flex justify-content-between align-items-center mt-4">
+                  <div class="card-author">
+                    <div
+                      class="d-flex flex-wrap gap-3 flex-sm-nowrap align-items-center">
+                      <a
+                        class="d-block me-2"
+                        href="{{ .RelPermalink }}"
+                        title="{{ .Title }}">
+                        {{ if .Params.image }}
+                          {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Size" "46x46" "Class" "rounded-circle") }}
+                        {{ else if .Params.Email }}
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            class="rounded-circle"
+                            src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=46&pg&d=identicon" />
+                        {{ else }}
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            class="rounded-circle"
+                            src="https://www.gravatar.com/avatar/{{ md5 . }}?s=46&pg&d=identicon" />
+                        {{ end }}
+                      </a>
+                      <a
+                        class="author-link text-black d-inline-block me-4"
+                        href="{{ .RelPermalink }}">
+                        {{ .Title }}
+                      </a>
+                      <span
+                        class="d-inline-flex gap-1 text-base align-items-center flex-wrap small me-3">
+                        <svg
+                          class="me-1 text-muted"
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="22"
+                          width="22"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {{ $PublishDate }}
+                      </span>
+                      <span
+                        class="d-inline-flex gap-1 text-base align-items-center flex-wrap">
+                        <svg
+                          class="me-1 text-muted"
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="22"
+                          width="22"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {{ .ReadingTime }}
+                        {{ i18n `min_read` }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+
+            <div class="content">
+              {{ .Content }}
+            </div>
+          </div>
+
+          {{ with site.GetPage (string .Params.Author | urlize | lower) }}
+            <div class="col-lg-10">
+              <div class="author-card shadow-md mt-5 bg-white p-4 rounded-4">
+                <a
+                  class="d-block"
+                  href="{{ .RelPermalink }}"
+                  title="{{ .Title }}">
+                  {{ if .Params.image }}
+                    {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Size" "100x100" "Class" "rounded-circle") }}
+                  {{ else if .Params.Email }}
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      class="rounded-circle"
+                      src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=46&pg&d=identicon" />
+                  {{ else }}
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      class="rounded-circle"
+                      src="https://www.gravatar.com/avatar/{{ md5 . }}?s=46&pg&d=identicon" />
+                  {{ end }}
+                </a>
+                <div class="me-auto">
+                  <span class="h6 fw-semibold d-inline-block mb-0 me-2">
+                    {{ .Title }}
+                  </span>
+                  <div class="author-desc">
+                    {{ .Content }}
+                  </div>
+                </div>
+                <ul class="social-links list-inline mb-0">
+                  {{ range .Params.Social }}
+                    <li class="list-inline-item">
+                      <a href="{{ .link | safeURL }}" title="{{ .name }}"
+                        ><i class="{{ .icon }}"></i
+                      ></a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+            </div>
+          {{ end }}
+
+          {{ if .Site.DisqusShortname }}
+            <div class="col-lg-10">
+              <!-- comments -->
+              <div class="mt-5 bg-white p-4 rounded-4">
+                {{ template "_internal/disqus.html" . }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+      <svg
+        class="backdrop text-primary translate-middle-y"
+        width="490"
+        height="670"
+        viewBox="0 0 490 670"
+        style="left: 0px;top: 50%;"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.3"
+          d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+    <!-- end of blog-details -->
+
+    <!-- start of blog-section -->
+    <section class="section has-backdrop pt-5">
+      <div class="container">
+        <div class="row justify-content-center gy-4 has-colored-text">
+          <div class="col-lg-10 mx-auto mb-2">
+            <div
+              class="d-flex justify-content-between flex-wrap align-items-center">
+              <h2 class="section-title h3 mb-0 pb-0">
+                {{ i18n `related_posts` }}
+              </h2>
+              <a href="{{ site.BaseURL }}blog" class="btn btn-text-primary"
+                >Browse All Articles</a
+              >
+            </div>
+          </div>
+
+          {{ $related := (where site.RegularPages "Section" "in" site.Params.mainSections) | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+          {{ range first 2 $related }}
+            <div class="col-lg-5">
+              {{ .Render "article" }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+
+      <svg
+        class="backdrop text-quaternary"
+        width="490"
+        height="670"
+        viewBox="0 0 490 670"
+        style="right: 0px;top: 0px;"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.6"
+          d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+    <!-- end of blog-section -->
+  {{ end }}
+
+{{ end }}

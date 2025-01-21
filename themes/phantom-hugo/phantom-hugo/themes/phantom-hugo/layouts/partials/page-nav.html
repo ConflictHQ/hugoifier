@@ -1,0 +1,9 @@
+<nav class="page-nav clear">
+  <div class="container">
+    <div class="flex flex-middle space-between">
+      <span class="prev-page"><a href="{{ .Params.Prev_page | absURL }}" class="link">&larr; Prev Page</a></span>
+      <span class="copyright hidden-xs">{{ site.Params.copyright | markdownify }}</span>
+      <span class="next-page"><a href="{{ .Params.Next_page | absURL }}" class="link">Next Page &rarr;</a></span>
+    </div>
+  </div>
+</nav>

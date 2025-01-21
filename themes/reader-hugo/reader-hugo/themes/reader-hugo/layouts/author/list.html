@@ -1,0 +1,45 @@
+{{define "main"}}
+
+{{ partial "components/page-header.html" . }}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row no-gutters">
+      {{ range where site.RegularPages "Section" "author" }}
+      <div class="col-lg-4 col-sm-6 author-block">
+        <div class="author-card text-center">
+
+          <a href="{{.Permalink}}">
+            {{ if .Params.image }}
+            {{ partial "image.html" (dict "Src" .Params.image "Alt" "author image" "Class" "author-image mb-4") }}
+            {{else if .Params.email}}
+            {{ $emailHash := md5 .Params.email }}  
+            {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }} 
+            <img src="{{$gravatorUrl}}" alt="author image" class="author-image mb-4">
+            {{ end }}
+          </a>
+
+          <h3 class="mb-2"><a href="{{ .Permalink }}" class="post-title">{{.Title}}</a></h3>
+          <p class="mb-3">{{.Params.Description | markdownify}}</p>
+          {{ $posts := where site.RegularPages "Params.author" .Title }}
+          {{ $post_item := len $posts}}
+          {{if eq $post_item 0 }}
+          <div class="mb-3">
+           <span class="text-primary">{{ len $posts }}</span> {{i18n "posts_by"}}
+          </div>
+          {{else}}
+          <a class="post-count" href="{{.Permalink}}#post"><i class="ti-pencil-alt me-2"></i><span class="text-primary">{{ len $posts }}</span> {{i18n "posts_by"}}</a>
+          {{end}}
+          <ul class="list-inline social-icons">
+            {{ range .Params.social }}
+            <li class="list-inline-item"><a href="{{ .link | safeURL }}"><span class="visually-hidden">{{.title}}</span><i class="{{.icon }}"></i></a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+<!-- Section feature Start -->
+{{ if $data.pricing.feature.enable }}
+{{ partial "feature.html" . }}
+{{ end }}
+<!-- Section feature END -->
+
+{{ if $data.pricing.pricing.enable }}
+{{ partial "pricing.html" . }}
+{{ end }}
+
+{{ end }}

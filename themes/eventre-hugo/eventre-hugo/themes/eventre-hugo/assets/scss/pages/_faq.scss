@@ -1,0 +1,36 @@
+.faq{
+	.accordion-block{
+		#accordion,#accordionTwo{
+			.card{
+				border-radius: 0;
+				margin-bottom: 20px;
+				.card-header{
+					background: $light;
+					padding: 0;
+					h5{
+						a{
+							span{
+								padding: 20px;
+								border-right: 1px solid $border-color;
+								margin-right: 20px;
+							}
+							font-weight: 400;
+							color: $black;
+						}
+					}
+				}
+				.card-body{
+					color: $text-color;
+					padding: 15px 20px;
+				}
+				.collapse.show + .card-header{
+					h5{
+						a{
+							color: $primary-color;
+						}
+					}
+				}
+			}
+		}
+	}
+}

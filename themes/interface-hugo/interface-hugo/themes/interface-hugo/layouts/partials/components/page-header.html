@@ -1,0 +1,42 @@
+<section class="banner page-header has-overlay has-backdrop">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section">
+          <h1 class="h2 section-title gradient-title text-center">
+            <strong>{{ .Title | markdownify }}</strong>
+          </h1>
+          <nav aria-label="breadcrumb">
+            <ol
+              class="breadcrumb justify-content-center bg-transparent p-0 mb-0">
+              <li class="breadcrumb-item">
+                <a
+                  class="text-dark fw-bold"
+                  href="{{ site.BaseURL | relLangURL }}">
+                  {{ i18n "home" }}
+                </a>
+              </li>
+              <li
+                class="breadcrumb-item active text-capitalize"
+                aria-current="page">
+                {{ .Title | humanize }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg
+    class="backdrop text-quaternary"
+    width="552"
+    height="524"
+    viewBox="0 0 552 524"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      opacity="0.75"
+      d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+      fill="currentColor" />
+  </svg>
+</section>

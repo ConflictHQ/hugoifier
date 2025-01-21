@@ -1,0 +1,53 @@
+{{ define "main"}}
+
+{{ if site.Data.homepage.pricing.enable }}
+{{ with site.Data.homepage.pricing }}
+<section class="section pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>{{.title | markdownify}}</h3>
+          <p>{{.content | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {{ range .pricing_table }}
+      <div class="col-lg-4 col-md-6">
+        <!-- Pricing Item -->
+        <div class="pricing-item">
+          <div class="pricing-heading">
+            <!-- Title -->
+            <div class="title">
+              <h6>{{.name}}</h6>
+            </div>
+            <!-- Price -->
+            <div class="price">
+              <h2>{{ .price }}<span>$</span></h2>
+              <p>/{{ .price_per }}</p>
+            </div>
+          </div>
+          <div class="pricing-body">
+            <!-- Feature List -->
+            <ul class="feature-list m-0 p-0">
+              {{ range .features}}
+              <li>
+                <p><span class="fa fa-check-circle available"></span>{{ . | markdownify }}</p>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="pricing-footer text-center">
+            <a href="{{ .button_link | absURL }}" class="btn btn-transparent-md">Buy a ticket</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}

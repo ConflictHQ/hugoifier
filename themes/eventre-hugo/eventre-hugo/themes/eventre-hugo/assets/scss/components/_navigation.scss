@@ -1,0 +1,155 @@
+.main-nav{
+	background: $light;
+	@include tablet{
+		position: relative;
+	}
+	.navbar-brand{
+		padding: 35px 40px 35px 50px;
+		border-right: 1px solid $border-color;
+		@include large-desktop {
+			padding: 20px 30px;
+		}
+		@include tablet {
+			border-right: none;
+		}
+	}
+	.navbar-nav{
+		.nav-item{
+			position: relative;
+			font-family: $primary-font;
+			.nav-link{
+				position: relative;
+				text-align: center;
+				color: $black;
+				padding-left: 8px;
+				padding-right: 20px;
+				font-size: 1.06rem;
+				font-family: $secondary-font;
+				@include desktop-nav {
+					font-size: 0.75rem;
+					padding-left: 5px;
+					padding-right: 10px;
+				}
+				@include large-desktop{
+				}
+				span{
+					color: $black;
+					margin-left: 20px;
+					@include desktop {
+						margin-left: 10px;
+					}
+				}
+			}
+			&.active{
+				.nav-link{
+					color: $primary-color;
+				}
+			}
+		}
+	}
+	.dropdown-slide {
+	  position: static;
+	  .open>a, .open>a:focus, .open>a:hover {
+	    background: transparent;
+		}
+	  &.full-width {
+	    .dropdown-menu {
+	      left:0!important;
+	      right:0!important;
+	    }
+	  }
+	  &:hover .dropdown-menu {
+	  	border-top: 3px solid $primary-color;
+	    display:none;
+	    opacity: 1;
+	    display: block;
+	    transform: translate(0px ,0px);
+	    opacity: 1;
+	    visibility: visible;
+	    color: #777;
+	    transform: translateY(0px);
+	  }
+	  .dropdown-menu {
+	  	min-width: 220px;
+	  	.dropdown-item{
+	  		font-size: 15px;
+  		    padding: 10px 0;
+  		    transition: .3s ease;
+  		    &:not(:last-child){
+  		    	border-bottom: 1px solid $border-color;
+  		    }
+  		    &:hover{
+  		    	background: $light;
+  		    	color: $primary-color;
+  		    }
+	  	}
+	  	margin-top: 0;
+	    border-radius:0;
+	    opacity: 1;
+	    visibility: visible;
+	    position: absolute;
+	    padding: 5px 15px;
+	    border: 1px solid #ebebeb;
+	    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	    transition:.3s all;
+	    position: absolute;
+	    display: block;
+	    visibility: hidden;
+	    opacity: 0;
+	    transform: translateY(30px);
+			transition: visibility 0.2s, opacity 0.2s, transform 500ms cubic-bezier(0.43, 0.26, 0.11, 0.99);
+			@include desktop-sm {
+				transform: none;
+		    left: auto;
+		    position: relative;
+				text-align: center;
+				opacity: 1;
+				visibility: visible;
+	    }
+	  }
+	}
+	.ticket{
+		background: $primary-color;
+		display: block;
+		padding: 34px 32px;
+		@include large-desktop {
+			padding: 23px 14px;
+		}
+		@include desktop-sm{
+			text-align: center;
+		}
+		img{
+			margin-right: 25px;
+			@include large-desktop {
+				display: none;
+			}
+		}
+		span{
+			color: $light;
+			font-size: 1.125rem;
+			text-transform: uppercase;
+			font-family: $secondary-font;
+			border-left: 1px solid #ffa366;
+			padding-left: 24px;
+			@include large-desktop {
+				padding-left: 0;
+				font-size: 1rem;
+				border-left: none;
+			}
+		}
+	}
+}
+
+// bootstrap override
+.navbar-toggler:focus, .navbar-toggler:hover{
+	outline: none;
+}
+
+// Nav Scroll
+// .navbar-collapse{
+// 	&.show{
+// 		@include desktop{
+// 			overflow-y: scroll;
+// 		}
+// 	}
+// }

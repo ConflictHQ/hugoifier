@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+{{ partial "essential/head.html" . }}
+{{ partialCached "essential/style.html" . }}
+{{ partialCached "components/preloader.html" . }}
+
+<body>
+  <!-- checking blog -->
+  {{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+  <!-- header -->
+  {{ .Scratch.Set "bg" "bg-white" }}
+  {{ partial "essential/header.html" . }}
+
+  <!-- strat of blog-details -->
+  <section class="section-padding pt-50">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 mb-30 text-center" data-aos="fade-in">
+          {{ partial "image.html" (dict "Src" .Params.Image "Alt" .Title "Class" `rounded`) }}
+        </div>
+        <div class="col-lg-9 col-md-12 mb-60" data-aos="fade-in" data-aos-delay="50">
+          <div class="post-category position-relative mb-15">
+            {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+              href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}"
+              class="font-weight-600 ms-1">{{ . | humanize }} </a>
+            {{ end }}
+          </div>
+
+          <h2 class="font-weight-bold mb-30">{{.Title}}</h2>
+
+          <div class="post-meta font-weight-600 text-primary mb-15">
+            <a target="_blank" class="text-primary" href="{{ .Params.author_profile | safeURL}}">{{ .Params.author
+              }}</a>
+            <span class="mx-2">|</span>
+            <span>{{ .PublishDate.Format "02 Jan, 2006"}}</span>
+            <span class="mx-2">|</span>
+            <span>{{ .Page.ReadingTime }} {{ i18n "minute_read" }}</span>
+          </div>
+          <div class="content">{{.Content}}</div>
+        </div>
+
+        {{ if site.DisqusShortname }}
+        <div class="col-lg-9 col-md-12" data-aos="fade-in">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <!-- end of blog-details -->
+
+  <!-- start of blog-section -->
+  <section class="pb-50">
+    <div class="container">
+      <div class="row justify-content-center" data-aos="fade-up">
+        <div class="col-lg-6 col-md-9 text-center mb-40">
+          <h2 class="section-title">{{ i18n "recent_post" }}</h2>
+        </div>
+      </div>
+      <div class="row">
+        {{ range first 3 (where site.RegularPages "Section" "blog")}}
+        <div class="col-lg-4 col-md-6 mb-40">
+          <div class="card border-0 h-100">
+            <a class="d-flex flex-fill align-items-center" href="{{.Permalink}}">
+              {{ partial "image.html" (dict "Src" .Params.Image "Alt" "blog-image" "Class" `card-img-top rounded`) }}
+            </a>
+            <div class="p-25 pb-0">
+              <div class="post-category position-relative mb-15">
+                {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+                  href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}"
+                  class="font-weight-600 ms-1">{{ . | humanize }} </a>
+                {{ end }}
+              </div>
+              <a class="h4 font-weight-bold d-block mb-15" href="{{.Permalink}}">{{ .Title }}</a>
+              <div class="post-meta font-weight-600 mb-15">{{.PublishDate.Format "02 Jan, 2006"}}<span
+                  class="mx-2">|</span>{{ .Page.ReadingTime }} {{ i18n "minute_read" }}
+              </div>
+              <p>{{ .Summary }}</p>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- regular page -->
+  {{ else }}
+  {{ .Scratch.Set "bg" "bg-light-gray" }}
+  {{ partial "essential/header.html" . }}
+  {{ partial "components/page-header.html" . }}
+  <section class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="content">
+            {{.Content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /regular page -->
+
+  {{ partial "essential/footer.html" . }}
+  {{ partialCached "essential/script.html" . }}
+</body>
+
+</html>

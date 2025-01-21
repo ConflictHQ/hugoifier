@@ -1,0 +1,106 @@
+{{ define "main" }}
+
+<!-- Banner Start -->
+{{ if .Site.Data.homepage.banner.enable }}
+{{ with .Site.Data.homepage.banner }}
+<section class="section banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <h2 class="cd-headline clip is-full-width mb-4 ">
+          {{ .title | markdownify }} <br>
+          <span class="cd-words-wrapper text-color">
+            {{ range $index, $element:= .animated_text }}
+            <b {{ if eq $index 0 }} class="is-visible" {{ end }}>{{ . | markdownify }}</b>
+            {{ end }}
+          </span>
+        </h2>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Banner End -->
+
+<!-- Portfolio start -->
+{{ if .Site.Data.homepage.portfolio.enable }}
+<section class="portfolio">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-10">
+        <div class="btn-group btn-group-toggle " data-toggle="buttons">
+          <label class="btn active ">
+            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Projects
+          </label>
+          {{ $categories := slice }}
+          {{ range (where .Site.RegularPages "Type" "portfolio") }}
+          {{ $categories = $categories | append .Params.Category }}
+          {{ end }}
+          {{ range ( $categories | uniq ) }}
+          <label class="btn">
+            <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . | humanize }}
+          </label>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row shuffle-wrapper portfolio-gallery">
+      {{ range (where .Site.RegularPages "Type" "portfolio")}}
+      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;{{ .Params.Category | urlize }}&quot;]">
+        <div class="position-relative inner-box">
+          <div class="image position-relative">
+            <img src="{{ .Params.Image | absURL }}" alt="portfolio-image" class="img-fluid w-100 d-block">
+            <div class="overlay-box">
+              <a class="portfolio-image popup-gallery" href="{{ .Params.Image | absURL }}">
+                <i class="ti-plus"></i>
+              </a>
+              <div class="overlay-inner">
+                <a class="overlay-content" href="{{ .Permalink }}">
+                  <h5 class="mb-0">{{ .Title }}</h5>
+                  <p>{{ .Params.Category | humanize }}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- Portfolio End -->
+
+<!-- Service start -->
+{{ if .Site.Data.homepage.service.enable }}
+{{ with .Site.Data.homepage.service }}
+<section class="section service-home border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="mb-2 ">{{ .title | markdownify }}</h2>
+        <p class="mb-5">{{ .content | markdownify }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range .service_item }}
+      <div class="col-lg-4">
+        <div class="service-item mb-5">
+          <i class="{{ .icon }}"></i>
+          <h4 class="my-3">{{ .name | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- service end -->
+{{ end }}
+{{ end }}
+
+{{ end }}

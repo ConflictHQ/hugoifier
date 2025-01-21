@@ -1,0 +1,69 @@
+########################### Default parameters ######################
+logo = "images/logo.png"
+logo_width = "149px"
+logo_footer = "images/logo-alt.png"
+favicon = "images/favicon.png"
+# top header
+top_header = true
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact info
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "info@bexer.com"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# Google Analitycs
+google_analitycs_id = "" # your id
+# page sidebar quick contact form
+quick_contact = true
+# search
+search = true
+
+# Main section
+mainSections = ["blog"]
+
+# Preloader
+[preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# Navigation button
+[navigation_button]
+enable = true
+label = "get a quote"
+link = "contact/"
+
+# Subscription
+[subscription]
+enable = true
+# mailchimp subsciption
+mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
+mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
+
+# google map
+[gmap]
+enable = true
+gmap_api = "AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
+map_marker_name = "Bexer"
+
+########################### social icon ############################
+[[social]]
+icon = "fab fa-facebook"
+link = "https://facebook.com/themefisher"
+
+[[social]]
+icon = "fab fa-twitter"
+link = "https://twitter.com/themefisher"
+
+[[social]]
+icon = "fab fa-github"
+link = "https://github.com/themefisher"
+
+[[social]]
+icon = "fab fa-instagram"
+link = "https://instagram.com/themefisher"

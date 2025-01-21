@@ -1,0 +1,15 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-lg-7" data-aos="fade-up" data-aos-delay="150">
+        {{ partial "image.html" (dict "Src" (.Get `image`) "Alt" "image" "Class" "rounded-lg shadow" "Resize" false "Webp" false)
+        }}
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-in">
+        <div class="content">{{.Inner | markdownify}}</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-contact relative">
+      <!-- .close -->
+      <a href="{{ site.BaseURL }}" class="page-close"><i class="tf-ion-close"></i></a>
+      <!-- /.close -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+            {{ partial "page-header.html" . }}
+          </div>
+        </div> <!-- /.row -->
+
+        <div class="row">
+          <div class="col-xs-12">
+            {{.Content}}
+          </div>
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+      {{ partial "page-nav.html" . }}
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main>
+
+{{ end }}

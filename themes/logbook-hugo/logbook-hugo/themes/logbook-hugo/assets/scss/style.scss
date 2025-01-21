@@ -1,0 +1,35 @@
+// Color Variables
+{{ with site.Params.variables }}
+$color-primary: {{.color_primary}};
+$text-color: {{.text_color}};
+$text-dark: {{.text_dark}};
+$text-light: {{.text_light}};
+$body-bg: {{.body_color}};
+$border-color: {{.border_color}};
+$black: {{.black}};
+$white: {{.white}};
+$light: {{.light}};
+
+// Font Variables
+$font-size: {{.font_size | default "16px"}};
+$font-scale: {{.font_scale | default "1.2"}};
+$font-primary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_primary | default "Lato"}}', {{.font_primary_type | default "sans-serif"}};
+$font-secondary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_secondary | default "Lato"}}', {{.font_secondary_type | default "sans-serif"}};
+$font-icon: '{{.font_icon | default "Font Awesome 5 Free"}}';
+{{ end }}
+
+@import 'templates/bootstrap';
+@import 'mixins';
+@import 'typography';
+@import 'buttons';
+@import 'common';
+@import 'templates/navigation';
+@import 'templates/main';
+@import 'notice';
+@import 'tabs';
+@import 'images';
+@import 'social-share';
+@import 'toc';
+@import 'custom';
+@import 'search';
+@import 'gallery-slider';

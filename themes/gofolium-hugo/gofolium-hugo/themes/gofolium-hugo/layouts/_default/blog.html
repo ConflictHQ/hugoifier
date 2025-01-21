@@ -1,0 +1,13 @@
+<article class="card bg-dark rounded-0 border-0" data-file="{{.Permalink}}" data-target="article">
+  {{ with .Params.Image }} <img src="{{ . | absURL }}" alt="" class="card-img-top mb-4 rounded-0"> {{ end }}
+  <div class="card-body">
+    <h4 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h4>
+    <ul class="list-inline">
+      <li class="list-inline-item"><i class="text-primary ti-calendar mr-2"></i>{{ .PublishDate.Format "06 Jan, 2006" }}
+      </li>
+      <li class="list-inline-item"><i class="text-primary ti-time mr-2"></i><span class="eta"></span> read</li>
+    </ul>
+    <p>{{ .Summary }}</p>
+    <a href="{{ .Permalink }}" class="btn btn-link">{{ i18n "read_more" }}</a>
+  </div>
+</article>

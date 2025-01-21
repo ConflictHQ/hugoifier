@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-between">
+      {{ with site.Params.google_map }}
+      {{ if .enable }}
+      <div class="col-lg-8 mb-5 mb-lg-0 overflow-hidden">
+        <iframe class="rounded-3" style="min-height:100%;width:100%;" frameborder="0" src="{{.embed_url}}"></iframe>
+      </div>
+      {{ end }}
+      {{ end }}
+      <div class="col-lg-4">
+        <div class="p-5 rounded-xs shadow">
+          <h3 class="text-dark border-bottom mb-5 pb-4">{{ i18n "keep_in_touch" }}</h3>
+          <ul class="list-unstyled">
+            {{ with site.Params.contact_info.mobile }}
+            <li class="d-flex mb-4" data-aos="fade-up" data-aos-delay="100">
+              <i class="fa fa-phone icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">Mobile</h6>
+                <p>{{ . | markdownify }}</p>
+              </div>
+            </li>
+            {{ end }}
+
+            {{ with site.Params.contact_info.email }}
+            <li class="d-flex mb-4" data-aos="fade-up" data-aos-delay="100">
+              <i class="fas fa-envelope icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">Email</h6>
+                <div class="content">{{ . | markdownify }}</div>
+              </div>
+            </li>
+            {{ end }}
+
+            {{ with site.Params.contact_info.address }}
+            <li class="d-flex mb-4" data-aos="fade-up" data-aos-delay="100">
+              <i class="fas fa-map icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">Address</h6>
+                <p>{{ . | markdownify }}</p>
+              </div>
+            </li>
+            {{end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-lg-bottom bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="subtitle">{{ i18n "form_subtitle" }}</p>
+        <h2 class="section-title">{{ i18n "form_title" }}</h2>
+      </div>
+      <div class="col-lg-10 mx-auto text-center">
+        <form action="{{ site.Params.contact_form_action }}" method="post" class="row">
+          <div class="col-lg-6">
+            <input type="text" class="form-control mb-4" placeholder="Your email" required>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control mb-4" placeholder="Your Name" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="text" class="form-control mb-4" placeholder="Subject">
+          </div>
+          <div class="col-lg-12">
+            <textarea name="message" class="form-control mb-4" placeholder="Message" required></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">{{ i18n "submit_now"}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ if site.Params.google_map.enable }}
+<script src="https://maps.googleapis.com/maps/api/js?key={{site.Params.google_map.gmap_api}}&libraries=places"></script>
+{{ end }}
+
+{{ end }}

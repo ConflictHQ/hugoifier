@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ if site.Params.featured_post }}
+    {{ partial "featured-post.html" . }}
+  {{ end }}
+
+  {{ .Scratch.Set "where" site.RegularPages }}
+  {{ partial "default.html" . }}
+
+{{ end }}

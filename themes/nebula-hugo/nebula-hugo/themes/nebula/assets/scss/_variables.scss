@@ -1,0 +1,31 @@
+// Color Variables
+$primary-color: #07D300;
+$black: #000;
+$white: #fff;
+$dark: #0E0E0E;
+$light: #fbfbfb;
+
+// dark theme
+$text-color: #9E9E9E;
+$text-color-dark: #fff;
+$text-color-light: #484848;
+$body-color: #000;
+$border-color: #272727;
+
+// light theme
+$day-text-color: #666666;
+$day-text-color-dark: #222;
+$day-text-color-light: #B8B8B8;
+$day-body-color: #fff;
+$day-border-color: #D3D3D3;
+
+// category variable
+@include category(article, #18A6F2);
+@include category(book, #FCCD04);
+@include category(video, #F9805A);
+@include category(audio, #08F201);
+@include category(other, #233fdf);
+
+// Font Variables
+$primary-font: 'Lato', sans-serif;
+$icon-font: 'themify';

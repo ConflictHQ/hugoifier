@@ -1,0 +1,15 @@
+{{ "<!-- about me -->" | safeHTML }}
+<div class="widget text-center">
+  {{ with site.GetPage "/about" }}
+  <span class="widget-title">{{ i18n `about_me` }}</span>
+  {{ if .Params.image }}
+  <img loading="lazy" class="mb-4 rounded-circle w-100" style="max-width:150px" src="{{ .Params.image | absURL }}" alt="Author">
+  {{ else if .Params.email }}
+  <img loading="lazy" class="mb-4 rounded-circle w-100" style="max-width:150px" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=150&pg&d=identicon">
+  {{ end }}
+  <p class="text-uppercase small mb-2">{{ i18n `my_name_is` }}</p>
+  <h1 class="h4 text-primary font-primary mb-3">{{ .Params.name }}</h1>
+  <div class="mb-0 mx-auto" style="max-width:460px">{{ .Summary }} <a href="{{ .Permalink }}" aria-label="About me" class="text-underline d-inline-block">{{ i18n `read_more` }}</a></div>
+  
+  {{ end }}
+</div>

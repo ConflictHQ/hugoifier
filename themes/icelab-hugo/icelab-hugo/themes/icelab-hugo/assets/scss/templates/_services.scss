@@ -1,0 +1,56 @@
+.service{
+    position: relative;
+    padding-bottom: 50px;
+    .section-title{
+        margin-bottom: 50px;
+    }
+    .shape-big{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+
+.service-item{
+    padding: 50px 30px;
+    position: relative;
+    overflow: visible;
+    transition: all .3s ease;
+    .icon{
+        margin-bottom: 50px;
+        svg,img{
+            width: 55px; height: 55px;
+        }
+    }
+    .content{
+        h6{
+            font-family: $secondary-font;
+            margin-bottom: 20px;
+        }
+        p{
+            line-height: 30px;
+            margin-bottom: 20px;
+        }
+    }
+    &::before{
+        background: url(../images/pattern.png);
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        transform: translate(20px, 20px);
+        opacity: 0;
+        z-index: -1;
+        transition: all .6s ease;
+    }
+    &:hover{
+        background: $white;
+        box-shadow: 0px 16px 53.01px 3.99px rgba(0, 0, 0, 0.1);
+        &::before{
+            opacity: .2;
+        }
+    }
+}

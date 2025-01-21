@@ -1,0 +1,96 @@
+{{ define "main" }}
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-content-center" data-aos="fade-in">
+        <div class="col-lg-4 col-md-10 order-1 order-lg-0 mt-5 mt-lg-0">
+          <div class="mb-5">
+            <h2 class="text-black-200 mb-2">{{ .Title | markdownify }}</h2>
+            <p class="text-primary">{{ .Params.job_nature | markdownify }}</p>
+          </div>
+
+          <form
+            action="{{ site.Params.career_form_action }}"
+            method="POST"
+            class="needs-validation"
+            novalidate>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="name"
+                >{{ i18n `fname` }}<span class="text-primary">*</span></label
+              >
+              <input
+                class="form-control shadow-none"
+                id="name"
+                type="text"
+                placeholder="{{ i18n `fname` }}"
+                required />
+              <p class="font-weight-bold invalid-feedback">
+                {{ i18n `name_re` }}
+              </p>
+            </div>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="last-name"
+                >{{ i18n `lname` }}<span class="text-primary">*</span></label
+              >
+              <input
+                class="form-control shadow-none"
+                id="last-name"
+                type="text"
+                placeholder="{{ i18n `lname` }}"
+                required />
+              <p class="font-weight-bold invalid-feedback">
+                {{ i18n `name_re` }}
+              </p>
+            </div>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="email"
+                >{{ i18n `email` }}<span class="text-primary">*</span></label
+              >
+              <input
+                class="form-control shadow-none"
+                id="email"
+                type="email"
+                placeholder="{{ i18n `email` }}"
+                required />
+              <p class="font-weight-bold invalid-feedback">
+                {{ i18n `email_re` }}
+              </p>
+            </div>
+            <div class="form-group">
+              <label class="mb-2" for="cv"
+                >{{ i18n `upload_cv` }}<span class="text-primary"
+                  >*</span
+                ></label
+              >
+              <input
+                class="form-control"
+                type="file"
+                name="cv"
+                id="cv"
+                required />
+              <small class="d-block">{{ i18n `cv_note` }}</small>
+              <p class="font-weight-bold invalid-feedback">
+                {{ i18n `cv_re` }}
+              </p>
+            </div>
+
+            <button
+              class="btn btn-primary w-100 mt-4"
+              type="submit"
+              aria-label="{{ i18n `apply_job` }}">
+              {{ i18n `apply_job` }}
+            </button>
+          </form>
+        </div>
+        <div class="col-lg-7 col-md-10 order-0 order-lg-1">
+          <div class="ps-0 ps-lg-5">
+            <h3 class="text-primary mb-4">{{ i18n `about_the_role` }}</h3>
+
+            <div class="content">
+              {{ .Content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

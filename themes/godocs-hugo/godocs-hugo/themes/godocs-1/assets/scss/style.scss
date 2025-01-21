@@ -1,0 +1,31 @@
+{{ with site.Params.variables }}
+// Color variables
+$color-primary: {{.color_primary}};
+$text-color: {{.text_color}};
+$text-dark: {{.text_dark}};
+$text-light: {{.text_light}};
+$body-bg: {{.body_color}};
+$border-color: {{.border_color}};
+$black: {{.black}};
+$white: {{.white}};
+$light: {{.light}};
+
+// Font Variables
+$font-size: {{.font_size}};
+$font-primary: '{{ replaceRE ":wght@[0-9;]+" "" .font_primary }}', {{.font_primary_type}};
+$font-secondary: '{{ replaceRE ":wght@[0-9;]+" "" .font_secondary }}', {{.font_secondary_type}};
+$icon-font: '{{.font_icon}}';
+{{ end }}
+
+@import 'templates/bootstrap';
+@import 'mixins';
+@import 'typography';
+@import 'buttons';
+@import 'common';
+@import 'templates/navigation.scss';
+@import 'templates/main.scss';
+@import 'templates/search-modal';
+@import 'gallery';
+@import 'tabs';
+@import 'notice';
+@import 'collapse';

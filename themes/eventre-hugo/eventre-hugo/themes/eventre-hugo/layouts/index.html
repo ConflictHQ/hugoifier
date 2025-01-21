@@ -1,0 +1,529 @@
+{{ define "main" }}
+
+<!--============================
+=            Banner            =
+=============================-->
+{{ if site.Data.homepage.banner.enable}}
+{{ with site.Data.homepage.banner}}
+<section class="banner bg-banner-one overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Content Block -->
+        <div class="block">
+          <!-- Coundown Timer -->
+          {{ if .timer.enable }}
+          {{ with .timer }}
+          <div class="timer" data-year="{{.year}}" data-month="{{.month}}" data-day="{{.day}}"></div>
+          {{ end }}
+          {{ end }}
+          {{with .heading}}<h1>{{ . | markdownify }}</h1>{{end}}
+          {{with .heading_2}}<h2>{{ . | markdownify }}</h2>{{end}}
+          <h6>{{ .content | markdownify }}</h6>
+          <!-- Action Button -->
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-white-md">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Banner  ====-->
+
+<!--===========================
+=            About            =
+============================-->
+{{ if site.Data.homepage.about.enable }}
+{{ with site.Data.homepage.about }}
+<section class="section about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 align-self-center">
+        <div class="image-block bg-about">
+          <img class="img-fluid" src="{{ .image | absURL }}">
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-6 align-self-center">
+        <div class="content-block">
+          <h2>{{.title | markdownify}}</h2>
+          <div class="description-one">
+            {{ .content | markdownify}}
+          </div>
+          <ul class="list-inline">
+            {{ if .button_solid.enable }}
+            {{ with .button_solid }}
+            <li class="list-inline-item">
+              <a href="{{ .link | absURL }}" class="btn btn-main-md">{{.label}}</a>
+            </li>
+            {{ end }}
+            {{ end }}
+            {{ if .button_outline.enable }}
+            {{ with .button_outline }}
+            <li class="list-inline-item">
+              <a href="{{ .link | absURL }}" class="btn btn-transparent-md">{{.label}}</a>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of About  ====-->
+
+<!--==============================
+=            Speakers            =
+===============================-->
+{{ if site.Data.homepage.speakers.enable }}
+<section class="section speakers bg-speaker overlay-lighter">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- Section Title -->
+        {{ with site.Data.homepage.speakers }}
+        <div class="section-title white">
+          <h3>{{.title | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    <div class="row">
+      {{ range (where site.RegularPages "Section" "speaker") }}
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <!-- Speaker 1 -->
+        <div class="speaker-item">
+          <div class="image">
+            <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="img-fluid">
+            <div class="primary-overlay"></div>
+            <div class="socials">
+              <ul class="list-inline">
+                {{ range first 4 .Params.social }}
+                <li class="list-inline-item"><a href="{{.link | safeURL }}"><i class="fa {{.icon}}"></i></a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+          <div class="content text-center">
+            <h5><a href="{{ .Permalink }}">{{.Title }}</a></h5>
+            <p>{{ .Params.Designation | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}
+
+<!--====  End of Speakers  ====-->
+
+<!--==============================
+=            Schedule            =
+===============================-->
+{{ if site.Data.homepage.tab.enable }}
+{{ with site.Data.homepage.tab }}
+<section class="section schedule">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>{{.title | markdownify}}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="schedule-tab">
+          <ul class="nav nav-pills text-center">
+            {{ range $i,$p:= .tablist }}
+            <li class="nav-item">
+              <a class="nav-link {{if eq $i 0}} active {{end}}" href="#{{.name|urlize}}" data-toggle="pill">
+                {{.name}}
+                <span>{{ .date | markdownify}}</span>
+              </a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="schedule-contents bg-schedule">
+          <div class="tab-content" id="pills-tabContent">
+            {{ range $i,$p:= .tablist }}
+            <div class="tab-pane fade {{if eq $i 0}}show active{{end}} schedule-item" id="{{.name | urlize}}">
+              <!-- Headings -->
+              <ul class="m-0 p-0">
+                <li class="headings">
+                  <div class="time">Time</div>
+                  <div class="speaker">Speaker</div>
+                  <div class="subject">Subject</div>
+                  <div class="venue">Venue</div>
+                </li>
+                <!-- Schedule Details -->
+                {{ range .tablist_items }}
+                <li class="schedule-details">
+                  <div class="block">
+                    <!-- time -->
+                    <div class="time">
+                      <i class="fa fa-clock-o"></i>
+                      <span class="time">{{ .time }}</span>
+                    </div>
+                    <!-- Speaker -->
+                    <div class="speaker">
+                      <img src="{{ .speaker_image | absURL }}" alt="{{.speaker}}">
+                      <span class="name">{{.speaker}}</span>
+                    </div>
+                    <!-- Subject -->
+                    <div class="subject">{{ .subject }}</div>
+                    <!-- Venue -->
+                    <div class="venue">{{ .venue | markdownify }}</div>
+                  </div>
+                </li>
+                {{ end }}
+              </ul>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Schedule  ====-->
+
+<!--==================================
+=            Registration            =
+===================================-->
+{{ if site.Data.homepage.registration.enable }}
+{{ with site.Data.homepage.registration }}
+<section class="registration">
+  <div class="container-fuild p-0">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 p-0">
+        <div class="service-block bg-service overlay-primary text-center">
+          <div class="row no-gutters">
+            {{ range .funfacts }}
+            <div class="col-6">
+              <!-- Service item -->
+              <div class="service-item">
+                <i class="fa {{ .icon }}"></i>
+                <h5>{{.name}}</h5>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 p-0">
+        <div class="registration-block bg-registration overlay-dark">
+          <div class="block">
+            <div class="title text-left">
+              <h3>{{.title | markdownify}}</span></h3>
+              <p>{{ .content | markdownify }}</p>
+            </div>
+            <form action="{{ .form_action }}" class="row">
+              <div class="col-md-6">
+                <input type="text" name="name" class="form-control main" placeholder="Your Name">
+              </div>
+              <div class="col-md-6">
+                <input type="email" name="email" class="form-control main" placeholder="Email">
+              </div>
+              <div class="col-md-6">
+                <input type="text" name="phone" class="form-control main" placeholder="Phone">
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control main" name="ticket" id="select-ticket">
+                    <option selected disabled>Ticket Type</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-white-md">Register Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Registration  ====-->
+
+
+<!--===================================
+=            Pricing Table            =
+====================================-->
+{{ if site.Data.homepage.pricing.enable }}
+{{ with site.Data.homepage.pricing }}
+<section class="section pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>{{.title | markdownify}}</h3>
+          <p>{{.content | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {{ range .pricing_table }}
+      <div class="col-lg-4 col-md-6">
+        <!-- Pricing Item -->
+        <div class="pricing-item">
+          <div class="pricing-heading">
+            <!-- Title -->
+            <div class="title">
+              <h6>{{.name}}</h6>
+            </div>
+            <!-- Price -->
+            <div class="price">
+              <h2>{{ .price }}<span>$</span></h2>
+              <p>/{{ .price_per }}</p>
+            </div>
+          </div>
+          <div class="pricing-body">
+            <!-- Feature List -->
+            <ul class="feature-list m-0 p-0">
+              {{ range .features}}
+              <li>
+                <p><span class="fa fa-check-circle available"></span>{{ . | markdownify }}</p>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="pricing-footer text-center">
+            <a href="{{ .button_link | absURL }}" class="btn btn-transparent-md">Buy a ticket</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Pricing Table  ====-->
+
+
+<!--===========================================
+=            Call to Action Ticket            =
+==================================
+==========-->
+{{ if site.Data.homepage.call_to_action.enable }}
+{{ with site.Data.homepage.call_to_action }}
+<section class="cta-ticket bg-ticket overlay-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Get ticket info -->
+        <div class="content-block">
+          <h2>{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{.link | absURL }}" class="btn btn-main-md">{{.label}}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="image-block"><img src="{{.image | absURL }}" alt="" class="img-fluid"></div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Call to Action Ticket  ====-->
+
+<!--==============================
+=            Sponsors            =
+===============================-->
+
+{{ if site.Data.homepage.sponsors.enable }}
+{{ with site.Data.homepage.sponsors }}
+<section class="sponsors section bg-sponsors overlay-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>{{.title | markdownify}}</h3>
+          <p>{{ .content | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {{range .sponsor_group }}
+        <!-- Title -->
+        <div class="sponsor-title text-center">
+          <h5>{{ .name | markdownify }}</h5>
+        </div>
+        <div class="block text-center">
+          <!-- Sponsors image list -->
+          <ul class="list-inline sponsors-list">
+            {{ range .sponsor_item }}
+            <li class="list-inline-item">
+              <div class="image-block text-center">
+                <a href="{{ .link | safeURL }}">
+                  <img src="{{ .logo | absURL }}" alt="{{.name}}" class="img-fluid">
+                </a>
+              </div>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+        {{ if .button.enable }}
+        {{ with .button }}
+        <div class="sponsor-btn text-center">
+          <a href="{{ .link | absURL }}" class="btn btn-main-md">{{.label}}</a>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Sponsors  ====-->
+
+<!--================================
+=            News Posts            =
+=================================-->
+
+<section class="news section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>Eventre <span class="alternate">News</span></h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm tempor incididunt ut labore dolore</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-8 col-10 m-auto">
+        <div class="blog-post">
+          <div class="post-thumb">
+            <a href="news-single.html">
+              <img src="images/news/post-thumb-one.jpg" alt="post-image" class="img-fluid">
+            </a>
+          </div>
+          <div class="post-content">
+            <div class="date">
+              <h4>20<span>May</span></h4>
+            </div>
+            <div class="post-title">
+              <h2><a href="news-single.html">Elementum purus id ultrices.</a></h2>
+            </div>
+            <div class="post-meta">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <i class="fa fa-user-o"></i>
+                  <a href="#">Admin</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-heart-o"></i>
+                  <a href="#">350</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-comments-o"></i>
+                  <a href="#">30</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-8 col-10 m-auto">
+        <div class="blog-post">
+          <div class="post-thumb">
+            <a href="news-single.html">
+              <img src="images/news/post-thumb-two.jpg" alt="post-image" class="img-fluid">
+            </a>
+          </div>
+          <div class="post-content">
+            <div class="date">
+              <h4>20<span>May</span></h4>
+            </div>
+            <div class="post-title">
+              <h2><a href="news-single.html">Elementum purus id ultrices.</a></h2>
+            </div>
+            <div class="post-meta">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <i class="fa fa-user-o"></i>
+                  <a href="#">Admin</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-heart-o"></i>
+                  <a href="#">350</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-comments-o"></i>
+                  <a href="#">30</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 m-md-auto col-sm-8 col-10 m-auto">
+        <div class="blog-post">
+          <div class="post-thumb">
+            <a href="news-single.html">
+              <img src="images/news/post-thumb-three.jpg" alt="post-image" class="img-fluid">
+            </a>
+          </div>
+          <div class="post-content">
+            <div class="date">
+              <h4>20<span>May</span></h4>
+            </div>
+            <div class="post-title">
+              <h2><a href="news-single.html">Elementum purus id ultrices.</a></h2>
+            </div>
+            <div class="post-meta">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <i class="fa fa-user-o"></i>
+                  <a href="#">Admin</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-heart-o"></i>
+                  <a href="#">350</a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-comments-o"></i>
+                  <a href="#">30</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--====  End of News Posts  ====-->
+
+
+{{ end }}

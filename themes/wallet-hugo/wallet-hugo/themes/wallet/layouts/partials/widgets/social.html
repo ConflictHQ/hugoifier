@@ -1,0 +1,9 @@
+{{ "<!-- Social -->" | safeHTML }}
+<div class="widget">
+  <h4 class="widget-title"><span>{{ i18n "social" }}</span></h4>
+  <ul class="list-unstyled list-inline mb-0 social-icons">
+    {{range site.Params.social }}
+    <li class="list-inline-item me-3"><a title="Explorer {{ .title | humanize }} Profile" class="text-black" href="{{ .link }}"><i class="{{ .icon }}"></i></a></li>
+    {{end}}
+  </ul>
+</div>

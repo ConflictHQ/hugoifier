@@ -1,0 +1,70 @@
+###################### About ##########################
+author:
+  enable : true
+  image : "images/about-img.jpg"
+  name : "Jems Smith"
+  bio : "I create premium designs and technology"
+  content : "I was born in Los Angeles in 1980.I'm 23 years old creative web designer, specializing in User Interface Design and Development.Veritatis culpa sunt alias esse fuga accusamus nostrum, iusto neque."
+  signature : "images/signature.png"
+  favourite_topic:
+    - "Web design"
+    - "Brand Identity"
+    - "Development & CMS"
+    - "Phptography"
+
+#################### Experience #######################
+experience:
+  enable : true
+  title : "Work Experiences."
+  experience_item:
+    # experience item
+    - name : "UI UX Designer at Behance"
+      duration : "January 2015 - August 2018"
+      content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec bibendum mauris. Curabitur quis vehicula leo. Vivamus leo ipsum"
+
+    # experience item
+    - name : "UI UX Designer at Envato"
+      duration : "January 2015 - August 2018"
+      content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec bibendum mauris. Curabitur quis vehicula leo. Vivamus leo ipsum"
+
+    # experience item
+    - name : "UI UX Designer at Dribble"
+      duration : "January 2015 - August 2018"
+      content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec bibendum mauris. Curabitur quis vehicula leo. Vivamus leo ipsum"
+
+    # experience item
+    - name : "UI UX Designer at Softinfo"
+      duration : "January 2015 - August 2018"
+      content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec bibendum mauris. Curabitur quis vehicula leo. Vivamus leo ipsum"
+
+
+###################### skill ############################
+skill:
+  enable : true
+  title : "My skills."
+  skillbar:
+    # skillbar loop
+    - name : "Business Strategy"
+      percentage : "80%"
+
+    # skillbar loop
+    - name : "Design"
+      percentage : "90%"
+
+    # skillbar loop
+    - name : "Digital Strategy"
+      percentage : "75%"
+
+    # skillbar loop
+    - name : "Development"
+      percentage : "85%"
+
+
+################## call to action ####################
+cta:
+  enable : true
+  title : "Want to discuss about any project?"
+  button:
+    enable : true
+    label : "contact me"
+    link : "contact"

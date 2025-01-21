@@ -1,0 +1,31 @@
+{{ define "main" }}
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row" id="search-results"></div>
+        <script id="search-result-template" type="text/x-js-template">
+            <div class="col-md-6 mb-4">
+              <article class="card border-0 p-3 shadow rounded-lg" id="summary-${key}">
+                <div class="card-body">
+                  <h4><a class="text-dark" href="${link}">${title}</a></h4>
+                  <p class="card-date">{{ .PublishDate.Format "Jan 02, 2006" }}</p>
+                  <p>${snippet}</p>
+                  ${ isset tags }<p class="mb-1">Tags: ${tags}</p>${ end }
+                  ${ isset categories }<p class="mb-0">Categories: ${categories}</p>${ end }
+                </div>
+              </article>
+            </div>
+      </script>
+      </div>
+
+      {{ partial "components/sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+<!-- Search index -->
+<script>
+  var indexURL = {{ "index.json" | relLangURL}}
+</script>
+{{ end }}

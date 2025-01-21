@@ -1,0 +1,35 @@
+- id: read_more
+  translation: Read More
+
+- id: posted_by
+  translation: Posted by this author
+
+- id: message_us
+  translation: Message Us
+
+- id: send
+  translation: Send
+
+- id: search
+  translation: Search
+
+- id: categories
+  translation: Categories
+
+- id: tags
+  translation: Tags
+
+- id: follow_us
+  translation: Follow us
+
+- id: subscribe
+  translation: Subscribe now
+
+- id: not_spam
+  translation: We will not spam at your inbox .Don't panic
+
+- id: email
+  translation: Email
+
+- id: professional_skills
+  translation: Professional Skills

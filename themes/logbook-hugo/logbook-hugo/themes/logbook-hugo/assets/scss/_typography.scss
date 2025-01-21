@@ -1,0 +1,49 @@
+/*  typography */
+
+body {
+  line-height: 1.7;
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  color: $text-color;
+  font-size: 0.875rem;
+}
+
+p,
+.paragraph {
+  font-weight: 400;
+  color: $text-color;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  font-family: $font-primary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $text-dark;
+  font-family: $font-secondary;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+// List in descending order to prevent extra sort function
+$type-levels: 6, 5, 4, 3, 2, 1;
+
+@each $level in $type-levels {
+  $font-size: $font-size * $font-scale;
+
+  // Output heading styles
+  h#{$level},
+  .h#{$level} {
+    font-size: calc(#{$font-size} * 0.8);
+    line-height: calc(2px + 2ex + 2px);
+    margin-bottom: 0.65em;
+
+    &:not(h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
+      font-size: calc(#{$font-size} * 1);
+    }
+  }
+}

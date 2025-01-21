@@ -1,0 +1,28 @@
+---
+label: Services
+hide_body: false
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: title
+- name: date
+  type: datetime
+  label: date
+  description: ''
+  config:
+    required: false
+    date_format: 
+    time_format: 
+    display_utc: false
+- name: description
+  type: text
+  config:
+    required: false
+  label: description
+- name: icon
+  type: text
+  config:
+    required: false
+  label: icon

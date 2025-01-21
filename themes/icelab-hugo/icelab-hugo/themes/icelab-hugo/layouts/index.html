@@ -1,0 +1,182 @@
+{{ define "main" }}
+
+{{ if .Site.Data.homepage.banner.enable }}
+{{ with .Site.Data.homepage.banner }}
+<section class="hero-area" data-parallax="scroll" data-image-src="{{ .bg_image | absURL }}" data-z-index="1"
+  data-speed="0.4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="content">
+          <h1 class="text-white" data-aos="fade-up">{{ .title | markdownify }}</h1>
+          <p class="text-white" data-aos="fade-up" data-aos-delay="200">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scroll down -->
+  <div class="scroll-down">
+    <a href="#services" class="page-scroll"><i class="fa fa-angle-left"></i>Scroll</a>
+  </div>
+  <!-- Social -->
+  <div class="social-links">
+    <ul class="list-inline">
+      {{ range $.Site.Params.social }}
+      <li class="list-inline-item"><a href="{{ .link | safeURL }}" target="_blank">{{ .name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if .Site.Data.homepage.service.enable }}
+{{ with .Site.Data.homepage.service }}
+<section class="service section" id="services">
+  <div class="shape-big">
+    <img src="{{ .bg_image | absURL }}" class="img-fluid" alt="big-shape">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- section title -->
+        <div class="section-title">
+          <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+          <h1><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h1>
+        </div>
+      </div>
+      {{ range .service_item }}
+      <div class="col-lg-4 col-md-6">
+        <!-- service item -->
+        <div class="service-item">
+          <div class="icon">
+            <img src="{{ .icon }}" alt="">
+          </div>
+          <div class="content">
+            <h6 class="sm">{{ .name | markdownify }}</h6>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ if .Site.Data.homepage.portfolio.enable }}
+<section class="section portfolio">
+  <div class="shape-medium">
+    <img src="{{`images/shape-medium.png` | absURL}}" class="img-fluid" alt="medium-shape">
+  </div>
+  <div class="container">
+    <div class="row align-items-center">
+      {{ with .Site.Data.homepage.portfolio }}
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+          <h1><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h1>
+        </div>
+      </div>
+      {{ end }}
+
+      {{ $work:= (where .Site.RegularPages "Section" "works") }}
+      {{ range first 6 $work }}
+      <div class="col-md-6">
+        <div class="portfolio-item text-center">
+          <a href="{{ .Permalink }}" class="image-holder" data-aos="image-reveal" data-aos-once="true">
+            <img src="{{ .Params.Image | absURL }}" class="img-fluid" alt="{{ .Title }}">
+          </a>
+          <h6 class="sm product-name">{{ .Title }}</h6>
+          <p class="company">{{ .Params.Company }}</p>
+        </div>
+      </div>
+      {{ end }}
+
+      <div class="col-12 mt-5 text-center">
+        <a href="/works" class="btn btn-primary">More Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+
+{{ if .Site.Data.homepage.testimonial.enable }}
+{{ with .Site.Data.homepage.testimonial }}
+<section class="testimonial section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 ml-lg-auto">
+        <!-- section title -->
+        <div class="section-title">
+          <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+          <h1><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h1>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="slider-wrapper">
+          <div class="testimonial-slider">
+            {{ range .testimonial_item }}
+            <div class="testimonial-item">
+              <div class="quote-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px"
+                  height="11px">
+                  <path fill-rule="evenodd" fill="rgb(255, 255, 255)"
+                    d="M13.876,8.760 C13.484,10.078 12.195,10.999 10.742,10.999 C10.737,10.999 10.733,10.999 10.728,10.999 C9.550,10.956 8.635,10.523 8.008,9.712 C6.887,8.264 7.020,5.962 7.475,4.431 C8.250,1.822 10.088,0.000 11.943,0.000 C12.058,0.000 12.174,0.008 12.288,0.022 C12.393,0.036 12.487,0.092 12.545,0.175 C12.603,0.258 12.620,0.361 12.592,0.457 L12.254,1.594 C12.215,1.726 12.098,1.823 11.955,1.843 C10.409,2.059 9.633,3.979 9.310,5.092 C9.645,4.955 10.077,4.844 10.595,4.844 C10.930,4.844 11.275,4.891 11.620,4.985 C12.460,5.212 13.155,5.726 13.577,6.432 C14.004,7.145 14.110,7.971 13.876,8.760 ZM3.604,10.999 C3.599,10.999 3.594,10.999 3.589,10.999 C2.412,10.955 1.497,10.522 0.869,9.712 C-0.252,8.264 -0.118,5.962 0.337,4.431 C1.112,1.822 2.949,0.000 4.804,0.000 C4.920,0.000 5.036,0.008 5.150,0.022 C5.255,0.036 5.349,0.092 5.407,0.175 C5.465,0.258 5.482,0.361 5.454,0.457 L5.116,1.594 C5.077,1.726 4.959,1.823 4.816,1.843 C3.271,2.059 2.495,3.979 2.172,5.092 C2.507,4.955 2.939,4.844 3.457,4.844 C3.792,4.844 4.137,4.891 4.481,4.985 C5.322,5.212 6.017,5.726 6.439,6.432 C6.866,7.145 6.971,7.971 6.737,8.759 C6.345,10.078 5.057,10.999 3.604,10.999 Z" />
+                </svg>
+              </div>
+              <div class="quote">
+                <p>{{ .content | markdownify }}</p>
+              </div>
+              <div class="quote-person">
+                <div class="image">
+                  <img src="{{ .image | absURL }}" alt="person-thumb">
+                </div>
+                <div class="content">
+                  <p class="name">{{ .name | markdownify }}</p>
+                  <p class="pos">{{ .designation | markdownify }}</p>
+                </div>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ if .Site.Data.homepage.call_to_action.enable }}
+{{ with .Site.Data.homepage.call_to_action }}
+<section class="section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="content">
+          <h2 class="text-white">{{ .title | markdownify }}</h2>
+          <p class="text-white mb-4 mx-auto">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-dark">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}

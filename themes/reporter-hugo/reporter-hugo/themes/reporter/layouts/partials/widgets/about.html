@@ -1,0 +1,30 @@
+<div class="col-lg-12">
+  {{ with site.GetPage "/about" }}
+  <!-- about -->
+  <div class="widget">
+    <div class="widget-body">
+      
+      {{ $image:= .Params.image }}
+      {{ if $image }}
+      {{ if hasPrefix $image "http" }}
+      <img loading="lazy" decoding="async" src="{{ $image | safeURL }}" alt="About Me" class="w-100 author-thumb-sm d-block">
+      {{ else }}
+      {{ if fileExists (add `assets/` .Params.image) }}
+      {{$img:= resources.Get (.Params.image) }}
+      {{$img:= $img.Resize "420x webp"}}
+      <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="About Me" class="w-100 author-thumb-sm d-block" width="{{$img.Width}}" height="{{$img.Height}}">
+      {{ else }}
+      <span class="image-fallback">{{.Title | title}}</span>
+      {{ end }}
+      {{ end }}
+      {{ else }}
+      <span class="image-fallback">{{.Title | title}}</span>
+      {{ end }}
+      
+      <h2 class="widget-title my-3">{{ .Title | markdownify }}</h2>
+      <p class="mb-3 pb-2">{{ .Plain | markdownify | truncate 135 }}</p>
+      <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary">{{i18n `know_more`}}</a>
+    </div>
+  </div>
+  {{ end }}
+</div>

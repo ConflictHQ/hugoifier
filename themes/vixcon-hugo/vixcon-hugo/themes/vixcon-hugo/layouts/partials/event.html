@@ -1,0 +1,32 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ with $data.homepage.event }}
+<section class="section about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="about-img position-relative">
+          <img src="{{ .image_back | absURL }}" alt="" class="img-fluid w-100">
+          <div class="img-block">
+            <img src="{{ .image_front | absURL }}" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="about-content-wrap mt-5 mt-lg-0">
+          <span class="stroke-text">{{ .title_outline }}</span>
+          <div class="ml-90">
+            <h2 class="text-lg mb-3 mt-3">{{ .title | markdownify }} </h2>
+            <p>{{ .content | markdownify }}</p>
+            {{ if .button.enable }}
+            {{ with .button }}
+            <a href="{{ .link | absLangURL }}" class="btn btn-hero btn-rounded mt-3">{{ .label }}</a>
+            {{ end}}
+            {{ end}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

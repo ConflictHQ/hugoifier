@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="title-bordered mb-5 d-flex align-items-center">
+            <h1 class="h4 fw-normal">{{ .Title }}</h1>
+          </div>
+        </div>
+        {{ range .Data.Pages.ByDate }}
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <a href="{{ .Permalink }}">
+                {{ with .Params.images }}
+                  {{ range first 1 . }}
+                    {{ partial "image.html" (dict "Src" . "Alt" "product image" "Class" "w-100") }}
+                  {{ end }}
+                {{ end }}
+              </a>
+              <div class="card-body text-center">
+                <h3 class="h5 card-title">
+                  <a href="{{ .Permalink }}" class="post-title">{{ .Title }}</a>
+                </h3>
+                <div class="price">
+                  {{ if .Params.discount_price }}
+                    <span
+                      >{{ site.Params.snipcart.currency }}{{ .Params.discount_price }}</span
+                    ><s class="ms-2"
+                      >{{ site.Params.snipcart.currency }}{{ .Params.price }}</s
+                    >
+                  {{ else }}
+                    <span
+                      >{{ site.Params.snipcart.currency }}{{ .Params.price }}</span
+                    >
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

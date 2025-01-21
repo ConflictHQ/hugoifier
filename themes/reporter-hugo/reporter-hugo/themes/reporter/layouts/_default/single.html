@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "article") (eq .Section "articles") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <article>
+          {{ $image:= .Params.image }}
+          {{ if $image }}
+          {{ if hasPrefix $image "http" }}
+          <img loading="lazy" decoding="async" src="{{ $image | safeURL }}" alt="{{ .Title }}" class="w-100">
+          {{ else }}
+          {{ if fileExists (add `assets/` .Params.image) }}
+          {{$img:= resources.Get (.Params.image) }}
+          {{$img:= $img.Resize "850x webp"}}
+          <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="Post Thumbnail" class="w-100" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ else }}
+          <span class="image-fallback w-100">{{.Title | title}}</span>
+          {{ end }}
+          {{ end }}
+          {{ else }}
+          <span class="image-fallback w-100">{{.Title | title}}</span>
+          {{ end }}
+
+          <ul class="post-meta mb-2 mt-4">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  style="margin-right:5px;margin-top:-4px" class="text-dark" viewBox="0 0 16 16">
+                <path d="M5.5 10.5A.5.5 0 0 1 6 10h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+              </svg>
+              <span>{{.PublishDate.Format "02 January, 2006"}}</span>
+            </li>
+          </ul>
+
+          <h1 class="my-3">{{.Title}}</h1>
+
+          <ul class="post-meta mb-4">
+            {{ if .Params.categories }}
+            <li>
+              {{ range $i,$e:= .Params.categories }}
+              <a href="{{`categories/` | relLangURL}}{{index (split . `/`) 0}}/">{{- index (split . "/") 0 -}}</a>
+              {{ if (index (split . "/") 1)}}
+              <a href="{{`categories/` | relLangURL}}{{index (split . `/`) 0}}/{{index (split . `/`) 1}}">{{- index (split . "/") 1 -}}</a>
+              {{ end }}
+              {{ end }}
+            </li>
+            {{ end }}
+          </ul>
+          <div class="content text-left">
+            {{.Content}}
+          </div>
+        </article>
+        <!-- comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+      <!-- sidebar -->
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+{{ .Render "default" }}
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

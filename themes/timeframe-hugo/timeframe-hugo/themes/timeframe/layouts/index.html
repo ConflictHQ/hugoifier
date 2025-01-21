@@ -1,0 +1,96 @@
+{{ define "main" }}
+
+
+<!-- banner -->
+{{ if site.Params.banner.enable }}
+{{ with site.Params.banner }}
+<section class="banner mb-5" style="background-image: url('{{ .bg_image | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto text-center">
+        <h1 class="mb-5">{{ .title | markdownify }}</h1>
+        <ul class="list-inline social-icons">
+          {{ range site.Params.social }}
+          <li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="fa {{.icon}}"></i></a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /banner -->
+
+<!-- post layout -->
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ $paginator := .Paginate (where site.RegularPages "Section" "post") }}
+      {{ if eq site.Params.layout.post "1"}}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-5 col-sm-6">
+        <article class="card">
+          {{ if .Params.image }}
+          <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+          {{ end }}
+          <div class="card-body text-center">
+            <ul class="card-meta">
+              {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}
+              <li><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | humanize }}</a></li>
+              {{end}}
+            </ul>
+            <h4 class="card-title mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+            <p>{{ .Summary }}</p>
+            <ul class="post-meta">
+              <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}
+              </li>
+              <li><i class="fa fa-clock-o"></i>{{ .Page.ReadingTime }}
+                {{ i18n "minute_read" }}</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      {{ end }}
+      {{ end }}
+
+      {{ if eq site.Params.layout.post "2"}}
+      {{ range $index,$elements:= $paginator.Pages }}
+      <div class="col-lg-10 mx-auto">
+        {{ if and (not site.Params.banner.enable) (eq $index 0 )}}
+        <div class="card card-xl">
+          {{ else }}
+          <div class="card card-lg mb-5">
+            {{ end }}
+            {{ if .Params.image }}
+            <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+            {{ end }}
+            <div class="card-body text-center">
+              <ul class="card-meta">
+                {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}
+                <li><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | humanize }}</a></li>
+                {{end}}
+              </ul>
+              <h4 class="card-title mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+              <p>{{ .Summary }}</p>
+              <ul class="post-meta">
+                <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}</li>
+                <li><i class="fa fa-clock-o"></i>{{ .Page.ReadingTime }}
+                  {{ i18n "minute_read" }}</li>
+              </ul>
+              <a href="{{ .Permalink }}" class="btn btn-link">{{ i18n "read_more" }} <i
+                  class="fa fa-long-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+      {{ partial "paginator.html" . }}
+    </div>
+</section>
+<!-- /post layout -->
+
+{{ partial "instafeed.html" . }}
+
+{{ end }}

@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<section id="main-container">
+  {{ if $data.about.company_profile.enable }}
+  {{ with $data.about.company_profile }}
+  <div class="container">
+    <!-- Company Profile -->
+    <div class="row">
+      <div class="col-md-12 heading">
+        <span class="title-icon classic float-left"><i class="fa {{.icon}}"></i></span>
+        <h2 class="title classic">{{ .title | markdownify }}</h2>
+      </div>
+    </div><!-- Title row end -->
+
+    <div class="row landing-tab">
+      <div class="col-md-3 col-sm-5">
+        <div class="nav flex-column nav-pills border-right" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          {{ range $index,$elements:= .profile_tab }}
+          <a class="animated fadeIn nav-link py-4 {{if eq $index 0}}active{{end}} d-flex align-items-center"
+            data-toggle="pill" href="#{{.name | urlize}}" role="tab" aria-selected="true">
+            <i class="fa {{.icon}} mr-4"></i>
+            <span class="h4 mb-0 font-weight-bold">{{ .name }}</span>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-7">
+        <div class="tab-content" id="v-pills-tabContent">
+          {{ range $index,$elements:= .profile_tab }}
+          <div class="tab-pane pl-sm-5 fade {{if eq $index 0}}show active{{end}} animated fadeInLeft"
+            id="{{.name | urlize}}" role="tabpanel">
+            <i class="fa {{.icon}} icon-xl text-primary mb-4"></i>
+            <h3>{{ .title | markdownify }}</h3>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <!--/ Content row end -->
+  </div>
+  <!--/ 1st container end -->
+  <div class="gap-60"></div>
+  {{ end }}
+  {{ end }}
+
+
+  <!-- Counter Strat -->
+  {{ if $data.homepage.funfact.enable }}
+  {{ partial "funfact.html" . }}
+  {{ end }}
+  <!--/ Counter end -->
+
+  <div class="gap-60"></div>
+
+  <!-- Team start -->
+  {{ if $data.homepage.team.enable }}
+  {{ partial "team.html" . }}
+  {{ end }}
+  <!--/ Team end -->
+</section>
+
+{{ end }}

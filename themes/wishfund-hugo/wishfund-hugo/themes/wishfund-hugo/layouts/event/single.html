@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section cause-single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="single-details">
+          <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid w-100">
+          <h2 class="my-4 text-lg">{{ .Title | markdownify }}</h2>
+          <div class="content">
+            {{.Content}}
+          </div>
+          <div class="d-lg-flex justify-content-between align-items-center border-top pt-4 mt-5">
+            <h4>Be a part of noble work</h4>
+            <a href="/donation" class="btn btn-main-2 rounded">Donate Now</a>
+          </div>
+          <!-- post share -->
+          <div class="share-option mt-5 clearfix">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"> <strong>Share Cause:</strong> </li>
+              {{ range .Site.Params.postShare }}
+              <li class="list-inline-item"><a href="{{ .link | safeURL}}" target="_blank"><i class="{{ .icon }} mr-2"></i>{{ .name }}</a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

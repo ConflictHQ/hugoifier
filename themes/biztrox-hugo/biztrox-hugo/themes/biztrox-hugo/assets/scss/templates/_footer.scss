@@ -1,0 +1,114 @@
+/* 25.1 social link */
+.social-icon-outline {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid $white;
+  text-align: center;
+  transition: .2s ease;
+  display: inline-block;
+
+  i {
+    line-height: 40px;
+    color: $white;
+    font-size: 14px;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
+
+/* 25.2 footer link */
+.footer-links {
+  padding-left: 18px;
+
+  li {
+    margin-bottom: 20px;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      font-family: $font-icon;
+      content: "\e649";
+      top: 0;
+      left: -20px;
+      height: 12px;
+      width: auto;
+      color: $white;
+    }
+
+    a {
+      color: $white;
+      font-family: $font-secondary;
+      font-size: 14px;
+      transition: .2s ease;
+      display: block;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+/* 25.3 subcription */
+.form-control.subscribe {
+  width: 100%;
+  border-radius: 35px;
+  border: 0;
+  padding: 0 20px !important;
+  height: 50px;
+}
+
+/* subscribe button */
+.btn-subscribe {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: $white;
+  background: $color-primary;
+  transition: all linear .2s;
+
+  &:hover {
+    padding-left: 15px;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+/* back to top button */
+.back-to-top {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  color: $white;
+  background: $color-secondary;
+  top: -25px;
+  right: 10px;
+  border: 1px solid #454547;
+  text-align: center;
+  display: block;
+  transition: .2s ease;
+
+  i {
+    line-height: 50px;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}

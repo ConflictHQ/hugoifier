@@ -1,0 +1,231 @@
+# main menu
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+weight = 4
+name = "Company"
+hasChildren = true
+
+[[main]]
+parent = "Company"
+name = "About"
+url = "about/"
+weight = 1
+
+[[main]]
+parent = "Company"
+name = "Team"
+url = "team/"
+weight = 4
+
+[[main]]
+parent = "Company"
+name = "How It Works"
+url = "how-it-works/"
+weight = 8
+
+[[main]]
+parent = "Company"
+name = "Career"
+url = "career/"
+weight = 9
+
+[[main]]
+parent = "Company"
+name = "Career Details"
+url = "career/sr-executive-service-assurance/"
+weight = 10
+
+[[main]]
+weight = 6
+name = "Products"
+hasChildren = true
+[main.params]
+isMenuLarge = true
+
+[[main]]
+parent = "Products"
+name = "CRM"
+pre = "<i class='dropdown-icon fas fa-users'></i>"
+post = "<small class='dropdown-subtitle'>Convert leads and close sales deals faster.</small>"
+url = "products/product-1/"
+weight = 1
+
+[[main]]
+parent = "Products"
+name = "Help Desk"
+pre = "<i class='dropdown-icon fas fa-dice-d6'></i>"
+post = "<small class='dropdown-subtitle'>Software to deliver great customer support.</small>"
+url = "products/product-2/"
+weight = 2
+
+[[main]]
+parent = "Products"
+name = "Workplace"
+pre = "<i class='dropdown-icon fas fa-laptop-house'></i>"
+post = "<small class='dropdown-subtitle'>Application built to improve productivity.</small>"
+url = "products/product-3/"
+weight = 3
+
+[[main]]
+parent = "Products"
+name = "Analytics"
+pre = "<i class='dropdown-icon fas fa-chart-bar'></i>"
+post = "<small class='dropdown-subtitle'>Create custom reports from any data set.</small>"
+url = "products/product-4/"
+weight = 4
+
+[[main]]
+parent = "Products"
+name = "View All Product"
+pre = "<i class='dropdown-icon text-primary fas fa-arrow-right'></i>"
+url = "products/"
+weight = 5
+
+[[main]]
+weight = 13
+name = "Blog"
+hasChildren = true
+
+[[main]]
+parent = "Blog"
+name = "Blog Posts"
+url = "blog/"
+weight = 3
+
+[[main]]
+parent = "Blog"
+name = "Blog Details"
+url = "blog/post-1/"
+weight = 8
+
+[[main]]
+parent = "Blog"
+name = "Author"
+url = "author/"
+weight = 11
+
+[[main]]
+parent = "Blog"
+name = "Author Details"
+url = "author/awab-husameldin/"
+weight = 12
+
+[[main]]
+weight = 15
+name = "Pages"
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Pricing"
+url = "pricing/"
+weight = 1
+
+[[main]]
+parent = "Pages"
+name = "Case Studies"
+url = "case-studies/"
+weight = 4
+
+[[main]]
+parent = "Pages"
+name = "Case Studies Details"
+url = "case-studies/case-1/"
+weight = 5
+
+[[main]]
+parent = "Pages"
+name = "Contact"
+url = "contact/"
+weight = 10
+
+[[main]]
+parent = "Pages"
+name = "FAQ"
+url = "faq/"
+weight = 16
+
+[[main]]
+parent = "Pages"
+name = "Privacy Policy"
+url = "privacy-policy/"
+weight = 20
+
+[[main]]
+parent = "Pages"
+name = "Terms & Conditions"
+url = "terms-conditions/"
+weight = 24
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 30
+
+# footer menu left
+[[footer_left]]
+name = "About Us"
+url = "about/"
+weight = 1
+
+[[footer_left]]
+name = "Team"
+url = "team/"
+weight = 2
+
+[[footer_left]]
+name = "How It Works"
+url = "how-it-works/"
+weight = 3
+
+[[footer_left]]
+name = "Career"
+url = "career/"
+weight = 4
+
+
+# footer menu middle
+[[footer_middle]]
+name = "CRM"
+url = "products/product-1/"
+weight = 1
+
+[[footer_middle]]
+name = "Help Desk"
+url = "products/product-2/"
+weight = 2
+
+[[footer_middle]]
+name = "Workplace"
+url = "products/product-3/"
+weight = 3
+
+[[footer_middle]]
+name = "Analytics"
+url = "products/product-4/"
+weight = 4
+
+# footer menu right
+[[footer_right]]
+name = "FAQ"
+url = "faq/"
+weight = 1
+
+[[footer_right]]
+name = "Contact"
+url = "contact/"
+weight = 2
+
+[[footer_right]]
+name = "Privacy Policy"
+url = "privacy-policy/"
+weight = 3
+
+[[footer_right]]
+name = "Terms & Conditions"
+url = "terms-conditions/"
+weight = 4

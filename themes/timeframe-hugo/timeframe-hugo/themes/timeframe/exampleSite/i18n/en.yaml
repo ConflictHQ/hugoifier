@@ -1,0 +1,50 @@
+- id: read_more
+  translation: Read More
+
+- id: minute_read
+  translation: Min To Read
+  
+- id: instagram_post
+  translation: Instagram Post
+  
+- id: some_facts
+  translation: Some Facts
+
+- id: phone
+  translation: Phone Number
+
+- id: first_name
+  translation: First Name
+
+- id: last_name
+  translation: Last Name
+
+- id: email
+  translation: Email Address
+
+- id: subject
+  translation: Subject
+
+- id: message
+  translation: Message
+
+- id: send
+  translation: send message
+
+- id: search_placeholder
+  translation: Type & Hit Enter...
+
+- id: posted_by
+  translation: Posted By This Author
+
+- id: address
+  translation: Address Info
+
+- id: map
+  translation: Google Map
+
+- id: search_result_for
+  translation: Search result for
+
+- id: items_showing
+  translation: Items are showing from

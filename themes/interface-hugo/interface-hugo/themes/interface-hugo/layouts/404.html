@@ -1,0 +1,55 @@
+{{ define "main" }}
+  <section class="page-header-bg has-overlay has-backdrop">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="space"></div>
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="backdrop text-quaternary d-none d-sm-block"
+      width="552"
+      height="524"
+      viewBox="0 0 552 524"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.75"
+        d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+        fill="currentColor" />
+    </svg>
+  </section>
+
+  <section class="section has-backdrop pt-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center">
+          {{ with site.GetPage "404" }}
+            <div class="w-100">
+              {{ partial "image" (dict "Src" .Params.image "Alt" "about image" "Size" "500x" "Webp" false "Class" "mb-5") }}
+            </div>
+            <a href="{{ site.BaseURL | relLangURL }}" class="btn btn-primary">
+              {{ i18n "back_to_home" }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="backdrop text-tertiary"
+      width="552"
+      height="524"
+      viewBox="0 0 552 524"
+      fill="none"
+      style="right: -20%;bottom: -20%;"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.75"
+        d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+        fill="currentColor" />
+    </svg>
+  </section>
+{{ end }}

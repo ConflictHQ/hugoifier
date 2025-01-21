@@ -1,0 +1,174 @@
+/* Controls
+---------------------------------------------------------------------- */
+
+.controls {
+    text-align: center;
+    margin-bottom: 40px;
+    .control{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-family: $secondary-font;
+        margin-right: 25px;
+        @include tablet{
+            margin-right: 10px;
+        }
+        &:focus{
+            outline: 0;
+        }
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
+
+.mixitup-control-active {
+    color: $primary-color;
+}
+
+
+/* Container
+---------------------------------------------------------------------- */
+
+.gallery-wrapper {
+    .gallery-item{
+        padding: 15px;
+        .image-block{
+            padding: 6px;
+            border: 1px solid $border-color;
+            .image{
+                position: relative;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                }
+                .primary-overlay{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $primary-color;
+                    opacity: 0;
+                    transform:scale(.8);
+                    transition: .3s ease;
+                    a{
+                        display: block;
+                        height: 55px;
+                        width: 55px;
+                        text-align: center;
+                        border: 1px solid $light;
+                        border-radius: 100%;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        outline: none;
+                        i{
+                            color: $light;
+                            line-height: 55px;
+                            font-size: 1.25rem;
+                            
+                        }
+                    }
+                }
+                &:hover{
+                    .primary-overlay{
+                        opacity: .85;
+                        transform:scale(1);
+                    }
+                }
+            }
+        }
+    }
+    /* Target Elements
+    ---------------------------------------------------------------------- */
+
+    .mix,
+    .gap {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .mix {
+        background: #fff;
+        position: relative;
+    }
+
+    /* Grid Breakpoints
+    ---------------------------------------------------------------------- */
+
+    /* 2 Columns */
+    .mix{
+        width: calc(100%/2 - (((2 - 1) * 1rem) / 2));
+    }
+    /* 3 Columns */
+    @media screen and (min-width: 768px) {
+        .mix{
+            width: calc(100%/3 - (((3 - 1) * 1rem) / 3));
+        }
+    }
+    &.less-gutter{
+        .gallery-item{
+            padding: 5px;
+            .image-block{
+                padding: 0;
+                border: none;
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            .mix,
+            .gap {
+                width: calc(100%/4 - (((4 - 1) * 1rem) / 4));
+            }
+        }
+    }
+}
+
+.gallery-full{
+    overflow: hidden;
+    .image{
+        position: relative;
+        overflow: hidden;
+        margin-bottom: -1px;
+        img{
+            width: 100%;
+        }
+        .primary-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $primary-color;
+            opacity: 0;
+            transform:scale(.8);
+            transition: .3s ease;
+            a{
+                display: block;
+                height: 55px;
+                width: 55px;
+                text-align: center;
+                border: 1px solid $light;
+                border-radius: 100%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                outline: none;
+                i{
+                    color: $light;
+                    line-height: 55px;
+                    font-size: 1.25rem;
+                    
+                }
+            }
+        }
+        &:hover{
+            .primary-overlay{
+                opacity: .85;
+                transform:scale(1);
+            }
+        }
+    }
+}

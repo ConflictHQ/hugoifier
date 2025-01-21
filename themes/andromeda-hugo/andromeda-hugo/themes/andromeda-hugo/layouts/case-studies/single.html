@@ -1,0 +1,60 @@
+{{ define "main" }}
+  <section class="section-sm" data-aos="fade-in">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div
+            class="d-block d-md-flex align-items-center justify-content-between">
+            <div>
+              <h1 style="line-height:1.2">
+                {{ i18n `lets_meet` }}
+                <span class="d-block text-primary"
+                  >{{ .Title |
+                    markdownify
+                  }}</span
+                >
+              </h1>
+
+              <div class="d-block d-sm-flex border-top mt-4 pt-4">
+                <div class="me-5">
+                  <p class="mb-0 text-uppercase text-black-200 fw-600">
+                    {{ i18n `year` }}
+                  </p>
+                  <p class="text-primary fw-500">
+                    {{ .Params.year | markdownify }}
+                  </p>
+                </div>
+                <div class="me-5">
+                  <p class="mb-0 text-uppercase text-black-200 fw-600">
+                    {{ i18n `location` }}
+                  </p>
+                  <p class="text-primary fw-500">
+                    {{ .Params.location | markdownify }}
+                  </p>
+                </div>
+                <div>
+                  <p class="mb-0 text-uppercase text-black-200 fw-600">
+                    {{ i18n `company_size` }}
+                  </p>
+                  <p class="text-primary fw-500">
+                    {{ .Params.company_size | markdownify }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 mt-md-0" style="max-width: 200px">
+              {{ if and (.Params.logo) (fileExists (add `assets/` .Params.logo)) }}
+                {{ partial "image.html" (dict "Src" .Params.logo "Alt" "brand image" "Class" "mb-3 mb-md-0" "Size" "575x") }}
+              {{ end }}
+            </div>
+          </div>
+
+          <div class="content border-top pt-5 mt-4">
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

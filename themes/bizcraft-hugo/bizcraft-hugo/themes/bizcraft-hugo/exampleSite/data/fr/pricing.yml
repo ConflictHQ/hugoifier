@@ -1,0 +1,79 @@
+title : "Pricing Table"
+subtitle : "We Love to Work with Passion"
+title_icon : "fa-university" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+pricing_table:
+  # pricing table loop
+  - name : "Basic"
+    package : "Monthly plan"
+    type : "regular"
+    currency : "$"
+    dollar : "49"
+    cent : "99"
+    services:
+      - 100GB Monthly Bandwidth
+      - $100 Google AdWords
+      - 100 Domain Hosting
+      - SSL Shopping Cart
+      - 24/7 Live Support
+    
+    button:
+      enable : true
+      label : "Sign Up"
+      link : "#"
+
+  # pricing table loop
+  - name : "Standared"
+    package : "Monthly plan"
+    type : "regular"
+    currency : "$"
+    dollar : "99"
+    cent : "99"
+    services:
+      - 100GB Monthly Bandwidth
+      - $100 Google AdWords
+      - 100 Domain Hosting
+      - SSL Shopping Cart
+      - 24/7 Live Support
+    
+    button:
+      enable : true
+      label : "Sign Up"
+      link : "#"
+
+  # pricing table loop
+  - name : "Professional"
+    package : "Monthly plan"
+    type : "featured"
+    currency : "$"
+    dollar : "149"
+    cent : "99"
+    services:
+      - 100GB Monthly Bandwidth
+      - $100 Google AdWords
+      - 100 Domain Hosting
+      - SSL Shopping Cart
+      - 24/7 Live Support
+    
+    button:
+      enable : true
+      label : "Sign Up"
+      link : "#"
+
+  # pricing table loop
+  - name : "Premium"
+    package : "Monthly plan"
+    type : "regular"
+    currency : "$"
+    dollar : "399"
+    cent : "99"
+    services:
+      - 100GB Monthly Bandwidth
+      - $100 Google AdWords
+      - 100 Domain Hosting
+      - SSL Shopping Cart
+      - 24/7 Live Support
+    
+    button:
+      enable : true
+      label : "Sign Up"
+      link : "#"

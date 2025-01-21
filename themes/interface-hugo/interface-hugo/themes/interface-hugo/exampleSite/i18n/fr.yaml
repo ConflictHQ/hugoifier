@@ -1,0 +1,74 @@
+- id: enter_your_email
+  translation: Entrer votre Email
+
+- id: try_for_free
+  translation: Essayer
+
+- id: send
+  translation: envoyer
+
+- id: toc
+  translation: Table des matières
+
+- id: features
+  translation: Fonctionnalités
+
+- id: email
+  translation: E-mail
+
+- id: phone
+  translation: Téléphoner
+
+- id: company
+  translation: Company
+
+- id: address
+  translation: Office Address
+
+- id: follow_us
+  translation: Adresse de bureau
+
+- id: first_name
+  translation: Prénom
+
+- id: last_name
+  translation: Nom de famille
+
+- id: message
+  translation: Message
+
+- id: email_address
+  translation: Adresse e-mail
+
+- id: view_listing
+  translation: Voir la liste
+
+- id: upload_cv
+  translation: Téléchargez votre CV
+
+- id: apply_now
+  translation: Appliquer
+
+- id: share_this_job
+  translation: Partager ce travail
+
+- id: other_jobs
+  translation: Autres emplois
+
+- id: view_all_positions
+  translation: Voir tout
+
+- id: min_read
+  translation: lecture minimale
+
+- id: recent_posts
+  translation: Récent de
+
+- id: related_posts
+  translation: Articles Similaires
+
+- id: all_posts
+  translation: All Posts
+
+- id: follow_us
+  translation: Follow us

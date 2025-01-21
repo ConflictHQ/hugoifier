@@ -1,0 +1,33 @@
+{{ "<!-- Footer -->" | safeHTML }}
+<footer class="footer-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="block">
+          <ul class="list-inline mb-5">
+            {{ range .Site.Menus.footer }}
+            <li class="list-inline-item mx-3"><a class="text-white" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+          <a href="{{ .Site.BaseURL | absLangURL }}">
+            {{ partial "image.html" (dict "Src" .Site.Params.logo_light "Alt" "small apps") }}
+          </a>
+          <ul class="social-icon list-inline">
+            {{ range .Site.Params.social }}
+            <li class="list-inline-item">
+              <a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
+            </li>
+            {{ end }}
+          </ul>
+          <p class="content copyright mt-4">
+            {{ site.Params.copyright | markdownify }}
+            {{ if site.Params.theme_copyright }}
+            | Theme by
+            <a target="_blank" rel="noopener noreferrer" href="https://gethugothemes.com/">GetHugoThemes</a>
+            {{ end }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

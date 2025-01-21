@@ -1,0 +1,480 @@
+{{ define "main" }}
+  <!-- banner -->
+  {{ with .Params.banner }}
+    <section class="banner has-backdrop has-overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="section text-center">
+              <p class="section-subtitle text-primary">
+                {{ .subtitle | markdownify }}
+              </p>
+              <h1 class="section-title gradient-title text-center">
+                {{ .title | markdownify }}
+              </h1>
+              <p>
+                Briefly explain the purpose of the presentation: to explore the
+                incredible benefits and potential of collaboration in achieving
+                success.
+              </p>
+              {{ range $i, $e := .buttons }}
+                <a
+                  class="btn mx-2 my-1 {{ if eq $i 0 }}
+                    btn-primary
+                  {{ else }}
+                    btn-outline-primary
+                  {{ end }}"
+                  href="{{ .link | safeHTML }}">
+                  {{ .label | markdownify }}
+                </a>
+              {{ end }}
+            </div>
+
+            {{ if .video_over_image.enable }}
+              <div
+                class="content-overlay pb-0 overflow-hidden rounded-5 shadow-sm">
+                <button
+                  type="button"
+                  class="video-play-btn rounded-circle"
+                  data-video-src="{{ .video_over_image.video_url }}">
+                  <i class="fas fa-play"></i>
+                </button>
+                {{ partial "image.html" (dict "Src" .image "Alt" "video thumbnail" "Size" "2600x" "Webp" false "Class" "w-100 video-thumb rounded-5") }}
+              </div>
+            {{ else }}
+              <div class="content-overlay video-thumb">
+                {{ partial "image.html" (dict "Src" .image "Alt" "Banner Image" "Size" "2600x" "Webp" false "Class" "w-100") }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      <svg
+        class="backdrop backdrop-1 text-quaternary"
+        width="552"
+        height="524"
+        viewBox="0 0 552 524"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.8"
+          d="M173.596 -232C382.583 -232 552 -62.7637 552 146C552 354.764 382.583 524 173.596 524C78.3462 524 -30.328 488.845 -120.404 430.815C-227.961 361.523 -309 259.615 -309 146C-309 34.2989 -119.705 63.0226 -14.8532 -6.17695C76.2577 -66.3078 76.4301 -232 173.596 -232Z"
+          fill="currentColor" />
+      </svg>
+      <svg
+        class="backdrop backdrop-2 text-tertiary"
+        width="490"
+        height="670"
+        viewBox="0 0 490 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.4"
+          d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end banner -->
+
+  <!-- reviews -->
+  {{ with .Params.reviews }}
+    {{ if .enable }}
+      <section class="section pt-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="reviews border-top border-bottom py-4">
+                <div class="row gy-5">
+                  {{ range .lists }}
+                    <div class="col-lg-3 col-6 text-center block">
+                      <p class="text-dark fw-bold">
+                        {{ .title | markdownify }}
+                      </p>
+                      <a href="{{ .link | safeURL }}" target="_blank">
+                        {{ partial "image" (dict "Src" .image "Alt" "review-image" "Resize" false) }}
+                      </a>
+                    </div>
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <!-- end reviews -->
+
+  <!-- marketing_tools -->
+  {{ with .Params.marketing_tools }}
+    <section class="marketing-tools has-backdrop has-overlay">
+      <div class="section container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <p class="section-subtitle text-secondary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+
+          <div class="col-lg-10 mt-4">
+            <ul
+              class="nav nav-tabs justify-content-center"
+              id="myTab"
+              role="tablist">
+              {{ range $i, $e := .tools_list }}
+                <li class="nav-item my-1 my-xl-0 mx-xl-2" role="presentation">
+                  <button
+                    class="nav-link rounded-top-4 bg-transparent border-bottom-0 py-3 {{ if eq $i 0 }}
+                      active
+                    {{ end }}"
+                    id="tools-{{ .title | urlize | sha1 }}-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tools-{{ .title | urlize | sha1 }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="tools-{{ .title | urlize | sha1 }}"
+                    aria-selected="{{ if eq $i 0 }}
+                      true
+                    {{ else }}
+                      false
+                    {{ end }}">
+                    {{ partial "image" (dict "Src" .icon "Alt" "Icon" "Size" "58x58" "Webp" false "Class" "mx-1") }}
+                  </button>
+                </li>
+              {{ end }}
+            </ul>
+            <div
+              class="tab-content border-0 text-center bg-transparent"
+              id="myTabContent">
+              {{ range $i, $e := .tools_list }}
+                <div
+                  class="tab-pane fade {{ if eq $i 0 }}show active{{ end }}"
+                  id="tools-{{ .title | urlize | sha1 }}"
+                  role="tabpanel"
+                  aria-labelledby="tools-{{ .title | urlize | sha1 }}-tab">
+                  <div class="my-4 py-2">
+                    <h3 class="h4 text-capitalize">
+                      {{ .title | markdownify }}
+                    </h3>
+                    <p class="mb-0">{{ .content | markdownify }}</p>
+                  </div>
+                  <div class="p-4 bg-light rounded-5">
+                    {{ partial "image" (dict "Src" .image "Alt" "marketing tools image" "Webp" false "Size" "3600x" "Class" "rounded-5") }}
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg
+        class="backdrop text-primary"
+        width="270"
+        height="670"
+        viewBox="0 0 270 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.22"
+          d="M-65.3333 4.23413e-05C119.866 3.42459e-05 270 149.985 270 335C270 520.015 119.866 670 -65.3333 670C-149.742 670 -246.047 638.844 -325.87 587.416C-421.185 526.006 -493 435.691 -493 335C-493 236.006 -325.251 261.462 -232.333 200.134C-151.593 146.844 -151.44 4.61051e-05 -65.3333 4.23413e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end marketing_tools -->
+
+  <!-- services -->
+  {{ with .Params.services }}
+    <section class="services has-backdrop">
+      <div class="section pb-3 container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <p class="section-subtitle text-tertiary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+
+          <div class="col-xl-10">
+            <ul
+              class="nav nav-tabs justify-content-center border-bottom-0"
+              id="myTab"
+              role="tablist">
+              {{ range $i, $e := .service_list }}
+                <li class="nav-item position-relative" role="presentation">
+                  <button
+                    class="nav-link {{ if eq $i 0 }}
+                      active
+                    {{ end }} rounded-top-4 bg-transparent border-bottom-0"
+                    id="tools-{{ .title | urlize | sha1 }}-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tools-{{ .title | urlize | sha1 }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="tools-{{ .title | urlize | sha1 }}"
+                    aria-selected="{{ if eq $i 0 }}
+                      true
+                    {{ else }}
+                      false
+                    {{ end }}">
+                    <span class="label text-capitalize">{{ .title }}</span>
+                    <span class="polygon"></span>
+                  </button>
+                  <i class="icon {{ .icon }}"></i>
+                </li>
+              {{ end }}
+              <svg
+                style="visibility: hidden; position: absolute;"
+                width="0"
+                height="0"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1">
+                <defs>
+                  <filter id="round">
+                    <feGaussianBlur
+                      in="SourceGraphic"
+                      stdDeviation="5"
+                      result="blur" />
+                    <feColorMatrix
+                      in="blur"
+                      mode="matrix"
+                      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                      result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                  </filter>
+                </defs>
+              </svg>
+            </ul>
+            <div
+              class="tab-content border-0 bg-transparent shadow-lg rounded-5"
+              id="myTabContent">
+              {{ range $i, $e := .service_list }}
+                <div
+                  class="mt-4 tab-pane fade {{ if eq $i 0 }}
+                    show active
+                  {{ end }}"
+                  id="tools-{{ .title | urlize | sha1 }}"
+                  role="tabpanel"
+                  aria-labelledby="tools-{{ .title | urlize | sha1 }}-tab">
+                  <div class="row g-0 text-center">
+                    <div class="col-lg-8">
+                      <div class="block">
+                        <h3 class="h5 text-capitalize">
+                          {{ .title | markdownify }}
+                        </h3>
+                        <p class="mb-0 small">{{ .content | markdownify }}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 bg-light">
+                      <div
+                        class="d-flex align-items-center justify-content-center flex-column h-100">
+                        {{ range $i, $e := .buttons }}
+                          <a
+                            class="my-2 btn {{ if eq $i 0 }}
+                              btn-outline-primary
+                            {{ else }}
+                              btn-primary
+                            {{ end }}"
+                            href="{{ .link | safeHTML }}">
+                            {{ .label | markdownify }}
+                          </a>
+                        {{ end }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg
+        class="backdrop text-primary"
+        width="270"
+        height="670"
+        viewBox="0 0 270 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.22"
+          d="M-65.3333 4.23413e-05C119.866 3.42459e-05 270 149.985 270 335C270 520.015 119.866 670 -65.3333 670C-149.742 670 -246.047 638.844 -325.87 587.416C-421.185 526.006 -493 435.691 -493 335C-493 236.006 -325.251 261.462 -232.333 200.134C-151.593 146.844 -151.44 4.61051e-05 -65.3333 4.23413e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end services -->
+
+  <!-- integration -->
+  {{ with .Params.integration }}
+    <section class="integration section has-backdrop overflow-hidden">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <p class="section-subtitle text-tertiary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+            {{ range $i, $e := .buttons }}
+              <a
+                class="btn mx-2 my-1 {{ if eq $i 0 }}
+                  btn-primary
+                {{ else }}
+                  btn-outline-primary
+                {{ end }}"
+                href="{{ .link | safeHTML }}">
+                {{ .label | markdownify }}
+              </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid mt-5 pt-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="swiper integration-swiper" style="pointer-events: none">
+              <div class="swiper-wrapper text-center">
+                {{ range .integration_lists }}
+                  <div class="swiper-slide">
+                    {{ partial "image" (dict "Src" . "Alt" "integration tool") }}
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg
+        class="backdrop text-quaternary"
+        width="814"
+        height="1554"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g opacity=".9" filter="url(#a)">
+          <path
+            d="M875.7 420A357.2 357.2 0 0 1 1233 777c0 197.2-160 357-357.3 357-90 0-192.6-33.2-277.6-88C496.5 980.5 420 884.3 420 777c0-105.5 178.7-78.4 277.7-143.7 86-56.8 86.2-213.3 178-213.3Z"
+            fill="currentColor" />
+        </g>
+        <defs>
+          <filter
+            id="a"
+            x="0"
+            y="0"
+            width="1653"
+            height="1554"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape" />
+            <feGaussianBlur
+              stdDeviation="210"
+              result="effect1_foregroundBlur_32_366" />
+          </filter>
+        </defs>
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end integration -->
+
+  <!-- how it works -->
+  {{ with .Params.how_it_works }}
+    <section class="how-it-works has-backdrop has-overlay">
+      <div class="section container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <p class="section-subtitle text-secondary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+        </div>
+
+        {{ range $i, $e := .feature_lists }}
+          <div
+            class="row g-0 bg-light rounded-5 align-items-end {{ if ne $i 0 }}
+              mt-5
+            {{ end }}">
+            <div
+              class="col-lg-6 {{ if modBool $i 2 }}
+                order-0 order-lg-1 image-right
+              {{ end }}">
+              <div class="image-block">
+                {{ partial "image" (dict "Src" .image "Alt" "how it works image" "Resize" false "Class" "w-100") }}
+              </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-0">
+              <div class="content-block">
+                <h3>{{ .title | markdownify }}</h3>
+                <div class="mb-4">{{ .content | markdownify }}</div>
+                {{ range $i, $e := .buttons }}
+                  <a
+                    class="btn me-2 {{ if eq $i 0 }}
+                      btn-primary
+                    {{ else }}
+                      btn-outline-primary
+                    {{ end }}"
+                    href="{{ .link }}">
+                    {{ .label | markdownify }}
+                  </a>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <svg
+        class="backdrop text-tertiary"
+        width="676"
+        height="1416"
+        viewBox="0 0 676 1416"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.25" filter="url(#filter0_f_32_368)">
+          <path
+            d="M-32.3076 420C126.92 420 256 548.942 256 708C256 867.058 126.92 996 -32.3075 996C-104.879 996 -187.678 969.215 -256.307 925.002C-338.256 872.208 -400 794.564 -400 708C-400 622.894 -255.775 644.779 -175.888 592.056C-106.47 546.242 -106.339 420 -32.3076 420Z"
+            fill="currentColor" />
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_32_368"
+            x="-820"
+            y="0"
+            width="1496"
+            height="1416"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape" />
+            <feGaussianBlur
+              stdDeviation="210"
+              result="effect1_foregroundBlur_32_368" />
+          </filter>
+        </defs>
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end how it works -->
+
+  <!-- how it testimonials -->
+  {{ partial "components/testimonial" . }}
+  <!-- end testimonials -->
+
+  {{ partial "components/cta" . }}
+{{ end }}

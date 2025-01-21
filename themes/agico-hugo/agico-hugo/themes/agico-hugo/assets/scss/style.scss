@@ -1,0 +1,45 @@
+// Color Variables
+{{ with site.Params.variables }}
+$color-primary: {{.color_primary}};
+$color-secondary: {{.color_secondary}};
+$bg-secondary: {{.bg_secondary}};
+
+$text-dark: {{.text_dark}};
+$text-light: {{.text_light}};
+$text-color: {{.text_color}};
+$border-color: {{.border_color}};
+$border-light: {{.border_light}};
+
+$bg-gradient-primary: {{.bg_gradient_primary}};
+$bg-gradient-secondary: {{.bg_gradient_secondary}};
+$btn-gradient-primary: {{.btn_gradient_primary}}; 
+
+$black: {{.black}};
+$white: {{.white}};
+$gray: {{.gray}};
+
+// Font Variables
+$font-size: {{.font_size | default "16px"}};
+$font-scale: {{.font_scale | default "1.25"}};
+$font-primary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_primary }}', {{.font_primary_type}};
+$font-secondary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_secondary }}', {{.font_secondary_type}};
+$font-icon: '{{.font_icon}}';
+{{ end }}
+
+@import 'templates/bootstrap';
+@import 'mixins';
+@import 'typography';
+@import 'buttons';
+@import 'common';
+@import 'templates/navigation';
+@import 'templates/banner';
+@import 'templates/homepage';
+@import 'templates/card';
+@import 'templates/team';
+@import 'templates/blog';
+@import 'templates/footer';
+@import 'preloader';
+
+{{ if site.Params.image_gallery }}
+@import 'gallery';
+{{ end }}

@@ -1,0 +1,5 @@
+openai
+flask
+pyyaml
+openai 
+beautifulsoup4

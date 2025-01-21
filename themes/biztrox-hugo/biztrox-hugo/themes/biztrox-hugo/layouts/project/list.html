@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+{{ $data := index site.Data site.Language.Lang }}
+
+{{ "<!-- project -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="post-content mb-5">
+          {{ .Content }}
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="project-menu text-center">
+          <ul class="controls list-inline">
+            {{ "<!-- filter item list -->" | safeHTML }}
+            <li class="list-inline-item control active" data-filter="all">{{ i18n "all" }}</li>
+            {{ $categories := slice }}
+            {{ range .Data.Pages }}
+            {{ $categories = $categories | append .Params.Category }}
+            {{ end }}
+            {{ range ( $categories | uniq ) }}
+            <li class="list-inline-item control" data-filter="{{ . | urlize }}">{{ . | humanize }}</li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row filter-container">
+      {{ range .Data.Pages }}
+      {{ .Render "project" }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /project -->" | safeHTML }}
+
+{{ end }}

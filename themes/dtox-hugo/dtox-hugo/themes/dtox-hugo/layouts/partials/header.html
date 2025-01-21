@@ -1,0 +1,37 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<section class="fixed-top navigation">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | absURL }}" alt="logo"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {{ "<!-- navbar -->" | safeHTML }}
+      <div class="collapse navbar-collapse text-center" id="navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .Site.BaseURL }}">{{ .Site.Params.home }}</a>
+          </li>
+          {{ if .IsHome }}
+          {{ range $.Site.Menus.main }}
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="{{ .URL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ else }}
+          {{ range $.Site.Menus.main }}
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="{{ .URL | relURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+        {{ if .Site.Params.navBtn.enable }}
+        <a href="{{ with .Site.Params.navBtn.URL }}{{ . | absURL }}{{ end }}" class="btn btn-primary ml-lg-3 primary-shadow">{{ with .Site.Params.navBtn.btnText }}{{ . }}{{ end }}</a>
+        {{ end }}
+      </div>
+    </nav>
+  </div>
+</section>
+{{ "<!-- /navigation -->" | safeHTML }}

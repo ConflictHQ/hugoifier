@@ -1,0 +1,77 @@
+.about{
+	padding: 120px 0;
+}
+.testimonial{
+	.testimonial-item{
+		margin-bottom: 30px;
+		.comment{
+			padding: 40px 30px;
+			border: 1px solid $border-color;
+			margin-bottom: 20px;
+			position: relative;
+			transition: .3s ease;
+			&:before{
+				content: '';
+				position: absolute;
+				left: -2px;
+				bottom: -27px;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 0 30px 27px 0;
+				border-color: transparent $border-color transparent transparent;
+				transition: .3s ease;
+			}
+			&:after{
+				content: '';
+				position: absolute;
+				left: -1px;
+				bottom: -26px;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 0 28px 27px 0;
+				border-color: transparent $light transparent transparent;
+				transition: .3s ease;
+			}
+			&:hover{
+				background: $primary-color;
+				border: 1px solid $primary-color;
+				@extend .shadow;
+				p{
+					color: $light;
+				}
+				&:before{
+					border-color: transparent $primary-color transparent transparent;
+				}
+				&:after{
+					border-color: transparent $primary-color transparent transparent;
+				}
+			}
+		}
+		.media{
+			margin-left: 50px;
+			img{
+				height: 65px;
+				width: 65px;
+				border-radius: 100%;
+			}
+			.media-body{
+				margin-left: 15px;
+				align-self: center;
+				.name{
+					p{
+						font-family: $secondary-font;
+						color: $black;
+					}
+				}
+				.profession{
+					p{
+						font-size: 0.8126rem; //13px
+						color: $primary-color;
+					}
+				}
+			}
+		}
+	}
+}

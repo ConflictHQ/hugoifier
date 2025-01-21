@@ -1,0 +1,86 @@
+.btn{
+	text-transform: uppercase;
+    font-family: $secondary-font;
+    transition: all .3s ease;
+}
+
+.btn-main{
+    padding: 23px 45px;
+    border-radius: 3px;
+	background: $primary-color;
+    color: $light;
+    outline: none;
+    &:hover{
+    	color: $light;
+    }
+    &:focus{
+    	color: $light;
+        box-shadow: none;
+    }
+}
+
+.btn-main-md{
+    padding: 13px 40px;
+    border-radius: 0;
+    background: $primary-color;
+    color: $light;
+    outline: none;
+    font-size: 0.9375rem;
+    &:hover{
+        color: $light;
+        background: darken($primary-color, 5);
+    }
+    &:focus{
+        color: $light;
+        box-shadow: none;
+    }
+}
+
+.btn-transparent-md{
+    padding: 13px 40px;
+    background: transparent;
+    outline: none;
+    font-size: 0.9375rem;
+    color: $black;
+    border: 1px solid $border-color;
+    border-radius: 0;
+    &:hover{
+        background: $primary-color;
+        border-color: $primary-color;
+        color: $light;
+    }
+}
+
+.btn-main-sm{
+    padding: 10px 35px;
+    border-radius: 3px;
+    background: $primary-color;
+    color: $light;
+    outline: none;
+    font-size: 14px;
+    &:hover{
+        color: $light;
+    }
+    &:focus{
+        color: $light;
+        box-shadow: none;
+    }
+}
+
+.btn-white-md{
+	background: $light;
+	color: $black;
+    padding: 13px 40px;
+    border-radius: 0;
+    &:hover{
+        background: $primary-color;
+        color: $light;
+    }
+}
+
+.btn-rounded-icon{
+    border-radius: 100px;
+    color: $light;
+    border: 1px solid $light;
+    padding: 13px 50px;
+}

@@ -1,0 +1,281 @@
+############################ Slider ##########################
+slider:
+  enable : true
+  slider_item:
+    ################# Slider item loop
+    - title : "Need To Invent The Future!"
+      subtitle : "We Making Difference To Great Things Possible"
+      bg_image : "images/slider/bg1.jpg"
+      image : ""
+      image_position : "false"
+      # slider navigator
+      navigator:
+        label : "Invent"
+        icon : "fa-bicycle" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+
+      # slider buttons
+      buttons:
+        # button loop
+        - label : "Start Now"
+          style : "white"
+          link : "#"
+          
+        # button loop
+        - label : "Learn More"
+          style : "solid"
+          link : "#"
+
+    ############### Slider item loop
+    - title : "How Big Can You Dream?"
+      subtitle : "We Making Difference To Great Things Possible"
+      bg_image : "images/slider/bg2.jpg"
+      image : "images/slider/bg-thumb1.png"
+      image_position : "left"
+      # slider navigator
+      navigator:
+        label : "Dream"
+        icon : "fa-hotel" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+
+      # slider buttons
+      buttons:
+        # button loop
+        - label : "Take a Tour"
+          style : "solid"
+          link : "#"
+
+    ############### Slider item loop
+    - title : "Your Challenge is Our Progress"
+      subtitle : "We Making Difference To Great Things Possible"
+      bg_image : "images/slider/bg2.jpg"
+      image : "images/slider/bg-thumb2.png"
+      image_position : "right"
+      # slider navigator
+      navigator:
+        label : "Tech"
+        icon : "fa-android" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+
+      # slider buttons
+      buttons:
+        # button loop
+        - label : "Start Now"
+          style : "white"
+          link : "#"
+          
+        # button loop
+        - label : "Learn More"
+          style : "solid"
+          link : "#"
+
+
+############################### Service ####################################
+service:
+  enable : true
+  # service content comes from "data/*/service.yml" file
+
+  
+############################### portfolio ##################################
+portfolio:
+  enable : true
+  title : "Our Awesome Work"
+  subtitle : "We Making Difference To Great Things Possible"
+  title_icon : "fa-suitcase"
+  # portfolio items comes from "content/*/portfolio" folder
+
+  
+############################### funfact ##################################
+funfact:
+  enable : true
+  funfact_item:
+    # funfact item loop
+    - name : "Clients"
+      icon : "fa-user" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      count : "1200"
+      
+    # funfact item loop
+    - name : "Item Sold"
+      icon : "fa-institution" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      count : "1277"
+      
+    # funfact item loop
+    - name : "Projects"
+      icon : "fa-suitcase" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      count : "857"
+      
+    # funfact item loop
+    - name : "Awwards"
+      icon : "fa-trophy" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      count : "78"
+
+  
+############################### feature ##################################
+feature:
+  enable : true
+  feature_item:
+    # feature item loop
+    - name : "Clean &amp; Modern Design"
+      icon : "fa-heart-o" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Useful Shortcodes"
+      icon : "fa-codepen" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Parallax Section"
+      icon : "fa-film" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Multipurpose Concept"
+      icon : "fa-newspaper-o" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Responsive Layout"
+      icon : "fa-desktop" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Light wight Performance"
+      icon : "fa-pagelines" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Free Lifetime Updates"
+      icon : "fa-recycle" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "Endless Possibilites"
+      icon : "fa-diamond" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+      
+    # feature item loop
+    - name : "24/7 Live Support"
+      icon : "fa-whatsapp" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Bras urna felis accumsan at ultrde cesid posuere masa socis nautoque penat"
+
+
+  
+############################### about ##################################
+about:
+  enable : true
+  title : "Know More About Our Company"
+  subtitle : "Why Choose Us"
+  bg_image : "images/image-block-bg.jpg"
+  content : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+            Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor."
+  about_item:
+    # about item loop
+    - name : "Tons of Features"
+      icon : "fa-bicycle" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut"
+      
+    # about item loop
+    - name : "PowerPack Theme"
+      icon : "fa-diamond" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut"
+      
+    # about item loop
+    - name : "Day Night Support"
+      icon : "fa-street-view" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut"
+
+
+############################### team ####################################
+team:
+  enable : true
+  # team content comes from "data/*/team.yml" file
+
+############################ Call to action #############################
+call_to_action:
+  enable : true
+  title : "Are You Ready to Buy This Template!"
+  subtitle : "Just Click Button and Use Your Own"
+  bg_image : "images/parallax/parallax1.jpg"
+  buttons:
+    # button loop
+    - label : "Purchase Now"
+      style : "white"
+      link : "#"
+      
+    # button loop
+    - label : "Get In Touch"
+      style : "solid"
+      link : "#"
+
+
+############################### pricing ####################################
+pricing:
+  enable : true
+  # pricing content comes from "data/*/pricing.yml" file
+
+
+############################### testimonial ####################################
+testimonial:
+  enable : true
+  bg_image : "images/parallax/parallax2.jpg"
+  testimonial_item:
+    # testimonial item loop
+    - name : "Sarah Arevik"
+      image : "images/team/testimonial1.jpg"
+      designation : "Chief Executive"
+      content : " Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. Lorem Ipsum is that it as opposed to using."
+      
+    # testimonial item loop
+    - name : "Narek Bedros"
+      image : "images/team/testimonial2.jpg"
+      designation : "Chief Executive"
+      content : " Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. Lorem Ipsum is that it as opposed to using."
+      
+    # testimonial item loop
+    - name : "Taline Lucine"
+      image : "images/team/testimonial3.jpg"
+      designation : "Sales Manager"
+      content : " Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. Lorem Ipsum is that it as opposed to using."
+
+
+############################ Clients logo slider ##########################
+clients_logo_slider:
+  enable : true
+  slider_item:
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client1.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client2.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client3.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client4.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client5.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client6.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client7.png"
+      link : "#"
+      
+    # slider item loop
+    - name : "client"
+      logo : "images/clients/client8.png"
+      link : "#"

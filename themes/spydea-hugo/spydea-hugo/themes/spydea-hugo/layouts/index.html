@@ -1,0 +1,499 @@
+{{ define "main" }}
+  {{ with .Params.banner }}
+    <section
+      class="section banner relative overflow-hidden before:z-10 after:z-10">
+      <div class="container relative z-30">
+        <div class="row items-center">
+          <div class="lg:col-6">
+            <h1
+              data-aos="fade-up-sm"
+              class="mb-6 text-[35px] sm:text-[50px] xl:text-[65px]">
+              {{ .title | markdownify }}
+            </h1>
+            <p data-aos="fade-up-sm" data-aos-delay="150" class="mb-6 text-lg">
+              {{ .description | markdownify }}
+            </p>
+            <div data-aos="fade-up-sm" data-aos-delay="200">
+              {{ partial "components/quote-form.html" (dict "Class" "shadow-default my-10") }}
+            </div>
+            {{ with .supported_tech }}
+              <span
+                data-aos="fade-right"
+                data-aos-delay="250"
+                class="text-dark align-middle text-lg font-bold">
+                {{ .title | markdownify }}
+              </span>
+              <ul
+                class="xs:ml-7 xs:mt-0 xs:inline-flex mt-2 inline-flex flex-row gap-8 align-middle text-[28px]">
+                {{ range $i, $e := .list }}
+                  <li
+                    data-aos="fade-in"
+                    class="text-dark"
+                    data-aos-delay="{{ add (mul $i 50) 250 }}">
+                    <a href="{{ .link }}">
+                      <i class="{{ .icon }}"></i>
+                      <span class="sr-only">{{ .icon }}</span>
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+            <div class="py-8">
+              <hr
+                class="border-border/50 h-[1px] border-0 border-b bg-transparent" />
+            </div>
+            <ul class="list-line-separator flex flex-wrap gap-x-6 gap-y-2">
+              {{ range $i, $e := .facility }}
+                <li data-aos="fade-in" data-aos-delay="{{ mul $i 50 }}">
+                  <i
+                    class="fa-solid fa-check mr-2 align-middle text-2xl font-bold text-emerald-400"></i>
+                  <p
+                    class="text-dark inline-block align-middle text-lg font-medium">
+                    {{ . }}
+                  </p>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="lg:col-6 mx-auto max-w-[600px] pt-24 lg:pt-0">
+            <div
+              data-aos="fade-up-sm"
+              class="image-block relative mr-[5.5%] md:mr-6 lg:ml-6">
+              {{ with .images }}
+                {{ partial "image.html" (dict "Src" .main "Class" "banner-image w-100 h-auto" "Alt" "banner-image") }}
+                {{ partial "image.html" (dict "Src" .left "Class" `absolute bottom-16 left-0 w-[40%] rounded-lg
+                  shadow-default` "Alt" "banner-image")
+                }}
+                {{ partial "image.html" (dict "Src" .right "Class" `absolute right-0 top-0 w-[30%] rounded-lg md:-right-32 md:top-14 md:w-[40%] xl:top-36` "Alt" "banner-image") }}
+              {{ end }}
+
+
+              <!-- Start Start Bg Shape -->
+              <div
+                class="pointer-events-none absolute left-[40px] top-[-50px] -z-20 w-[40%] select-none">
+                {{ partial "image.html" (dict "Src" "images/shapes/banner-s-1.svg" "Class" "inline-svg text-secondary" "Alt"
+                  "shape")
+                }}
+              </div>
+              <div
+                class="pointer-events-none absolute bottom-[-70px] right-[-130px] -z-20 w-[40%] select-none">
+                {{ partial "image.html" (dict "Src" "images/shapes/banner-s-2.svg" "Class" "inline-svg text-quinary" "Alt"
+                  "shape")
+                }}
+              </div>
+              <!-- End Start Bg Shape -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Main Content -->
+
+      {{ partial "components/bg-lines.html" (dict "Color" "bg-line-yellow") }}
+      <!-- End background lines -->
+    </section>
+    <!-- End Banner Section -->
+  {{ end }}
+
+  {{ with .Params.brands }}
+    {{ if .enable }}
+      <section class="md:section">
+        <div
+          class="shadow-default relative z-20 mx-3 max-w-[1440px] rounded-xl bg-white py-8 md:mx-6 md:py-16 lg:mx-auto">
+          <div class="container">
+            <div class="row justify-center">
+              {{ range $i, $e := .list }}
+                <div
+                  class="col-5 sm:col-3 lg:col-2"
+                  data-aos="fade-up-sm"
+                  data-aos-delay="{{ mul $i 50 }}">
+                  {{ partial "image.html" (dict "Src" . "Class" "inline-block py-4 sm:mx-auto" "Alt" "brand logo") }}
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Brands Section -->
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.feature_list }}
+    {{ if .enable }}
+      <section
+        class="section features relative z-20 overflow-hidden after:-z-10">
+        <div class="container relative z-30">
+          <div class="row items-end justify-between pb-12">
+            <div class="lg:col-8 xl:col-6">
+              <span
+                class="mb-6 inline-block font-medium uppercase text-red-400"
+                data-aos="fade-up-sm">
+                {{ .subtitle | markdownify }}
+              </span>
+              <div
+                class="border-dark mb-8 border-l-2 border-opacity-50 py-2 pl-6 lg:mb-0"
+                data-aos="fade-up-sm">
+                <h2
+                  class="mb-6 font-semibold"
+                  data-aos="fade-up-sm"
+                  data-aos-delay="50">
+                  {{ .title | markdownify }}
+                </h2>
+                <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="100">
+                  {{ .description | markdownify }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="colored-box-icon row gy-4">
+            {{ range $i, $e := .list }}
+              <div
+                data-aos="fade-up-sm"
+                data-aos-delay="{{ mul $i 50 }}"
+                class="md:col-6 lg:col-4 xl:col-3">
+                <div
+                  class="border-border/30 h-full rounded-2xl border bg-white px-8 py-12 transition-all duration-300 hover:shadow-sm">
+                  <div class="icon-box">
+                    <i class="{{ .icon }}"></i>
+                  </div>
+                  <h3 class="mb-6 text-xl font-semibold sm:text-2xl">
+                    {{ .title | markdownify }}
+                  </h3>
+                  <p>{{ .description | markdownify }}</p>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Start Bg Shape -->
+        <div
+          data-aos="fade-left-sm"
+          class="pointer-events-none absolute top-0 hidden select-none min-[1440px]:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/features-s-1.svg" "Class" "inline-svg text-quaternary" "Alt"
+            "shape")
+          }}
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          class="pointer-events-none absolute right-0 top-52 hidden select-none lg:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/features-s-2.svg" "Class" "inline-svg text-secondary" "Alt"
+            "shape")
+          }}
+        </div>
+        <!-- End Bg Shape -->
+        {{ partial "components/bg-lines.html" (dict "Color" "bg-line-sky") }}
+        <!-- End background lines -->
+      </section>
+      <!-- End Features Section -->
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.process }}
+    {{ if .enable }}
+      <section class="section relative z-20 overflow-hidden">
+        <div class="container">
+          <div class="row pb-12 text-center">
+            <div class="lg:col-7 mx-auto">
+              <span
+                class="mb-6 inline-block font-medium uppercase text-red-400"
+                data-aos="fade-up-sm"
+                data-aos-delay="50">
+                {{ .subtitle | markdownify }}
+              </span>
+              <h2
+                class="mb-6 font-semibold"
+                data-aos="fade-up-sm"
+                data-aos-delay="100">
+                {{ .title | markdownify }}
+              </h2>
+              <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="150">
+                {{ .description | markdownify }}
+              </p>
+            </div>
+          </div>
+          <!-- End Section Title  -->
+          <div class="row gy-4" data-tab-group="">
+            <div class="xl:col-4 flex flex-wrap gap-4 lg:gap-6" data-tab-nav>
+              {{ $base := -1 }}
+              {{ range .list }}
+                {{ $base = add $base 1 }}
+                <button
+                  class="group"
+                  data-tab="{{ $base }}"
+                  data-aos="fade-up-sm">
+                  <div
+                    class="border-border/50 group-[.active]:shadow-default h-full rounded-xl border border-opacity-70 bg-white px-4 py-4 text-left group-[.active]:border-white xl:px-8 xl:py-10">
+                    <h3 class="text-sm font-semibold xl:mb-6 xl:text-2xl">
+                      {{ .title | markdownify }}
+                    </h3>
+                    <p class="hidden xl:block">
+                      {{ .description | markdownify }}
+                    </p>
+                  </div>
+                </button>
+              {{ end }}
+            </div>
+            <!-- End Process Tab Button  -->
+            <div class="xl:col-8 relative" data-aos="fade-in" data-tab-content>
+              {{ $base := -1 }}
+              {{ range .list }}
+                {{ $base = add $base 1 }}
+                <div
+                  class="shadow-default group relative"
+                  data-tab-panel="{{ $base }}">
+                  <div
+                    class="invisible h-0 opacity-70 transition-opacity duration-300 group-[.active]:visible group-[.active]:h-full group-[.active]:opacity-100">
+                    {{ partial "image.html" (dict "Src" .image "Alt" "feature image" "Class" `h-full w-full rounded-xl`) }}
+                  </div>
+                </div>
+              {{ end }}
+
+
+              <!-- Start Bg Shape -->
+              <div
+                data-aos="fade-up-md"
+                class="pointer-events-none absolute right-[-40px] top-[-50px] -z-10 hidden select-none lg:block">
+                {{ partial "image.html" (dict "Src" "images/shapes/showcase-s-1.svg" "Class" "inline-svg text-quinary" "Alt"
+                  "shape")
+                }}
+              </div>
+              <div
+                data-aos="fade-down-md"
+                class="pointer-events-none absolute bottom-[-50px] right-[-40px] -z-10 hidden select-none lg:block">
+                {{ partial "image.html" (dict "Src" "images/shapes/showcase-s-2.svg" "Class" "inline-svg text-quaternary"
+                  "Alt" "shape")
+                }}
+              </div>
+              <!-- End Bg Shape -->
+            </div>
+            <!-- End Tab Content  -->
+          </div>
+          <!-- End Process Tab  -->
+        </div>
+      </section>
+      <!-- End Process Section -->
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.fun_fact }}
+    {{ if .enable }}
+      <section class="section relative z-20 overflow-hidden">
+        <div class="container">
+          <div data-aos="fade-up-sm" class="row pb-12 text-center">
+            <div class="lg:col-8 mx-auto">
+              <span
+                class="mb-6 inline-block font-medium uppercase text-red-400"
+                data-aos="fade-up-sm"
+                data-aos-delay="50">
+                {{ .subtitle | markdownify }}
+              </span>
+              <h2
+                class="mb-6 font-semibold"
+                data-aos="fade-up-sm"
+                data-aos-delay="100">
+                {{ .title | markdownify }}
+              </h2>
+              <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="150">
+                {{ .description | markdownify }}
+              </p>
+            </div>
+          </div>
+          <div class="row relative">
+            <div class="col-12">
+              {{ with (site.GetPage "counter") }}
+                {{ partial "counter.html" . }}
+              {{ end }}
+              <!-- Start Bg Shape -->
+              <div
+                data-aos="fade-up-md"
+                data-aos-delay="50"
+                class="pointer-events-none absolute bottom-[-55px] left-[-30px] -z-10 hidden select-none lg:block">
+                {{ partial "image.html" (dict "Src" "images/shapes/fun-fact-s-1.svg" "Class" "inline-svg text-quinary" "Alt"
+                  "shape")
+                }}
+              </div>
+              <div
+                data-aos="fade-down-md"
+                data-aos-delay="50"
+                class="pointer-events-none absolute right-[-40px] top-[40px] -z-10 hidden select-none lg:block">
+                {{ partial "image.html" (dict "Src" "images/shapes/fun-fact-s-2.svg" "Class" "inline-svg text-secondary" "Alt"
+                  "shape")
+                }}
+              </div>
+              <!-- End Bg Shape -->
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.features }}
+    {{ $featuresLength := len . }}
+    {{ range $index, $e := . }}
+      {{ $modbool := modBool $index 2 }}
+      <section
+        class="section-lg feature {{ if eq $featuresLength 1 }}
+          bg-senary sm:py-32 lg:py-44
+        {{ else if eq $index 0 }}
+          triangle-up pb-0
+        {{ else if eq (add $index 1) $featuresLength }}
+          triangle-down sm:pt-32 lg:pt-44
+        {{ else }}
+          bg-senary sm:pt-32 lg:pt-44 pb-0
+        {{ end }} relative z-20 overflow-hidden">
+        <div class="container relative z-20">
+          <div class="row gy-4 items-center">
+            <div
+              {{ if not $modbool }}
+                class="lg:col-7 lg:order-2"
+              {{ else }}
+                class="lg:col-7"
+              {{ end }}>
+              {{ if not $modbool }}
+                <div
+                  class="feature-clip-path-2 relative"
+                  data-aos="fade-right-sm">
+                  {{ partial "image.html" (dict "Src" .image "Alt" "feature image" "Class" `mx-auto block`) }}
+                  <!-- Start Bg Shape -->
+                  <div
+                    data-aos="fade-up-md"
+                    class="pointer-events-none absolute left-[12%] top-[-8%] -z-10 hidden select-none text-[#6FABF6] lg:block">
+                    {{ partial "image.html" (dict "Src" "images/shapes/feature-s-3.svg" "Class" "inline-svg text-quinary" "Alt"
+                      "shape")
+                    }}
+                  </div>
+                  <div
+                    data-aos="fade-down-md"
+                    class="pointer-events-none absolute bottom-[-1%] right-[10%] -z-10 hidden select-none text-[#70ADF9] lg:block">
+                    {{ partial "image.html" (dict "Src" "images/shapes/feature-s-4.svg" "Class" "inline-svg text-quaternary"
+                      "Alt" "shape")
+                    }}
+                  </div>
+                  <!-- End Bg Shape -->
+                </div>
+              {{ else }}
+                <div class="feature-clip-path-1 relative">
+                  {{ partial "image.html" (dict "Src" .image "Alt" "feature image" "Class" `mx-auto block`) }}
+                  <!-- Start Bg Shape -->
+                  <div
+                    data-aos="fade-right-sm"
+                    class="pointer-events-none absolute right-[100px] top-[-10px] -z-10 hidden select-none lg:block">
+                    {{ partial "image.html" (dict "Src" "images/shapes/feature-s-1.svg" "Class" "inline-svg text-quinary" "Alt"
+                      "shape")
+                    }}
+                  </div>
+                  <div
+                    data-aos="fade-left-sm"
+                    class="pointer-events-none absolute bottom-[130px] left-0 -z-10 hidden select-none lg:block">
+                    {{ partial "image.html" (dict "Src" "images/shapes/feature-s-2.svg" "Class" "inline-svg text-secondary"
+                      "Alt" "shape")
+                    }}
+                  </div>
+                  <!-- End Bg Shape -->
+                </div>
+              {{ end }}
+            </div>
+            <div
+              {{ if not $modbool }}
+                class="lg:col-5 lg:order-1"
+              {{ else }}
+                class="lg:col-5"
+              {{ end }}>
+              <span
+                class="mb-6 inline-block font-medium uppercase text-red-400"
+                data-aos="fade-right-sm">
+                {{ .subtitle | markdownify }}
+              </span>
+              <div
+                data-aos="fade-right-sm"
+                class="border-dark mb-6 border-l-2 border-opacity-50 py-2 pl-6">
+                <h2
+                  class="font-semibold"
+                  data-aos="fade-right-sm"
+                  data-aos-delay="100">
+                  {{ .title | markdownify }}
+                </h2>
+              </div>
+              <p
+                class="pl-6 text-lg"
+                data-aos="fade-right-sm"
+                data-aos-delay="150">
+                {{ .description | markdownify }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {{ partial "components/bg-lines.html" (dict "Color" "bg-line-sky" "Class" "line-bg absolute left-0 top-1/2 z-10 flex h-full w-full -translate-y-1/2 justify-between") }}
+        <!-- End background lines -->
+      </section>
+    {{ end }}
+  {{ end }}
+
+  {{ partial "testimonial.html" . }}
+
+  {{ with .Params.blog }}
+    {{ if .enable }}
+      {{ $posts := where site.RegularPages "Section" "blog" }}
+      <section
+        class="section-md articles relative z-20 overflow-hidden after:-z-10">
+        <div class="container relative z-30">
+          <div class="row items-end justify-between pb-12">
+            <div class="lg:col-8 xl:col-6">
+              <span
+                class="mb-6 inline-block font-medium uppercase text-red-400"
+                data-aos="fade-up-sm">
+                {{ .subtitle | markdownify }}
+              </span>
+              <div
+                data-aos="fade-up-sm"
+                class="border-dark mb-8 border-l-2 border-opacity-50 py-2 pl-6 lg:mb-0">
+                <h2 class="font-semibold" data-aos="fade-up-sm">
+                  {{ .title | markdownify }}
+                </h2>
+              </div>
+            </div>
+            {{ with .button }}
+              <div data-aos="fade-right-sm" class="col-auto">
+                <a href="{{ .link }}" class="btn btn-outline-primary btn-sm">
+                  {{ .label | markdownify }}
+                </a>
+              </div>
+            {{ end }}
+          </div>
+          <div class="row gy-4">
+            {{ range first 3 $posts }}
+              <div data-aos="fade-up-sm" class="md:col-6 lg:col-4">
+                {{ partial "components/blog-card.html" . }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Start Bg Shape -->
+        <div
+          data-aos="fade-left-sm"
+          class="pointer-events-none absolute bottom-[10%] left-[-5%] hidden select-none lg:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/about-s-1.svg" "Class" "inline-svg text-secondary" "Alt" "shape") }}
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          class="pointer-events-none absolute right-0 top-52 hidden select-none lg:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/blog-s-1.svg" "Class" "inline-svg text-quinary" "Alt" "shape") }}
+        </div>
+        <!-- End Bg Shape -->
+        {{ partial "components/bg-lines.html" (dict "Color" "bg-line-sky") }}
+        <!-- End background lines -->
+      </section>
+      <!-- End Articles Section -->
+    {{ end }}
+  {{ end }}
+
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

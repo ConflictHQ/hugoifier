@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- pricing -->
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      {{ range .Site.Data.pricing.pricingTable }}
+      <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+        <div class="card bottom-shape bg-secondary pt-4 pb-5">
+          <div class="card-body text-center">
+            <h4 class="text-white">{{ .title }}</h4>
+            <p class="text-light mb-4">{{ .subtitle | markdownify }}</p>
+            <p class="text-white mb-4">$ <span
+                class="display-3 font-weight-bold vertical-align-middle">{{ .price }}</span></p>
+            <ul class="list-unstyled mb-5">
+              {{ range .serviceList }}
+              <li class="text-white mb-3">{{ .service | markdownify }}</li>
+              {{ end }}
+            </ul>
+            {{ with .button }}
+            <a href="{{ .link | safeURL }}" class="btn btn-outline-light">{{ .label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /pricing -->
+
+{{ if .Site.Data.pricing.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+
+{{ if .Site.Data.pricing.clientsLogo.enable }}
+{{ partial "clients-logo.html" . }}
+{{ end }}
+
+{{ end }}

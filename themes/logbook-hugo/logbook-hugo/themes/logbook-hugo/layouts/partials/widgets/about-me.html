@@ -1,0 +1,36 @@
+{{ "<!-- about me -->" | safeHTML }}
+<div class="widget widget-about">
+  {{ with site.GetPage "/about" }}
+    <h5 class="widget-title"><span>{{ .Params.Title }}</span></h5>
+    <div class="d-flex media">
+      {{ if .Params.image }}
+        {{ $emailHash := md5 .Params.Email }}
+        {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }}
+        {{ partial "image.html" (dict "Src" .Params.image "Alt" site.Params.author "Class" "widget-about-image") }}
+      {{ else if .Params.Email }}
+        {{ partial "image.html" (dict "Src" $gravatorUrl "Alt" site.Params.author "Class" "widget-about-image") }}
+      {{ end }}
+
+
+      <div class="mb-2 media-body">
+        <span class="d-block">{{ .Plain | markdownify | truncate 80 }}</span>
+
+        <ul class="list-inline social-icons mb-1 mt-2">
+          {{ range .Params.social }}
+            <li class="list-inline-item">
+              <a href="{{ .link | safeURL }}" target="_blank">
+                <span class="visually-hidden">{{ .title }}</span
+                ><i class="{{ .icon }}"></i>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+        <a
+          href="{{ `about/` | relLangURL }}"
+          class="btn btn-sm btn-primary p-1 px-3 rounded mt-2"
+          >{{ i18n "about_me" }}</a
+        >
+      </div>
+    </div>
+  {{ end }}
+</div>

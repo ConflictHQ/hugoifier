@@ -1,0 +1,54 @@
+{{ define "main" }}
+
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 rounded-sm pe-5">
+        {{ partial "image.html" (dict "Src" .Params.Image "Alt" "post-thumb"  "Class" "rounded-sm w-100 mb-5" "Size" "990x") }}
+        <p class="text-color card-date position-relative d-inline-block">BY <span
+            class="text-dark fw-bold">{{ .Params.Author }}</span> / ON <span
+            class="text-dark fw-bold">{{ .PublishDate.Format "Jan 02, 2006" }}</span></p>
+        <div class="content">
+          {{ .Content }}
+        </div>
+        <div class="my-5">
+          <h5 class="d-inline-block me-3">Share:</h5>
+          <ul class="list-inline d-inline-block">
+            {{ $url := printf "%s" .Permalink | absLangURL }}
+            <li class="list-inline-item"><a href="https://facebook.com/sharer/sharer.php?u={{ $url }}" class="text-color lead"><i class="fab fa-facebook "></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/intent/tweet/?text={{ .Title }}&amp;url={{ $url }}" class="text-color lead"><i class="fab fa-twitter "></i></a></li>
+            <li class="list-inline-item"><a href="https://reddit.com/submit/?url={{ $url }}&amp;resubmit=true&amp;title={{ .Title }}" class="text-color lead"><i class="fab fa-reddit "></i></a></li>
+            <li class="list-inline-item"><a href="whatsapp://send?text={{ .Title }}%20{{ $url }}" class="text-color lead"><i class="fab fa-whatsapp "></i></a></li>
+            <li class="list-inline-item"><a href="https://telegram.me/share/url?text={{ .Title }}&amp;url={{ $url }}" class="text-color lead"><i class="fab fa-telegram "></i></a></li>
+          </ul>
+        </div>
+
+        <!-- comments -->
+        {{ if site.DisqusShortname }}
+        {{ template "_internal/disqus.html" . }}
+        {{ end }}
+      </div>
+      {{ partial "components/sidebar.html" . }}
+    </div>
+  </div>
+</section>
+{{ else }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="content">
+          {{.Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
+
+{{ end }}

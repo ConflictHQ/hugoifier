@@ -1,0 +1,67 @@
+{{ define "main" }}
+  {{ partial "components/page-header" . }}
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="pe-0 pe-lg-4">
+            <div class="text-center">
+              {{ if .Params.image }}
+                {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Size" "120x120" "Class" "rounded-circle") }}
+              {{ else if .Params.Email }}
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  class="rounded-circle"
+                  src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=120&pg&d=identicon" />
+              {{ else }}
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  class="rounded-circle"
+                  src="https://www.gravatar.com/avatar/{{ md5 . }}?s=120&pg&d=identicon" />
+              {{ end }}
+
+
+              <div class="content mt-4">
+                {{ .Content }}
+              </div>
+
+              <ul class="social-links list-inline mb-0">
+                {{ range .Params.Social }}
+                  <li class="list-inline-item">
+                    <a href="{{ .link | safeURL }}" title="{{ .name }}">
+                      <i class="{{ .icon }}"></i>
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="has-overlay section pt-0">
+    <div class="section container">
+      <div class="row justify-content-center mb-3">
+        <div class="col-lg-10 text-center">
+          <p class="section-subtitle text-secondary">
+            {{ i18n `recent_posts` }}
+          </p>
+          <h2 class="section-title text-center h3">
+            {{ .Title | markdownify }}
+          </h2>
+        </div>
+      </div>
+      <div class="row justify-content-center has-colored-text">
+        {{ range where site.RegularPages ".Params.author" (.Title) }}
+          <div class="col-lg-5 col-md-6">
+            {{ .Render "article" }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

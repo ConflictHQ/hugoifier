@@ -1,0 +1,15 @@
+// hide filtr-container until initialize
+.filtr-container {
+  opacity: 0;
+}
+
+// service active class
+.service-list {
+  .active {
+    font-weight: 700;
+    color: $primary-color;
+  }
+  a {
+    padding-left: 6px;
+  }
+}

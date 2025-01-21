@@ -1,0 +1,83 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<section class="contact-section section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="google-map">
+          {{ if .Site.Params.map.enable }}
+          <div id="map" data-latitude="{{ .Site.Params.map.map_latitude }}"
+            data-longitude="{{ .Site.Params.map.map_longitude }}"
+            data-marker="{{ .Site.Params.map.map_marker | absURL }}"></div>
+          {{ end }}
+
+          <div class="contact-info-block box-shadow p-5">
+            {{ with $data.homepage.venue }}
+            <h5 class="text-uppercase letter-spacing mb-4">{{ .title | markdownify }}</h5>
+            <h6 class="text-color mb-3">{{ .date }} </h6>
+            <p class="text-sm-2">{{ .location | markdownify }}</p>
+            {{ end }}
+            {{ with .Site.Params.email}}
+            <h5 class="text-uppercase letter-spacing mb-2 mt-5">{{ i18n "message_us" }}</h5>
+            <p class="text-sm-2">{{ . }}</p>
+            {{ end }}
+            <ul class="list-inline socials-links mt-5 mb-0">
+              {{ range .Site.Params.social }}
+              <li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {{ if .Site.Params.contact_form_action }}
+      <div class="col-lg-6">
+        <div class="contact-form pl-4 mt-5 mt-lg-0">
+          <h3 class="mb-2">{{ .Title | markdownify}}</h3>
+          <p class="mb-5">{{ .Content }}</p>
+          <form method="post" action="{{ .Site.Params.contact_form_action }}">
+            <div class="form-row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input type="text" placeholder="Phone" class="form-control" name="Phone" id="phone">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>
+            </div>
+
+            <div class="mt-4">
+              <button type="submit" id="contact-submit" class="btn btn-hero btn-rounded " value="Send Message">{{ i18n "send" }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    <!-- ./End Contact Form -->
+  </div> <!-- end container -->
+</section>
+
+{{ end }}

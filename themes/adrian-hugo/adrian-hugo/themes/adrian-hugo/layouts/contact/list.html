@@ -1,0 +1,88 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ if site.Data.contact.company.enable }}
+{{ with site.Data.contact.company }}
+<section class="contact-section section">
+  <div class="container">
+    <div class="row">
+      <!-- Contact Details -->
+      <div class="contact-details col-md-6">
+        <h3 class="mb-4">{{ .title | markdownify }}</h3>
+        <p class="mb-5">{{ .content | markdownify }}</p>
+
+        <div class="row">
+          {{ range .office }}
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h4 class="mb-4">{{ .name | markdownify }}</h4>
+            <ul class="contact-short-info list-unstyled">
+              {{ range .officeContact }}
+              <li>
+                <i class="{{ .icon }} mr-3"></i>
+                <span>{{ .content | markdownify }}</span>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="contact-form col-lg-6 ">
+        <h3 class="mb-4">Send us an Email:</h3>
+
+        <form id="contact-form" method="post" action="{{ site.Params.contactFormAction | safeURL }}">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="text" placeholder="Phone" class="form-control" name="Phone" id="phone">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>
+          </div>
+
+          <div class="mt-4">
+            <input type="submit" id="contact-submit" class="btn btn-black btn-small" value="Send Message">
+          </div>
+        </form>
+      </div>
+      <!-- ./End Contact Form -->
+    </div> <!-- end row -->
+  </div> <!-- end container -->
+</section>
+{{ end }}
+{{ end }}
+
+{{ if site.Data.contact.map.enable }}
+<div class="google-map">
+  <div id="map" data-latitude="{{ with site.Params.mapLatitude }} {{ . }} {{ end }}"
+    data-longitude="{{ with site.Params.mapLongitude }} {{ . }} {{ end }}"
+    data-marker="{{ with site.Params.mapMarker }} {{ . | relURL }} {{ end }}"></div>
+</div>
+{{ end }}
+
+{{ end }}

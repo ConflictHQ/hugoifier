@@ -1,0 +1,147 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<header class="position-sticky w-100 bg-white border-bottom border-default">
+  <div class="container">
+    <!-- navbar -->
+    <div class="row">
+      <div class="col position-relative">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+            {{ partial "logo.html" }}
+          </a>
+
+          <div class="d-flex align-items-center">
+            {{ if site.Params.search.enable }}
+              <div class="d-inline-block d-lg-none me-2">
+                {{ if eq (`search/` | relURL) .RelPermalink }}
+                  <a class="search-btn" href="{{ `search`| relLangURL }}"
+                    ><i class="fas fa-search"></i
+                  ></a>
+                {{ else }}
+                  <button
+                    class="search-btn"
+                    type="button"
+                    data-target="open-header-search-panel">
+                    <i class="fas fa-search"></i>
+                  </button>
+                {{ end }}
+              </div>
+            {{ end }}
+
+
+            <button
+              class="navbar-toggler border-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navigation"
+              aria-label="navbar toggler">
+              <i class="fas fa-bars icon-bar"></i>
+              <i class="fa-solid fa-xmark icon-close"></i>
+            </button>
+          </div>
+
+          <div class="collapse navbar-collapse text-center" id="navigation">
+            <ul class="navbar-nav ms-auto">
+              {{ range site.Menus.main }}
+                {{ if .HasChildren }}
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                      {{ .Name }} <i class="fas fa-angle-down ms-1"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      {{ range .Children }}
+                        <a class="dropdown-item" href="{{ .URL | absLangURL }}"
+                          >{{ .Name }}</a
+                        >
+                      {{ end }}
+                    </div>
+                  </li>
+                {{ else }}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ .URL | absLangURL }}"
+                      >{{ .Name }}</a
+                    >
+                  </li>
+                {{ end }}
+              {{ end }}
+            </ul>
+
+            <!-- Language List -->
+            {{ if .IsTranslated }}
+              <select
+                class="m-2 border-0"
+                id="select-language"
+                onchange="location = this.value;">
+                {{ $siteLanguages := site.Languages }}
+                {{ $pageLang := .Page.Lang }}
+                {{ range .Page.AllTranslations }}
+                  {{ $translation := . }}
+                  {{ range $siteLanguages }}
+                    {{ if eq $translation.Lang .Lang }}
+                      {{ $selected := false }}
+                      {{ if eq $pageLang .Lang }}
+                        <option
+                          id="{{ $translation.Language }}"
+                          value="{{ $translation.Permalink }}"
+                          selected>
+                          {{ .LanguageName }}
+                        </option>
+                      {{ else }}
+                        <option
+                          id="{{ $translation.Language }}"
+                          value="{{ $translation.Permalink }}">
+                          {{ .LanguageName }}
+                        </option>
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+              </select>
+            {{ end }}
+
+            {{ if site.Params.search.enable }}
+              {{ "<!-- search -->" | safeHTML }}
+              <div
+                class="search ps-0 mt-3 mt-lg-0 ps-lg-4 d-none d-lg-inline-block">
+                {{ if eq (`search/` | relURL) .RelPermalink }}
+                  <a class="search-btn" href="{{ `search`| relLangURL }}"
+                    ><i class="fas fa-search"></i
+                  ></a>
+                {{ else }}
+                  <button
+                    class="search-btn"
+                    type="button"
+                    data-target="open-header-search-panel">
+                    <i class="fas fa-search"></i>
+                  </button>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </nav>
+
+        <div class="header-search-panel">
+          <form action="{{ `search`| relLangURL }}">
+            <input
+              class="search-query"
+              name="s"
+              type="search"
+              placeholder="{{ i18n `search_placeholder` }}" />
+          </form>
+          <button
+            class="search-btn search-btn-close"
+            type="button"
+            data-target="close-header-search-panel">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{{ "<!-- /navigation -->" | safeHTML }}

@@ -1,0 +1,92 @@
+- id: read_more
+  translation: 続きを読む
+  
+- id: read_case_study
+  translation: ケーススタディ全体を読む
+  
+- id: view_product
+  translation: 製品を見る
+
+- id: send
+  translation: メッセージを送る
+
+- id: category
+  translation: カテゴリー
+
+- id: tags
+  translation: タグ
+
+- id: by
+  translation: に
+
+- id: min_read
+  translation: 最小読み取り
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: 会いましょう
+
+- id: prev_case
+  translation: 前
+
+- id: next_case
+  translation: 次
+
+- id: apply_for_position
+  translation: ポジションに応募する
+
+- id: view_all_positions
+  translation: すべてのポジションを表示
+
+- id: apply_now
+  translation: 今すぐ申し込む
+
+- id: share_this_job
+  translation: "この仕事を共有する:"
+
+- id: other_jobs
+  translation: その他の仕事
+
+- id: all_jobs
+  translation: すべての仕事
+  
+- id: fname
+  translation: ファーストネーム
+  
+- id: full_name
+  translation: フルネーム
+  
+- id: lname
+  translation: 苗字
+  
+- id: email
+  translation: 電子メールアドレス
+  
+- id: website
+  translation: Webサイト
+  
+- id: organization_size
+  translation: 組織の規模*
+  
+- id: region
+  translation: 領域*
+  
+- id: message
+  translation: メッセージ
+  
+- id: submit_now
+  translation: 今提出
+  
+- id: get_demo
+  translation: デモを入手する
+  
+- id: cv_note
+  translation: ドキュメント、PDFファイルのみが許可され、ファイルサイズは2MB未満になります
+  
+- id: upload_cv
+  translation: 履歴書をアップロードする
+  
+- id: search_faq
+  translation: よくある質問をクリックして検索してください..

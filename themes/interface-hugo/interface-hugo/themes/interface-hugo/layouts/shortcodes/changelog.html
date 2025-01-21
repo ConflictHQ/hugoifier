@@ -1,0 +1,10 @@
+<div class="changelog-item">
+  <div class="changelog-date">
+    <span>{{ .Get 2 }}</span>
+  </div>
+  <div class="changelog-content">
+    <h2 class="h4">{{ .Get 1 }}</h2>
+    <span class="badge badge-{{ .Get 0 | lower }}">{{ .Get 0 }}</span>
+    {{ .Inner | markdownify }}
+  </div>
+</div>

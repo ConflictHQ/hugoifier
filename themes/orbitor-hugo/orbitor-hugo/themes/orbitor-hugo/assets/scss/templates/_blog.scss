@@ -1,0 +1,150 @@
+.blog-thumb {
+	width: 35%;
+	float: left;
+	margin-right: 40px;
+}
+
+.blog-item-content {
+	h3 {
+		font-weight: 500;
+	}
+}
+
+.pagination {
+	.page-item {
+		.page-link {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			border-radius: 100%;
+			background: #eee;
+			text-align: center;
+			padding: 0;
+			font-weight: 600;
+			margin-right: 10px;
+			border: 0;
+			color: $primary-color;
+
+			&:hover {
+				background: $primary-color;
+				color: $light;
+			}
+		}
+		&:first-child,&:last-child{
+			.page-link{
+				border-radius: 50%;
+			}
+		}
+		&.active{
+			.page-link{
+				background: $primary-color;
+				color: #fff;
+			}
+		}
+	}
+}
+
+
+//  Comments
+
+.comment-area {
+
+	.comment-thumb {
+		margin-right: 20px;
+		margin-bottom: 30px;
+	}
+
+	h5 {
+		font-size: 18px;
+		font-weight: 500;
+	}
+
+	span {
+		font-size: 14px;
+	}
+}
+
+
+.posts-nav {
+	h6 {
+		font-weight: 500;
+	}
+}
+
+
+
+
+.quote {
+	font-size: 22px;
+	color: $black;
+	padding: 40px;
+	font-style: italic;
+	background: #f5f6ff;
+	border-left: 5px solid $primary-color;
+	margin: 25px 0px;
+}
+
+
+
+
+
+
+
+
+
+// Comment Form
+.comment-form {
+	.form-control {
+		background: #f7f8fb;
+		border-radius: 5px;
+		border-color: #f7f8fb;
+		height: 50px;
+	}
+
+	textarea.form-control {
+		height: auto;
+	}
+}
+
+
+
+@include mobile {
+	.blog-thumb {
+		width: 100%;
+		float: none;
+		margin-right: 0px;
+		margin-bottom: 15px;
+
+		img {
+			width: 100%;
+		}
+	}
+}
+
+@include mobile-xs {
+	.blog-thumb {
+		width: 100%;
+		float: none;
+		margin-right: 0px;
+		margin-bottom: 15px;
+
+		img {
+			width: 100%;
+		}
+	}
+
+}
+
+@include tablet {
+	.blog-thumb {
+		width: 100%;
+		float: none;
+		margin-right: 0px;
+		margin-bottom: 15px;
+
+		img {
+			width: 100%;
+		}
+	}
+}

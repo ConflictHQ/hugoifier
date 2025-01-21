@@ -1,0 +1,32 @@
+---
+title: "Feedback"
+heading: "What Our Happy Clients Says About Us"
+layout: "testimonials"
+draft: false
+
+testimonials:
+- name: "Brooklyn Simmons"
+  designation: "Lead Developer"
+  image: "images/feedback/01.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+- name: "Cameron Williams"
+  designation: "Marketing Head"
+  image: "images/feedback/02.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+- name: "Brooklyn Simmons"
+  designation: "Head Of Business"
+  image: "images/feedback/03.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+- name: "Cameron Williams"
+  designation: "Marketing Head"
+  image: "images/feedback/02.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+- name: "Brooklyn Simmons"
+  designation: "Head Of Business"
+  image: "images/feedback/03.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+- name: "Brooklyn Simmons"
+  designation: "Lead Developer"
+  image: "images/feedback/01.webp"
+  content: "Lorem ipsum dolor sit amet, conse tetur sadipscing elitr, seaa  diae dvam nonumy eirmod tempor invidunt uat labore et saldz faefaed aazore "
+---

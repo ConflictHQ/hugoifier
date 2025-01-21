@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-7 order-2 order-lg-1">
+        <div class="content">
+          {{ .Content }}
+        </div>
+        <a href="{{.Params.Apply_link | safeURL }}" class="btn btn-primary btn-dark">{{ i18n "apply_now" }}</a>
+      </div>
+
+      <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0 align-self-start">
+        <div class="py-5 px-4 px-lg-5 rounded-xs shadow sticky-top">
+          <h3 class="text-dark border-bottom pb-4 mb-5 h4">{{ i18n "job_details" }}</h3>
+          <ul class="list-unstyled mb-0">
+            <li class="d-flex mb-4">
+              <i class="fa fa-map icon icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">{{ i18n "location"}}</h6>
+                <p>{{ .Params.Location | markdownify }}</p>
+              </div>
+            </li>
+            
+            <li class="d-flex mb-4">
+              <i class="fa fa-user icon icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">{{ i18n "job_category"}}</h6>
+                <p>{{ .Params.Job_category | markdownify }}</p>
+              </div>
+            </li>
+            
+            <li class="d-flex mb-4">
+              <i class="fa fa-briefcase icon icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">{{ i18n "job_type"}}</h6>
+                <p>{{ .Params.Job_type | markdownify }}</p>
+              </div>
+            </li>
+            
+            <li class="d-flex mb-4">
+              <i class="far fa-clock icon icon-primary"></i>
+              <div class="ps-3">
+                <h6 class="text-dark">{{ i18n "posted_date"}}</h6>
+                <p>{{ .PublishDate.Format "06 Jan 2006" }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,185 @@
+.naviagtion {
+  transition: none;
+  padding: 45px 0;
+
+  @include desktop {
+    background: $bg-gradient-secondary;
+    padding: 15px 0;
+  }
+
+  &.nav-bg {
+    background: $bg-gradient-secondary;
+    padding: 15px 0;
+  }
+
+  &.naviagtion-white {
+    &.nav-bg {
+      background: $white;
+      box-shadow: 0px 10px 20px 0px rgba(0, 141, 236, 0.1);
+
+      .btn {
+        color: $color-primary !important;
+
+        &:hover {
+          color: $white !important;
+        }
+      }
+    }
+
+    @include desktop {
+      background: $white;
+
+      .btn {
+        color: $color-primary !important;
+
+        &:hover {
+          color: $white !important;
+        }
+      }
+    }
+
+    .dropdown {
+      &-menu {
+        background: $white;
+      }
+
+      &-item {
+        color: $text-dark;
+      }
+    }
+  }
+}
+
+.navbar {
+  .navbar-toggler {
+    &[aria-expanded="true"] {
+      .fa-times {
+        display: block;
+      }
+
+      .fa-bars {
+        display: none;
+      }
+    }
+
+    .fa-times,
+    .fa-bars {
+      color: $white !important;
+      font-size: 25px;
+    }
+
+    .fa-times {
+      display: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .nav-item {
+
+    .nav-link {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 20px 22px;
+      font-family: $font-primary;
+      transition: all ease 0.3s;
+
+      @include desktop-lg {
+        padding: 20px 15px;
+      }
+
+      @include desktop {
+        padding: 10px 0;
+      }
+
+      &.active {
+        color: $color-secondary;
+      }
+
+      &:hover {
+        color: $color-secondary !important;
+      }
+    }
+  }
+
+  .dropdown {
+    &:hover {
+      .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
+
+    &-menu {
+      border: 0;
+      top: 50px;
+      opacity: 0;
+      left: -20px;
+      padding: 15px;
+      display: block;
+      border-radius: 0;
+      visibility: hidden;
+      border-radius: 10px;
+      transition: .3s ease;
+      margin: 0px;
+      transform: scale(.8);
+      background: $bg-gradient-secondary;
+      box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
+
+      @include desktop {
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transform-origin: unset;
+      }
+
+      &.show {
+        visibility: hidden;
+
+        @include desktop {
+          visibility: visible;
+          display: block;
+        }
+      }
+    }
+
+    &-item {
+      position: relative;
+      color: $white;
+      transition: .2s ease;
+      font-family: $font-primary;
+
+      @include desktop {
+        text-align: center;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      &:hover {
+        color: $color-secondary !important;
+        background: transparent;
+      }
+    }
+  }
+}
+
+#select-language {
+  background: transparent;
+  color: $white;
+  border: 0;
+
+  @include desktop {
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  option {
+    color: black;
+  }
+}

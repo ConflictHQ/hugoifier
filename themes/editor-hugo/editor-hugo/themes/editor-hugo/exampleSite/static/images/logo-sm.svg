@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 71" width="76" height="71">
+	<defs>
+		<image  width="44" height="68" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAABEBAMAAAAIDcoFAAAAAXNSR0IB2cksfwAAAB5QTFRFICAgICAgIiIiIiIiJCQkAAAAIiIiISEhISEhIiIiq6NikQAAAAp0Uk5TID+A/0AAz7+gb5AGVmAAAAA5SURBVHicY2AUxAYYlI2xAZoLm4Sig1HhUWFMYbNyFFAKFUYDpmQJWyihANVB5/lR4WEvbDkYSmQAOZOYaQJ9bwsAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #c98664 } 
+	</style>
+	<use id="Layer 1" href="#img1" x="0" y="1" />
+	<path id="Layer" class="shp0" d="M58.74 62.81C58.74 60.7 59.51 58.87 61.04 57.34C62.58 55.8 64.4 55.03 66.51 55.03C68.63 55.03 70.45 55.8 71.99 57.34C73.52 58.87 74.29 60.7 74.29 62.81C74.29 64.92 73.52 66.74 71.99 68.28C70.45 69.82 68.63 70.58 66.51 70.58C64.4 70.58 62.58 69.82 61.04 68.28C59.51 66.74 58.74 64.92 58.74 62.81Z" />
+</svg>

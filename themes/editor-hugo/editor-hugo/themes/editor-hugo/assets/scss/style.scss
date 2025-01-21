@@ -1,0 +1,34 @@
+// Color Variables
+{{ with site.Params.variables }}
+$primary-color: {{.primary_color}};
+$secondary-color: {{.secondary_color}};
+$white: {{.white}};
+$black: {{.black}};
+$dark: {{.dark}};
+$gray: {{.gray}};
+$light: {{.light}};
+
+$h1: {{.h1}};
+$h1_lg: {{.h1_lg}};
+$h1_md: {{.h1_md}};
+$h2: {{.h2}};
+$h2_md: {{.h2_md}};
+$h3: {{.h3}};
+$h3_md: {{.h3_md}};
+$h4: {{.h4}};
+$h5: {{.h5}};
+$h6: {{.h6}};
+
+// Font Variables
+$primary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .primary_font }}', sans-serif;
+$secondary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .secondary_font }}', sans-serif;
+$icon-font: '{{.icon_font}}';
+{{ end }}
+
+@import 'mixins';
+@import 'typography';
+@import 'buttons';
+@import 'common';
+@import 'templates/navigation.scss';
+@import 'templates/main.scss';
+@import 'custom.scss';

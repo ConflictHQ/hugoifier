@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section blog-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          {{ $paginator:= .Paginate .Data.Pages }}
+          {{ range $paginator.Pages }}
+          <div class="col-lg-6 col-md-6 mb-5">
+            <div class="blog-item-content">
+              <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid">
+              <div class="blog-item-content-content mt-3">
+                <span class="text-sm text-color text-uppercase font-weight-bold">{{ .PublishDate.Format "January 02, 2006" }}</span>
+                <h3 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+                <p class="mb-4">{{ .Summary }}</p>
+                <a href="{{ .Permalink }}" class="btn btn-small btn-main rounded">Learn More</a>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+          <div class="col-12">
+            {{ template "_internal/pagination.html" . }}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        {{ partial "blog-sidebar.html" . }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

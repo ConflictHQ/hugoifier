@@ -1,0 +1,38 @@
+---
+label: Career
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: file
+  name: bg_image
+  label: bg image
+  description: Page header background image
+- type: text
+  name: description
+  label: description
+  description: meta description
+- type: text
+  name: image
+  label: image
+  description: " company logo"
+- type: text
+  name: location
+  label: location
+  description: job location
+- type: text
+  name: job_type
+  label: job type
+  description: 'Ex: Full time'
+- type: text
+  name: job_category
+  label: job_category
+  description: 'Ex: Web Developer'
+- type: text
+  name: apply_link
+  label: apply_link
+  description: job apply link

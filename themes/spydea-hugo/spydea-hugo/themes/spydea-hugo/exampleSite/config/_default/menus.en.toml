@@ -1,0 +1,88 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 3
+
+[[main]]
+weight = 4
+name = "Pages"
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Elements"
+url = "elements/"
+weight = 1
+
+[[main]]
+parent = "Pages"
+name = "Career"
+url = "career/"
+
+[[main]]
+parent = "Pages"
+name = "Pricing"
+url = "pricing/"
+
+[[main]]
+parent = "Pages"
+name = "Authors"
+url = "authors/"
+
+[[main]]
+parent = "Pages"
+name = "Contact"
+url = "contact/"
+
+[[main]]
+parent = "Pages"
+name = "Terms & Conditions"
+url = "terms-conditions/"
+
+[[main]]
+parent = "Pages"
+name = "404"
+url = "404/"
+
+[[footer_01]]
+name = "About us"
+url = "about/"
+weight = 1
+
+[[footer_01]]
+name = "Contact us"
+url = "contact/"
+weight = 2
+
+[[footer_01]]
+name = "Pricing"
+url = "pricing/"
+weight = 3
+
+[[footer_02]]
+name = "Blog"
+url = "blog/"
+weight = 1
+
+[[footer_02]]
+name = "Career"
+url = "career/"
+weight = 2
+
+[[footer_02]]
+name = "Terms & Conditions"
+url = "terms-conditions/"
+weight = 3

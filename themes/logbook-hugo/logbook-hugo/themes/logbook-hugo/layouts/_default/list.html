@@ -1,0 +1,41 @@
+{{ define "main" }}
+  <!-- checking blog -->
+  {{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+    <section class="section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="title-bordered">
+              <h1 class="h4 fw-normal">
+                Showing items from
+                <span class="text-primary">{{ .Title }}</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{ .Scratch.Set "where" .Data.Pages }}
+    {{ partial "default.html" . }}
+
+
+    <!-- regular page -->
+  {{ else }}
+    <section class="section-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="title-bordered mb-5 d-flex align-items-center">
+              <h1 class="h4">{{ .Title }}</h1>
+            </div>
+            <div class="content">
+              {{ .Content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+{{ end }}

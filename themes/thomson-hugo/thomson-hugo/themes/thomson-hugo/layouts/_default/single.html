@@ -1,0 +1,57 @@
+{{ define "main" }}
+
+<section class="page-title section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h1 class="text-capitalize mb-0 text-lg">{{ .Title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-post">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <article class="single-post">
+          <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" class="img-fluid">
+
+          <div class="single-post-content mt-4">
+            <div class="post-meta mb-4">
+              <span class="text-black">Tags :</span>
+              {{ range .Params.Tags }}
+              <span>{{ . }}, </span>
+              {{ end }}
+              <span class="ml-3">-</span>
+              <span class="date">{{ .PublishDate.Format "06 jan 2006" }}</span>
+            </div>
+            <div class="content">{{ .Content }}</div>
+            <div class="share mt-4">
+              <ul class="list-inline">
+                <li class="list-inline-item">Share Now :</li>
+                {{ $url := printf "%s" .Permalink | absLangURL }}
+                <li class="list-inline-item"><a href="https://facebook.com/sharer/sharer.php?u={{ $url }}"><i class="ti-facebook mr-2"></i> Facebook</a></li>
+                <li class="list-inline-item"><a href="ttps://twitter.com/intent/tweet/?text={{ .Title }}&amp;url={{ $url }}"><i class="ti-twitter mr-2"></i> Twitter</a></li>
+                <li class="list-inline-item"><a href="https://reddit.com/submit/?url={{ $url }}&amp;resubmit=true&amp;title={{ .Title }}"><i class="ti-reddit mr-2"></i> Reddit</a></li>
+                <li class="list-inline-item"><a href="mailto:?subject={{ .Title }}&amp;body={{ $url }}"><i class="ti-email mr-2"></i> Email</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        {{ if .Site.DisqusShortname }}
+        <div class="comments bg-secondary p-4 mt-5">
+          {{ template "_internal/disqus.html" }}
+        </div>
+        {{ end }}
+      </div>
+
+      {{ partial "blog-sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

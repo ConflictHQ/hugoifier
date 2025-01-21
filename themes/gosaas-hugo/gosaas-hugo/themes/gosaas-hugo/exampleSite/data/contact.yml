@@ -1,0 +1,6 @@
+############################# Contact #################################
+contact:
+  enable : true
+  bgImage : "images/backgrounds/contact-bg.png"
+  title : "Get In **Touch**"
+  formAction : "#"

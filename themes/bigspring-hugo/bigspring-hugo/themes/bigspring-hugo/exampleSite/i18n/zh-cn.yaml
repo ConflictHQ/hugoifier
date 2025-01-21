@@ -1,0 +1,92 @@
+- id: read_more
+  translation: 阅读更多
+  
+- id: read_case_study
+  translation: 阅读完整的案例研究
+  
+- id: view_product
+  translation: 查看产品
+
+- id: send
+  translation: 发信息
+
+- id: category
+  translation: 类别
+
+- id: tags
+  translation: 标签
+
+- id: by
+  translation: 经过
+
+- id: min_read
+  translation: 最小读取
+
+- id: admin
+  translation: 行政
+
+- id: lets_meet
+  translation: 咱们见面吧
+
+- id: prev_case
+  translation: 以前的
+
+- id: next_case
+  translation: 下一个
+
+- id: apply_for_position
+  translation: 申请职位
+
+- id: view_all_positions
+  translation: 查看所有职位
+
+- id: apply_now
+  translation: 现在申请
+
+- id: share_this_job
+  translation: "分享这份工作:"
+
+- id: other_jobs
+  translation: 其他工作
+
+- id: all_jobs
+  translation: 所有工作
+  
+- id: fname
+  translation: 名
+  
+- id: full_name
+  translation: 全名
+  
+- id: lname
+  translation: 姓
+  
+- id: email
+  translation: 电子邮件地址
+  
+- id: website
+  translation: 网站
+  
+- id: organization_size
+  translation: 组织规模*
+  
+- id: region
+  translation: 地区*
+  
+- id: message
+  translation: 信息
+  
+- id: submit_now
+  translation: 现在提交
+  
+- id: get_demo
+  translation: 获取演示
+  
+- id: cv_note
+  translation: 仅允许 doc、pdf 文件且文件大小将小于 2MB
+  
+- id: upload_cv
+  translation: 上传简历
+  
+- id: search_faq
+  translation: 单击并搜索常见问题解答..

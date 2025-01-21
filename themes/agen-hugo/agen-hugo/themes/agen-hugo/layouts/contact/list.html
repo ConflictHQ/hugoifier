@@ -1,0 +1,7 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<div class="map" id="map_canvas" data-latitude="{{ with .Site.Params.mapLatitude }} {{ . }} {{ end }}" data-longitude="{{ with .Site.Params.mapLongitude }} {{ . }} {{ end }}" data-marker="{{ with .Site.Params.mapMarker }} {{ . | absURL }} {{ end }}"></div>
+
+{{ end }}

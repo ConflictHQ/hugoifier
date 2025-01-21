@@ -1,0 +1,21 @@
+{{ define "main"}}
+
+<section class="section faq">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h3>{{ .Title | markdownify }}</h3>
+					<p>{{.Params.description | markdownify}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-block">
+			<div class="row" id="accordion">
+				{{.Content}}
+			</div>
+		</div>
+	</div>
+</section>
+
+{{ end }}

@@ -1,0 +1,304 @@
+######################## default configuration ####################
+baseurl = "http://demo.themefisher.com/timeframe-hugo/"
+title = "Timeframe"
+theme = "timeframe"
+# post pagination
+paginate = "4"
+# post excerpt
+summaryLength = "10"
+# google analytics
+googleAnalytics = "" # example : UA-123-45
+# disqus short name
+disqusShortname = "#" # get your shortname form here : https://disqus.com
+# disable language
+disableLanguages = [] # desable language from here
+
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.renderer]
+unsafe= true
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/font-awesome.min.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+link = "plugins/search/mark.js"
+[[params.plugins.js]]
+link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"
+[[params.plugins.js]]
+link = "plugins/instafeed/instafeed.min.js"
+[[params.plugins.js]]
+link = "plugins/masonry/masonry.min.js"
+
+
+#################### default parameters ################################
+[params]
+logo = "images/logo.png"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact info
+address = "1901 Thornridge Cir. Shiloh, Hawaii 81063<br>Hilton Head Island,<br>South Carolina(SC), 29928"
+mobile = "+211234565523"
+email = "info@email.com"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# search
+search = true
+
+# layout
+[params.layout]
+# navigation layout
+navbar = "1" # 1 or 2
+# post layout
+post = "1" # 1 or 2
+# instagram layout
+instafeed = "1" # 1 or 2
+
+# Preloader
+[params.preloader]
+enable = true
+preloader = "" # use jpg, png, svg or gif format.
+
+# Instagram feed
+[params.instafeed]
+enable = true
+access_token = "IGQVJYeUk4YWNIY1h4OWZANeS1wRHZARdjJ5QmdueXN2RFR6NF9iYUtfcGp1NmpxZA3RTbnU1MXpDNVBHTzZAMOFlxcGlkVHBKdjhqSnUybERhNWdQSE5hVmtXT013MEhOQVJJRGJBRURn"
+
+# google map
+[params.map]
+enable = true
+gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
+
+# cookies
+[params.cookies]
+enable = true
+expire_days = 2
+  
+############################# social site ########################
+[[params.social]]
+title = "facebook"
+icon = "fa-facebook" # fontawesome icon pack v4.7 : https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+title = "twitter"
+icon = "fa-twitter" # fontawesome icon pack v4.7 : https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+title = "instagram"
+icon = "fa-instagram" # fontawesome icon pack v4.7 : https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+title = "github"
+icon = "fa-github" # fontawesome icon pack v4.7 : https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+title = "linkedin"
+icon = "fa-linkedin" # fontawesome icon pack v4.7 : https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+
+################################### English language #####################################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 1
+# copyright
+copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
+
+################ banner #############
+[Languages.en.params.banner]
+enable = true
+title = "I’m a Freelance Interactive Art Director based in Cuba. Focus across branding identity and solution In Society"
+bg_image = "images/banner.png"
+
+##### English navigation ############
+# main menu
+[[Languages.en.menu.main]]
+name = "Homepage"
+hasChildren = true
+weight = 1
+
+  [[Languages.en.menu.main]]
+  parent = "Homepage"
+  name = "Homepage Grid"
+  url = "homepage/grid"
+
+  [[Languages.en.menu.main]]
+  parent = "Homepage"
+  name = "Homepage Grid Banner"
+  url = "homepage/grid-banner"
+
+  [[Languages.en.menu.main]]
+  parent = "Homepage"
+  name = "Homepage List"
+  url = "homepage/list"
+
+  [[Languages.en.menu.main]]
+  parent = "Homepage"
+  name = "Homepage List Banner"
+  url = "homepage/list-banner"
+
+[[Languages.en.menu.main]]
+name = "About"
+url = "about"
+weight = 2
+
+[[Languages.en.menu.main]]
+name = "Portfolio"
+url = "portfolio"
+weight = 3
+
+[[Languages.en.menu.main]]
+name = "Contact"
+url = "contact"
+weight = 4
+
+[[Languages.en.menu.main]]
+name = "Privacy Policy"
+url = "privacy-policy"
+weight = 5
+
+# footer menu
+[[Languages.en.menu.footer]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[Languages.en.menu.footer]]
+name = "About"
+url = "about"
+weight = 2
+
+[[Languages.en.menu.footer]]
+name = "Portfolio"
+url = "portfolio"
+weight = 3
+
+[[Languages.en.menu.footer]]
+name = "Privacy Policy"
+url = "privacy-policy"
+weight = 4
+
+[[Languages.en.menu.footer]]
+name = "Contact"
+url = "contact"
+weight = 5
+
+
+################################### French language #####################################
+[Languages.fr]
+languageName = "Fr"
+languageCode = "fr-fr"
+contentDir = "content/french"
+weight = 2
+# copyright
+copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
+
+# banner
+[Languages.fr.params.banner]
+enable = true
+title = "I’m a Freelance Interactive Art Director based in Cuba. Focus across branding identity and solution In Society"
+bg_image = "images/banner.png"
+
+##### French navigation ############
+# main menu
+[[Languages.fr.menu.main]]
+name = "Homepage"
+hasChildren = true
+weight = 1
+
+  [[Languages.fr.menu.main]]
+  parent = "Homepage"
+  name = "Homepage Grid"
+  url = "homepage/grid"
+
+  [[Languages.fr.menu.main]]
+  parent = "Homepage"
+  name = "Homepage Grid Banner"
+  url = "homepage/grid-banner"
+
+  [[Languages.fr.menu.main]]
+  parent = "Homepage"
+  name = "Homepage List"
+  url = "homepage/list"
+
+  [[Languages.fr.menu.main]]
+  parent = "Homepage"
+  name = "Homepage List Banner"
+  url = "homepage/list-banner"
+
+[[Languages.fr.menu.main]]
+name = "About"
+url = "about"
+weight = 2
+
+[[Languages.fr.menu.main]]
+name = "Portfolio"
+url = "portfolio"
+weight = 3
+
+[[Languages.fr.menu.main]]
+name = "Contact"
+url = "contact"
+weight = 4
+
+[[Languages.fr.menu.main]]
+name = "Privacy Policy"
+url = "privacy-policy"
+weight = 5
+
+# footer menu
+[[Languages.fr.menu.footer]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[Languages.fr.menu.footer]]
+name = "About"
+url = "about"
+weight = 2
+
+[[Languages.fr.menu.footer]]
+name = "Portfolio"
+url = "portfolio"
+weight = 3
+
+[[Languages.fr.menu.footer]]
+name = "Privacy Policy"
+url = "privacy-policy"
+weight = 4
+
+[[Languages.fr.menu.footer]]
+name = "Contact"
+url = "contact"
+weight = 5

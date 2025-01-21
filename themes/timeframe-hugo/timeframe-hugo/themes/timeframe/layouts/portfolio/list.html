@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="h2 section-title">{{ .Title }}</h1>
+      </div>
+    </div>
+    <div class="row masonry-wrapper">
+      {{ range .Data.Pages }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="portfolio-item">
+          <img class="img-fluid w-100" src="{{ .Params.image | absURL }}" alt="{{ .Title }}">
+          <div class="portfolio-content">
+            <h5 class="mb-3"><a href="{{.Permalink}}">{{.Title}}</a></h5>
+            <p class="mb-0">{{ .Summary | truncate 100}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "instafeed.html" . }}
+
+{{ end }}

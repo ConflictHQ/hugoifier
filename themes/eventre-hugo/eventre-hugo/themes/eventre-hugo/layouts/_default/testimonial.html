@@ -1,0 +1,53 @@
+{{ define "main"}}
+
+<!--=================================
+=            Testimonial            =
+==================================-->
+{{ if .Params.testimonial.enable }}
+{{ with .Params.testimonial }}
+<section class="section testimonial">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3>{{ .title | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-20">
+      {{ range .testimonial_items }}
+      <div class="col-lg-4 col-md-6">
+        <!-- Testimonial -->
+        <div class="testimonial-item">
+          <!-- Given Comment -->
+          <div class="comment">
+            <p>{{ .content | markdownify }}</p>
+          </div>
+          <div class="person">
+            <div class="media">
+              <!-- Person Image -->
+              <img src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+              <div class="media-body">
+                <!-- Person Name -->
+                <div class="name">
+                  <p>{{ .name | markdownify }}</p>
+                </div>
+                <!-- Profession -->
+                <div class="profession">
+                  <p>{{ .designation | markdownify }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Testimonial  ====-->
+
+{{ end }}

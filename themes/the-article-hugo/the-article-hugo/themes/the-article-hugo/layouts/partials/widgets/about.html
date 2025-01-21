@@ -1,0 +1,15 @@
+<!-- about -->
+<div class="widget text-center">
+  {{ with .Site.GetPage "/about" }}
+  {{ if .Params.Image }}
+  <h4 class="widget-header">About Me</h4>
+  <div class="widget-body">
+    <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}"
+      class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
+    {{ end }}
+    <h2 class="widget-title">{{ .Title | markdownify }}</h2>
+    <p class="px-3">{{ .Plain | truncate 250 }}</p>
+    <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary">Know More</a>
+    {{ end }}
+  </div>
+</div>

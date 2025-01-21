@@ -1,0 +1,118 @@
+{{ define "main"}}
+
+<!-- Banner start -->
+{{ if .Site.Data.about.author.enable }}
+{{ with .Site.Data.about.author }}
+<section class="section banner-3">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-12">
+        <div class="profile mb-5">
+          <img src="{{ .image | relURL }}" alt="{{ .name }}" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <h2>{{ .name }}</h2>
+        <p class="lead mb-4">{{ .bio | markdownify }}</p>
+        <p class="mb-4">{{ .content | markdownify }}</p>
+        <img src="{{ .signature | relURL }}" alt="{{ .name }}" class="img-fluid">
+      </div>
+
+      <div class="col-lg-5">
+        <ul class="list-unstyled mt-3 mb-5 about-list">
+          {{ range .favourite_topic }}
+          <li>- {{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Banner End -->
+
+<!-- About start -->
+{{ if .Site.Data.about.experience.enable }}
+{{ with .Site.Data.about.experience }}
+<section class="section about border-top border-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5">
+        <h3 class="mb-2">{{ .title | markdownify }}</h3>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="row">
+          {{ range .experience_item }}
+          <div class="col-lg-6">
+            <div class="about-info mb-5">
+              <span>{{ .duration }}</span>
+              <h4 class="mb-3 mt-1">{{ .name }}</h4>
+              <p>{{ .content | markdownify }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- About End -->
+
+<!-- Skill Start -->
+{{ if .Site.Data.about.skill.enable }}
+{{ with .Site.Data.about.skill }}
+<section class="section skills">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <h3>{{ .title | markdownify }}</h3>
+      </div>
+
+      <div class="col-lg-8">
+        {{ range .skillbar }}
+        <div class="progress-bar-content">
+          <div class="progress-label d-flex align-items-center">
+            <div class="progress-title">{{ .name }}</div>
+            <span class="progress-bar-units ml-auto">{{ .percentage }}</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width:{{ .percentage }}"></div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Skill end -->
+
+<!-- Cta Start -->
+{{ if .Site.Data.about.cta.enable }}
+{{ with .Site.Data.about.cta }}
+<section class="section-sm pt-0 cta">
+  <div class="container">
+    <div class="row align-items-center bg-dark p-5">
+      <div class="col-lg-8">
+        <h3 class="text-white mb-0">{{ .title | markdownify }}</h3>
+      </div>
+      {{ if .button.enable }}
+      {{ with .button }}
+      <div class="col-lg-4 text-lg-right mt-5 mt-lg-0">
+        <a href="{{ .link | absURL }}" class="btn btn-white">{{ .label }}</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Cta ENd -->
+
+{{ end }}

@@ -1,0 +1,14 @@
+{{ "<!-- categories -->" | safeHTML }}
+<div class="widget">
+  <span class="widget-title">{{ i18n "categories" }}</span>
+
+  {{ if isset site.Taxonomies "categories" }}
+  {{ if not (eq (len site.Taxonomies.categories) 0) }}
+  <ul class="sidebar-post-categories list-unstyled">
+    {{ range $name, $items := site.Taxonomies.categories }}
+    <li><a href="{{ `categories/` | absLangURL }}{{ $name | urlize | lower }}/">{{ $name | humanize }} <span>{{ len $items }}</span></a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+  {{ end }}
+</div>

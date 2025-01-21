@@ -1,0 +1,27 @@
+{{"<!-- subscription -->" | safeHTML }}
+{{ if .Site.Params.subscription.enable }}
+{{ with .Site.Params.subscription }}
+<section class="subscription">
+  <div class="container">
+    <div class="subscription-wrapper">
+      <div class="d-flex position-relative mx-5 justify-content-between align-items-center flex-column flex-md-row text-md-left">
+        <h3 class="text-white flex-fill">{{ i18n "subscribe_newsletter" | safeHTML }}</h3>
+        <form action="{{ .mailchimp_form_action }}" method="post"
+          name="mc-embedded-subscribe-form" target="_blank" novalidate class="row flex-fill">
+          <div class="col-lg-7 my-md-2 my-2">
+            <input type="email" class="form-control text-white px-4 border-0 w-100 text-center text-md-left" placeholder="Your Email" name="EMAIL" required>
+          </div>
+          <div class="col-lg-5 my-md-2 my-2">
+            <button type="submit" name="subscribe" class="btn btn-primary btn-lg border-0 w-100">{{ i18n "subscribe_now" | safeHTML }}</button>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- /subscription -->" | safeHTML }}

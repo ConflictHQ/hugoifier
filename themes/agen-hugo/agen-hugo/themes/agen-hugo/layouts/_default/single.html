@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<!-- page-title -->
+<section class="page-title bg-cover" data-background="{{ .Params.BgImage | absURL}}">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="text-white font-primary">{{ .Title | markdownify }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page-title -->
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="font-tertiary mb-5">{{ .Title }}</h3>
+        <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="img-fluid w-100 mb-3">
+        <p class="d-inline-block">Post by {{.Params.Author}}</p>
+        <time class="float-right">{{ .PublishDate.Format "January 02, 2006" }}</time>
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

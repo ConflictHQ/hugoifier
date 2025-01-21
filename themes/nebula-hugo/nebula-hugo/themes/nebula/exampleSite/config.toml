@@ -1,0 +1,96 @@
+######################## default configuration ####################
+baseURL = "http://demo.themefisher.com/nebula-hugo/"
+title = "Nebula | Hugo blog template"
+theme = "nebula"
+languageName = "En"
+languageCode = "en-us"
+# disqus short name
+disqusShortname = "" # get your shortname form here : https://disqus.com
+
+############################# output ##############################
+[outputs]
+home = [ "HTML", "RSS"]
+
+# render unsafe html
+[markup.goldmark.renderer]
+unsafe = true
+
+############################# Plugins ##############################
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/themify-icons/themify-icons.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+
+
+################################ menu ##################################
+[[menu.main]]
+name = "Home"
+URL = "/"
+weight = 1
+
+[[menu.main]]
+name = "About"
+URL = "about"
+weight = 2
+
+[[menu.main]]
+name = "Contact"
+URL = "contact"
+weight = 3
+
+[[menu.main]]
+name = "Privacy Policy"
+URL = "privacy-policy"
+weight = 4
+
+
+#################### default parameters ################################
+[params]
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# sidebar portrait
+portrait = "images/author.png"
+# sidebar bio
+bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas donec nullam cras vitae facilisis vehicula in. Convallis vel, justo sem nunc, lorem amet rhoncus."
+# copyright
+copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)"
+
+# Preloader
+[params.preloader]
+enable = true
+preloader = "" # use jpg, png, svg or gif format.
+
+
+############################# social site ########################
+[[params.social]]
+title = "facebook"
+icon = "ti-facebook" # themify icon : https://themify.me/themify-icons
+link = "#"
+
+[[params.social]]
+title = "twitter"
+icon = "ti-twitter-alt" # themify icon : https://themify.me/themify-icons
+link = "#"
+
+[[params.social]]
+title = "instagram"
+icon = "ti-instagram" # themify icon : https://themify.me/themify-icons
+link = "#"
+
+[[params.social]]
+title = "github"
+icon = "ti-github" # themify icon : https://themify.me/themify-icons
+link = "#"
+
+[[params.social]]
+title = "linkedin"
+icon = "ti-linkedin" # themify icon : https://themify.me/themify-icons
+link = "#"

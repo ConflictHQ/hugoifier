@@ -1,0 +1,46 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- project -->
+<section>
+  <div class="container-fluid px-0">
+    <div class="row no-gutters shuffle-wrapper">
+      {{ range .Site.Data.project.projects }}
+
+      {{ $column := .column }}
+      {{ if eq $column 1 }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ else if eq $column 2 }}
+      {{ $column = "col-lg-8" }}
+      {{ else }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ end }}
+      <div class="{{$column}} shuffle-item">
+        <div class="project-item">
+          <img src="{{ .image | absURL }}" alt="project-image" class="img-fluid w-100">
+          <div class="project-hover bg-secondary px-4 py-3">
+            {{ if and ( ne .link "" ) ( ne .link "#" ) }}
+            <a href="{{ .link | safeURL }}" target="_blank" class="text-white h4">{{ .title | markdownify}}</a>
+            <a href="{{ .link | safeURL }}"><i class="ti-link icon-xs text-white"></i></a>
+            {{ else }}
+            <h4 class="text-white">{{ .title | markdownify }}</h4>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /project -->
+
+{{ if .Site.Data.project.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+
+{{ if .Site.Data.project.clientsLogo.enable }}
+{{ partial "clients-logo.html" . }}
+{{ end }}
+
+{{ end }}

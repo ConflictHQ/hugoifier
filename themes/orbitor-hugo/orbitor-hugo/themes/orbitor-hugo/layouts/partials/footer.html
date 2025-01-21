@@ -1,0 +1,93 @@
+<!-- footer Start -->
+<footer class="footer section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 mr-auto col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<div class="logo mb-4">
+						{{ with site.Params.logo_white }}
+						<img loading="lazy" src="{{ . | absURL }}" alt="{{ site.Title }}" class="img-fluid">
+						{{ else }}
+						<h3>{{ site.Title }}</h3>
+						{{ end }}
+					</div>
+					<p>{{ site.Params.footer_content | markdownify }}</p>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-6 col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Company</h4>
+					<ul class="list-unstyled footer-menu lh-35">
+						{{ range site.Menus.company}}
+						<li><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Support</h4>
+					<ul class="list-unstyled footer-menu lh-35">
+						{{ range site.Menus.support}}
+						<li><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget widget-contact mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Get in Touch</h4>
+					<h6><a href="tel:{{ site.Params.mobile }}"> <i class="ti-mobile mr-3"></i>{{ site.Params.mobile }}</a></h6>
+					<h6><a href="mailto:{{ site.Params.email }}"> <i class="ti-headphone-alt mr-3"></i>{{ site.Params.email }}</a></h6>
+					<ul class="list-inline footer-socials mt-5">
+						{{ range site.Params.social }}
+						<li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }} mr-2"></i></a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-btm py-4 mt-5">
+			<div class="row">
+				<div class="col-12 text-center">
+					<div class="copyright">{{ site.Params.copyright | markdownify }}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range site.Params.plugins.js}}
+<script src="{{ .link | absURL }}"></script>
+{{ end }}
+
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>
+
+<!-- cookie -->
+{{ if site.Params.cookies.enable }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-primary">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires: {{ site.Params.cookies.expire_days }}
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+{{ end }}
+

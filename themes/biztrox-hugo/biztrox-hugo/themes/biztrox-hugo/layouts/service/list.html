@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+{{ "<!-- service -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="post-content">
+          {{ .Content }}
+        </div>
+      </div>
+      {{ range .Data.Pages }}
+      {{ .Render "service" }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /servie -->" | safeHTML }}
+
+{{ with .Params.satisfied_clients }}
+{{ "<!-- clients -->" | safeHTML }}
+<section class="clients section bg-secondary overlay-dark"  {{ partial `bg-image.html` (dict `Src` .bg_image ) | safeHTMLAttr }}>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<span class="section-title-sm h5 text-color">{{ .subtitle | markdownify }}</span>
+				<h2 class="text-white mb-20">{{ .title | markdownify }}</h2>
+				<p class="text-white">{{ .content | markdownify }}</p>
+			</div>
+			<div class="col-lg-6">
+				<div class="row justify-content-around align-items-center">
+					{{ range .logo }}
+					<div class="col-6 text-center">
+						{{ partial "image.html" (dict "Src" . "Alt" "client-logo"  "Class" `py-3`) }}
+					</div>
+					{{ end }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /clients -->" | safeHTML }}
+{{ end }}
+
+<!-- testimonial -->
+{{ if .Params.testimonial.enable }}
+{{ if .Params.testimonial.inherit_homepage }}
+{{ with .GetPage "/" }}
+{{ partial "components/testimonial.html" . }}
+{{ end }}
+{{ else }}
+{{ partial "components/testimonial.html" . }}
+{{ end }}
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,128 @@
+<footer
+  class="footer-alt bg-theme-dark relative z-20 after:absolute after:left-0 after:top-0 after:-z-10 after:h-[400px] after:w-full after:bg-white after:content-['']">
+  <div
+    data-aos="fade-in"
+    data-aos-delay="50"
+    class="container relative z-30 pt-28 md:pt-40">
+    <div class="row items-center justify-center pb-10 lg:justify-between">
+      <div class="col-auto">
+        <a href="{{ site.BaseURL | relLangURL }}">
+          {{ partial "logo.html" (dict "Src" site.Params.logo_footer) }}
+        </a>
+      </div>
+      <!-- End Site Logo -->
+      <div class="lg:col-6 pt-10 lg:pt-0">
+        {{ partial "components/quote-form.html" (dict "Class" "mx-auto lg:ml-auto lg:mr-0 lg:max-w-full") }}
+      </div>
+      <!-- End Newsletter -->
+    </div>
+    <!-- End Footer First Row -->
+
+    <hr
+      class="border-light/20 h-[1px] border-0 border-b border-opacity-30 bg-transparent" />
+
+    <div class="row gy-5 lg:g-4 py-7 text-center sm:py-14 sm:text-left">
+      <div class="sm:col-6 md:col-4 lg:col-3 xl:col-3">
+        <div class="widget lg:pl-16">
+          <h3 class="widget-title">{{ i18n "company" }}</h3>
+          <ul class="widget-content">
+            {{ range site.Menus.footer_01 }}
+              <li>
+                <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      <!-- End Footer Widget -->
+      <div class="sm:col-6 md:col-4 lg:col-2 xl:col-2">
+        <div class="widget pl-0">
+          <h3 class="widget-title">{{ i18n "resources" }}</h3>
+          <ul class="widget-content">
+            {{ range site.Menus.footer_02 }}
+              <li>
+                <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      <!-- End Footer Widget -->
+      <div class="sm:col-6 md:col-4 lg:col-4 xl:col-3">
+        <div class="widget lg:pl-8">
+          <h3 class="widget-title">{{ i18n "email_us" }}</h3>
+          <div
+            class="mx-auto -mt-1 mb-4 w-fit text-[22px] font-bold text-amber-400 transition-all duration-300 hover:underline hover:underline-offset-4 sm:mx-0">
+            <a href="mailto:{{ site.Params.contact_info.email }}"
+              >{{ site.Params.contact_info.email }}</a
+            >
+          </div>
+          {{ with site.Data.social.main }}
+            <ul class="social-icons justify-center sm:justify-start">
+              {{ range . }}
+                <li>
+                  <a href="{{ .link }}" target="_blank">
+                    <span class="sr-only">{{ .title }}</span>
+                    <i class="{{ .icon }}"></i>
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+            <!-- End Social Icons -->
+          {{ end }}
+        </div>
+      </div>
+      <!-- End Footer Widget -->
+      <div class="sm:col-6 md:col-6 lg:col-3 xl:col-3">
+        <div class="xl:pl-16">
+          <h3 class="widget-title">{{ i18n "contact_us" }}</h3>
+          <div
+            class="mx-auto -mt-1 w-fit text-[22px] font-bold text-amber-400 transition-all duration-300 hover:underline hover:underline-offset-4 sm:mx-0">
+            <a href="tel:{{ site.Params.contact_info.mobile }}"
+              >{{ site.Params.contact_info.mobile }}</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- End Footer Widget -->
+    </div>
+    <!-- End Footer First Row -->
+
+    <hr
+      class="border-light/20 h-[1px] border-0 border-b border-opacity-30 bg-transparent" />
+    <p class="copyright">
+      {{ site.Params.copyright }}
+      {{ if site.Params.theme_copyright }}
+        | Themes by
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://gethugothemes.com/"
+          >GetHugoThemes</a
+        >
+      {{ end }}
+    </p>
+    <!-- End Copyright  -->
+  </div>
+  <!-- End Main Content -->
+
+  {{ partial "components/bg-lines.html" (dict "Color" "bg-line-dark" "Class" "line-bg absolute left-0 top-1/2 flex h-full w-full -translate-y-1/2 justify-between") }}
+  <!-- End background lines -->
+
+  <div class="absolute bottom-0 left-0 -z-10 h-full w-full">
+    <div
+      class="pointer-events-none absolute right-0 top-[25%] hidden select-none lg:block">
+      {{ partial "image.html" (dict "Src" "/images/shapes/footer-s-1.svg" "Class" "inline-svg text-quaternary" "Alt" "shape") }}
+    </div>
+    <div
+      class="pointer-events-none absolute bottom-0 hidden select-none lg:block min-[1024px]:left-[-6%] min-[1400px]:left-0">
+      {{ partial "image.html" (dict "Src" "/images/shapes/footer-s-2.svg" "Class" "inline-svg text-quinary" "Alt" "shape") }}
+    </div>
+    <div
+      class="pointer-events-none absolute bottom-0 right-0 hidden select-none lg:block">
+      {{ partial "image.html" (dict "Src" "/images/shapes/footer-s-3.svg" "Class" "inline-svg text-secondary" "Alt" "shape") }}
+    </div>
+  </div>
+  <!-- End background Shapes -->
+</footer>
+<!-- End Main Footer -->

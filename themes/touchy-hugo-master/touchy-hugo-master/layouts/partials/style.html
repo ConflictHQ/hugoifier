@@ -1,0 +1,13 @@
+<!-- plugins -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+{{ range site.Params.plugins.css}}
+<link rel="stylesheet" href="{{ .link | absURL }}" {{.attributes | safeHTMLAttr}}>
+{{ end }}
+
+<!-- Main Stylesheet -->
+{{ $styles := resources.Get "scss/style.scss" | toCSS | minify }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
+
+<!--Favicon-->
+<link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+<link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">

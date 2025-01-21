@@ -1,0 +1,40 @@
+{{ define "main" }}
+
+{{ partial "page-header.html" . }}
+
+<div class="col-12 mb-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="pr-0 pr-lg-4">
+        <div class="content mb-5">
+          {{.Content | markdownify}}
+        </div>
+        <h4 class="mb-3"><a class="text-underline text-primary" href="mailto:{{site.Params.email}}">{{site.Params.email}}</a></h4>
+        <p class="mb-2">{{site.Params.address}}</p>
+        <p class="mb-2"><a href="tel:{{site.Params.mobile}}">{{site.Params.mobile}}</a></p>
+      </div>
+    </div>
+    <div class="col-lg-6 mt-5 mt-lg-0">
+      <form method="POST" action="{{ site.Params.contact_form_action | safeURL}}" class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control mb-4" placeholder="Name" name="name" id="name">
+        </div>
+        <div class="col-md-6">
+          <input type="email" class="form-control mb-4" placeholder="Email" name="email" id="email">
+        </div>
+        <div class="col-12">
+          <input type="text" class="form-control mb-4" placeholder="Subject" name="subject" id="subject">
+        </div>
+        <div class="col-12 mt-3">
+          <textarea name="message" id="message" class="form-control mb-4" placeholder="Type You Message Here"
+            rows="5"></textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">{{ i18n `send_message` }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{ end }}

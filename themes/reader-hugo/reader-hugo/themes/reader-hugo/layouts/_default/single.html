@@ -1,0 +1,129 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq
+.Section "categories") (eq .Section "tags") }}
+
+{{ $sidebar:= site.Params.sidebar }}
+{{ $hasbar:= or (eq $sidebar `left`) (eq $sidebar `right`)}}
+{{ $layout:= site.Params.post_layout}}
+{{ $widget:= site.Params.widgets.sidebar }}
+
+<section class="section">
+  <div class="py-4"></div>
+  <div class="container">
+    <div class="row">
+      <!-- left sidebar -->
+      {{ if eq $sidebar "left" }}
+      <aside class="col-lg-4 order-2 order-lg-1">
+        {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+      </aside>
+      {{ end }}
+      <!-- /left sidebar -->
+
+      <div
+        class="{{if $hasbar}} col-lg-8 {{ else }} col-lg-10 mx-auto {{end}} {{if eq $sidebar `left`}} order-1 order-lg-2 {{end}} mb-5 mb-lg-0">
+        <article>
+          <!-- post thumb -->
+          {{ if .Params.images }}
+            {{if (gt (len .Params.images) 1)}}
+            <div class="post-slider mb-4 swiper w-100">
+              <div class="swiper-wrapper">
+                {{ range .Params.images }}
+                <div class="swiper-slide">
+                  {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `card-img`) }}
+                </div>
+                {{ end }}
+              </div>
+            </div>
+            {{ else }}
+            <div class="post-slider mb-4">
+              {{ range .Params.images }}
+              {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `card-img`) }}
+              {{ end }}
+            </div>
+            {{ end }}
+          {{ end }}
+          <!-- /post thumb -->
+
+          <h1 class="h2">{{ .Title }}</h1>
+          <ul class="card-meta my-3 list-inline">
+            <li class="list-inline-item">
+              <a href="{{ `author/` | relLangURL }}{{ .Params.author | urlize }}/" class="card-meta-author">
+                {{ $author:= .Params.author | urlize}}
+                {{ with site.GetPage $author }}
+                {{ if .Params.image }}
+                {{ partial "image.html" (dict "Src" .Params.image "Alt" "author image") }}
+                {{else if .Params.email}}
+                {{ $emailHash := md5 .Params.email }}
+                {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }}
+                <img src="{{$gravatorUrl}}" alt="author image">
+                {{ end }}
+                {{ end }}
+                <span>{{ .Params.author }}</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <i class="fa-regular fa-clock"></i>{{ .Page.ReadingTime }} {{ i18n "minute_read" }}
+            </li>
+            <li class="list-inline-item">
+              <i class="fa-regular fa-calendar-alt"></i>{{ .PublishDate.Format "02 Jan, 2006" }}
+            </li>
+            <li class="list-inline-item">
+              <ul class="card-meta-tag list-inline">
+                {{ $filter:= site.Params.main_taxonomy }}
+                {{ if eq $filter "tag" }}
+                {{ $taxonomies := .Params.tags }}
+                {{ range $taxonomies }}
+                <li class="list-inline-item"><a href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/">{{ . |
+                    humanize }}</a></li>
+                {{ end }}
+                {{ else if eq $filter "category" }}
+                {{ $taxonomies := .Params.categories }}
+                {{ range $taxonomies }}
+                <li class="list-inline-item"><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/">{{ . |
+                    humanize }}</a></li>
+                {{ end }}
+                {{ end }}
+              </ul>
+            </li>
+          </ul>
+          <div class="content">{{ .Content }}</div>
+        </article>
+        <!-- comments -->
+        {{ if site.DisqusShortname }}
+        <div class="mt-5 border-default border p-4 bg-white">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+
+      <!-- right sidebar -->
+      {{ if eq $sidebar "right" }}
+      <aside class="col-lg-4">
+        {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+      </aside>
+      {{ end }}
+      <!-- /right sidebar -->
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+{{ partial "components/page-header.html" . }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

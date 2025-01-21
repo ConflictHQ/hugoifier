@@ -1,0 +1,92 @@
+- id: read_more
+  translation: Read More
+  
+- id: read_case_study
+  translation: Read the full case study
+  
+- id: view_product
+  translation: View Product
+
+- id: send
+  translation: Send Message
+
+- id: category
+  translation: Category
+
+- id: tags
+  translation: Tags
+
+- id: by
+  translation: by
+
+- id: min_read
+  translation: min Read
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: Lets Meet
+
+- id: prev_case
+  translation: Previous Case
+
+- id: next_case
+  translation: Next Case
+
+- id: apply_for_position
+  translation: Apply for Position
+
+- id: view_all_positions
+  translation: View All Positions
+
+- id: apply_now
+  translation: Apply Now
+
+- id: share_this_job
+  translation: "Share this job:"
+
+- id: other_jobs
+  translation: Other Jobs
+
+- id: all_jobs
+  translation: All Jobs
+  
+- id: fname
+  translation: First Name
+  
+- id: full_name
+  translation: Full Name
+  
+- id: lname
+  translation: Last Name
+  
+- id: email
+  translation: Email Address
+  
+- id: website
+  translation: Website
+  
+- id: organization_size
+  translation: Organization Size (Employees)*
+  
+- id: region
+  translation: Region*
+  
+- id: message
+  translation: Message
+  
+- id: submit_now
+  translation: Submit Now
+  
+- id: get_demo
+  translation: Get a Demo
+  
+- id: cv_note
+  translation: only doc, pdf file allowed & file size will be less than 2MB
+  
+- id: upload_cv
+  translation: Upload CV
+  
+- id: search_faq
+  translation: Click and search FAQ..

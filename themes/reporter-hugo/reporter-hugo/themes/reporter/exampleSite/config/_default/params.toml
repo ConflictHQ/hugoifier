@@ -1,0 +1,37 @@
+#################### default parameters ############################
+logo = "images/logo.png"
+logo_white = "images/logo-white.png"
+logo_width = "150x"
+favicon = "images/favicon.png"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+og_image = "/images/placeholder.jpg"
+# contact info
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "hello@reporter.com"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# custom script on header
+custom_script= ""
+# search
+search = true
+# widget
+widgets = ["about", "recommended", "categories"]
+# main sections
+mainSections = ["articles"]
+# page not found image
+page_not_found_image = "images/404.png"
+
+# Preloader
+[preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# cookies
+[cookies]
+enable = false
+expire_days = 2
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"

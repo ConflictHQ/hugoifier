@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 {{if not .Params.sidebar}}mx-auto{{end}}">
+        {{ partial "breadcrumb.html" . }}
+      </div>
+      <div class="col-lg-8 mx-auto mb-5 mb-lg-0">
+        {{ $image:= .Params.image }}
+        {{ if $image }}
+        {{ if hasPrefix $image "http" }}
+        <img loading="lazy" decoding="async" src="{{ $image | safeURL }}" alt="About Me" class="img-fluid w-100 mb-4">
+        {{ else }}
+        {{ if fileExists (add `assets/` .Params.image) }}
+        {{$img:= resources.Get (.Params.image) }}
+        {{$img:= $img.Resize "1000x webp"}}
+        <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" class="img-fluid w-100 mb-4" width="{{$img.Width}}" height="{{$img.Height}}" alt="Author Image">
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+        <h1 class="mb-4">{{.Title | markdownify }}</h1>
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+      {{ if .Params.sidebar }}
+      {{ partial "sidebar.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>

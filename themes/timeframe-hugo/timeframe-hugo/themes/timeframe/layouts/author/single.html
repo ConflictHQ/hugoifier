@@ -1,0 +1,68 @@
+{{ define "main" }}
+
+<section class="section bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 mx-auto">
+				<div class="text-center">
+					<figure class="author-image">
+						{{ if .Params.image }}
+						<img class="rounded-circle img-fluid mb-4" src="{{.Params.image | absURL }}">
+						{{else if .Params.email}}
+						<img class="rounded-circle img-fluid mb-4" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon">
+						{{ end }}
+						<figcaption>
+							<h4 class="section-title">
+								{{ .Title }}
+							</h4>
+						</figcaption>
+					</figure>
+					{{ .Content }}
+					<hr>
+					<ul class="list-inline social-icons">
+						{{ range .Params.Social }}
+						<li class="list-inline-item"><a href="{{ .link | safeURL}}"><i class="fa {{ .icon }}"></i></a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="title text-center">
+					<h2 class="section-title">{{ i18n "posted_by" }}</h2>
+				</div>
+			</div>
+			{{ range where site.RegularPages "Params.author" .Title }}
+			<div class="col-lg-5 col-sm-6">
+        <article class="card">
+          {{ if .Params.image }}
+          <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+          {{ end }}
+          <div class="card-body text-center">
+            <ul class="card-meta">
+              {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}
+              <li><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | humanize }}</a></li>
+              {{end}}
+            </ul>
+            <h4 class="card-title mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+            <p>{{ .Summary }}</p>
+            <ul class="post-meta">
+              <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}
+              </li>
+              <li><i class="fa fa-clock-o"></i>{{ .Page.ReadingTime }}
+                {{ i18n "minute_read" }}</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}

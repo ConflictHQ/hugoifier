@@ -1,0 +1,12 @@
+<div class="col-lg-4">
+  <div class="widget-blocks">
+    <div class="row">
+      {{ if .Params.widgets }}
+      {{ .Scratch.Set "widget" .Params.widgets }}
+      {{ else }}
+      {{ .Scratch.Set "widget" site.Params.widgets }}
+      {{ end }}
+      {{ partial "widgets/widget-wrapper" ( dict "Widgets" (.Scratch.Get "widget") "Scope" . )}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+{{ define "main" }}
+  {{ partial "components/page-header.html" . }}
+
+  {{ with .Params.case_studies }}
+    {{ if .enable }}
+      <section class="section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="section-title text-center mb-0" data-aos="fade-in">
+                <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+                <h2 class="title">{{ .title | markdownify }}</h2>
+                <p>{{ .description | markdownify }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+              <div class="row justify-content-center">
+                {{ range where site.RegularPages "Section" "case-studies" }}
+                  <div class="col-md-6" data-aos="fade-in">
+                    <div class="case-studies-item">
+                      <h3 class="fw-600">{{ .Title | markdownify }}</h3>
+                      <div class="d-flex align-items-center mt-4">
+                        <div class="flex-fill" style="max-width:55%">
+                          <div class="content">
+                            {{ .Plain | truncate 50 }}
+                          </div>
+
+                          <a
+                            href="{{ .RelPermalink }}"
+                            class="text-primary mt-3 d-inline-block fw-500 stretched-link"
+                            >{{ i18n `read_more` }}<i
+                              class="las la-angle-right ms-1"></i
+                          ></a>
+                        </div>
+                        <div class="ps-4">
+                          {{ if and (.Params.logo) (fileExists (add `assets/` .Params.logo)) }}
+                            {{ partial "image.html" (dict "Src" .Params.logo "Alt" "brand image") }}
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+{{ end }}

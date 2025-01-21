@@ -1,0 +1,238 @@
+.navigation {
+  transition: 0.2s ease;
+
+  &.home-nav {
+    transition: unset;
+    top: 0 !important;
+
+    &.nav-bg-home {
+      @include desktop {
+        padding-bottom: 60px;
+        top: -60px !important;
+      }
+    }
+  }
+
+  .container {
+    padding: 0;
+
+    @include tablet {
+      padding: 0 10px;
+    }
+  }
+
+  .navbar {
+    padding: 15px 0;
+  }
+
+  &.nav-bg {
+    background: $white;
+    box-shadow: 0px 5px 20px rgba(62, 62, 62, 0.08) !important;
+
+    @include desktop {
+      top: -60px;
+    }
+
+    @include mobile {
+      top: -50px;
+    }
+
+    @include mobile-xs {
+      top: -45px;
+    }
+  }
+
+  .form-inline {
+    width: 30%;
+
+    input {
+      width: 100%;
+      box-shadow: 0px 5px 10px rgba(62, 62, 62, 0.05) !important;
+    }
+  }
+
+  @include desktop {
+    .form-inline {
+      width: 100%;
+
+      .form-control {
+        box-shadow: none !important;
+        border: 1px solid $border-color;
+
+        &:focus {
+          border: 0;
+          box-shadow: 0px 5px 10px rgba(62, 62, 62, 0.05) !important;
+        }
+      }
+    }
+  }
+}
+
+.language-selector {
+  border: 0;
+  margin-right: 10px;
+}
+
+header .search-wrapper {
+  display: none;
+}
+
+.search-wrapper {
+  position: relative;
+  cursor: text;
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+  }
+
+  .form-control {
+    height: 54px;
+    border: 1px solid $border-color;
+    padding-left: 40px !important;
+    border-radius: 5px;
+    width: 320px;
+    @extend .shadow;
+
+    @include mobile {
+      width: 250px;
+    }
+
+    &-sm {
+      height: 45px;
+      width: 220px;
+    }
+
+    &::placeholder {
+      color: $text-light;
+      font-size: 15px;
+    }
+  }
+
+  .search-button {
+    border: 1px solid $border-color;
+    color: $text-light;
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    cursor: text;
+  }
+}
+
+header.search-active.home-nav {
+  .search-wrapper {
+    display: block !important;
+  }
+
+  @include desktop {
+    .logo-wrapper {
+      display: none;
+    }
+
+    .mobile-view {
+      display: none !important;
+    }
+  }
+}
+
+@include desktop {
+
+  #banner .search-wrapper {
+    max-width: 300px;
+    margin: auto;
+    display: block;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  flex-wrap: nowrap;
+
+  img {
+    height: 28px;
+    width: auto;
+  }
+
+  .site-logo {
+    white-space: nowrap;
+
+    .site {
+      @include tablet {
+        display: none;
+      }
+    }
+  }
+
+  .logo-devider {
+    height: 30px;
+    width: 3px;
+    background-color: $border-color;
+    margin: 0 10px;
+  }
+
+  .docs-logo {
+    margin-top: 2px;
+  }
+}
+
+.search-sticky {
+  position: fixed !important;
+  top: 10px;
+  z-index: 9999;
+  width: 28%;
+  left: 37%;
+
+  @include desktop {
+    width: calc(100% - 20px);
+    max-width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @include tablet {
+    max-width: 520px;
+  }
+
+  .form-control {
+    height: 50px !important;
+    box-shadow: 0px 5px 10px rgba(62, 62, 62, 0.05) !important;
+
+    @include desktop {
+      box-shadow: none !important;
+      border: 1px solid $border-color;
+
+      &:focus {
+        border: 0;
+      }
+    }
+
+    @include mobile {
+      height: 40px !important;
+    }
+  }
+
+  .btn-primary {
+    display: none;
+  }
+
+  .d-none {
+    display: block !important;
+  }
+}
+
+.mobile-view {
+  @include mobile {
+    zoom: 0.7;
+  }
+
+  @include mobile-xs {
+    zoom: 0.6;
+  }
+}

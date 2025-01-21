@@ -1,0 +1,112 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = ""      # don't use a slash for home url
+weight = 1
+
+[[main]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Pricing"
+url = "pricing/"
+weight = 3
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 4
+
+[[main]]
+name = "Career"
+url = "career/"
+weight = 5
+
+[[main]]
+weight = 6
+name = "Pages"
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Elements"
+url = "elements/"
+weight = 1
+
+[[main]]
+parent = "Pages"
+name = "Changelog"
+url = "changelog/"
+weight = 2
+
+[[main]]
+parent = "Pages"
+name = "Blog Single"
+url = "blog/post-1/"
+weight = 3
+
+[[main]]
+parent = "Pages"
+name = "Author Single"
+url = "author/soophie-moore/"
+weight = 4
+
+[[main]]
+parent = "Pages"
+name = "Career Single"
+url = "career/people-program-management-leader/"
+weight = 5
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 7
+
+[[footer]]
+name = "About"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Pricing"
+url = "pricing/"
+weight = 10
+
+[[footer]]
+name = "Blog"
+url = "blog/"
+weight = 20
+
+[[footer]]
+name = "Career"
+url = "career/"
+weight = 30
+
+[[footer]]
+name = "Contact"
+url = "contact/"
+weight = 40
+
+[[footer_bottom]]
+name = "Privacy Policy"
+url = "#"
+weight = 1
+
+[[footer_bottom]]
+name = "Terms of Use"
+url = "#"
+weight = 10
+
+[[footer_bottom]]
+name = "Legal"
+url = "#"
+weight = 30
+
+[[footer_bottom]]
+name = "Site Map"
+url = "#"
+weight = 40

@@ -1,0 +1,80 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="contact-form">
+  <div class="container">
+    {{ with site.Params.contact.form }}{{ if .enable -}}
+    <div class="row">
+      <form method="POST" {{ if .use_netlify }}name="{{ printf "contact_%s" $.Language.Lang }}" action="{{ "/message_sent" | relLangURL }}" netlify netlify-honeypot="nhp"{{ else }}name="contact" action="{{ .action | safeURL }}"{{ end }}>
+        <div class="col-md-6 col-sm-12">
+          <div class="block">
+            <div class="form-group">
+              <label for="name" hidden>{{ i18n "contact_form_name" }}</label>
+              <input id="name" name="name" type="text" class="form-control" placeholder="{{ i18n "contact_form_name" }}" required>
+            </div>
+            <div class="form-group">
+              <label for="email" hidden>{{ i18n "contact_form_email" }}</label>
+              <input id="email" name="email" type="email" autocomplete="email" class="form-control" placeholder="{{ i18n "contact_form_email" }}" required>
+            </div>
+            <div class="form-group">
+              <label for="subject" hidden>{{ i18n "contact_form_subject" }}</label>
+              <input id="subject" name="subject" type="text" class="form-control" placeholder="{{ i18n "contact_form_subject" }}" required>
+            </div>
+            {{ if .use_netlify -}}
+            <div class="form-group-h">
+              <input name="nhp" type="text" class="form-control" placeholder="Are you made of flesh and bone?">
+            </div>
+            {{- end }}
+            {{ if .use_recaptcha -}}
+            <div class="form-group-h">
+              <input type="hidden" id="captchaResponse" name="g-recaptcha-response">
+            </div>
+            {{- end }}
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="block">
+            <div class="form-group-2">
+              <label for="message" hidden>{{ i18n "contact_form_message" }}</label>
+              <textarea id="message" name="message" class="form-control" rows="4" placeholder="{{ i18n "contact_form_message" }}" required></textarea>
+            </div>
+            <button class="btn btn-default" type="submit">{{ i18n "submit" }}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {{- end }}{{ end }}
+    <div class="contact-box row">
+      {{ with site.Params.contact -}}
+      <div class="col-md-6 col-sm-12">
+        <div class="block">
+          <h2>{{ i18n "address_title" }}</h2>
+          <ul class="address-block">
+            {{ $add_address_descriptors := .address_descriptors }}
+            {{ with site.Params.location }}<li><i class="fas fa-map-marker-alt"></i>{{ if $add_address_descriptors }}{{ i18n "location" | printf "%s: " }}{{ end }}<div>{{ . | markdownify }}</div></li>{{ end }}
+            {{ with site.Params.email }}<li><i class="fas fa-envelope"></i>{{ if $add_address_descriptors }}{{ i18n "email" | printf "%s: " }}{{ end }}{{ partial "cloak_email" . }}</li>{{ end }}
+            {{ with site.Params.phone }}<li><i class="fas fa-tty"></i>{{ if $add_address_descriptors }}{{ i18n "phone" | printf "%s: " }}{{ end }}{{ . }}</li>{{ end }}
+          </ul>
+          <ul class="social-icons">
+            {{ range site.Params.social -}}
+            <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+            {{- end }}
+          </ul>
+        </div>
+      </div>
+      {{- end }}
+      {{ if site.Params.gmap.enable -}}
+      <div class="col-md-6 col-sm-12">
+        <div class="block">
+          <div class="google-map">
+            <div class="map" id="map" data-latitude="{{ site.Params.gmap.map_latitude }}" data-longitude="{{ site.Params.gmap.map_longitude }}" data-marker="{{ site.Params.gmap.map_marker | relURL }}" data-marker-name="{{ site.Title }}"></div>
+          </div>
+        </div>
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

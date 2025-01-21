@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+
+<head>
+	{{ partial "head.html" . }}
+	{{ partialCached "style.html" . }}
+</head>
+
+<body>
+	{{ partialCached "preloader.html" . }}
+	{{ partial "header.html" . }}
+	<main>
+		{{ block "main" . }}{{ end }}
+	</main>
+	{{ partial "footer.html" . }}
+	{{ partialCached "script.html" . }}
+</body>
+
+</html>

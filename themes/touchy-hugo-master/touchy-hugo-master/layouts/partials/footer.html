@@ -1,0 +1,22 @@
+<footer class="section-sm pb-3 border-top border-default">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<a class="text-dark h3" href="{{ site.BaseURL | relLangURL }}">
+					{{ if site.Params.logo }}
+					<img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo | absURL}}"
+						alt="{{ site.Title }}">
+					{{ else }}
+					{{site.Title}}
+					{{ end }}
+				</a>
+				<ul class="list-inline mt-5 social-icons">
+					{{ range site.Params.social }}
+					<li class="list-inline-item mx-3"><a title="{{.name}}" href="{{.link | safeURL}}"><i class="{{.icon}}"></i></a></li>
+					{{ end }}
+				</ul>
+				<p class="mt-4 content">{{site.Params.copyright | markdownify}}</p>
+			</div>
+		</div>
+	</div>
+</footer>

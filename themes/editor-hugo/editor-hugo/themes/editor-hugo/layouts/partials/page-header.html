@@ -1,0 +1,19 @@
+<section class="col-12 page-header">
+  <div class="section my-4 py-5">
+    
+    {{ if or (eq .Section "tags") (eq .Section "categories") }}
+
+    {{ if eq .Section "tags" }}
+    <h2 class="h4 title">{{ i18n "showing_posts_from" }} <mark>{{.Title | markdownify}}</mark> {{ i18n "tag" }}</h2>
+
+    {{ else if eq .Section "categories" }}
+    
+    <h2 class="h4 title">{{ i18n "showing_posts_from" }} <mark>{{.Title | markdownify}}</mark>  {{ i18n "category" }}</h2>
+    {{ end }}
+
+    {{ else }}
+    <h2 class="h4 title">{{.Title | markdownify}}</h2>
+    {{ end }}
+
+  </div>
+</section>

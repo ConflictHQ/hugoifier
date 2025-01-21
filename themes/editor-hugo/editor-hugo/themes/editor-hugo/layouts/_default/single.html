@@ -1,0 +1,84 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<div class="col-lg-8">
+  <div class="mb-4 mt-4 mt-md-0">
+    {{ with .Params.images }}
+    <div class="post-slider">
+      {{ range . }}
+      <div><img loading="lazy" class="w-100" src="{{ . | absURL }}" alt=""></div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .Params.tags }}
+    <ul class="card-meta-tag list-inline mt-3">
+      {{ range . }}
+      <li class="list-inline-item"><a href="{{site.BaseURL}}tags/{{.| urlize}}/">{{.}}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+
+    <h2 class="h3 mt-2 mb-3 post-title">{{ .Title }}</h2>
+
+    <ul class="card-meta list-inline mb-0">
+      {{ with site.GetPage "/about" }}
+      <li class="list-inline-item">
+        <span class="text-light">by:</span>
+        <a href="{{ .Permalink }}" class="card-meta-author">{{ .Params.name }}</a>
+      </li>
+      {{ end }}
+      <li class="list-inline-item">
+        <span class="card-meta-date">{{.PublishDate.Format "Jan 02, 2006"}}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <!-- comments -->
+  {{ if .Site.DisqusShortname }}
+  <div class="border p-4 mt-5">
+    {{ template "_internal/disqus.html" . }}
+  </div>
+  {{ end }}
+
+</div>
+<div class="col-lg-4 mt-5 mt-lg-0">
+  <div class="pl-0 pl-lg-3">
+    {{ $widget:= site.Params.widgets.sidebar }}
+    {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+  </div>
+</div>
+<div class="col-lg-12">
+  <div class="single-post-similer">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-dark font-weight-bold mb-4 pb-2">{{i18n "you_may_also_like"}}</h3>
+      </div>
+      {{ $related := ( where site.RegularPages "Type" "in" site.Params.mainSections ) | intersect (where site.Pages ".Title" "!=" .Title) | union (site.RegularPages.RelatedIndices . "tags" ) }}
+      {{ range first 3 $related }}
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        {{ .Render "article" }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+<!-- regular page -->
+{{ else }}
+<div class="col-lg-12">
+  <div class="row">{{ partial "page-header.html" . }}</div>
+  <div class="content">
+    {{.Content}}
+  </div>
+</div>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

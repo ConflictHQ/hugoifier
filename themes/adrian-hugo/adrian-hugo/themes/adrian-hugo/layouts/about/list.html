@@ -1,0 +1,73 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- about -->
+{{ if site.Data.about.about.enable }}
+{{ with site.Data.about.about }}
+<section class="about section">
+  <div class="container">
+    <div class="row">
+      {{ range .aboutItem }}
+      <div class="col-lg-4 col-sm-6  col-md-6">
+        <div class="about-info mb-5 mb-lg-0">
+          <img class="img-fluid" src="{{ .image | relURL }}" alt="about-img">
+          <h4 class="mt-4">{{ .title | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- team -->
+{{ if site.Data.about.team.enable }}
+{{ with site.Data.about.team }}
+<section class="team section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="title text-center">
+          <h2>{{ .title | markdownify }}</h2>
+          <p>{{ .subtitle | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {{ range .teamMember }}
+      <div class="col-lg-3 col-sm-6 col-md-6 mb-4">
+        <div class="team-member mb-5 mb-lg-0">
+          <img class="img-fluid" src="{{ .image | relURL }}" alt="{{ .name }}">
+          <h4 class="mt-3 mb-0">{{ .name }}</h4>
+          <p>{{ .designation | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- instagram -->
+{{ if site.Data.about.instafeed.enable }}
+{{ with site.Data.about.instafeed }}
+<section class="section feed pb-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="mb-2">{{ .username }}</p>
+        <h2 class="mb-5">{{ .title | markdownify }}</h2>
+      </div>
+    </div>
+    <div class="row" id="instafeed" data-userId="{{ .userID }}" data-accessToken="{{ .accessToken }}"></div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ end }}

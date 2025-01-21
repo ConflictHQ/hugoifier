@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="row">
+      <article class="col-lg-8 col-md-10 mx-auto" data-file="{{.Permalink}}" data-target="article">
+        <div class="text-center">
+         {{ with .Params.Image }} <img src="{{ . | absURL }}" alt="" class="img-fluid mb-4"> {{ end }}
+          <ul class="list-inline mb-3">
+            <li class="list-inline-item"><i class="text-primary ti-calendar mr-2"></i>{{ .PublishDate.Format "06 Jan, 2006" }}</li>
+            <li class="list-inline-item"><i class="text-primary ti-time mr-2"></i><span class="eta"></span> read</li>
+            {{ if .Params.Author }}
+            <li class="list-inline-item"><i class="text-primary ti-user mr-2"></i>
+              <a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.Author }}</a>
+            </li>
+            {{ end }}
+          </ul>
+          {{ if .Params.Links }}
+          <ul class="btn-link-group list-inline">
+            {{ range .Params.Links }}
+            <li class="list-inline-item"><a href="{{ .link | absURL }}">{{ .label }}</a></li>
+            {{ end }}
+          </ul>
+          {{ end }}
+        </div>
+        <div class="content mt-5">
+          {{ .Content }}
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{{ end }}

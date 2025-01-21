@@ -1,0 +1,54 @@
+<div class="col-lg-4">
+  <div class="rounded-sm shadow bg-white pb-4">
+    <div class="widget">
+      <h4>{{ i18n "search" }}</h4>
+      <form action="{{ `search`| relLangURL }}">
+        <div class="position-relative">
+          <input id="search-query" name="s" type="search" placeholder="Search here"
+            class="border-bottom form-control rounded-0 px-0">
+          <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+    <div class="widget">
+      <h4>{{ i18n "category" }}</h4>
+      {{- if isset .Site.Taxonomies "categories" }}
+      {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
+      <ul class="list-styled list-bordered">
+        {{- range $name, $items := .Site.Taxonomies.categories }}
+        <li><a class="text-color d-inline-block py-3"
+            href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | title | humanize }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+      {{- end }}
+    </div>
+    <div class="widget">
+      <h4>{{ i18n "latest_article" }}</h4>
+      <ul class="list-unstyled list-bordered">
+        {{ range first 3 (where site.RegularPages "Section" "in" site.Params.mainSections ) }}
+        <li class="article py-3">
+          {{ partial "image.html" (dict "Src" .Params.Image "Alt" "post-thumb" "Class" `object-fit-cover rounded me-3` "Size" "200x") }}
+          <div class="media-body d-inline-block">
+            <h5 class="h6 mt-0"><a href="{{ .Permalink }}" class="text-dark">{{ .Title }}</a></h5>
+            <p class="mb-0 text-color">{{ .PublishDate.Format "Jan 02, 2006" }}</p>
+          </div>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    <div class="widget">
+      <h4>{{ i18n "tags" }}</h4>
+      {{- if isset .Site.Taxonomies "tags" }}
+      {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
+      <ul class="list-inline tag-list mt-4">
+        {{- range $name, $items := .Site.Taxonomies.tags }}
+        <li class="list-inline-item mb-3"><a href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}"
+            class="text-color shadow-sm">{{ $name | humanize }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</div>

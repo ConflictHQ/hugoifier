@@ -1,0 +1,104 @@
+// video css start
+.video-thumb {
+  min-height: 400px;
+}
+
+// testimonial css start
+.swiper {
+  padding: 0px 20px;
+
+  @include mobile-xs {
+    padding: 0px 10px;
+  }
+}
+
+.bg-shape-triangles {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+}
+
+// testimonial css end
+
+
+// pricing css start
+.pricing-table {
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    top: 0;
+    right: 40px;
+    transform: rotate(45deg) translate(-60px);
+    background: rgba(255, 90, 0, 0.1);
+    @extend .transition;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 95px;
+    height: 80px;
+    top: 0;
+    right: -45px;
+    transform: rotate(45deg) translate(-60px);
+    background: rgba(255, 90, 0, 0.1);
+    @extend .transition;
+  }
+}
+
+// pricing css end
+
+
+.floating-video {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.play-icon {
+  font-size: 18px;
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  line-height: 90px;
+  background: $white;
+  display: inline-block;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  .fa-play {
+    z-index: 1;
+    margin-left: 5px;
+    position: relative;
+  }
+
+  .pulse-svg {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.icon-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation" id="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="{{ site.BaseURL }}"><img class="img-fluid" src="{{ site.Params.logo | relURL }}"
+        alt="{{ site.Title }}"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+      aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-navbar">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ site.BaseURL }}">{{ with site.Params.Home }} {{ . }} {{ end }}</a>
+        </li>
+        {{ range site.Menus.main }}
+        {{ if .HasChildren }}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{ .Name }}
+          </a>
+          <div class="dropdown-menu">
+            {{ range .Children }}
+            <a class="dropdown-item" href="{{ .URL | relURL }}">{{ .Name }}</a>
+            {{ end }}
+          </div>
+        </li>
+        {{ else }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+      </ul>
+    </div>
+    <!-- Navbar-collapse -->
+
+    <ul class="top-menu list-inline mb-0 d-none d-lg-block" id="top-menu">
+      <li class="list-inline-item">
+        <a href="#" class="search_toggle" id="search-icon"><i class="ti-search"></i></a>
+      </li>
+      <li class="dropdown cart-nav dropdown-slide list-inline-item">
+        <a class="snipcart-checkout"><i class="ti-shopping-cart"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--search overlay start-->
+<div class="search-wrap">
+  <div class="overlay">
+    <form action="{{`search` | relURL }}" class="search-form">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-9">
+            <input type="search" id="search-query" name="s" class="form-control" placeholder="Search..." />
+            <button type="submit" hidden></button>
+          </div>
+          <div class="col-md-2 col-3 text-right">
+            <div class="search_toggle toggle-wrap d-inline-block">
+              <img class="search-close" src="{{`images/close.png` | relURL }}" alt="X" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--search overlay end-->

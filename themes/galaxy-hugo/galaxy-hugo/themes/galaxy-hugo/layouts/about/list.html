@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+       {{ with .Params.Image}} <img class="img-fluid w-100 mb-4" src="{{ . | absURL }}" alt=""> {{ end }}
+       <h1 class="mb-4">{{ .Title | markdownify }}</h1>
+       <div class="content">{{ .Content }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

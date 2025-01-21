@@ -1,0 +1,51 @@
+########################## feature ########################################
+feature:
+  enable : true
+
+########################## pricing ############################
+pricing:
+  enable : true
+  title : "Business plan"
+  content : "We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque"
+  pricing_table:
+    # pricing table loop
+    - pack : "Free"
+      duration : "User / Month"
+      price : "00"
+      highlight : false
+      services:
+        - "Up to 1 User"
+        - "Max 100 Item"
+        - "500 Queries"
+        - "Basic Statistics"
+      button:
+        label : "Join Now"
+        link : "#"
+        
+    # pricing table loop
+    - pack : "Basic"
+      duration : "User / Month"
+      price : "29"
+      highlight : true
+      services:
+        - "Up to 1 User"
+        - "Max 100 Item"
+        - "500 Queries"
+        - "Basic Statistics"
+      button:
+        label : "Join Now"
+        link : "#"
+        
+    # pricing table loop
+    - pack : "Premium"
+      duration : "User / Month"
+      price : "59"
+      highlight : false
+      services:
+        - "Up to 1 User"
+        - "Max 100 Item"
+        - "500 Queries"
+        - "Basic Statistics"
+      button:
+        label : "Join Now"
+        link : "#"

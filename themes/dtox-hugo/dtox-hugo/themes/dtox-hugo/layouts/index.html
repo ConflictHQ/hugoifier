@@ -1,0 +1,662 @@
+{{ define "main" }}
+
+  <!-- hero area -->
+  <section class="hero-section hero" style="background-image: url('{{ .Site.Params.banner.bgImage | absURL }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center zindex-1">
+          {{ with .Site.Params.banner }}
+          <h1 class="mb-3">{{ .title | safeHTML }}</h1>
+          <p class="mb-4">{{ .content | safeHTML }}</p>
+          {{ end }}
+          <a href="{{ .Site.Params.banner.URL | absURL }}" class="btn btn-secondary btn-lg">{{ .Site.Params.banner.btnText }}</a>
+          <!-- banner image -->
+          <img class="img-fluid w-100 banner-image" src="{{ .Site.Params.banner.image | absURL }}" alt="banner-img">
+        </div>
+      </div>
+    </div>
+    <!-- background shapes -->
+    {{ if .Site.Params.banner.bgShape.enable }}
+    <div id="scene">
+        <svg class="hero-bg-1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="112px" height="112px">
+       <defs>
+       <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+           <feOffset in="SourceAlpha" dx="0" dy="17" />
+           <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+           <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+           <feComposite operator="atop" in="floodOut" in2="blurOut" />
+           <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+           <feMerge>
+           <feMergeNode/>
+           <feMergeNode in="SourceGraphic"/>
+         </feMerge>
+       </filter>
+       
+       </defs>
+       <g filter="url(#Filter_0)">
+       <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+        d="M79.783,62.989 L31.711,50.108 L66.902,14.917 L79.783,62.989 Z"/>
+       </g>
+       </svg>
+       <svg class="hero-bg-2"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="138px" height="138px">
+        <defs>
+        <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+            <feOffset in="SourceAlpha" dx="0" dy="23" />
+            <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+            <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+            <feComposite operator="atop" in="floodOut" in2="blurOut" />
+            <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+            <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+          <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+          <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+        </linearGradient>
+
+        </defs>
+        <g filter="url(#Filter_0)">
+        <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+        d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+        </g>
+        <path fill="url(#PSgrad_0)"
+        d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+        </svg>
+        <svg class="hero-bg-4"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="81px" height="81px">
+          <defs>
+          <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="81px" height="81px"  >
+              <feOffset in="SourceAlpha" dx="0" dy="17" />
+              <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+              <feFlood flood-color="rgb(0, 42, 255)" result="floodOut" />
+              <feComposite operator="atop" in="floodOut" in2="blurOut" />
+              <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+              <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          </defs>
+          <g filter="url(#Filter_0)">
+          <path fill-rule="evenodd"  fill="rgb(28, 255, 49)"
+          d="M40.000,14.000 C44.971,14.000 49.000,18.029 49.000,23.000 C49.000,27.970 44.971,32.000 40.000,32.000 C35.029,32.000 31.000,27.970 31.000,23.000 C31.000,18.029 35.029,14.000 40.000,14.000 Z"/>
+          </g>
+        </svg>
+        <svg class="hero-bg-6"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="138px" height="138px">
+          <defs>
+          <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+              <feOffset in="SourceAlpha" dx="0" dy="23" />
+              <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+              <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+              <feComposite operator="atop" in="floodOut" in2="blurOut" />
+              <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+              <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+            <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+            <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+          </linearGradient>
+
+          </defs>
+          <g filter="url(#Filter_0)">
+          <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+          d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+          </g>
+          <path fill="url(#PSgrad_0)"
+          d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+        </svg>
+        <svg class="hero-bg-7" 
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="110px" height="110px">
+          <defs>
+          <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="113px" height="113px"  >
+              <feOffset in="SourceAlpha" dx="0" dy="17" />
+              <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+              <feFlood flood-color="rgb(255, 156, 0)" result="floodOut" />
+              <feComposite operator="atop" in="floodOut" in2="blurOut" />
+              <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+              <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          </defs>
+          <g filter="url(#Filter_0)">
+          <path fill-rule="evenodd"  stroke="rgb(255, 156, 0)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M72.001,54.991 L33.994,44.813 L61.817,17.008 L72.001,54.991 Z"/>
+          </g>
+        </svg>
+        <svg class="hero-bg-9" 
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="134px" height="135px">
+          <defs>
+          <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+              <feOffset in="SourceAlpha" dx="0" dy="23" />
+              <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+              <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+              <feComposite operator="atop" in="floodOut" in2="blurOut" />
+              <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+              <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          </defs>
+          <g filter="url(#Filter_0)">
+          <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M85.011,50.756 L44.994,63.004 L54.464,21.999 L85.011,50.756 Z"/>
+          </g>
+          </svg>
+      <!-- <img class="img-fluid hero-bg-1 up-down-animation" src="{{`images/background-shape/feature-bg-2.png` | relURL }}" alt="">
+      <img class="img-fluid hero-bg-2 left-right-animation" src="{{`images/background-shape/seo-ball-1.png` | relURL }}" alt=""> -->
+      <img class="img-fluid hero-bg-3 left-right-animation" src="{{`images/background-shape/seo-half-cycle.png` | relURL }}" alt="">
+      <!-- <img class="img-fluid hero-bg-4 up-down-animation" src="{{`images/background-shape/green-dot.png` | relURL }}" alt=""> -->
+      <img class="img-fluid hero-bg-5 left-right-animation" src="{{`images/background-shape/blue-half-cycle.png` | relURL }}" alt="">
+      <!-- <img class="img-fluid hero-bg-6 up-down-animation" src="{{`images/background-shape/seo-ball-1.png` | relURL }}" alt="">
+      <img class="img-fluid hero-bg-7 left-right-animation" src="{{`images/background-shape/yellow-triangle.png` | relURL }}" alt=""> -->
+      <img class="img-fluid hero-bg-8 up-down-animation" src="{{`images/background-shape/service-half-cycle.png` | relURL }}" alt="">
+      <!-- <img class="img-fluid hero-bg-9 up-down-animation" src="{{`images/background-shape/team-bg-triangle.png` | relURL }}" alt=""> -->
+    </div>
+    {{ end }}
+  </section>
+  <!-- /hero-area -->
+
+  {{ if .Site.Data.homepage.feature.enable }}
+  <!-- feature -->
+  <section class="section feature mb-0" id="feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          {{ with .Site.Data.homepage.feature }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-100">{{ .description | safeHTML }}</p>
+          {{ end }}
+        </div>
+        {{ range .Site.Data.homepage.feature.featureItem }}
+        <!-- feature item -->
+        <div class="col-md-6 mb-80">
+          <div class="d-flex feature-item">
+            <div>
+              <i class="{{ .icon }} feature-icon mr-4"></i>
+            </div>
+            <div>
+              <h4>{{ .title }}</h4>
+              <p>{{ .content }}</p>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    <img class="feature-bg-1 up-down-animation" src="{{ `images/background-shape/feature-bg-1.png` | relURL }}" alt="bg-shape">
+    <!-- <img class="feature-bg-2 left-right-animation" src="{{ `images/background-shape/feature-bg-2.png` | relURL }}" alt="bg-shape"> -->
+    <svg class="feature-bg-2"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="112px" height="112px">
+      <defs>
+      <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+          <feOffset in="SourceAlpha" dx="0" dy="17" />
+          <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+          <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+          <feComposite operator="atop" in="floodOut" in2="blurOut" />
+          <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+          <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      </defs>
+      <g filter="url(#Filter_0)">
+      <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+      d="M79.783,62.989 L31.711,50.108 L66.902,14.917 L79.783,62.989 Z"/>
+      </g>
+    </svg>
+  </section>
+  <!-- /feature -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.marketing.enable }}
+  <!-- marketing -->
+  <section class="section-lg seo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="seo-image">
+            <img class="img-fluid" src="{{ .Site.Data.homepage.marketing.image | absURL }}" alt="form-img">
+          </div>
+        </div>
+        <div class="col-md-5">
+          {{ with .Site.Data.homepage.marketing }}
+          <h2 class="section-title">{{ .title | safeHTML }}</h2>
+          <p>{{ .content | safeHTML }}</p>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <!-- background image -->
+    <img class="img-fluid seo-bg" src="{{ .Site.Data.homepage.marketing.bgImage | absURL }}" alt="seo-bg">
+    <!-- background-shape -->
+    <svg class="seo-bg-shape-1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="138px" height="138px">
+      <defs>
+      <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+          <feOffset in="SourceAlpha" dx="0" dy="23" />
+          <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+          <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+          <feComposite operator="atop" in="floodOut" in2="blurOut" />
+          <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+          <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+        <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+        <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+      </linearGradient>
+
+      </defs>
+      <g filter="url(#Filter_0)">
+      <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+      d="M68.500,19.000 C83.136,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.136,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+      </g>
+      <path fill="url(#PSgrad_0)"
+      d="M68.500,19.000 C83.136,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.136,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+      </svg>
+    <svg class="seo-bg-shape-3"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="138px" height="138px">
+      <defs>
+      <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+          <feOffset in="SourceAlpha" dx="0" dy="23" />
+          <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+          <feFlood flood-color="rgb(120, 200, 215)" result="floodOut" />
+          <feComposite operator="atop" in="floodOut" in2="blurOut" />
+          <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+          <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+        <stop offset="0%" stop-color="rgb(23,255,211)" stop-opacity="1" />
+        <stop offset="100%" stop-color="rgb(6,255,12)" stop-opacity="1" />
+      </linearGradient>
+
+      </defs>
+      <g filter="url(#Filter_0)">
+      <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+      d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+      </g>
+      <path fill="url(#PSgrad_0)"
+      d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+      </svg>
+    <!-- <img class="seo-bg-shape-1 left-right-animation" src="{{`images/background-shape/seo-ball-1.png` | relURL }}" alt="bg-shape"> -->
+    <img class="seo-bg-shape-2 up-down-animation" src="{{`images/background-shape/seo-half-cycle.png` | relURL }}" alt="bg-shape">
+    <!-- <img class="seo-bg-shape-3 left-right-animation" src="{{`images/background-shape/seo-ball-2.png` | relURL }}" alt="bg-shape"> -->
+  </section>
+  <!-- /marketing -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.service.enable }}
+  <!-- service -->
+  <section class="section-lg service">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-5 order-2 order-md-1">
+          {{ with .Site.Data.homepage.service }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-4">{{ .content }}</p>
+            {{ end }}
+          <ul class="pl-0 service-list">
+            {{ range .Site.Data.homepage.service.serviceList }}
+            <li><i class="{{ .icon }} text-purple"></i>{{ .title }}</li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="col-md-7 order-1 order-md-2">
+          <img class="img-fluid layer-3" src="{{ .Site.Data.homepage.service.image | absURL }}" alt="service">
+        </div>
+      </div>
+    </div>
+    <!-- background image -->
+    <img class="img-fluid service-bg" src="{{ .Site.Data.homepage.service.bgImage | absURL }}" alt="service-bg">
+    <!-- background shapes -->
+    <img class="service-bg-shape-1 up-down-animation" src="{{ `images/background-shape/service-half-cycle.png` | relURL }}" alt="background-shape">
+    <!-- <img class="service-bg-shape-2 left-right-animation" src="{{ `images/background-shape/feature-bg-2.png` | relURL }}" alt="background-shape"> -->
+    <svg class="service-bg-shape-2"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="112px" height="112px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+    d="M79.783,62.989 L31.711,50.108 L66.902,14.917 L79.783,62.989 Z"/>
+    </g>
+    </svg>
+  </section>
+  <!-- /service -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.team.enable }}
+  <!-- team -->
+  <section class="section-lg team" id="team">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          {{ with .Site.Data.homepage.team }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-100">{{ .description | safeHTML }}</p>
+            {{ end }}
+        </div>
+      </div>
+      <div class="col-10 mx-auto">
+        <div class="team-slider">
+          {{ range .Site.Data.homepage.team.member }}
+          <!-- team-member -->
+          <div class="team-member">
+            <div class="d-flex mb-4">
+              <div class="mr-3">
+                <img class="rounded-circle img-fluid" src="{{ .image | absURL }}" alt="team-member">
+              </div>
+              <div class="align-self-center">
+                <h4>{{ .name }}</h4>
+                <h6 class="text-color">{{ .designation }}</h6>
+              </div>
+            </div>
+            <p>{{ .content }}</p>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <!-- backgound image -->
+    <img src="{{ .Site.Data.homepage.team.bgImage | absURL }}" alt="team-bg" class="img-fluid team-bg">
+    <!-- background shapes -->
+    <svg class="team-bg-shape-1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="138px" height="138px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+      <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+      <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+    </linearGradient>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </g>
+    <path fill="url(#PSgrad_0)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </svg>
+    <svg class="team-bg-shape-2"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="138px" height="138px">
+      <defs>
+      <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+          <feOffset in="SourceAlpha" dx="0" dy="23" />
+          <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+          <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+          <feComposite operator="atop" in="floodOut" in2="blurOut" />
+          <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+          <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+        <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+        <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+      </linearGradient>
+
+      </defs>
+      <g filter="url(#Filter_0)">
+      <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+      d="M68.500,19.000 C83.136,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.136,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+      </g>
+      <path fill="url(#PSgrad_0)"
+      d="M68.500,19.000 C83.136,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.136,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </svg>
+    <svg class="team-bg-shape-3"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="134px" height="135px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+    d="M85.011,50.756 L44.994,63.004 L54.464,21.999 L85.011,50.756 Z"/>
+    </g>
+    </svg>
+    <!-- <img class="team-bg-shape-1 up-down-animation" src="{{ `images/background-shape/seo-ball-1.png` | relURL }}" alt="background-shape">
+    <img class="team-bg-shape-2 left-right-animation" src="{{ `images/background-shape/seo-ball-1.png` | relURL }}" alt="background-shape">
+    <img class="team-bg-shape-3 left-right-animation" src="{{ `images/background-shape/team-bg-triangle.png` | relURL }}" alt="background-shape"> -->
+    <img class="team-bg-shape-4 up-down-animation img-fluid" src="{{ `images/background-shape/team-bg-dots.png` | relURL }}" alt="background-shape">
+  </section>
+  <!-- /team -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.pricing.enable }}
+  <!-- pricing -->
+  <section class="section-lg pb-0 pricing" id="pricing">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          {{ with .Site.Data.homepage.pricing }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-50">{{ .description | safeHTML }}</p>
+            {{ end }}
+        </div>
+        <div class="col-lg-10 mx-auto">
+          <div class="row justify-content-center">
+            {{ range .Site.Data.homepage.pricing.table }}
+            <!-- pricing table -->
+            <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+              <div class="rounded text-center pricing-table table-3">
+                <h3>{{ .title }}</h3>
+                <h1><span>$</span>{{ .value }}</h1>
+                <p>{{ .content }}</p>
+                <a href="{{ .URL }}" class="btn pricing-btn px-2">{{ .btnText }}</a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- background shapes -->
+    <svg class="pricing-bg-shape-1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="138px" height="138px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+      <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+      <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+    </linearGradient>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </g>
+    <path fill="url(#PSgrad_0)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </svg>
+    <svg class="pricing-bg-shape-3"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="134px" height="135px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+    d="M85.011,50.755 L44.994,63.004 L54.464,21.999 L85.011,50.755 Z"/>
+    </g>
+    </svg>
+    <!-- <img class="pricing-bg-shape-1 up-down-animation" src="{{`images/background-shape/seo-ball-1.png`| relURL}}" alt="background-shape"> -->
+    <img class="pricing-bg-shape-2 up-down-animation" src="{{`images/background-shape/seo-half-cycle.png`| relURL}}" alt="background-shape">
+    <!-- <img class="pricing-bg-shape-3 left-right-animation" src="{{`images/background-shape/team-bg-triangle.png`| relURL}}" alt="background-shape"> -->
+  </section>
+  <!-- /pricing -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.clientSlider.enable }}
+  <!-- client logo slider -->
+  <section class="section">
+    <div class="container">
+      <div class="client-logo-slider align-self-center">
+        {{ range .Site.Data.homepage.clientSlider.list }}
+        <a href="{{ .URL }}" class="text-center d-block outline-0 p-5"><img class="d-unset img-fluid" src="{{ .logo | absURL }}" alt="client-logo"></a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <!-- /client logo slider -->
+  {{ end }}
+
+  {{ if .Site.Data.homepage.newsletter.enable }}
+  <!-- newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          {{ with .Site.Data.homepage.newsletter }}
+          <h2>{{ .title }}</h2>
+          <p class="mb-5">{{ .description }}</p>
+          {{ end }}
+        </div>
+        <div class="col-lg-8 col-sm-10 col-12 mx-auto">
+          <form action="#">
+            <div class="input-wrapper position-relative">
+              <input type="email" class="newsletter-form" id="newsletter" placeholder="Enter your email">
+              <button type="submit" value="send" class="btn newsletter-btn">subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- background shapes -->
+    <!-- <img class="newsletter-bg-shape left-right-animation" src="{{ `images/background-shape/seo-ball-2.png` | relURL }}" alt="background-shape"> -->
+    <svg class="newsletter-bg-shape"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="138px" height="138px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="138px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(120, 200, 215)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+      <stop offset="0%" stop-color="rgb(23,255,211)" stop-opacity="1" />
+      <stop offset="100%" stop-color="rgb(6,255,12)" stop-opacity="1" />
+    </linearGradient>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </g>
+    <path fill="url(#PSgrad_0)"
+    d="M68.500,19.000 C83.135,19.000 95.000,30.864 95.000,45.500 C95.000,60.135 83.135,72.000 68.500,72.000 C53.864,72.000 42.000,60.135 42.000,45.500 C42.000,30.864 53.864,19.000 68.500,19.000 Z"/>
+    </svg>
+  </section>
+  <!-- /newsletter -->
+  {{ end }}
+
+{{ end }}

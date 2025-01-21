@@ -1,0 +1,73 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- about -->
+{{ if $data.about.about.enable }}
+{{ with $data.about.about }}
+<section class="about-page section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<img src="{{ .image | absURL }}" alt="" class="img-fluid">
+			</div>
+		</div>
+		<div class="row mt-5">
+			<div class="col-lg-6">
+				<h2 class="mb-4 text-lg title">{{ .title | markdownify }}</h2>
+			</div>
+			<div class="col-lg-6">
+				<p>{{ .content | markdownify }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /about -->
+
+<!-- sponsor -->
+{{ if $data.about.sponsor.enable }}
+{{ partial "sponsor.html" . }}
+{{ end }}
+<!-- /sponsor -->
+
+<!-- feature -->
+{{ if $data.about.feature.enable }}
+{{ with $data.about.feature }}
+<section class="section cta-wrap bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="cta-content">
+          <span class="lead">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-3 mb-4 text-md title">{{ .title | markdownify }}</h2>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-secondary btn-rounded my-4">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row">
+          {{ range .feature_item }}
+          <div class="col-md-6 mb-4">
+            <div class="feature-item" style="background-color: {{if .bg_color}}{{.bg_color}}{{else}}#343a40{{end}};">
+              <i class="{{ .icon }}"></i>
+              <h4 class="mt-3 mb-3">{{ .title | markdownify }}</h4>
+              <p>{{ .content | markdownify }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /feature -->
+
+{{ end }}

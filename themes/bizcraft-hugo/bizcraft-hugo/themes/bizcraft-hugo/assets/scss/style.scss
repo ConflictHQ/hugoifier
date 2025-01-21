@@ -1,0 +1,48 @@
+/*
+	Template Name: BizCraft Responsive HTML5/CSS3 Template
+	Author: themefisher
+	Author URI: http://themefisher.com
+	Description: BizCraft Responsive HTML5/CSS3 Template.
+	Version: 1.0
+*/
+
+/* Table of Content
+==================================================
+1.	Global Styles
+2. 	Typography
+3. 	Common Styles
+4.	Header area
+5.	Slideshow
+6.	Services and Features
+7.	Image Block
+6.	About (Landing and Featured Tab)
+9.	Portfolio
+10.	Counter
+11.	Team
+12.	Pricing
+13.	Testimonial
+14. Video block
+15.	Recent Post
+16. Clients
+17. Twitter
+18. Contact
+19. Footer
+20. Copyright
+21. Sub pages
+22. Blog
+23. Landing page
+24.	Style Swithcer (you can delete the css) */
+
+@import 'typography';
+
+@import 'mixins';
+
+@import 'buttons';
+
+@import 'common';
+
+@import 'templates/navigation';
+
+@import 'templates/main';
+
+@import 'templates/responsive';

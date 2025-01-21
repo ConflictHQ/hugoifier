@@ -1,0 +1,58 @@
+<div class="col-md-4">
+  <div class="sidebar sidebar-right">
+    <!-- Tab widget start-->
+    <div class="widget widget-tab">
+      <h3 class="widget-title">{{i18n `recent_post`}}</h3>
+      <ul class="posts-list list-unstyled clearfix">
+        {{ range first 3 ( where .Site.RegularPages "Section" "blog" )}}
+        <li>
+          <div class="posts-thumb float-left">
+            <a href="{{ .RelPermalink }}">
+              <img alt="{{ .Title }}" src="{{ .Params.image | absURL }}">
+            </a>
+          </div>
+          <div class="post-content">
+            <h4 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+            <p class="post-meta">
+              <span class="post-meta-author">Posted by&nbsp;<a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.Author | title }}</a></span>
+              <span class="post-meta-date">{{ .PublishDate.Format "January 02" }}</a>
+              </span>
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+        {{ end }}
+      </ul>
+    </div><!-- Tab widget end-->
+
+    <!-- Blog category start -->
+    {{- if isset .Site.Taxonomies "categories" }}
+    {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
+    <div class="widget widget-categories">
+      <h3 class="widget-title">{{i18n `blog_categories`}}</h3>
+      <ul class="category-list clearfix">
+        {{- range $name, $items := (where .Site.Taxonomies.categories "Section" "blog") }}
+        <li><a href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}/">{{ $name | humanize }}</a><span class="posts-count"> ({{len $items}})</span></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+    {{ end }}
+    <!-- Blog category end -->
+
+    <!-- Blog tags start -->
+    {{- if isset .Site.Taxonomies "tags" }}
+    {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
+    <div class="widget widget-tags">
+      <h3 class="widget-title">{{i18n `popular_tags`}}</h3>
+      <ul class="list-unstyled clearfix">
+        {{- range $name, $items := .Site.Taxonomies.tags }}
+        <li><a href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}/">{{ $name | humanize }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{- end }}
+    {{- end }}
+    <!-- Blog tags end -->
+  </div>
+</div>

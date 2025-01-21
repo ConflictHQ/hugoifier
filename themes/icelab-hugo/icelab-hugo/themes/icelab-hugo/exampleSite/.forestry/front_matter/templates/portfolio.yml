@@ -1,0 +1,28 @@
+---
+label: Portfolio
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: file
+  name: image
+  label: image
+- type: text
+  name: company
+  label: company
+- type: text
+  name: client
+  label: client
+- type: text
+  name: category
+  label: category
+- type: text
+  name: location
+  label: location
+- type: text
+  name: siteLink
+  label: site link

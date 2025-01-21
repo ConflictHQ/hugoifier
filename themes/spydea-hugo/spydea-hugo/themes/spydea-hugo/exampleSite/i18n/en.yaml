@@ -1,0 +1,71 @@
+- id: home
+  translation: Home
+
+- id: read_more
+  translation: Read More
+
+- id: first_name
+  translation: First Name
+
+- id: last_name
+  translation: Last Name
+
+- id: full_name
+  translation: Full Name
+
+- id: email
+  translation: Email Address
+
+- id: email_input_placeholder
+  translation: Enter Your Email Address
+
+- id: password
+  translation: Password
+
+- id: purpose
+  translation: Reason/Purpose
+
+- id: message
+  translation: Message
+
+- id: submit
+  translation: Submit Now
+
+- id: submit_text
+  translation: Get A Quote
+
+- id: no_post
+  translation: No Post Found
+
+- id: related_post
+  translation: Related Posts
+
+- id: recent_post
+  translation: Recent Post By
+
+- id: company
+  translation: Company
+
+- id: resources
+  translation: Resources
+
+- id: email_us
+  translation: Email Us
+
+- id: contact_us
+  translation: Contact Us
+
+- id: contact_select_option_1
+  translation: General Inquiry
+
+- id: contact_select_option_2
+  translation: Support Request
+
+- id: contact_select_option_3
+  translation: Partnership Opportunity
+
+- id: apply_now
+  translation: Apply Now
+
+- id: back_to_home
+  translation: Go Back Home

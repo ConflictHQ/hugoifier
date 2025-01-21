@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+{{"<!-- pricing -->"| safeHTML}}
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      <!-- {{ with .Params.pricing }}
+      <div class="col-lg-12 text-center">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">{{ .title }}</h2>
+      </div>
+      {{ end }} -->
+
+      {{ range $index, $element:= .Params.pricing.pricing_table }}
+      {{ $delay := mul $index 200}}
+      <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" data-aos="fade-up" data-aos-delay="{{$delay}}">
+        <div class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+          <span class="badge badge-pill badge-light fw-medium mb-3 py-1 rounded-4 px-4 mb-4 d-inline-block text-primary">{{ .title }}</span>
+          <div class="h1 text-dark">{{ .price }}<span class="paragraph text-lowercase"> / {{ .unit }}</span></div>
+          <h5 class="mb-4 fw-normal text-color">{{ .description }}</h5>
+          <hr>
+          <ul class="list-unstyled my-4">
+            {{ range .services }}
+            <li class="my-3">{{ . }}</li>
+            {{ end }}
+          </ul>
+          <a href="{{ .link | safeURL }}" class="btn btn-outline-primary">Select Plan</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{"<!-- pricing -->"| safeHTML}}
+
+{{ end }}

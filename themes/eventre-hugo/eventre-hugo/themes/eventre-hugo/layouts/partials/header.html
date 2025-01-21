@@ -1,0 +1,53 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
+  <div class="container-fluid p-0">
+    <!-- logo -->
+    <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+      {{ if site.Params.logo }}
+      <img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo | absURL}}"
+        alt="{{ site.Title }}">
+      {{ else }}
+      {{site.Title}}
+      {{ end }}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+
+        {{ range site.Menus.main }}
+        {{ if .HasChildren }}
+        <li class="nav-item dropdown dropdown-slide">
+          <a class="nav-link" href="#" data-toggle="dropdown">{{.Name}}
+            <span>/</span>
+          </a>
+          <!-- Dropdown list -->
+          <div class="dropdown-menu">
+            {{ range .Children }}
+            <a class="dropdown-item"
+              href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{.Name}}</a>
+            {{end}}
+          </div>
+        </li>
+        {{ else }}
+        <li class="nav-item">
+          <a class="nav-link"
+            href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{.Name}}
+            <span>/</span>
+          </a>
+        </li>
+        {{ end }}
+        {{ end }}
+      </ul>
+      {{ if site.Params.navigation_button.enable }}
+      <a href="{{ site.Params.navigation_button.link | absURL }}" class="ticket">
+        <img src="{{site.Params.navigation_button.icon | absURL }}" alt="ticket">
+        <span>{{ site.Params.navigation_button.label }}</span>
+      </a>
+      {{end}}
+    </div>
+  </div>
+</nav>
+{{ "<!-- /navigation -->" | safeHTML }}

@@ -1,0 +1,147 @@
+{{ define "main" }}
+{{ partial "components/page-header" . }}
+<!-- contact -->
+{{ with .Params.contact_info }}
+<section class="contact has-backdrop has-overlay">
+  <div class="container">
+    <div class="row gy-sm-4 justify-content-center">
+      <div class="col-lg-7">
+        <form method="post" class="block bg-white rounded-5 h-100" name="{{ site.Params.contact_form_name }}"
+          action="{{ site.Params.contact_form_action }}">
+          <div class="row gy-3">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="small text-dark mb-1" for="fname">
+                  {{ i18n `first_name` }}
+                </label>
+                <input class="form-control bg-white text-dark shadow-none" type="text" id="fname" placeholder="Andrew"
+                  required="" />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="small text-dark mb-1" for="fname">
+                  {{ i18n `last_name` }}
+                </label>
+                <input class="form-control bg-white text-dark shadow-none" type="text" id="fname" placeholder="Simond"
+                  required="" />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="small text-dark mb-1" for="Phone">
+                  {{ i18n `phone` }}
+                </label>
+                <input placeholder="(307) 555-0133" class="form-control bg-white text-dark shadow-none" type="text" />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="small text-dark mb-1" for="email">
+                  {{ i18n `email_address` }}
+                </label>
+                <input class="form-control bg-white text-dark shadow-none" type="email" id="email"
+                  placeholder="interface@gmail.com" required="" />
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group mb-2">
+                <label class="small text-dark mb-1" for="message">
+                  {{ i18n `message` }}
+                </label>
+                <textarea class="form-control bg-white text-dark shadow-none" name="comment" rows="5" id="message"
+                  placeholder="Write your meassage...." required=""></textarea>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="agree" id="agree" class="me-1 align-middle" />
+                <label class="form-check-label align-middle" for="agree">
+                  Accept our Terms & Privacy
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <button class="btn btn-primary w-100" type="submit">
+                {{ i18n `send` }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-4">
+        <div class="block bg-white rounded-5 h-100">
+          <h2 class="h5 mb-3">
+            {{ .title | markdownify }}
+          </h2>
+          <p>
+            {{ .description | markdownify }}
+          </p>
+          <hr class="my-4" />
+
+          {{ with . }}
+          {{ with .email }}
+          <div class="d-flex mb-4">
+            <i class="me-3 text-primary fa-solid fa-envelope"></i>
+            <div>
+              <span class="fw-bold d-block lh-1 text-black mb-2">
+                {{ i18n `email` }}
+              </span>
+              <a href="mailto:{{ . }}" class="text-muted">
+                {{ . }}
+              </a>
+            </div>
+          </div>
+          {{ end }}
+          {{ with .address }}
+          <div class="d-flex mb-4">
+            <i class="me-3 text-secondary fas fa-location-dot"></i>
+            <div>
+              <span class="fw-bold d-block lh-1 text-black mb-2">
+                {{ i18n `address` }}
+              </span>
+              <span class="text-muted">
+                {{ . | markdownify }}
+              </span>
+            </div>
+          </div>
+          {{ end }}
+          {{ with .phone }}
+          <div class="d-flex">
+            <i class="me-3 text-tertiary fas fa-phone"></i>
+            <div>
+              <span class="fw-bold d-block lh-1 text-black mb-2">
+                {{ i18n `phone` }}
+              </span>
+              <a href="tel:{{ . }}" class="text-muted">
+                {{ . | markdownify }}
+              </a>
+            </div>
+          </div>
+          {{ end }}
+          {{ end }}
+
+
+          <div class="mt-4">
+            <p class="h6">
+              {{ i18n `follow_us` }}
+            </p>
+            {{ range site.Params.social }}
+            <a href="{{ .link | safeURL }}" title="{{ .title }}" class="share-icon me-1">
+              <i class="{{ .icon }}"> </i>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="backdrop text-tertiary" style="top:0;right:0" width="490" height="670" viewBox="0 0 490 670" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path opacity="0.25"
+      d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+      fill="currentColor"></path>
+  </svg>
+</section>
+{{ end }}
+<!-- end contact -->
+{{ end }}

@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+{{ "<!-- contact -->" | safeHTML }}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 offset-lg-1 col-md-5">
+				<h2 class="section-title">{{ i18n "contact_us" }}</h2>
+				<ul class="ps-0">
+					{{ "<!-- contact items -->" | safeHTML }}
+					{{ range .Params.contact_info }}
+					<li class="d-flex mb-30">
+						<i class="round-icon me-3 {{ .icon }}"></i>
+						<div class="align-self-center font-primary">
+							<div class="text-dark">{{ .content | markdownify }}</div>
+						</div>
+					</li>
+					{{ end }}
+				</ul>
+			</div>
+			{{ "<!-- form -->" | safeHTML }}
+			<div class="col-lg-6 col-md-7">
+				<div class="p-5 rounded box-shadow">
+					<form action="{{ site.Params.contact_form_action | safeURL }}" class="row">
+						<div class="col-lg-12">
+							<h3 class="mb-4">{{ i18n "contact_form" }}</h3>
+						</div>
+						<div class="col-lg-6">
+							<input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+						</div>
+						<div class="col-lg-6">
+							<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
+						</div>
+						<div class="col-lg-12">
+							<input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
+						</div>
+						<div class="col-lg-12">
+							<textarea class="form-control p-2" name="message" id="message" placeholder="Your Message Here..." required
+								style="height: 150px;"></textarea>
+						</div>
+						<div class="col-lg-12">
+							<button class="btn btn-primary" type="submit">{{ i18n "submit" }}</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /contact -->" | safeHTML }}
+
+{{ "<!-- Google Map -->" | safeHTML }}
+{{ with site.Params.google_map }}
+{{ if .enable }}
+<section class="map">
+	<iframe style="height:400px;width:100%;border:0;" frameborder="0" src="{{ .address }}">
+	</iframe>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- /google map -->" | safeHTML }}
+
+{{ end }}

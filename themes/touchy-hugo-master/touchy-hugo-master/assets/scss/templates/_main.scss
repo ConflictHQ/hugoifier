@@ -1,0 +1,184 @@
+.post {
+  &-card {
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &-meta {
+    text-transform: uppercase;
+    color: $text-color;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: $primary-font;
+    letter-spacing: 2px;
+  }
+
+  &-date {
+    margin-bottom: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-family: $primary-font;
+    color: $text-color;
+  }
+
+  &-title {
+    color: $text-color-dark;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+a.post-title:hover {
+  color: $primary-color;
+}
+
+.social-icons a{
+  color: $text-color-light;
+  &:hover{
+    color: $primary-color;
+  }
+}
+
+/* blog */
+.pagination {
+  justify-content: center;
+  display: flex;
+  padding-left: 0;
+  .page-item {
+    list-style-type: none;
+    .page-link {
+      display: inline-block;
+      width: 40px;
+      line-height: 35px;
+      height: 40px;
+      border-radius: 0;
+      border: 1px solid $border-color;
+      text-align: center;
+      margin-right: 6px;
+      font-weight: 600;
+      color: $primary-color;
+      &:hover {
+        background: $primary-color;
+        color: $white;
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      .page-link {
+        border-radius: 0;
+      }
+    }
+
+    &.active {
+      .page-link {
+        background: $primary-color;
+        color: $white;
+        border-color: $primary-color;
+      }
+    }
+  }
+}
+
+/* content style */
+.content {
+  * {
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: underline;
+    color: $primary-color;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 10px;
+  }
+
+  ol {
+    padding-left: 20px;
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      list-style-type: none;
+
+      &::before {
+        position: absolute;
+        content: "";
+        font-family: $icon-font;
+        font-size: 14px;
+        left: 0;
+        top: 5px;
+        color: $primary-color;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        transition: .3s ease;
+      }
+    }
+  }
+
+  table {
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+
+    th,
+    td {
+      padding: .75rem;
+      vertical-align: top;
+      border: 1px solid #dee2e6
+    }
+
+    thead {
+      background: darken($color: $light, $amount: 2);
+    }
+
+    tbody {
+      background: $light;
+
+      td {
+        text-align: left !important;
+      }
+    }
+  }
+
+
+  blockquote {
+    border-left: 1px solid $primary-color;
+    padding: 20px;
+    margin-left: 0;
+
+    p {
+      margin: 0;
+      color: $text-color;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+
+  pre {
+    padding: 10px 20px;
+    background: $light;
+  }
+}

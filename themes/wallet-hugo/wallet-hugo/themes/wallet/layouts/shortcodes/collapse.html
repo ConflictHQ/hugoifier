@@ -1,0 +1,13 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="accordion accordion-wrapper">
+  <div class="accordion-item mb-1">    
+    <h2 class="accordion-header accordion-button h5 fw-normal border-0 mt-4 p-0 text-capitalize" id="heading-{{ .Get 0 | urlize }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ .Get 0 | urlize }}" aria-controls="collapse-{{ .Get 0 | urlize }}">{{ .Get 0 | markdownify }}
+    </h2>
+    <div id="collapse-{{ .Get 0 | urlize }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ .Get 0 | urlize }}">
+      <div class="accordion-body p-0 pt-2 content">
+        {{ .Inner | markdownify }}
+      </div>
+    </div>
+  </div>
+</div>

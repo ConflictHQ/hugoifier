@@ -1,0 +1,18 @@
+{{ "<!-- service item -->" | safeHTML }}
+<div class="col-lg-4 col-sm-6 mb-5">
+  <div class="card text-center h-100">
+    <h3 class="card-title pt-3 h4 mb-3">{{ .Title }}</h3>
+    {{ if .Params.image }}
+    <div class="card-img-wrapper"> 
+      {{ partial "image.html" (dict "Src" .Params.image "Alt" .Title "Class" `card-img-top rounded-0`) }}
+    </div>
+    {{ end }}
+    <div class="card-body p-0">
+      {{with .Params.Icon}}<i class="square-icon translateY-33 rounded {{ . }}"></i>{{end}}
+      <p class="card-text mx-2 mb-0">{{ .Summary }}</p>
+    </div>
+    <div class="card-footer border-0 p-0">
+      <a href="{{ .Permalink }}" class="btn btn-secondary translateY-25">{{ i18n "read_more" }} <span class="screen-reader-text">Details</span></a>
+    </div>
+  </div>
+</div>

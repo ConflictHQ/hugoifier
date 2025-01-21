@@ -1,0 +1,135 @@
+{{ define "main" }}
+  {{ partial "page-header.html" . }}
+  <section
+    class="section-md relative mt-[-28rem] overflow-hidden md:mt-[-32rem]">
+    <div class="container relative z-30">
+      <div class="row relative">
+        <div class="md:col-10 mx-auto">
+          <div
+            data-aos="fade-up-sm"
+            class="shadow-default rounded-2xl bg-white px-8 py-10 sm:px-16 sm:py-14">
+            <form
+              action="{{ site.Params.contact_form_action }}"
+              method="POST"
+              class="row gy-4 text-dark">
+              <div class="sm:col-6">
+                <label for="fname" class="form-label"
+                  >{{ i18n "first_name" }}</label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Your First Name"
+                  id="fname"
+                  name="fname"
+                  required />
+              </div>
+              <div class="sm:col-6">
+                <label for="lname" class="form-label"
+                  >{{ i18n "last_name" }}</label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Your Last Name"
+                  id="lname"
+                  name="lname"
+                  required />
+              </div>
+              <div class="col-12">
+                <label for="email" class="form-label">{{ i18n "email" }}</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="Your Email Address"
+                  id="email"
+                  required
+                  name="email" />
+              </div>
+              <div class="col-12">
+                <label for="purpose" class="form-label"
+                  >{{ i18n "purpose" }}</label
+                >
+                <select
+                  id="purpose"
+                  required
+                  class="border-border w-full rounded-lg px-5 py-4 text-sm">
+                  <option value="0">
+                    {{ i18n "contact_select_option_1" }}
+                  </option>
+                  <option value="1">
+                    {{ i18n "contact_select_option_2" }}
+                  </option>
+                  <option value="2">
+                    {{ i18n "contact_select_option_3" }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label"
+                  >{{ i18n "message" }}</label
+                >
+                <textarea
+                  name="message"
+                  class="form-textarea"
+                  placeholder="Your Message"
+                  id="message"
+                  cols="30"
+                  required
+                  rows="4"></textarea>
+              </div>
+              <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary">
+                  {{ i18n "submit" }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Start Bg Shape -->
+        <div
+          data-aos="fade-right-sm"
+          class="pointer-events-none absolute bottom-[-8%] left-[5%] -z-10 hidden w-fit lg:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/contact-s-1.svg" "Class" "inline-svg text-quaternary" "Alt" "shape") }}
+        </div>
+        <div
+          data-aos="fade-left-sm"
+          class="pointer-events-none absolute right-[4%] top-[35%] -z-10 hidden w-fit lg:block">
+          {{ partial "image.html" (dict "Src" "images/shapes/contact-s-2.svg" "Class" "inline-svg text-tertiary" "Alt" "shape") }}
+        </div>
+        <!-- End Bg Shape -->
+      </div>
+      {{ with .Params.contact_links }}
+        <div
+          class="row gy-4 pt-12 text-center md:justify-between md:pt-24 lg:justify-around">
+          {{ range . }}
+            <div data-aos="fade-up-sm" class="md:col-auto">
+              <h2
+                class="sm:3xl text-dark mb-5 text-2xl font-semibold md:text-4xl">
+                {{ .title | markdownify }}
+              </h2>
+              {{ range .links }}
+                <p class="mb-2 text-lg sm:text-xl">
+                  <a
+                    class="hover:underline hover:underline-offset-2"
+                    href="{{ .link | safeURL }}">
+                    {{ .label }}
+                  </a>
+                </p>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </section>
+  <!-- End Articles Section -->
+
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+    {{ partialCached "essentials/footer.html" . }}
+  {{ else }}
+    {{ partial "essentials/footer.html" . }}
+  {{ end }}
+{{ end }}

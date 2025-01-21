@@ -1,0 +1,92 @@
+- id: read_more
+  translation: अधिक पढ़ें
+  
+- id: read_case_study
+  translation: पूरी केस स्टडी पढ़ें
+  
+- id: view_product
+  translation: उत्पाद देखें
+
+- id: send
+  translation: मेसेज भेजें
+
+- id: category
+  translation: श्रेणी
+
+- id: tags
+  translation: टैग
+
+- id: by
+  translation: द्वारा
+
+- id: min_read
+  translation: मिनट पढ़ें
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: चलो मिलते हैं
+
+- id: prev_case
+  translation: पिछला मामला
+
+- id: next_case
+  translation: अगला मामला
+
+- id: apply_for_position
+  translation: पद के लिए आवेदन करें
+
+- id: view_all_positions
+  translation: सभी पद देखें
+
+- id: apply_now
+  translation: अभी अप्लाई करें
+
+- id: share_this_job
+  translation: "इस नौकरी को साझा करें:"
+
+- id: other_jobs
+  translation: अन्य नौकरियां
+
+- id: all_jobs
+  translation: सारी नौकरियां
+  
+- id: fname
+  translation: पहला नाम
+  
+- id: full_name
+  translation: पूरा नाम
+  
+- id: lname
+  translation: उपनाम
+  
+- id: email
+  translation: ईमेल पता
+  
+- id: website
+  translation: वेबसाइट
+  
+- id: organization_size
+  translation: संगठन का आकार (कर्मचारी)*
+  
+- id: region
+  translation: क्षेत्र*
+  
+- id: message
+  translation: संदेश
+  
+- id: submit_now
+  translation: अभी जमा करे
+  
+- id: get_demo
+  translation: एक डेमो प्राप्त करें
+  
+- id: cv_note
+  translation: केवल doc, pdf फ़ाइल की अनुमति है और फ़ाइल का आकार 2MB से कम होगा
+  
+- id: upload_cv
+  translation: बायोडाटा अपलोड करो
+  
+- id: search_faq
+  translation: क्लिक करें और खोजें अक्सर पूछे जाने वाले प्रश्न..

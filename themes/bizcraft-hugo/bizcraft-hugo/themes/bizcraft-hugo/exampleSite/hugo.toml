@@ -1,0 +1,314 @@
+######################## default configuration ####################
+baseURL = "https://demo.gethugothemes.com/bizcraft/site/"
+title = "BizCraft - Responsive Html5 Template"
+theme = "bizcraft-hugo"
+# Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
+timeZone = "America/New_York"
+# post pagination
+paginate = 6 # see https://gohugo.io/extras/pagination/
+# post excerpt
+summaryLength = 10 # see https://gohugo.io/content-management/excerpts/
+# google analytics
+googleAnalytics = "UA-123456-78" # example: UA-123456-78, for more info, read the article https://support.google.com/analytics/answer/1008080?hl=en
+# disqus short name
+disqusShortname = "themefisher-template" # we use disqus to show comments in blog posts . To install disqus please follow this tutorial https://portfolio.peter-baumgartner.net/2017/09/10/how-to-install-disqus-on-hugo/
+# disable language
+disableLanguages = [
+] # example: ["fr"] for disable french language. see https://gohugo.io/content-management/multilingual/
+hasCJKLanguage = false #  If hasCJKLanguage true, auto-detect Chinese/Japanese/Korean Languages in the content. see: https://gohugo.io/getting-started/configuration/#hascjklanguage
+
+
+############################# Build ##############################
+[build]
+noJSConfigInAssets = false
+useResourceCacheWhen = 'fallback'
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/.*\.(js|ts|jsx|tsx)'
+target = '(js|scripts|javascript)'
+[[build.cachebusters]]
+source = 'assets/.*\.(css|sass|scss)$'
+target = '(css|styles|scss|sass)'
+[[build.cachebusters]]
+source = 'assets/.*\.(.*)$'
+target = '$1'
+
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML", "RSS"]
+
+############################# Imaging ##############################
+[imaging]
+# See https://github.com/disintegration/imaging
+# Default JPEG or WebP quality setting. Default is 75.
+quality = 90
+resampleFilter = "lanczos"
+
+############################# Caches ###############################
+[caches]
+[caches.images]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+[caches.assets]
+dir = ":resourceDir/_gen"
+maxAge = "720h"
+
+############################# Markup ##############################
+[markup.goldmark.renderer]
+unsafe= true
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/fontawesome/font-awesome.min.css"
+[[params.plugins.css]]
+link = "plugins/animate.css"
+[[params.plugins.css]]
+link = "plugins/prettyPhoto.css"
+[[params.plugins.css]]
+link = "plugins/owl/owl.carousel.css"
+[[params.plugins.css]]
+link = "plugins/owl/owl.theme.css"
+[[params.plugins.css]]
+link = "plugins/flex-slider/flexslider.css"
+[[params.plugins.css]]
+link = "plugins/cd-hero/cd-hero.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/style-switcher.js"
+[[params.plugins.js]]
+link = "plugins/owl/owl.carousel.js"
+[[params.plugins.js]]
+link = "plugins/jquery.prettyPhoto.js"
+[[params.plugins.js]]
+link = "plugins/flex-slider/jquery.flexslider.js"
+[[params.plugins.js]]
+link = "plugins/cd-hero/cd-hero.js"
+[[params.plugins.js]]
+link = "plugins/isotope.js"
+[[params.plugins.js]]
+link = "plugins/ini.isotope.js"
+[[params.plugins.js]]
+link = "plugins/wow.min.js"
+[[params.plugins.js]]
+link = "plugins/jquery.easing.1.3.js"
+[[params.plugins.js]]
+link = "plugins/jquery.counterup.min.js"
+[[params.plugins.js]]
+link = "plugins/waypoints.min.js"
+
+
+############################## English navigation ###############################
+
+[[Languages.en.menu.main]]
+name = "About"
+URL = "about/"
+weight = 2
+
+[[Languages.en.menu.main]]
+name = "Portfolio"
+URL = "portfolio/"
+weight = 3
+
+[[Languages.en.menu.main]]
+name = "Blog"
+URL = "blog/"
+weight = 4
+
+[[Languages.en.menu.main]]
+weight = 5
+name = "Pages"
+hasChildren = true
+
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  name = "Career"
+  URL = "career/"
+
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  name = "Service"
+  URL = "service/"
+
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  name = "Team"
+  URL = "team/"
+
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  name = "FAQ"
+  URL = "faq/"
+
+  [[Languages.en.menu.main]]
+  parent = "Pages"
+  name = "Pricing"
+  URL = "pricing/"
+  
+[[Languages.en.menu.main]]
+name = "Contact"
+URL = "contact/"
+weight = 6
+
+
+
+
+############################## French navigation ###############################
+
+[[Languages.fr.menu.main]]
+name = "About"
+URL = "about/"
+weight = 2
+
+[[Languages.fr.menu.main]]
+name = "Portfolio"
+URL = "portfolio/"
+weight = 3
+
+[[Languages.fr.menu.main]]
+name = "Blog"
+URL = "blog/"
+weight = 4
+
+[[Languages.fr.menu.main]]
+weight = 5
+name = "Pages"
+hasChildren = true
+
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  name = "Career"
+  URL = "career/"
+
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  name = "Service"
+  URL = "service/"
+
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  name = "Team"
+  URL = "team/"
+
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  name = "FAQ"
+  URL = "faq/"
+
+  [[Languages.fr.menu.main]]
+  parent = "Pages"
+  name = "Pricing"
+  URL = "pricing/"
+  
+[[Languages.fr.menu.main]]
+name = "Contact"
+URL = "contact/"
+weight = 6
+
+
+#################### default parameters ################################
+[params]
+logo = "images/logo.png"
+home = "Home"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact info
+address = "9567 Turner Trace Apt. BC C3G8A4"
+phone = "+211234565523"
+email = "info@bexer.com"
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# copyright
+copyright = "Copyright &copy; 2020 a hugo theme by [themefisher](https://themefisher.com)"
+
+# flickr photos
+[[params.flickr_photos]]
+image = "images/gallery/1.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/2.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/3.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/4.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/5.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/6.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/7.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/8.jpg"
+[[params.flickr_photos]]
+image = "images/gallery/9.jpg"
+
+# google map
+[params.map]
+enable = false
+gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
+  
+############################# social site ########################
+[[params.social]]
+name = "facebook"
+icon = "fa-facebook" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+name = "twitter"
+icon = "fa-twitter" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+name = "instagram"
+icon = "fa-instagram" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+name = "github"
+icon = "fa-github" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+[[params.social]]
+name = "linkedin"
+icon = "fa-linkedin" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+link = "#"
+
+################################### English language #####################################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 1
+
+[Languages.en.params]
+# footer content
+footer_content = "We are a awward winning multinational company. We believe in quality and standard worldwide."
+# copyright
+copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
+
+################################### French language #####################################
+languageName = "Fr"
+languageCode = "fr-fr"
+contentDir = "content/french"
+weight = 2
+
+[Languages.fr.params]
+home = "Accueil"
+# footer content
+footer_content = "We are a awward winning multinational company. We believe in quality and standard worldwide."
+# copyright
+copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"

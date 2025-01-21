@@ -1,0 +1,85 @@
+{{ with site.GetPage "sections/call-to-action" }}
+  {{ with .Params.cta }}
+    {{ if .enable }}
+      <div
+        class="shadow-default xs:px-8 relative z-20 overflow-hidden rounded-lg bg-white px-2 py-10 sm:px-14">
+        <div class="row items-center text-center sm:text-left">
+          <div class="md:col-12 lg:col-7 xl:col-6">
+            <h2
+              data-aos="fade-up-sm"
+              class="font-secondary mb-6 !leading-normal sm:text-[34px] md:text-[46px]">
+              {{ .title | markdownify }}
+            </h2>
+            {{ with .supported_tech }}
+              <span
+                class="text-dark inline-block align-middle text-[20px] font-bold"
+                data-aos="fade-up-sm"
+                data-aos-delay="50">
+                {{ .title | markdownify }}
+              </span>
+              <ul
+                class="mx-auto mt-2 flex w-fit flex-row gap-8 align-middle text-[28px] sm:ml-7 sm:mt-0 sm:inline-flex">
+                {{ range $i, $e := .list }}
+                  <li
+                    class="text-dark"
+                    data-aos="fade-up-sm"
+                    data-aos-delay="{{ mul $i 50 }}">
+                    <a href="{{ .link }}">
+                      <i class="{{ .icon }}"></i>
+                      <span class="sr-only">{{ .icon }}</span>
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+            {{ with .buttons }}
+              <div
+                class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 sm:justify-start sm:gap-8"
+                data-aos="fade-up-sm"
+                data-aos-delay="50">
+                {{ with .primary }}
+                  <a
+                    href="{{ .link | relLangURL }}"
+                    class="btn btn-primary btn-md">
+                    {{ .label | markdownify }}
+                  </a>
+                {{ end }}
+                {{ with .outline }}
+                  <a
+                    href="{{ .link | relLangURL }}"
+                    class="btn btn-outline-primary btn-md">
+                    {{ .label | markdownify }}
+                  </a>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+          <!-- End Call To Action Content -->
+          <div class="lg:col-5 xl:col-6 hidden lg:block">
+            <div class="cta-clip-path relative" data-aos="fade-right-md">
+              {{ partial "image.html" (dict "Src" .image "Class" "mx-auto block" "Alt" "cta-image") }}
+            </div>
+          </div>
+          <!-- End Call To Action Image -->
+        </div>
+
+        <!-- Start CTA BG SHAPES -->
+        <div
+          data-aos="fade-left-sm"
+          class="pointer-events-none absolute left-[-65px] top-0 -z-10 select-none sm:left-0">
+          {{ partial "image.html" (dict "Src" "/images/shapes/cta-s-1.svg" "Class" "inline-svg text-secondary" "Alt" "shape") }}
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          class="pointer-events-none absolute bottom-[40px] right-[-90px] -z-10 select-none xl:right-[-60px]">
+          {{ partial "image.html" (dict "Src" "/images/shapes/cta-s-2.svg" "Class" "inline-svg text-secondary" "Alt" "shape") }}
+        </div>
+        <div
+          class="pointer-events-none absolute bottom-[-120px] left-1/2 -z-10 -translate-x-1/2 select-none sm:bottom-[-90px]">
+          {{ partial "image.html" (dict "Src" "/images/shapes/cta-s-3.svg" "Class" "inline-svg text-quaternary" "Alt" "shape") }}
+        </div>
+        <!-- End CTA BG SHAPES -->
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}

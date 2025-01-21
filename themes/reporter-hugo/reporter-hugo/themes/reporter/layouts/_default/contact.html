@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        {{ partial "breadcrumb.html" . }}
+      </div>
+      <div class="col-lg-4">
+        <div class="pr-0 pr-lg-4">
+          <div class="content">
+            {{.Content | markdownify}}
+            <div class="mt-5">
+              <p class="h3 mb-3 font-weight-normal"><a class="text-dark" href="mailto:{{site.Params.email}}">{{site.Params.email}}</a></p>
+              <p class="mb-3"><a class="text-dark" href="tel:{{site.Params.mobile}}">{{site.Params.mobile}}</a></p>
+              <p class="mb-2">{{site.Params.address}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <form method="POST" action="{{ site.Params.contact_form_action | safeURL}}" class="row">
+          <div class="col-md-6">
+            <input type="text" class="form-control mb-4" placeholder="Name" name="name" id="name">
+          </div>
+          <div class="col-md-6">
+            <input type="email" class="form-control mb-4" placeholder="Email" name="email" id="email">
+          </div>
+          <div class="col-12">
+            <input type="text" class="form-control mb-4" placeholder="Subject" name="subject" id="subject">
+          </div>
+          <div class="col-12">
+            <textarea name="message" id="message" class="form-control mb-4" placeholder="Type You Message Here"
+              rows="5"></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-outline-primary" type="submit">{{ i18n `send_message` }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

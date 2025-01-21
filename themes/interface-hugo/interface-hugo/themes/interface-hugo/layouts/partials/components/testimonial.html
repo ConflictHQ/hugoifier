@@ -1,0 +1,127 @@
+{{ with .Params.testimonials }}
+  {{ if .enable }}
+    <section class="testimonials has-backdrop">
+      <div class="section container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <p class="section-subtitle text-tertiary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+        </div>
+
+        <div
+          class="row gx-0 gx-lg-5 gy-4 align-items-xl-center justify-content-center">
+          <div class="col-lg-4 text-center">
+            <div class="rounded-4 d-inline-block bg-light">
+              {{ partial "image" (dict "Src" .image "Alt" "testimonial image" "Resize" false "Class" "rounded-4") }}
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="swiper swiper-testimonials">
+              <div class="swiper-wrapper mb-4">
+                {{ with site.GetPage "testimonial" }}
+                  {{ range .Params.reviews }}
+                    <div class="swiper-slide px-0 px-lg-4">
+                      <div class="block shadow bg-white rounded-4">
+                        <div class="mb-4">{{ .content | markdownify }}</div>
+                        <div
+                          class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                          <div>
+                            <h4 class="h6 mb-2">{{ .name | markdownify }}</h4>
+                            <p class="mb-0 small">
+                              {{ .designation | markdownify }}
+                            </p>
+                          </div>
+                          <ul class="list list-inline rating {{ .star }}">
+                            <li class="list-inline-item">
+                              <i class="fa-solid fa-star"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa-solid fa-star"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa-solid fa-star"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa-solid fa-star"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa-solid fa-star"></i>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  {{ end }}
+                {{ end }}
+              </div>
+
+              <div class="ps-0 ps-lg-4 text-center text-lg-start">
+                <div class="testimonials-button-prev">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    viewBox="0 0 16 16">
+                    <path
+                      fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                  </svg>
+                </div>
+                <div class="testimonials-button-next">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    viewBox="0 0 16 16">
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <svg
+        class="backdrop backdrop-1 text-primary"
+        width="910"
+        height="1436"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g opacity=".3" filter="url(#a)">
+          <path
+            d="M800.6 420A298.2 298.2 0 0 1 1099 718c0 164.6-133.6 298-298.4 298-75.1 0-160.8-27.7-231.9-73.5C484 888 420 807.5 420 718c0-88 149.3-65.4 232-120 71.8-47.4 72-178 148.6-178Z"
+            fill="currentColor" />
+        </g>
+        <defs>
+          <filter
+            id="a"
+            x="0"
+            y="0"
+            width="1519"
+            height="1436"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape" />
+            <feGaussianBlur
+              stdDeviation="210"
+              result="effect1_foregroundBlur_32_370" />
+          </filter>
+        </defs>
+      </svg>
+    </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,121 @@
+######################### Banner ###########################
+banner:
+  enable : true
+  title :  "Hey, I’m Maclarn **!**"
+  subtitle : "A Data Scientist & Product Enthusiast"
+  social : true
+  # social icons comes from `config.toml` file.
+
+
+####################### About ##############################
+about:
+  enable : true
+  title : ""
+  image : "images/author.jpg"
+  content : "College graduate with a strong computer science background and experience in exploratory data analysis, machine learning, and statistics. As a Passionate about learning new topics in data science, visualizing data, and doing research. I am like sharing valuable insights and making an impact that helps others learn through.
+  
+
+  code, visualizations, and narratives. Frequent competitor at Kaggle competitions. I'm always open for discussions, so feel free to ask any questions or concerns, I will.
+  "
+
+
+
+####################### Education ###########################
+education:
+  enable : true
+  title : "Education"
+  education_item:
+    # education item loop
+    - name : "MSc in Research Methodology"
+      duration : "September 2000 - May 2004"
+      academy : "University Of California"
+
+    # education item loop
+    - name : "BEng Electronic Engineering"
+      duration : "September 2000 - May 2004"
+      academy : "University Of California"
+
+    # education item loop
+    - name : "BEng Electronic Engineering"
+      duration : "September 2000 - May 2004"
+      academy : "University Of California"
+
+    # education item loop
+    - name : "MSc in Research Methodology"
+      duration : "September 2000 - May 2004"
+      academy : "University Of California"
+
+
+
+
+####################### Expertise ###########################
+expertise:
+  enable : true
+  title : "Expertise"
+  expertise_item:
+    # expertise item loop
+    - name : "Data Analysis and Visualization"
+      content : "Analysis Libraries: pandas, numpy <br> Visualizations: Tablaeu, Seaborn"
+
+    # expertise item loop
+    - name : "Statical Meathod Learning"
+      content : "Analysis Libraries: pandas, numpy <br> Visualizations: Tablaeu, Seaborn"
+
+
+####################### Publication ###########################
+publication:
+  enable : true
+  title : "Publications"
+  # publication item comes from `content/**/publications/` folder.
+
+
+########################### Talk ##############################
+talk:
+  enable : true
+  title : "Recent & Upcoming Talks"
+  # talk item comes from `content/**/talks/` folder.
+
+
+########################## Projects ###########################
+project:
+  enable : true
+  title : "My Projects"
+  # projects item comes from `content/**/projects/` folder.
+
+
+########################### Blog ##############################
+blog:
+  enable : true
+  title : "Blog Post"
+  # blog item comes from `content/**/blogs/` folder.
+
+
+
+########################## Contact ############################
+# contact foem
+contact_form:
+  enable : true
+  title : "Contact Me"
+  contact_form_action : "#" #contact form works with https://formspree.io
+  name_label : "Your Name"
+  email_label : "Your Email"
+  textarea_label : "Your Message"
+  button_label : "Send Now"
+
+# contact info
+contact_info:
+  enable : true
+  title : "Get In Touch"
+  content : "Let’s talk about your project and how I can help you or if you just want to chat about design and art - shoot me a message at abcxmple@gmail.com"
+  contact_item:
+    # contact item loop
+    - icon : "ti-email" # themify icon : https://themify.me/themify-icons
+      id : "s.vanbuuren@uu.nl"
+
+    # contact item loop
+    - icon : "ti-mobile" # themify icon : https://themify.me/themify-icons
+      id : "+8801856388817"
+
+    # contact item loop
+    - icon : "ti-location-pin" # themify icon : https://themify.me/themify-icons
+      id : "Sjoerd Groenmangebouw C1.19, Padualaan 14,3584 CH Utrecht, The Netherlands; TNO Child The Netherlands"

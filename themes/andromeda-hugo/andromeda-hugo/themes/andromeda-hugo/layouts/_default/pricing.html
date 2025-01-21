@@ -1,0 +1,164 @@
+{{ define "main" }}
+  {{ partial "components/page-header.html" . }}
+
+
+  <section class="section" data-aos="fade-in" data-aos-delay="150">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mb-5">
+          <!-- pricing toggle -->
+          {{ $toggle:= .Params.monthly_yearly_toggle }}
+          {{ if eq $toggle "toggle" }}
+            <div
+              class="pricing-switch d-flex align-items-center justify-content-center w-100 mb-4">
+              <label class="h5 m-0" id="monthly">{{ i18n "monthly" }}</label>
+              <div class="toggle">
+                <input class="pricing-check" type="checkbox" /><b
+                  class="switch"></b>
+              </div>
+              <label class="h5 m-0" id="annually">{{ i18n "yearly" }}</label>
+            </div>
+          {{ end }}
+          {{ with .Params.offer }}
+            <span
+              class="text-primary py-2 px-3 rounded-3"
+              style="background:#f9f9f9;"
+              >{{ . | markdownify }}</span
+            >
+          {{ end }}
+        </div>
+      </div>
+      <div class="row justify-content-xl-center">
+        <div class="col-xl-10">
+          <div class="row">
+            {{ range .Params.pricing_card }}
+              <div class="col-lg-4 col-md-6 mt-4">
+                <div class="card pricing-card border-0">
+                  <div class="card-body">
+                    <h3 class="fw-600 mb-1">{{ .name }}</h3>
+
+                    <span class="h2 font-weight-bold d-inline-flex">
+                      {{ .currency }}
+                      {{ if or .monthly_price .yearly_price }}
+                        <span
+                          class="data-count"
+                          data-count-monthly="{{ .monthly_price }}"
+                          data-count-annually="{{ .yearly_price }}"
+                          >{{ if eq $toggle "yearly" }}
+                            {{ .yearly_price }}
+                          {{ else }}
+                            {{ .monthly_price }}
+                          {{ end }}</span
+                        >
+                      {{ end }}
+                    </span>
+
+                    {{ if .monthly_price }}
+                      <span
+                        class="text-monthly {{ if eq $toggle `yearly` }}
+                          d-none
+                        {{ end }}"
+                        >/{{ i18n "month" }}</span
+                      >
+                    {{ end }}
+                    {{ if .yearly_price }}
+                      <span
+                        class="text-annually {{ if ne $toggle `yearly` }}
+                          d-none
+                        {{ end }}
+                        "
+                        >/{{ i18n "year" }}</span
+                      >
+                    {{ end }}
+
+
+                    <p class="border-bottom pb-3">
+                      {{ .content | markdownify }}
+                    </p>
+
+                    <ul class="list-unstyled check-list-2 mt-3 mb-4">
+                      {{ range .services }}
+                        <li class="mb-2">
+                          <i class="las la-thumbtack me-2 text-primary"></i
+                          >{{ . |markdownify }}
+                        </li>
+                      {{ end }}
+                    </ul>
+
+                    {{ if .featured }}
+                      <a
+                        href="{{ .button_link | absLangURL }}"
+                        class="btn btn-primary d-block"
+                        >{{ .button_label }}</a
+                      >
+                    {{ else }}
+                      <a
+                        href="{{ .button_link | absLangURL }}"
+                        class="btn btn-outline-primary d-block"
+                        >{{ .button_label }}</a
+                      >
+                    {{ end }}
+                  </div>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{ $jquery := resources.Get "plugins/jquery/jquery.min.js" | resources.Fingerprint }}
+  <script crossorigin="anonymous" src="{{ $jquery.RelPermalink }}"></script>
+  <script>
+    // pricing
+    if ($(".pricing-check").length !== 0) {
+      // pricing init
+      var toggleSwitch = $(".pricing-check");
+      var dataCount = $(".data-count");
+      $(toggleSwitch).change(function () {
+        if ($(toggleSwitch).is(":checked")) {
+          dataCount.each(function () {
+            $(this).html($(this).data("count-annually"));
+            $(this)
+              .prop("Counter", 999)
+              .animate(
+                {
+                  Counter: $(this).text(),
+                },
+                {
+                  duration: 250,
+                  easing: "swing",
+                  step: function (now) {
+                    $(this).text(Math.ceil(now));
+                  },
+                }
+              );
+          });
+          $(".text-monthly").addClass("d-none").removeClass("d-inline");
+          $(".text-annually").addClass("d-inline").removeClass("d-none");
+        } else if ($(toggleSwitch).is(":not(:checked)")) {
+          dataCount.each(function () {
+            $(this).html($(this).data("count-monthly"));
+            $(this)
+              .prop("Counter", 999)
+              .animate(
+                {
+                  Counter: $(this).text(),
+                },
+                {
+                  duration: 250,
+                  easing: "swing",
+                  step: function (now) {
+                    $(this).text(Math.ceil(now));
+                  },
+                }
+              );
+          });
+          $(".text-monthly").addClass("d-inline").removeClass("d-none");
+          $(".text-annually").addClass("d-none").removeClass("d-inline");
+        }
+      });
+    }
+  </script>
+{{ end }}

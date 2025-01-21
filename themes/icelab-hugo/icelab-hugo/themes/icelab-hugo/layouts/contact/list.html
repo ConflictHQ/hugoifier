@@ -1,0 +1,54 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- Contact Section -->
+<section class="contact section">
+    <div class="shape-big">
+        <img src="{{`images/shape-big.png` | absURL }}" class="img-fluid" alt="big-shape">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="content">{{ .Content }}</div>
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h4>Contact Form</h4>
+                        <form name="contact" method="POST" action="{{ .Site.Params.contact_form_action}}" class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Name" name="name" id="name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Subject" name="subject"
+                                    id="subject">
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" id="message" class="form-control"
+                                    placeholder="Type You Message Here" rows="5"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{ if .Site.Params.map.enable }}
+            <div class="col-lg-6">
+                <!-- Google Map -->
+                <div id="map" data-latitude="{{ .Site.Params.map.map_latitude }}"
+                    data-longitude="{{ .Site.Params.map.map_longitude }}"
+                    data-marker="{{ .Site.Params.map.map_marker | absURL }}" data-marker-name="{{ .Site.Title }}">
+                </div>  
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

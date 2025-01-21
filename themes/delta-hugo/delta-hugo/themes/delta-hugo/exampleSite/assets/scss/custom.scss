@@ -1,0 +1,27 @@
+// if you update bootstrap, replace this values in "scss/bootstrap/_variable.sccs" file (search usign comment)
+
+// scss-docs-start spacer-variables-maps
+$spacer: 1.25rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .4,
+  2: $spacer,
+  3: 1.3rem,
+  4: 1.875rem,
+  5: 2.1875rem,
+  6: 2.5rem,
+) !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-gutter-width: 1.875rem !default;
+$gutter-spacer: $grid-gutter-width !default;
+$gutters: (
+  0: 0,
+  1: $gutter-spacer * .25,
+  2: $gutter-spacer * .5,
+  3: $gutter-spacer,
+  4: 2.5rem,
+  5: 3.125rem,
+);

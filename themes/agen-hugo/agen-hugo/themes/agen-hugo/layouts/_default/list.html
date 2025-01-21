@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      {{ range .Data.Pages }}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <article class="card">
+          <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="card-img-top mb-2">
+          <div class="card-body p-0">
+            <time>{{ .PublishDate.Format "January 02, 2006" }}</time>
+            <a href="{{ .Permalink }}" class="h4 card-title d-block my-3 text-dark hover-text-underline">{{ .Title }}</a>
+            <a href="{{ .Permalink }}" class="btn btn-transparent">Read more</a>
+          </div>
+        </article>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+{{ end }}

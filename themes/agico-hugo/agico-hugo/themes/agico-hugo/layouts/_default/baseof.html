@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}"
+	lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}" itemscope itemtype=" http://schema.org/WebPage">
+
+<head>
+	<!-- head (don't cache it) -->
+	{{ partial "essential/head.html" . }}
+
+
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+	{{ partialCached "essential/style.html" . }}
+	{{ else }}
+	{{ partial "essential/style.html" . }}
+	{{ end }}
+</head>
+
+<body>
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+	{{ partialCached "preloader.html" . }}
+	{{ else }}
+	{{ partial "preloader.html" . }}
+	{{ end }}
+
+	{{ if not .IsHome }}
+	{{ partial "components/page-header.html" . }}
+	{{ end }}
+
+
+	<!-- header (don't cache it) -->
+	{{ partial "essential/header.html" . }}
+
+
+	<main>
+		{{ block "main" . }}{{ end }}
+	</main>
+
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+
+	{{ partialCached "components/subscription.html" . }}
+	{{ partialCached "essential/footer.html" . }}
+	{{ partialCached "essential/script.html" . }}
+	{{ else }}
+	{{ partial "components/subscription.html" . }}
+	{{ partial "essential/footer.html" . }}
+	{{ partial "essential/script.html" . }}
+	{{ end }}
+</body>
+
+</html>

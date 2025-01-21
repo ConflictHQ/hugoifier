@@ -1,0 +1,47 @@
+---
+label: Blog
+hide_body: false
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: title
+- name: date
+  type: datetime
+  label: date
+  description: ''
+  config:
+    required: false
+    date_format: 
+    time_format: 
+    display_utc: false
+- name: description
+  type: text
+  config:
+    required: false
+  label: description
+- name: images
+  type: file
+  config:
+    maxSize: 64
+  label: images
+- name: author
+  type: text
+  config:
+    required: false
+  label: author
+- name: categories
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: categories
+- name: tags
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: tags

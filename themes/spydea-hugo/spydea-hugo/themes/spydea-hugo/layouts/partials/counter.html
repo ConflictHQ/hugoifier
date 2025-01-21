@@ -1,0 +1,16 @@
+<ul
+  class="list-dotted-line-separator shadow-default flex flex-col justify-center gap-6 rounded-2xl bg-white px-12 py-10 sm:py-14 md:flex-row md:gap-0">
+  {{ range .Params.counter_items }}
+    <li class="text-center" data-aos="fade-up-sm">
+      <span
+        class="font-secondary text-dark mb-3 block text-3xl font-bold md:mb-6 md:text-4xl xl:text-6xl">
+        {{ .prefix }}
+        <span class="counter" data-counter-time="2200">{{ .value }}</span
+        >{{ .suffix }}
+      </span>
+      <div class="text-dark md:text-h6 xl:text-h4">
+        {{ .title | markdownify }}
+      </div>
+    </li>
+  {{ end }}
+</ul>

@@ -1,0 +1,252 @@
+body {
+  background-color: $body-color;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: $primary-color;
+  color: $white;
+}
+
+/* preloader */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $body-color;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a,
+button,
+select {
+  cursor: pointer;
+  transition: .2s ease;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+a:hover {
+  color: $primary-color;
+}
+
+.slick-slide {
+  outline: 0;
+}
+
+.section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.section-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 15px;
+  &::before {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.border-default{
+  border-color: $border-color !important;
+}
+
+.border-primary{
+  border-color: $primary-color !important;
+}
+
+.font-primary{
+  font-family: $primary-font !important;
+}
+
+.font-secondary{
+  font-family: $secondary-font !important;
+}
+
+.font-weight-medium{
+  font-weight: 500 !important;
+}
+
+.breadcrumb{
+  background-color: transparent;
+  justify-content: center;
+  &-item{
+    font-family: $primary-font;
+    letter-spacing: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    a{
+      color: $primary-color;
+    }
+  }
+}
+
+/* overlay */
+
+.overlay {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: $black;
+    opacity: .5;
+  }
+}
+
+.bg-primary {
+  background: $primary-color !important;
+}
+
+.text-primary {
+  color: $primary-color !important;
+}
+
+.text-default {
+  color: $text-color !important;
+}
+
+.bg-dark{
+  background-color: $dark !important;
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+.rounded {
+  border-radius: 6px !important;
+}
+
+@media screen and (min-width:991px) and (max-width:1200px) {
+  .no-gutters-lg {
+    margin-right: 0;
+    margin-left: 0;
+    >.col, >[class*=col-] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+.mark, mark {
+  padding: 0;
+}
+
+.notices {
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.notices p {
+  padding: 0.62rem;
+  margin-bottom: 0;
+}
+
+.notices p::before {
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: .52rem;
+  color: $white;
+  height: 19px;
+  width: 19px;
+  background-size: contain;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' style='fill: white;'%3E%3Cg data-name='Layer 2'%3E%3Cg data-name='info'%3E%3Crect width='24' height='24' transform='rotate(180 12 12)' opacity='0'/%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.notices.note p {
+  border-top: 30px solid #6ab0de;
+  background: $light;
+}
+
+.notices.note p::after {
+  content: 'Note';
+  position: absolute;
+  top: 2px;
+  color: $white;
+  left: 2rem;
+}
+
+
+.notices.tip p {
+  border-top: 30px solid #78C578;
+  background: $light;
+}
+
+.notices.tip p::after {
+  content: 'Tip';
+  position: absolute;
+  top: 2px;
+  color: $white;
+  left: 2rem;
+}
+
+.notices.info p {
+  border-top: 30px solid #F0B37E;
+  background: $light;
+}
+
+.notices.info p::after {
+  content: 'Info';
+  position: absolute;
+  top: 2px;
+  color: $white;
+  left: 2rem;
+}
+
+
+.notices.warning p {
+  border-top: 30px solid #E06F6C;
+  background: $light;
+}
+
+.notices.warning p::after {
+  content: 'Warning';
+  position: absolute;
+  top: 2px;
+  color: #fff;
+  left: 2rem;
+}

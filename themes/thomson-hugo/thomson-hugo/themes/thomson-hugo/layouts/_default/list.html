@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<section class="page-title section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h1 class="text-capitalize mb-0 text-lg">{{ .Title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-post">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          {{ $paginator := .Paginate .Data.Pages }}
+          {{ range $paginator.Pages }}
+          <div class="col-lg-6 col-md-6">
+            <div class="post mb-5">
+              <a class="image-content" href="{{ .Permalink }}">
+                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" class="img-fluid">
+              </a>
+              <div class="post-content">
+                <span class="date text-uppercase text-sm">{{ .PublishDate.Format "06 jan 2006" }}</span>
+                <a href="{{ .Permalink }}">
+                  <h4>{{ .Title }}</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        {{ template "_internal/pagination.html" . }}
+      </div>
+      {{ partial "blog-sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

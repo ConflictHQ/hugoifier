@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ if .Params.image }}
+      <div class="col-lg-10 mb-5">
+        <img src="{{ .Params.image | absURL }}" alt="{{.Title}}" class="img-fluid w-100">
+      </div>
+      {{ end }}
+      <div class="col-lg-8 col-md-10">
+        <h1 class="mb-4 h2">{{ .Title | markdownify }}</h1>
+        <ul class="post-meta mb-4">
+          <li><i class="fa fa-calendar"></i>{{ .PublishDate.Format "2/6/2006" }}</li>
+          <li><i class="fa fa-pencil-square-o"></i><a
+              href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.author }}</a></li>
+          <li><i class="fa fa-th-list"></i>{{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+              href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a>
+            {{end}}</li>
+        </ul>
+
+        <div class="content">{{ .Content }}</div>
+
+        <!-- comments -->
+        {{ if site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,18 @@
+.error{
+    .block{
+    	margin-top: 60px;
+    	margin-bottom: 60px;
+    	img{
+    		margin-bottom: 45px;
+    	}
+		h3{
+			font-weight: 400;
+			color: $primary-color;
+			span{
+				font-style: italic;
+				color: $black;
+			}
+			margin-bottom: 40px;
+		}
+	}
+}

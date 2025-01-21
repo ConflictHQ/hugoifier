@@ -1,0 +1,77 @@
+{{ $postLink := .Permalink }}
+<article class="card post-card">
+  <div class="row no-gutters align-items-center">
+    <div class="col-lg-6">
+      <div class="pr-0 pr-lg-5">
+        {{with .Params.images}}
+        {{if gt (len .) 1}}
+        <div class="swiper post-slider slider-sm rounded mb-4 mb-lg-0">
+          <div class="swiper-wrapper">
+            {{ range .}}
+            <div class="swiper-slide">
+              <a href="{{$postLink}}">
+                {{ partial "image.html" (dict "Src" . "Class" "w-100 h-auto" "Alt" "post-thumb") }}
+              </a>
+            </div>
+            {{ end }}
+          </div>
+          <div class="swiper-navigation">
+            <button class="swiper-button-prev" aria-disabled="false"></button>
+            <button class="swiper-button-next" aria-disabled="false"></button>
+          </div>
+        </div>
+        {{else}}
+        <div class="post-slider slider-sm rounded mb-4 mb-lg-0">
+          {{ range .}}
+          <a href="{{$postLink}}">
+            {{ partial "image.html" (dict "Src" . "Class" "w-100 h-auto" "Alt" "post-thumb") }}
+          </a>
+          {{ end }}
+        </div>
+        {{end}}
+        {{end}}
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card-body pt-lg-0">
+        <ul class="card-meta list-inline mb-2">
+          <li class="list-inline-item mb-2">
+            {{ $author:= .Params.Author | urlize | lower}}
+            {{ with site.GetPage $author }}
+            <a href="{{.Permalink}}" class="card-meta-author">
+              {{ if .Params.image }}
+              {{ partial "image.html" (dict "Src" .Params.image "Command" "Fill" "Size" "52x52" "Alt" .Title) }}
+              {{else if .Params.Email}}
+              <a href="{{.Permalink}}" class="card-meta-author">
+                {{ $emailHash := md5 .Params.Email }}
+                {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }}
+                {{ partial "image.html" (dict "Src" $gravatorUrl "Alt" .Title) }}
+              </a>
+              {{ end }}
+              <span>{{ .Title }}</span>
+            </a>
+            {{ end }}
+          </li>
+          <li class="list-inline-item mb-2">
+            <span>{{.PublishDate.Format "02 Jan, 2006"}}</span>
+          </li>
+          <li class="list-inline-item mb-2">
+            <ul class="card-meta-tag list-inline">
+              {{range .Params.tags}}
+              <li class="list-inline-item"><a href="{{site.BaseURL}}tags/{{.| urlize}}">{{.}}</a></li>
+              {{end}}
+            </ul>
+          </li>
+        </ul>
+        <h3 class="h4 mb-3">
+          <a class="post-title" href="{{$postLink}}">{{.Title}}</a>
+        </h3>
+        <p>{{ .Plain | truncate 100 }}</p>
+
+        <a href="{{.Permalink}}" aria-label="Read Article">{{ i18n "read_article" }} <i
+            class="fas fa-angle-right"></i></a>
+      </div>
+    </div>
+  </div>
+</article>

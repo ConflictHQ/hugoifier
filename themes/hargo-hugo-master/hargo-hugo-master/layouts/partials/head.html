@@ -1,0 +1,34 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{{ .Title }}</title>
+
+  {{ "<!-- Mobile Responsive Meta -->" | safeHTML }}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+  {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  {{ hugo.Generator }}
+  
+  <!-- theme meta -->
+  <meta name="theme-name" content="hargo-hugo" />
+
+  {{ "<!-- Plugins -->" | safeHTML }}
+  {{ range site.Params.plugins.css }}
+  <link rel="stylesheet" href="{{ .link | absURL }}">
+  {{ end }}
+
+  {{ with site.Params.snipcartApiKey }}
+  {{ "<!-- Snipcart -->" | safeHTML }}
+  <link rel="preconnect" href="https://app.snipcart.com/">
+  <link rel="preconnect" href="https://cdn.snipcart.com/">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.css">
+  <script async src="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.js"></script>
+  {{ end }}
+
+  {{ "<!-- Main Stylesheet -->" | safeHTML }}
+  {{ $styles := resources.Get "scss/style.scss" | toCSS | minify }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
+
+  {{ "<!-- Favicon -->" | safeHTML }}
+  <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
+  <link rel="icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
+</head>

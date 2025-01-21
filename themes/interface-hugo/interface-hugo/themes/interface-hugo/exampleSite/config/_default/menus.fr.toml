@@ -1,0 +1,106 @@
+############# French navigation ##############
+
+# main menu
+[[main]]
+name = "Maison"
+url = ""      # don't use a slash for home url
+weight = 1
+
+[[main]]
+name = "À propos de"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Pricing"
+url = "pricing/"
+weight = 3
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 4
+
+[[main]]
+name = "Carrière"
+url = "career/"
+weight = 4
+
+[[main]]
+weight = 10
+name = "Pages"
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "Changelog"
+url = "changelog/"
+weight = 3
+
+[[main]]
+parent = "Pages"
+name = "Blog Célibataire"
+url = "blog/post-1/"
+weight = 5
+
+[[main]]
+parent = "Pages"
+name = "Author Single"
+url = "author/soophie-moore/"
+weight = 6
+
+[[main]]
+parent = "Pages"
+name = "Célibataire carrière"
+url = "career/people-program-management-leader/"
+weight = 7
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 15
+
+[[footer]]
+name = "À propos de"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Pricing"
+url = "pricing/"
+weight = 10
+
+[[footer]]
+name = "Blog"
+url = "blog/"
+weight = 20
+
+[[footer]]
+name = "Carrière"
+url = "career/"
+weight = 30
+
+[[footer]]
+name = "Contact"
+url = "contact/"
+weight = 40
+
+[[footer_bottom]]
+name = "Politique de confidentialité"
+url = "#"
+weight = 1
+
+[[footer_bottom]]
+name = "Conditions d'utilisation"
+url = "#"
+weight = 10
+
+[[footer_bottom]]
+name = "Legal"
+url = "#"
+weight = 30
+
+[[footer_bottom]]
+name = "Site Map"
+url = "#"
+weight = 40

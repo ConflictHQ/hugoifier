@@ -1,0 +1,289 @@
+{{ define "main" }}
+
+{{"<!-- banner -->"| safeHTML}}
+{{ with .Params.banner }}
+{{ if .enable }}
+<section class="hero-area" {{ partial `bg-image.html` (dict `Src` .bg_image) | safeHTMLAttr }}>
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-6 ps-lg-0 text-lg-left">
+        <h1 class="text-white position-relative" data-aos="fade-up" data-aos-delay="100">{{ .title }}<span class="watermark">{{ .watermark }}</span></h1>
+        <p class="text-white pt-2 pb-3" data-aos="fade-up" data-aos-delay="200">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absURL  }}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="400">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-lg-5 ps-lg-0 pt-5 pt-lg-0 text-lg-right text-center">
+        <div data-aos="zoom-in" data-aos-delay="500">
+          {{ partial "image.html" (dict "Src" .image "Alt" "illustration") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- /banner -->"| safeHTML}}
+
+{{"<!-- partner -->"| safeHTML}}
+{{ with .Params.partner }}
+{{ if .enable }}
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-inline d-flex justify-content-between border-bottom py-3 py-lg-5 align-items-center">
+          {{ range .partner_logo }}
+          <li class="list-inline-item">
+            {{ partial "image.html" (dict "Src" . "Alt" "" "Class" `p-2` `Alt` `partner`) }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- /partner -->"| safeHTML}}
+
+{{"<!-- feature -->"| safeHTML}}
+{{ with .Params.feature }}
+{{ if .enable }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">{{ .title }}</h2>
+      </div>
+      {{ range $index, $element:= .feature_item }}
+      {{ $delay := mul $index 200 }}
+      <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+        <div class="hover-bg-primary text-center position-relative px-4 py-5 rounded-lg shadow">
+          {{ partial "image.html" (dict "Src" .image "Alt" "feature image" "Class" "mb-3" ) }} 
+          <div class="mb-4 mt-4">{{ .content | markdownify }}</div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- feature -->"| safeHTML}}
+
+{{"<!-- about -->"| safeHTML}}
+{{ with .Params.about }}
+{{ if .enable }}
+{{ range $i,$p := .about_item }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row align-items-center">
+      {{ if not (modBool $i 2)}}
+      <div class="col-lg-6 col-md-5 text-center text-md-left mb-4 mb-md-0">
+        <div data-aos="fade-right">
+          {{ partial "image.html" (dict "Src" .image "Alt" "about image" ) }}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7  text-md-left">
+        <p class="subtitle" data-aos="fade-left">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">{{ .title }}</h2>
+        <p class="mb-4" data-aos="fade-left" data-aos-delay="150">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-outline-primary" data-aos="fade-left" data-aos-delay="500">{{ .label }} <span class="screen-reader-text">details</span></a>
+        {{ end }}
+        {{ end }}
+      </div>
+      {{ else }}
+      <div class="col-lg-6 col-md-7 text-md-left order-md-1 order-2">
+        <p class="subtitle" data-aos="fade-right">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-right" data-aos-delay="100">{{ .title }}</h2>
+        <p class="mb-4" data-aos="fade-right" data-aos-delay="150">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-outline-primary" data-aos="fade-right" data-aos-delay="200">{{
+          .label }} <span class="screen-reader-text">details</span></a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-lg-6 col-md-5 text-center text-md-left order-1 order-md-2 mb-4 mb-md-0">
+        <div data-aos="fade-left">
+          {{ partial "image.html" (dict "Src" .image "Alt" "about-image" ) }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ end }}
+{{"<!-- about -->"| safeHTML}}
+
+{{"<!-- video -->"| safeHTML}}
+{{ with .Params.promo_video }}
+{{ if .enable }}
+<section class="section-lg pb-0 promo-video bg-cover" {{ partial `bg-image.html` (dict `Src` `images/background/check-video.png` ) | safeHTMLAttr }}>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 pe-lg-5 mb-md-0 mb-5">
+        <div class="position-relative rounded-lg overlay-gradient video-container" {{ partial `bg-image.html` (dict `Src` .video_thumbnail ) | safeHTMLAttr }} data-aos="zoom-in">
+          <div class="pulse-container">
+            <div class="pulse-box">
+              <button class="play-icon icon-center" video-url="{{.video_link}}" data-bs-toggle="modal" data-bs-target="#videoModal" aria-label="open video modal">
+                <i class="fa fa-play text-secondary fs-5"></i>
+                <svg class="pulse-svg icon-center" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <circle class="circle first-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                  <circle class="circle second-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                  <circle class="circle third-circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                  <circle class="circle" fill="#fff" cx="25" cy="25" r="25"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 px-4">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">{{ .title }}</h2>
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="400">{{ .content | markdownify }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- video -->"| safeHTML}}
+
+<div class="modal fade" tabindex="-1" id="videoModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <button class="modal-close" data-bs-dismiss="modal" aria-label="close modal"><i class="fa fa-times"></i></button>
+      <div class="ratio ratio-16x9">
+        <iframe frameborder="0" src="" title="video" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{"<!-- testimonial -->"| safeHTML}}
+{{ with .Params.testimonial }}
+{{ if .enable }}
+<section class="section bg-shape-triangles" {{ partial `bg-image.html` (dict `Src` .bg_image "Resize" false) |
+  safeHTMLAttr }}>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="subtitle" data-aos="fade-up">{{ .subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">{{ .title }}</h2>
+      </div>
+    </div>
+    <div class="testimonial-slider swiper" data-aos="fade-up" data-aos-delay="200">
+      <div class="swiper-wrapper">
+        {{ range .testimonial_item }}
+        <div class="swiper-slide">
+          <div class="card px-4 py-5 border-0 rounded-lg shadow text-center card-border-bottom mb-5 mt-3">
+            <i class="fa fa-quote-right icon-quote mb-4 mx-auto"></i>
+            <p class="mb-4">{{ .content | markdownify }}</p>
+            <h3 class="h4">{{ .name }}</h3>
+            <span class="h6">{{ .designation }}</span>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- testimonial -->"| safeHTML}}
+
+{{"<!-- download part start -->"| safeHTML}}
+{{ with .Params.download }}
+{{ if .enable }}
+<section class="bg-triangles bg-gradient-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 text-lg-left">
+        <div class="section">
+          <h2 class="section-title text-white" data-aos="fade-up">{{ .title }}</h2>
+          <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="200">{{ .content | markdownify }}</p>
+          <ul class="list-inline">
+            <li class="list-inline-item mb-3 mb-lg-0">
+              {{ with .playstore }}
+              <a class="btn btn-white" href="{{ .link | safeURL }}" data-aos="zoom-in" data-aos-delay="400">
+                {{ partial "image.html" (dict "Src" "images/icon/google-play.png" "Alt" "about-image" "Class" `me-2` )
+                }}
+                {{ .label }}
+              </a>
+              {{ end }}
+            </li>
+            <li class="list-inline-item">
+              {{ with .appstore }}
+              <a class="btn btn-outline-white" href="{{ .link | safeURL }}" data-aos="zoom-in" data-aos-delay="500"><i
+                  class="fab fa-apple fa-2x me-2" style="vertical-align: -5px;"></i>{{ .label }}</a>
+              {{ end }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6 align-self-end">
+        <div data-aos="fade-left" data-aos-delay="600">
+          {{ partial "image.html" (dict "Src" .image "Alt" "mobile" "Class" `w-100`) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{"<!-- download -->"| safeHTML}}
+
+{{"<!-- pricing -->"| safeHTML}}
+{{ with .Params.pricing }}
+{{ if .enable }}
+<section class="section section-lg-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        {{ with site.GetPage (string .section) }}
+        <p class="subtitle" data-aos="fade-up">{{ .Params.pricing.subtitle }}</p>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">{{ .Params.pricing.title }}</h2>
+        {{ end }}
+      </div>
+
+      {{$show_items:= .show_items}}
+      {{ with site.GetPage (string .section) }}
+
+      {{ range $index, $element:= first ($show_items | default 3) .Params.pricing.pricing_table }}
+      {{ $delay := mul $index 200}}
+      <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" data-aos="fade-up" data-aos-delay="{{$delay}}">
+        <div class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+          <span
+            class="badge badge-pill badge-light fw-medium mb-3 py-1 rounded-4 px-4 mb-4 d-inline-block text-primary">{{
+            .title }}</span>
+          <div class="h1 text-dark">{{ .price }}<span class="paragraph text-lowercase"> / {{ .unit }}</span></div>
+          <h3 class="h5 mb-4 fw-normal text-color">{{ .description }}</h3>
+          <hr>
+          <ul class="list-unstyled my-4">
+            {{ range .services }}
+            <li class="my-3">{{ . }}</li>
+            {{ end }}
+          </ul>
+          <a href="{{ .link | safeURL }}" class="btn btn-outline-primary">Select Plan</a>
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{"<!-- pricing -->"| safeHTML}}
+{{ end }}
+{{ end }}

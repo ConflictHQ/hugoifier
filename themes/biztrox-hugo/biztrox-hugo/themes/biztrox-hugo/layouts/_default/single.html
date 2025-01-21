@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+{{ "<!-- blog single -->" | safeHTML }}
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 py-100">
+        <div class="border rounded bg-white">
+          {{ partial "image.html" (dict "Src" .Params.image "Alt" "blog-image" "Class" `w-100 rounded-top`) }}
+          <div class="p-4">
+            <h3>{{ .Title | markdownify }}</h3>
+            <ul class="list-inline d-block pb-4 border-bottom mb-3">
+              <li class="list-inline-item text-color">{{ i18n "posted_by" }} <a class="text-primary" href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}">{{ .Params.Author | title }}</a></li>
+              <li class="list-inline-item text-color">On {{ .PublishDate.Format "02 Jan" }}</li>
+              <li class="list-inline-item text-color">Category:
+                {{ range .Params.Categories }}
+                <a class="text-primary" href="{{ `categories/` | relLangURL }}{{ . | urlize }}"> {{ . | humanize }}</a>
+                {{ end }}
+              </li>
+            </ul>
+            <div class="post-content">
+              {{ .Content }}
+            </div>
+          </div>
+        </div>
+        <div class="py-4 border-bottom mb-100">
+          <div class="row">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+              {{ "<!-- share-icon -->" | safeHTML }}
+              <div class="d-flex">
+                <span class="fw-light mt-2 me-3">{{ i18n "share" }}:</span>
+                <ul class="list-inline d-inline-block">
+                  {{ $url := printf "%s" .Permalink | absLangURL }}
+                  <li class="list-inline-item">
+                    <a class="share-icon bg-facebook" href="https://facebook.com/sharer/sharer.php?u={{ $url }}"><i class="ti-facebook"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="share-icon bg-twitter" href="https://twitter.com/intent/tweet/?text={{ .Title }}&amp;url={{ $url }}"><i class="ti-twitter-alt"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="share-icon bg-reddit" href="https://reddit.com/submit/?url={{ $url }}&amp;resubmit=true&amp;title={{ .Title }}"><i class="ti-reddit"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="share-icon bg-primary" href="mailto:?subject={{ .Title }}&amp;body={{ $url }}"><i class="ti-email"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {{ "<!-- tags -->" | safeHTML }}
+            <div class="col-lg-7">
+              <div class="d-flex">
+                <span class="fw-light mt-2 me-3">Tags:</span>
+                <ul class="list-inline tag-list">
+                  {{ range .Params.Tags }}
+                  <li class="list-inline-item">
+                    <a href="{{ `categories/` | relLangURL }}{{ . | lower }}">{{ . | humanize }}</a>
+                  </li>
+                  {{ end }}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- comments -->
+        {{ if site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+      {{ partial "components/sidebar.html" . }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /blog-single -->" | safeHTML }}
+
+{{ end }}

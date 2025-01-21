@@ -1,0 +1,80 @@
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light px-0">
+      <a class="navbar-brand order-1 py-0" href="{{ site.BaseURL | relLangURL }}">
+        {{ $logo:= site.Params.logo }}
+        {{ if fileExists (add `assets/` $logo) }}
+        {{ $logo:= resources.Get $logo }}
+        {{ $option := add (string site.Params.logo_width) " webp" }}
+        {{ $logo:= $logo.Resize site.Params.logo_width }}
+        {{ $logo_webp:= $logo.Resize $option }}
+        <img loading="prelaod" decoding="async" class="img-fluid" width="{{$logo.Width}}" height="{{$logo.Height}}" src="{{$logo_webp.RelPermalink}}" alt="{{ site.Title }}" onerror="this.onerror=null;this.src='{{$logo.RelPermalink}}'">
+        {{ else }}
+        {{site.Params.logo_text | markdownify}}
+        {{ end }}
+      </a>
+      <div class="navbar-actions order-3">
+        <!-- Language List -->
+        {{ if .IsTranslated }}
+        <select class="mx-3 border-0 bg-transparent" id="select-language" onchange="location = this.value;">
+          {{ $siteLanguages := site.Languages}}
+          {{ $pageLang := .Page.Lang}}
+          {{ range .Page.AllTranslations }}
+          {{ $translation := .}}
+          {{ range $siteLanguages }}
+          {{ if eq $translation.Lang .Lang }}
+          {{ $selected := false }}
+          {{ if eq $pageLang .Lang}}
+          <option id="{{ $translation.Language }}" value="{{ $translation.RelPermalink }}" selected>{{ .LanguageName }}
+          </option>
+          {{ else }}
+          <option id="{{ $translation.Language }}" value="{{ $translation.RelPermalink }}">{{ .LanguageName }}</option>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </select>
+        {{ end }}
+
+        <button aria-label="navbar toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      {{ if site.Params.search }}
+      <!-- search -->
+      <form action="{{ `search`| relLangURL }}" class="search order-lg-3 order-md-2 order-3 ml-auto">
+        <input id="search-query" name="s" type="search" placeholder="Search...">
+      </form>
+      {{ end }}
+      
+      <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
+        <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
+          {{ range site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }}
+            </a>
+            <div class="dropdown-menu">
+              {{ range .Children }}
+              <a class="dropdown-item" {{if findRE `^http` .URL}}target="_blank"{{end}}
+              href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{ .URL }}{{else}}{{.URL | relLangURL}}{{end}}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" {{if findRE `^http` .URL}}target="_blank"{{end}}
+              href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{ .URL }}{{else}}{{.URL | relLangURL}}{{end}}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->

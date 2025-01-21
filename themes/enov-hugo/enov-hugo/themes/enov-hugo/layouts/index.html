@@ -1,0 +1,222 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- Slider Start -->
+{{ if $data.homepage.banner.enable }}
+{{ with $data.homepage.banner }}
+<section class="slider">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-12">
+        <div class="text-center">
+          <span class="d-block mb-3 text-uppercase">{{ .subtitle | markdownify }}</span>
+          <h1 class="animated fadeInUp mb-5 text-white">{{ .title | markdownify }}</h1>
+          {{ if .button_solid.enable }}
+          {{ with .button_solid }}
+          <a href="{{ .link | absLangURL }}" class="btn btn-main animated fadeInUp mr-1 mb-2 mb-lg-0">{{ .label }}<i class="btn-icon ti-angle-right ml-2"></i></a>
+          {{ end }}
+          {{ end }}
+
+          {{ if .button_border.enable }}
+          {{ with .button_border }}
+          <a href="{{ .link | absLangURL }}" class="btn btn-solid-border animated fadeInUp">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if $data.homepage.banner_cta.enable }}
+{{ with $data.homepage.banner_cta }}
+<section class="mt--6 position-relative slider-cta">
+  <div class="container">
+    <div class="row align-items-center bg-primary p-4 p-sm-5 rounded">
+      <div class="col-lg-8">
+        <h3 class="mb-2 text-white">{{ .title | markdownify }}</h3>
+        <p class="text-white-50">{{ .content | markdownify }}</p>
+      </div>
+      {{ if .button.enable }}
+      {{ with .button }}
+      <div class="col-lg-4 text-right">
+        <a href="{{ .link | absLangURL }}" class="btn btn-white">{{ .label }}</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Slider End -->
+
+<!-- Section feature Start -->
+{{ if $data.homepage.feature.enable }}
+{{ partial "feature.html" . }}
+{{ end }}
+<!-- Section feature END -->
+
+<!-- Section About Start -->
+{{ if $data.homepage.about.enable }}
+{{ with $data.homepage.about }}
+<section class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="about-img mb-5 mb-lg-0" data-aos="fade-right" data-aos-delay="200">
+          <img src="{{ .image | absURL }}" alt="" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-item pl-3 mt-4 mt-lg-0">
+          <h2 class="mb-4 font-secondary">{{ .title | markdownify }}</h2>
+          <p class="mb-5">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absLangURL }}" class="btn btn-main">{{ .label }}</a>
+          {{end}}
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Section About End -->
+
+<!-- section Counter Start -->
+{{ if $data.homepage.funfacts.enable }}
+{{ with $data.homepage.funfacts }}
+<section class="section counter">
+  <div class="container">
+    <div class="row">
+      {{ range $index, $element := .funfact_item }}
+      {{ $delay := mul $index 100 }}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="counter-item text-center mb-5 mb-lg-0 " data-aos="fade-up" data-aos-delay="{{ $delay }}">
+          <h3 class="mb-0"><span class="counter-stat" data-count="{{ .count }}">0</span> {{ .unit }}</h3>
+          <p class="text-muted">{{ .title }}</p>
+        </div>
+      </div>
+      {{end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- section Counter End  -->
+
+<!--  Section Services Start -->
+{{ if $data.homepage.service.enable }}
+<section class="section service bg-gray">
+  <div class="container">
+    {{ with $data.homepage.service }}
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <div class="section-title">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row justify-content-center">
+      {{ range $index, $element:=  first 6 $data.service.services }}
+      {{ $delay := mul $index 100 }}
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card mb-4 p-5 text-center" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+          <i class="{{ .icon }} text-color text-lg"></i>
+          <h4 class="mb-3 mt-4">{{ .title | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!--  Section Services End -->
+
+<!-- Section Pricing Start -->
+{{ if $data.homepage.pricing.enable }}
+{{ partial "pricing.html" . }}
+{{ end }}
+<!-- Section Pricing End -->
+
+<!--  Section Team Start -->
+{{ if $data.homepage.team.enable }}
+{{ partial "team.html" . }}
+{{ end }}
+<!--  Section Team End -->
+
+<!-- Section Cta Start -->
+{{ if $data.homepage.promo_video.enable }}
+{{ with $data.homepage.promo_video }}
+<section class="section cta-section position-relative">
+  <div class="bg-2 w-50 bg-absolute d-none d-sm-block d-md-block d-lg-block" style="background-image: url('{{ .video_thumbnail | absURL }}');"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 offset-lg-5">
+        <div class="cta-item p-5 position-relative ml-4">
+          <a  href="{{ .video_link | safeURL }}" class="videoplay mr-3 text-white popup-youtube"><i class="ti-control-play"></i></a>
+          <div class="cta-content-block">
+            <h2 class="mt-2 mb-4 font-secondary">{{ .title | markdownify }}</h2>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!--  Section Cta End-->
+
+<!-- Section Blog Start -->
+{{ if $data.homepage.blog.enable }}
+<section class="section bg-gray blog-latest">
+  <div class="container">
+    {{ with $data.homepage.blog }}
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <div class="section-title">
+          <h2 class="content-title mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row">
+      {{ range $index, $element:= first 3 ( where .Site.RegularPages "Type" "post" )}}
+      {{ $delay:= mul $index 100 }}
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <div class="shadow-sm-2 blog-item bg-white rounded" data-aos="fade-up" data-aos-delay="{{ $delay }}"
+          data-aos-duration="500">
+          <img src="{{ .Params.Image | absURL }}" class="img-fluid rounded-top" alt="{{ .Title | markdownify }}">
+          <div class="p-4">
+            <div class="d-flex w-100 justify-content-between">
+              <span><i class="ti-user mr-1"></i><a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}">{{ .Params.Author | title }}</a></span>
+              <span class="text-uppercase text-sm letter-spacing"><i class="ti-time mr-1"></i>
+                {{ .PublishDate.Format "January 02, 2006" }}</span>
+            </div>
+            <h3 class="mb-2 mt-2"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+            <p class="mb-4">{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="btn btn-main">{{ i18n "read_more" }}</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- Section Blog End -->
+
+{{ end }}

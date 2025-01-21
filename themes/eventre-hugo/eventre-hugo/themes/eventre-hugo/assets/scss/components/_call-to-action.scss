@@ -1,0 +1,48 @@
+.cta-ticket{
+	position: relative;
+	.content-block{
+		padding: 100px 0;
+		h2{
+			color: $light;
+			text-transform: uppercase;
+			font-weight: 400;
+			margin-bottom: 15px;
+		}
+		p{
+			color: darken($light, 10%);
+			margin-bottom: 45px;
+		}
+	}
+	.image-block{
+		position: absolute;
+		right: 5%;
+		bottom: 0;
+		@include tablet {
+			display: none;
+		}
+	}
+}
+
+.cta-subscribe{
+	position: relative;
+	.content{
+		padding: 70px 0;
+		h3,p{
+			color: $light;
+		}
+		h3{
+			font-weight: 500;
+		}
+		p{
+			font-size: 0.9375rem;
+		}
+	}
+	.subscribe-button{
+		button{
+			cursor: pointer;	
+		}
+		@include tablet {
+			margin-bottom: 30px;
+		}
+	}
+}

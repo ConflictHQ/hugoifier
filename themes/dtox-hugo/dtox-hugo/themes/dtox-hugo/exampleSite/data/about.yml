@@ -1,0 +1,76 @@
+# about us
+about:
+  title : "About Us"
+  content : "Readdle redefines personal productivity and shapes the \"future of work\" by crea
+            outstanding apps and services. Popular Readdle apps such as Scanner Pro, PDF
+            Expert, Spark and Documents, were downloaded over 90 million times worldwide.
+            <br>
+            <br>
+            Readdle apps shaped mobile software categories, such as document scanning
+            (Scanner Pro), email (Spark), document management (Documents), PDF editing
+            (PDF Expert) and calendaring (Calendars 5). We've also won numerous awards,
+            got to the top positions on the App Store charts and, most importantly, are loved
+            by millions of people."
+  videoThumb: "images/about/video-thumb.jpg"
+  videoURL : "https://www.youtube.com/embed/2yoYxetUrWQ"
+
+# products
+products:
+  enable: true
+  title : "Our Product"
+  description : "Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia."
+  bgImage : "images/backgrounds/about-bg.svg"
+  productList :
+    # product item
+    - productImage : "images/product/product-1.jpg"
+      URL : "#"
+      
+    # product item
+    - productImage : "images/product/product-2.jpg"
+      URL : "#"
+      
+    # product item
+    - productImage : "images/product/product-3.jpg"
+      URL : "#"
+      
+  # more product button
+  button:
+    enable : true
+    btnText : "Explore More Product"
+    URL : "#"
+
+# vision
+vision:
+  enable : true
+  title : "Our Vision"
+  image : "images/about/vision.png"
+  content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+
+# our clients
+clients :
+  enable : true
+  title : "Our Clients"
+  clientList :
+    - logo : "images/clients-logo/client-1.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-2.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-3.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-4.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-5.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-6.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-7.png"
+      URL : "#"
+      
+    - logo : "images/clients-logo/client-8.png"
+      URL : "#"

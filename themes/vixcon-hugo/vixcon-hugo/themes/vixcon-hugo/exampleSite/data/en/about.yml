@@ -1,0 +1,46 @@
+################## about #################################
+about:
+  enable : true
+  image : "images/bg/ctg.jpg"
+  title : "Inovation & **Inspiration** Connect People"
+  content : "The Event Company is an event design and production company that specializes in corporate and social events as well as non-profit fundraisers. We consider ourselves experts when it comes to event fundraising and public/media relations and offer consultation services to our clients to help make their event a sensational success."
+################## sponsor ###############################
+sponsor:
+  enable : true
+  # sponsor data comes from "homepage.yml" file
+
+
+################## Feature ##############################
+feature:
+  enable : true
+  subtitle : "10% Sale offer for early birds"
+  title : "Meet top **digital masters** & influencers in a unique **3-days** experience."
+  button:
+    enable : true
+    label : "Get ticket"
+    link : "pricing"
+  
+  feature_item:
+    # feature item loop
+    - title : "Global Audience"
+      icon : "tf-ion-android-globe" # check `static/plugins/themefisher-font/demo.html` for more icon
+      bg_color : "#17a2b8"
+      content : "Starting a mentoring program might be the closest you'll ever get."
+      
+    # feature item loop
+    - title : "Valuable Insight"
+      icon : "tf-ion-android-microphone" # check `static/plugins/themefisher-font/demo.html` for more icon
+      bg_color : "" # if color is empty, it will get the default dark color
+      content : "Starting a mentoring program might be the closest you'll ever get."
+      
+    # feature item loop
+    - title : "Global Audience"
+      icon : "tf-ion-android-globe" # check `static/plugins/themefisher-font/demo.html` for more icon
+      bg_color : "#ff4747"
+      content : "Starting a mentoring program might be the closest you'll ever get."
+      
+    # feature item loop
+    - title : "Global Audience"
+      icon : "tf-ion-android-microphone" # check `static/plugins/themefisher-font/demo.html` for more icon
+      bg_color : "#4125dd"
+      content : "Starting a mentoring program might be the closest you'll ever get."

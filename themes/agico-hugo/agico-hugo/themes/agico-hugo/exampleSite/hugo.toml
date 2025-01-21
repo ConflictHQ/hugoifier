@@ -1,0 +1,71 @@
+# DON'T REMOVE THIS FILE.
+# This file is for render site varibles and plugins
+#
+# The actual configuration files are stored in the `config/_default/` folder.
+
+
+######################### site variables ##############################
+# site variables
+[params.variables]
+color_primary = "#007ac7"
+color_secondary = "#00e0d8"
+bg_secondary = "#15192b"
+text_dark = "#242f3e"
+text_color = "#8b8e93"
+text_light = "#d4dae3"
+text_color_light = "#959595"
+border_color = "#dee2e6"
+border_light = "#2d3041"
+bg_gradient_primary = "linear-gradient(134deg, #00a4db 0%, #00269e 100%)"
+bg_gradient_secondary = "linear-gradient( 80deg, rgb(0,48,204) 0%, rgb(0,164,219) 100%)"
+btn_gradient_primary = "linear-gradient(45deg, rgb(0, 168, 244) 0%, rgb(2, 209, 161) 100%)" 
+black = "#000"
+white = "#fff"
+gray = "#8b8e93"
+
+# font variables
+# base font size for full website, 
+font_size = "16px" # default is 16px
+
+# Font Scale Sizes
+# "minorSecond": 1.067,
+# "majorSecond": 1.125,
+# "minorThird": 1.2,
+# "majorThird": 1.25,
+# "perfectFourth": 1.333,
+# "augmentedFourth": 1.414,
+# "perfectFifth": 1.5,
+# "goldenRatio": 1.618
+font_scale = "1.205" # default is "majorThird": 1.25
+
+# Give your font name from google font. add font weight using ":wght@" and separate by ";"
+# example: "Work Sans:wght@400;500;600"
+font_primary = "Poppins:wght@300;400;500;600;700"
+font_primary_type = "sans-serif" # [serif/sans-serif]
+font_secondary = "Open Sans:wght@300;400;600;700;800"
+font_secondary_type = "sans-serif" # [serif/sans-serif]
+font_icon = "Font Awesome 6 Free"
+
+
+############################# Plugins ##############################
+# CSS Plugins
+[[params.plugins.css]] 
+link = "plugins/aos/aos.css"
+[[params.plugins.css]] 
+link = "plugins/swiper/swiper.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/solid.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/icons.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/brands.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/cookie.js"
+[[params.plugins.js]]
+link = "plugins/aos/aos.js"
+[[params.plugins.js]]
+link = "plugins/swiper/swiper.min.js"
+[[params.plugins.js]]
+link = "plugins/webfont/webfont-loader-2.js"

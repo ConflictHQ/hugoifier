@@ -1,0 +1,50 @@
+####################### banner ########################
+banner:
+  enable : true
+  title : "I provide"
+  animated_text:
+    - "Design solutions."
+    - "Creative Ideas."
+    - "Professional Content."
+  content : "I must explain to you how all this mistaken idea of denouncing pleasure and praising pain <br>was born and I will give you a complete account of the system"
+
+###################### Portfolio ######################
+portfolio:
+  enable : true
+
+###################### Service ########################
+service:
+  enable : true
+  title : "Core Services."
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, totam ipsa quia hic
+          odit a sit laboriosam voluptatem in, blanditiis."
+  service_item:
+    # service item loop
+    - name : "Web Development"
+      icon : "ti-layout" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."
+
+    # service item loop
+    - name : "Digital Marketing"
+      icon : "ti-announcement" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."
+
+    # service item loop
+    - name : "Graphics Design"
+      icon : "ti-layers" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."
+
+    # service item loop
+    - name : "Branding Design"
+      icon : "ti-anchor" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."
+
+    # service item loop
+    - name : "Video Marketing"
+      icon : "ti-video-camera" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."
+
+    # service item loop
+    - name : "App Design"
+      icon : "ti-android" #themify icon pack : https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum."

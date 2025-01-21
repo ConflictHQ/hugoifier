@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-welcome relative">
+      <!-- .close -->
+      <a href="{{ site.BaseURL }}" class="page-close"><i class="tf-ion-close"></i></a>
+      <!-- /.close -->
+      <div class="author-image-large">
+        <img src="{{ .Params.Image | absURL }}" alt="author">
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-7">
+            <div class="page-title">
+              <h2>{{ with .Title }}{{ index (split . " ") 0 | safeHTML }}
+                <span class="primary">{{ index (split . " ") 1 | safeHTML }}</span>{{ end }}
+                <span class="title-bg">{{ .Params.Watermark }}</span>
+              </h2>
+              {{ .Content }}
+            </div>
+          </div>
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+      {{ partial "page-nav.html" . }}
+    </div><!-- /.pt-tablecell -->
+  </div><!-- /.pt-table -->
+</main><!-- /.site-wrapper -->
+
+{{ end }}

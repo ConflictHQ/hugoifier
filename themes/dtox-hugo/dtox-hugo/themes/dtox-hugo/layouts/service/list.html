@@ -1,0 +1,145 @@
+{{ define "main" }}
+
+  {{ if .Site.Data.service.service.enable }}
+  <!-- service -->
+  <section class="section-lg service-bg-image position-relative" style="background-image: url('{{ .Site.Data.service.service.bgImage | absURL }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          {{ with .Site.Data.service.service }}
+          <h2 class="section-title">{{ .title }}</h2>
+          <p class="mb-100">{{ .description | safeHTML }}</p>
+            {{ end }}
+        </div>
+        {{ range $i,$p := .Site.Data.service.service.serviceItem }}
+        {{if not (modBool $i 2)}}
+        <!-- service item -->
+        <div class="col-sm-6 mb-4 translate-y-150">
+          <div class="rounded bg-white p-4 shadow-primary">
+            <i class="{{ .icon }} round-icon {{ .iconColor }} mb-4"></i>
+            <h4>{{ .title }}</h4>
+            <p>{{ .content | safeHTML }}</p>
+          </div>
+        </div>
+        {{ else }}
+        <!-- service item -->
+        <div class="col-sm-6 mb-4">
+          <div class="rounded bg-white p-4 shadow-primary">
+            <i class="{{ .icon }} round-icon {{ .iconColor }} mb-4"></i>
+            <h4>{{ .title }}</h4>
+            <p>{{ .content | safeHTML }}</p>
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+    <!-- background shapes -->
+    <svg class="service-bg-1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="112px" height="112px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="112px" height="112px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="17" />
+        <feGaussianBlur result="blurOut" stdDeviation="5.657" />
+        <feFlood flood-color="rgb(140, 84, 255)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(156, 0, 255)"
+    d="M78.783,62.989 L30.711,50.108 L65.902,14.917 L78.783,62.989 Z"/>
+    </g>
+    </svg>
+    <svg class="service-bg-3"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="134px" height="135px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+    d="M84.011,50.756 L43.994,63.004 L53.463,21.998 L84.011,50.756 Z"/>
+    </g>
+    </svg>
+    <svg class="service-bg-4"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="109px" height="109px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="0px" y="0px" width="109px" height="109px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(20, 247, 227)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="PSgrad_0" x1="98.163%" x2="0%" y1="0%" y2="19.081%">
+      <stop offset="0%" stop-color="rgb(123,185,255)" stop-opacity="1" />
+      <stop offset="100%" stop-color="rgb(6,255,223)" stop-opacity="1" />
+    </linearGradient>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  fill="rgb(246, 255, 163)"
+    d="M53.000,19.000 C59.627,19.000 65.000,24.373 65.000,31.000 C65.000,37.627 59.627,43.000 53.000,43.000 C46.373,43.000 41.000,37.627 41.000,31.000 C41.000,24.373 46.373,19.000 53.000,19.000 Z"/>
+    </g>
+    <path fill="url(#PSgrad_0)"
+    d="M53.000,19.000 C59.627,19.000 65.000,24.373 65.000,31.000 C65.000,37.627 59.627,43.000 53.000,43.000 C46.373,43.000 41.000,37.627 41.000,31.000 C41.000,24.373 46.373,19.000 53.000,19.000 Z"/>
+    </svg>
+    <svg class="service-bg-5"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="134px" height="135px">
+    <defs>
+    <filter filterUnits="userSpaceOnUse" id="Filter_0" x="-3px" y="-3px" width="137px" height="138px"  >
+        <feOffset in="SourceAlpha" dx="0" dy="23" />
+        <feGaussianBlur result="blurOut" stdDeviation="6.557" />
+        <feFlood flood-color="rgb(252, 77, 156)" result="floodOut" />
+        <feComposite operator="atop" in="floodOut" in2="blurOut" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    </defs>
+    <g filter="url(#Filter_0)">
+    <path fill-rule="evenodd"  stroke="rgb(252, 77, 156)" stroke-width="6px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+    d="M84.011,50.756 L43.994,63.004 L53.464,21.998 L84.011,50.756 Z"/>
+    </g>
+    </svg>
+    <!-- <img class="service-bg-1 up-down-animation" src="{{`images/background-shape/feature-bg-2.png` | relURL }}" alt=""> -->
+    <img class="service-bg-2 left-right-animation" src="{{ `images/background-shape/seo-half-cycle.png` | relURL }}" alt="">
+    <!-- <img class="service-bg-3 up-down-animation" src="{{`images/background-shape/team-bg-triangle.png` | relURL }}" alt="">
+    <img class="service-bg-4 left-right-animation" src="{{ `images/background-shape/green-dot.png` | relURL }}" alt="">
+    <img class="service-bg-5 up-down-animation" src="{{`images/background-shape/team-bg-triangle.png` | relURL }}" alt=""> -->
+  </section>
+  <!-- /service -->
+  {{ end }}
+
+{{ end }}

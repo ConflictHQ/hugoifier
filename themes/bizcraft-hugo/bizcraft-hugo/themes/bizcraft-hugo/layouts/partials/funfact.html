@@ -1,0 +1,19 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+{{ with $data.homepage.funfact }}
+<section class="ts_counter p-0">
+  <div class="container-fluid">
+    <div class="row facts-wrapper wow fadeInLeft text-center">
+      {{ range .funfact_item }}
+      <div class="facts one col-md-3 col-sm-6">
+        <span class="facts-icon"><i class="fa {{.icon}}"></i></span>
+        <div class="facts-num">
+          <span class="counter">{{ .count }}</span>
+        </div>
+        <h3>{{ .name | markdownify }}</h3>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <!--/ Container end -->
+</section>
+{{ end }}

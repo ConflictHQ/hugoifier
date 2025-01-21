@@ -1,0 +1,17 @@
+{{ with site.Params.preloader }}
+{{ if .enable }}
+
+<!-- preloader start -->
+<div class="preloader position-fixed d-flex align-items-center justify-content-center">
+  <div class="block">
+    <div class="loader-image mb-20">
+      {{ partial "image.html" (dict "Src" .preloader "Alt" "preloader" ) }}
+    </div>
+    <div class="loader-text text-uppercase">
+      <span class="mb-1">{{ .greetings | markdownify }}</span>
+      <span>{{ .greetings_to | markdownify }}</span>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ end }}

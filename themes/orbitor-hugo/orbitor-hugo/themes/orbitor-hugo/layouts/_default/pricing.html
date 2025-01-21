@@ -1,0 +1,50 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- pricing -->
+{{ if .Params.pricing.enable }}
+{{ with .Params.pricing }}
+<section class="section pricing">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="heading text-center mb-50">
+          <h2 class="mb-3">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range .pricing_table }}
+      <div class="col-lg-4">
+        <div class="pricing-block card text-center">
+          <div class="price-header">
+            <span class="text-uppercase letter-spacing h5">{{ .name }}</span>
+            <h2>{{ .price }}</h2>
+            <h6 class="text-muted">{{ .price_per }}</h6>
+          </div>
+          <div class="price-body">
+            <ul class="list-unstyled mb-0">
+              {{ range .services }}
+              <li>{{ . | markdownify }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="price-footer">
+            {{ with .button }}
+            <a href="{{ .link | safeURL }}" class="btn btn-main">{{ .label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- pricing -->
+
+{{ end }}

@@ -1,0 +1,132 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- History Section Start -->
+{{ if .Site.Data.about.history.enable }}
+{{ with .Site.Data.about.history }}
+<section class="history section">
+  <div class="shape-big">
+    <img src="{{`images/shape-big.png` | absURL}}" class="img-fluid" alt="big-shape">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 align-self-center">
+        <!-- History Content -->
+        <div class="history-content">
+          <!-- section title -->
+          <div class="section-title">
+            <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+            <h2><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h2>
+          </div>
+          <div class="content">
+            {{ .content | markdownify}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 ml-auto">
+        <!-- History Image -->
+        <div class="history-image">
+          <img src="{{ .image | absURL}}" class="w-100" alt="history">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- History Section End -->
+
+<!-- Team Section Start -->
+{{ if .Site.Data.about.team.enable }}
+{{ with .Site.Data.about.team }}
+<section class="team section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <div class="section-title">
+          <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+          <h1><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range .team_member }}
+      <div class="col-lg-4 col-md-6">
+        <!-- Team Member -->
+        <div class="team-member">
+          <!-- Member Image -->
+          <div class="team-member-image" style="background-image: url('{{ .image_bg | absURL}}');">
+            <img src="{{ .image | absURL}}" alt="team-member-image">
+          </div>
+          <!-- Member Content -->
+          <div class="team-member-content text-center">
+            <h6 class="sm">{{ .name | markdownify}}</h6>
+            <span>{{ .designation | markdownify }}</span>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Team Section End -->
+
+<!-- Philosophy Section Start -->
+{{ if .Site.Data.about.philosophy.enable }}
+{{ with .Site.Data.about.philosophy }}
+<section class="philosophy section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="philosophy-image mb-5 mb-lg-0">
+          <img src="{{ .image | absURL}}" alt="philosophy" class="w-100">
+        </div>
+      </div>
+      <div class="col-lg-5 align-self-center ml-auto">
+        <div class="philosophy-content">
+          <!-- section title -->
+          <div class="section-title">
+            <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+            <h2><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify}}</h2>
+          </div>
+          <div class="content">{{ .content | markdownify }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- Philosophy Section End -->
+
+{{ if .Site.Data.about.clients.enable }}
+{{ with .Site.Data.about.clients }}
+<section class="client section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <div class="section-title">
+          <h6 class="sm"><span data-aos="text-reveal" data-aos-once="true">{{ .subtitle | markdownify }}</span></h6>
+          <h1><span data-aos="text-reveal" data-aos-once="true">{{ .title | markdownify }}</span></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range .clients_logo }}
+      <div class="col-lg-3 col-md-4 col-6">
+        <!-- Client Logo -->
+        <div class="client-logo">
+          <img src="{{ . | absURL}}" class="w-100" alt="client-logo">
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}

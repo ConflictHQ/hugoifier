@@ -1,0 +1,57 @@
+/*  typography */
+body {
+  line-height: 1.7;
+  @media(min-width:1440px){
+    font-size: 1.125rem;
+  }
+  font-size: $font-size;
+  font-family: $font-secondary;
+  -webkit-font-smoothing: antialiased;
+  color: $text-color;
+}
+
+p, .paragraph {
+  font-weight: 400;
+  color: $text-color;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: $black;
+  font-family: $font-primary;
+  font-weight: 900;
+}
+
+.text-xl {
+  font-size: 3.625rem;
+  @include desktop {
+    font-size: 3rem;
+  }
+  @include tablet {
+    font-size: 2.3rem;
+  }
+}
+
+// List in descending order to prevent extra sort function
+$type-levels: 6, 5, 4, 3, 2, 1;
+
+// Create map with h[x] as key
+$level-size: $font-size;
+@each $level in $type-levels {
+  $level-size: $level-size * $font-scale;
+  // Output heading styles
+  h#{$level},
+  .h#{$level} {
+    font-size: $level-size;
+    line-height: calc(10px + 2ex + 2px);
+    @include desktop {
+      font-size: calc( #{$level-size} * .85);
+    }
+    @include tablet {
+      font-size: calc( #{$level-size} * .75);
+    }
+  }
+}

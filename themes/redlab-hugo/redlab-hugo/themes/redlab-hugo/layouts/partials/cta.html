@@ -1,0 +1,21 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- cta -->
+{{ with $data.homepage.cta }}
+<section class="bg-primary py-4">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-8 text-center text-md-left">
+        <h3 class="text-white">{{ .title | markdownify }}</h3>
+      </div>
+      {{ if .button.enable }}
+      <div class="col-md-4 text-md-right text-center">
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-secondary">{{ .label }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

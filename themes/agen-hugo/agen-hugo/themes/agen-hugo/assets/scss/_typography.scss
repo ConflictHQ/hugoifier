@@ -1,0 +1,85 @@
+/*  typography */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Poppins:300,400,500,600,700&display=swap');
+
+body {
+  line-height: 1.2;
+  font-family: $primary-font;
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  color: $text-color;
+}
+
+p {
+  font-weight: 400;
+  color: $text-color;
+  font-size: 15px;
+  line-height: 1.7;
+  font-family: $primary-font;
+}
+
+.lead{
+  font-size: 18px;
+}
+
+.display-1{
+  font-size: 100px;
+  @include mobile {
+    font-size: 50px;
+  }
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: $text-color-dark;
+  font-family: $secondary-font;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1, .h1{
+  font-size: 60px;
+  @include mobile {
+    font-size: 40px;
+  }
+}
+
+h2, .h2{
+  font-size: 44px;
+  @include mobile {
+    font-size: 30px;
+  }
+}
+
+h3, .h3{
+  font-size: 36px;
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+h4, .h4{
+  font-size: 24px;
+}
+
+h5, .h5{
+  font-size: 18px;
+}
+
+h6, .h6{
+  font-size: 14px;
+}
+
+.icon-lg{
+  font-size: 50px;
+}
+
+.icon{
+  font-size: 40px;
+}
+
+.icon-sm{
+  font-size: 30px;
+}
+
+.icon-xs{
+  font-size: 20px;
+}

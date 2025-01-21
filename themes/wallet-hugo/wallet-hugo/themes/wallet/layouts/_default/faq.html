@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          {{ with .Params.faq }}
+          <p class="text-primary text-uppercase fw-bold mb-3">{{ .subtitle | markdownify }}</p>
+          <h1>{{ .title | markdownify}}</h1>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion accordion-border-bottom" id="accordionFAQ">
+          {{ range $i, $e := .Params.faq_item }}
+          <div class="accordion-item">
+            <h2 class="accordion-header accordion-button h5 border-0 {{if eq $i 0 }}active{{end}}" id="heading-{{ sha1 .title | urlize }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ sha1 .title | urlize }}" aria-expanded="{{if eq $i 0 }}true{{else}}false{{end}}" aria-controls="collapse-{{ sha1 .title | urlize }}">{{ .title | markdownify }}
+            </h2>
+            <div id="collapse-{{ sha1 .title | urlize }}" class="accordion-collapse collapse border-0 {{if eq $i 0 }}show{{end}}" aria-labelledby="heading-{{ sha1 .title | urlize }}" data-bs-parent="#accordionFAQ">
+              <div class="accordion-body py-0 content">
+                {{ .content | markdownify }}
+              </div>
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

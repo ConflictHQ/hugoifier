@@ -1,0 +1,12 @@
+{{ "<!-- Page Title -->" | safeHTML }}
+<section class="section page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 m-auto">
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Params.Description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- End of Page Title -->" | safeHTML }}

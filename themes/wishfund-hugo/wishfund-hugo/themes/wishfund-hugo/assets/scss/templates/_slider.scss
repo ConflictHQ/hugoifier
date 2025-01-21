@@ -1,0 +1,61 @@
+.slider{
+  background: url("../images/bg/banner.jpg") no-repeat;
+  background-size: cover;
+  background-position: 10% 0%;
+  padding:100px 0 ;
+  position: relative;
+  @extend .overly;
+  .block{
+    h1{
+      font-size:80px;
+      line-height: 80px;
+      color: $light;
+
+    }
+    p{
+      color:#b9b9b9;
+    }
+   
+  }
+}
+
+
+@include mobile-xs{
+    .slider .block h1 {
+      font-size: 41px;
+      line-height: 57px;
+  }
+}
+
+@include mobile-xs{
+  .slider .block h1 {
+      font-size: 28px;
+      line-height: 40px;
+  }
+
+  .slider{
+    padding: 126px 0 151px 0;
+  }
+
+}
+
+@include mobile{
+.slider .block h1 {
+      font-size: 38px;
+      line-height: 50px;
+  }
+
+  .slider{
+    padding: 126px 0 151px 0;
+  }
+
+}
+
+@include tablet{
+  .slider .block h1 {
+      font-size: 56px;
+      line-height: 70px;
+  }
+}
+
+

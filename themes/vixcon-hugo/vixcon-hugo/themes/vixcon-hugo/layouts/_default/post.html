@@ -1,0 +1,11 @@
+<article class="blog-article box-shadow mb-4">
+  <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid">
+  <div class="content py-5 px-4">
+    <span class="d-block"><i class="tf-ion-android-person mr-3"></i>By <a
+        href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}">{{ .Params.Author | title }}</a></span>
+    <h4 class="my-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h4>
+    <p class="mb-4">{{ .Summary }}</p>
+    <a href="{{ .Permalink }}" class="read-more text-color h6">{{ i18n "read_more" }} <i
+        class="tf-ion-android-arrow-forward ml-3"></i></a>
+  </div>
+</article>

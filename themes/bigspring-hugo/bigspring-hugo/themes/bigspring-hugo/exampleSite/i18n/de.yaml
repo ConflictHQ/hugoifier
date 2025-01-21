@@ -1,0 +1,92 @@
+- id: read_more
+  translation: Weiterlesen
+  
+- id: read_case_study
+  translation: Lesen Sie die vollständige Fallstudie
+  
+- id: view_product
+  translation: Produkt anzeigen
+
+- id: send
+  translation: Nachricht senden
+
+- id: category
+  translation: Kategorie
+
+- id: tags
+  translation: Stichworte
+
+- id: by
+  translation: von
+
+- id: min_read
+  translation: minute Lesen
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: Lass uns treffen
+
+- id: prev_case
+  translation: Vorheriger Fall
+
+- id: next_case
+  translation: Nächster Fall
+
+- id: apply_for_position
+  translation: Bewerben Sie sich auf Position
+
+- id: view_all_positions
+  translation: Alle Positionen anzeigen
+
+- id: apply_now
+  translation: Jetzt bewerben
+
+- id: share_this_job
+  translation: "Teilen Sie diesen Job:"
+
+- id: other_jobs
+  translation: Andere Beschäftigungen
+
+- id: all_jobs
+  translation: Alle Jobs
+  
+- id: fname
+  translation: Vorname
+  
+- id: full_name
+  translation: Vollständiger Name
+  
+- id: lname
+  translation: Nachname
+  
+- id: email
+  translation: E-Mail-Addresse
+  
+- id: website
+  translation: Webseite
+  
+- id: organization_size
+  translation: Organisationsgröße (Mitarbeiter)*
+  
+- id: region
+  translation: Region*
+  
+- id: message
+  translation: Nachricht
+  
+- id: submit_now
+  translation: Jetzt Absenden
+  
+- id: get_demo
+  translation: Demo herunterladen
+  
+- id: cv_note
+  translation: nur doc, pdf-Datei erlaubt & Dateigröße wird weniger als 2 MB betragen
+  
+- id: upload_cv
+  translation: Lebenslauf hochladen
+  
+- id: search_faq
+  translation: Klicken und suchen FAQ..

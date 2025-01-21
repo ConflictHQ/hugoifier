@@ -1,0 +1,63 @@
+// button style
+.btn {
+  font-size: 14px;
+  padding: 15px 24px;
+  color: $white;
+  border-radius: 0;
+  transition: .2s ease-out;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 0;
+
+  &:active,
+  &:focus {
+    border: 0;
+    box-shadow: none !important;
+  }
+
+  &.btn-lg {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
+
+  &:hover {
+    box-shadow: 0px 10px 25px rgba($black, 0.1);
+  }
+
+  &.btn-primary {
+    background-color: $primary-color !important;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+      background-color: $dark !important;
+    }
+  }
+
+  &.btn-outline-primary {
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    background-color: transparent !important;
+
+    &::after {
+      background-color: $primary-color !important;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+      background-color: $primary-color !important;
+    }
+  }
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+a.text-underline:hover {
+  color: $primary-color;
+  text-decoration: underline;
+}

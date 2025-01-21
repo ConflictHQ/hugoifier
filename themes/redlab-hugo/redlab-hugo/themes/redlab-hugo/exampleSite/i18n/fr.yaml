@@ -1,0 +1,74 @@
+- id: apply_now
+  translation: Apply Now
+
+- id: job_details
+  translation: Job Details
+
+- id: location
+  translation: Location
+
+- id: job_category
+  translation: Job Category
+
+- id: job_type
+  translation: Job Type
+
+- id: posted_date
+  translation: Posted Date
+
+- id: featured_jobs
+  translation: Featured Jobs
+
+- id: categories
+  translation: Categories
+
+- id: latest_article
+  translation: Latest Article
+
+- id: tags
+  translation: Tags
+
+- id: read_more
+  translation: Read more
+
+- id: posted_by
+  translation: Posted By
+
+- id: keep_in_touch
+  translation: Keep in Touch
+
+- id: address
+  translation: Address
+
+- id: email
+  translation: Email
+
+- id: mobile
+  translation: Mobile
+
+- id: client_slider_title
+  translation: We work with
+
+- id: about_us
+  translation: About RedLab
+
+- id: our_company
+  translation: Our Company
+
+- id: contact_us
+  translation: Contact Us
+
+- id: connect_with_us
+  translation: Connect With Us
+
+- id: search_placeholder
+  translation: Type & Hit Enter...
+
+- id: our_works
+  translation: Our Works
+
+- id: know_more
+  translation: Know More
+
+- id: create_project
+  translation: Want To Create Project Like This?

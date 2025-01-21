@@ -1,0 +1,116 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- contact form start -->
+<section class="contact-form-wrap section">
+  <div class="container">
+    <div class="row">
+      {{ with .Params.contact }}
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <span class="text-color">{{ .subtitle }}</span>
+        <h3 class="text-md mb-5">{{ .title }}</h3>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <form id="contact-form" class="contact__form" method="post" action="{{.form_action}}">
+              <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option selected disabled>I Need help in ...</option>
+                  {{ range .contact_topics }}
+                  <option value="{{ . | urlize}}">{{ . }}</option>
+                  {{ end }}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input name="subject" id="subject" type="text" class="form-control" placeholder="Your Subject">
+              </div>
+
+              <div class="form-group">
+                <input name="name" id="name" type="text" class="form-control" placeholder="Your Name">
+              </div>
+
+              <div class="form-group">
+                <input name="email" id="email" type="email" class="form-control" placeholder="Email Address">
+              </div>
+
+              <div class="form-group-2 mb-4">
+                <textarea name="message" id="message" class="form-control" rows="4"
+                  placeholder="Your Message"></textarea>
+              </div>
+              <button class="btn btn-main" name="submit" type="submit">Send Message</button>
+            </form>
+          </div>
+          {{ end }}
+
+          <div class="col-lg-4">
+            <div class="short-info mt-5 mt-lg-0">
+              <ul class="list-unstyled">
+                <li>
+                  <h5>Call Us</h5>
+                  {{ site.Params.mobile }}
+                </li>
+                <li>
+                  <h5>Email Us</h5>
+                  {{ site.Params.email }}
+                </li>
+                <li>
+                  <h5>Location Map</h5>
+                  {{ site.Params.location }}
+                </li>
+              </ul>
+
+              <ul class="social-icons list-inline mt-5">
+                {{ range site.Params.social }}
+                <li class="list-inline-item">
+                  <a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
+                </li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ if .Params.map.enable }}
+    {{ with .Params.map }}
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="google-map mt-90 mb-5">
+          <div id="map"
+          data-latitude="{{ .map_latitude }}"
+          data-longitude="{{ .map_longitude }}"
+          data-marker="{{ .map_marker | absURL }}"></div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+
+    {{ if .Params.branch.enable }}
+    {{ with .Params.branch }}
+    <div class="row">
+      {{ range .branch_office }}
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-info">
+          <h4 class="mb-4">{{ .title | markdownify }}</h4>
+          <ul class="address-block list-unstyled">
+            {{ range .info }}
+            <li><i class="{{ .icon }} mr-3"></i>{{ .label }}</li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+{{ "<!-- Google Map API -->" | safeHTML }}
+<script src="{{ .Params.map.gmap_api | absURL }}"></script>
+
+{{ end }}

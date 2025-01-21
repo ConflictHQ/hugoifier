@@ -1,0 +1,64 @@
+#################### default parameters ################################
+favicon = "images/favicon.png"
+logo_text = "Boilerplate"
+logo = "images/logo.svg"
+logo_width = "101px"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# contact info
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "info@email.com"
+footer_info = "This is the start of dummy description text. You can change it whenever you want. ea voluptatem adipisci sapiente?"
+# form action
+contact_form_action = "#" # contact form works with https://formspree.io or formspree alternative
+newsletter_form_action = "#" # contact form works with https://formspree.io or formspree alternative
+# custom script on header
+custom_script= ""
+
+# page header background
+page_header= "images/page-header.webp"
+
+# Preloader
+[preloader]
+enable = true
+
+# Navigation button
+[navigation_button]
+enable = true
+label = "Try For Free"
+link = "contact/"
+
+# cookies
+[cookies]
+enable = false
+expire_days = 2
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"
+
+############################# social site ########################
+[[social]]
+title = "facebook"
+icon = "fab fa-facebook" # fontawesome icon : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "twitter"
+icon = "fab fa-twitter" # fontawesome icon : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "instagram"
+icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "github"
+icon = "fab fa-github" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "linkedin"
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"

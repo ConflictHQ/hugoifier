@@ -1,0 +1,170 @@
+{{ define "main" }}
+
+{{ $layout := .Params.layout }}
+{{ if eq $layout "classic" }}
+
+<!-- banner -->
+<section class="banner bg-cover" {{ partial `bg-image.html` (dict `Src` .Params.banner.bg_image ) | safeHTMLAttr }}>
+  {{ if .Params.banner.image }}
+  {{ partial "image.html" (dict "Src" .Params.banner.image "Alt" .Title "Class" "illustration") }}
+  {{ end }}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mb-5 mb-lg-0">
+        <h1>{{ .Params.banner.title | markdownify }}</h1>
+      </div>
+      {{ if .Params.banner.image }}
+      <div class="col-lg-5 illustration-mobile">
+        {{ partial "image.html" (dict "Src" .Params.banner.image "Alt" .Title) }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /banner -->
+
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="bg-white shadow block">
+          {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
+          {{ .Render "article" }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+<!-- cta -->
+{{ if site.Params.cta.enable }}
+<section class="section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="shadow bg-white p-5">
+          <div class="row">
+            <div class="col-md-4 text-center text-md-start mb-4 mb-lg-0">
+              {{ partial "image.html" (dict "Src" site.Params.cta.image "Alt" "cta image" "Class" "me-4") }}
+            </div>
+            <div class="col-md-8 text-center text-md-start">
+              <h3 class="mt-0">{{ site.Params.cta.title | markdownify }}</h3>
+              <p>{{ site.Params.cta.description | markdownify }}</p>
+              {{ if site.Params.cta.button.enable }}
+              <a href="{{ site.Params.cta.button.link | absLangURL }}" class="btn btn-primary">{{
+                site.Params.cta.button.label }}</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /cta -->
+
+{{ else if eq $layout "creative" }}
+
+<!-- banner -->
+<section class="banner-creative" {{ partial `bg-image.html` (dict `Src` .Params.banner.bg_image ) | safeHTMLAttr }}>
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-8 mb-4 mb-lg-0 order-1 order-lg-0">
+        <h1 class="title">{{ .Params.banner.title | markdownify }}</h1>
+      </div>
+      {{ with .Params.banner.image }}
+      <div class="col-lg-3 col-md-4 col-sm-6 order-0 order-lg-1 mb-5 mb-lg-0">
+        {{ partial "image.html" (dict "Src" . "Alt" (site.Title) "Class" "banner-image") }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /banner -->
+
+<!-- featured-post-slider -->
+<div class="featured-post-slider">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="swiper slider-block">
+          <div class="swiper-wrapper">
+            {{ range where site.RegularPages ".Params.featured" "=" true }}
+            <div class="swiper-slide">
+              <article class="card-overlapped post-item col mb-5">
+                <div class="badge">Featured</div>
+                {{ if .Params.image }}
+                {{ partial "image.html" (dict "Src" .Params.image "Alt" .Title "Class" "w-100") }}
+                {{ end }}
+                <div class="card-block">
+                  <h2 class="h4 mb-4 fw-normal"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify
+                      }}</a></h2>
+                  <div class="mb-3 post-meta">
+                    <a href="{{ `author/` | absLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author |
+                      title
+                      }}</a> <span class="mx-1">|</span>
+                    {{ .PublishDate.Format "Jan 2, 2006" }} <span class="mx-1">|</span> {{ range .Params.Categories }}
+                    <a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}/">{{ . | title }}</a>
+                    {{ end }}
+                  </div>
+                </div>
+              </article>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /featured-post-slider -->
+
+<!-- Popular Categories -->
+<div class="popular-categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title mb-4 mb-md-3">
+          <h2 class="h4">{{ i18n "popular_categories" }}</h2>
+        </div>
+      </div>
+      <div class="col-12">
+        <ul class="list-unstyled category-list list-inline align-items-center">
+          {{ range site.Taxonomies.categories.ByCount }}
+          <li class="category-item list-inline-item text-center shadow">
+            <a class="d-block" href="{{ .Page.Permalink }}" data-text="{{ substr .Page.Title 0 1 }}">{{ .Page.Title }}
+              <sup>({{ .Count }})</sup></a>
+          </li>
+          {{ end }}
+          <li class="category-item list-inline-item text-center shadow">
+            <a class="d-block" href="{{ `categories/` | absLangURL }}">All Categories <span
+                class="fas fa-chevron-right"></span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Popular Categories -->
+
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
+        {{ .Render "article-w-image" }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+{{ end }}
+
+{{ end }}

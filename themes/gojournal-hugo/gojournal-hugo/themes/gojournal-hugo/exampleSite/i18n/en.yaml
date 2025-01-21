@@ -1,0 +1,41 @@
+- id: read_more
+  translation: Read More
+  
+- id: trending
+  translation: Trending Posts
+
+- id: team
+  translation: Meet Our Members
+
+- id: send
+  translation: Send
+
+- id: first_name
+  translation: Your First Name
+
+- id: last_name
+  translation: Your Last Name
+
+- id: email 
+  translation: Your Email Address
+
+- id: message
+  translation: Your Message Here
+
+- id: subscribe
+  translation: Subscribe now
+
+- id: recent_post
+  translation: Recent Posts
+
+- id: categories
+  translation: Categories
+
+- id: instafeed
+  translation: Instagram Posts
+
+- id: follow
+  translation: Subscribe & Follow
+
+- id: search_placeholder
+  translation: type & hit enter...

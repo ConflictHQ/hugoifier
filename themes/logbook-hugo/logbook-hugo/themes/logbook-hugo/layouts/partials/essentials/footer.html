@@ -1,0 +1,59 @@
+<footer class="section-sm pb-0 border-top border-default">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-3 mb-4">
+        <a class="mb-4 d-block" href="{{ site.BaseURL | relLangURL }}">
+          {{ partial "logo.html" }}
+        </a>
+        <p>{{ site.Params.footer_content }}</p>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 mb-4">
+        <h6 class="mb-4 fw-semibold">{{i18n "quick_links"}}</h6>
+        <ul class="list-unstyled footer-list">
+          {{ range site.Menus.footer }}
+          <li><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 mb-4">
+        <h6 class="mb-4 fw-semibold">{{i18n "social"}}</h6>
+        <ul class="list-unstyled footer-list">
+          {{ range site.Params.social }}
+          <li><a class="text-capitalize" target="_blank" href="{{ .link | safeURL }}">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ if site.Params.subscription.enable }}
+      <div class="col-md-3 mb-4">
+        <h6 class="mb-4 fw-semibold">{{i18n "subscribe_newsletter"}}</h6>
+        {{ with site.Params.subscription }}
+        <form class="subscription" action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form"
+          target="_blank">
+          <div class="position-relative">
+            <i class="fas fa-envelope email-icon"></i>
+            <input type="email" class="form-control" placeholder="{{ i18n `email`}}">
+          </div>
+          <button class="btn btn-primary btn-block w-100 rounded" type="submit" name="subscribe">{{ i18n
+            "subscribe"}}</button>
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+          </div>
+        </form>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+    <div class="scroll-top">
+      <button id="scrollTop" aria-label="scroll to top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <div class="text-center">
+      <p class="content">
+        {{ site.Params.copyright | markdownify }}
+        {{ if site.Params.theme_copyright }}
+        | Theme by
+        <a target="_blank" rel="noopener noreferrer" href="https://gethugothemes.com/">GetHugoThemes</a>
+        {{ end }}
+      </p>
+    </div>
+  </div>
+</footer>

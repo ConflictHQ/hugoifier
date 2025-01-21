@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+{{ with .Params.image }}
+<section><img src="{{ . | absURL }}" alt="author" class="img-fluid w-100"></section>
+{{ end }}
+
+<section class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="content">{{.Content}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{{ with .Params.skill }}
+<section class="section-sm bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ range . }}
+      <div class="col-md-3 mb-4">
+        <div class="skill-item">
+          <i class="fa {{.icon}}"></i>
+          <h5>{{ .name | markdownify }}</h5>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ with .Params.facts }}
+<section class="section-sm pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-8 mx-auto text-center">
+        <h2 class="section-title">{{ i18n "some_facts" }}</h2>
+        <div class="facts">
+          <ul>
+            {{ range . }}
+            <li>{{ . | markdownify }}</li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ partial "instafeed.html" . }}
+
+{{ end }}

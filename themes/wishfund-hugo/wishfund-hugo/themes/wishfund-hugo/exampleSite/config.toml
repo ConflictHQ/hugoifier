@@ -1,0 +1,190 @@
+######################## default configuration ####################
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "WishFund hugo | Nonprofit Charity Funderising Theme"
+theme = "wishfund-hugo"
+summaryLength = "10"
+paginate = 6
+
+[outputs]
+  home = ["HTML", "AMP", "RSS", "JSON"]
+
+######################### Plugins #################################
+[params.plugins]
+
+  # CSS Plugins
+  [[params.plugins.css]]
+  URL = "plugins/bootstrap/css/bootstrap.min.css"
+  [[params.plugins.css]]
+  URL = "plugins/themify/css/themify-icons.css"
+  [[params.plugins.css]]
+  URL = "plugins/magnific-popup/dist/magnific-popup.css"
+  [[params.plugins.css]]
+  URL = "plugins/slick-carousel/slick/slick.css"
+
+  # JS Plugins
+  [[params.plugins.js]]
+  URL = "plugins/jquery/jquery.js"
+  [[params.plugins.js]]
+  URL = "plugins/bootstrap/js/bootstrap.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/magnific-popup/dist/jquery.magnific-popup.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/slick-carousel/slick/slick.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/reading-time/readingTime.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/search/fuse.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/search/mark.js"
+  [[params.plugins.js]]
+  URL = "plugins/search/search.js"
+  [[params.plugins.js]]
+  URL = "plugins/google-map/map.js"
+  
+############################## navigation ###############################
+[menu]
+    
+  [[menu.main]]
+  name = "About"
+  URL = "about"
+  weight = 2
+  
+  [[menu.main]]
+  name = "Blog"
+  URL = "blog"
+  weight = 3
+  
+  [[menu.main]]
+  name = "Causes"
+  URL = "causes"
+  weight = 4
+
+  [[menu.main]]
+  weight = 5
+  name = "Get Involved"
+  hasChildren = true
+
+    [[menu.main]]
+    parent = "Get Involved"
+    name = "Donation"
+    URL = "donation"
+
+    [[menu.main]]
+    parent = "Get Involved"
+    name = "Volunteer"
+    URL = "volunteer"
+  
+  [[menu.main]]
+  name = "Event"
+  URL = "event"
+  weight = 6
+    
+  [[menu.main]]
+  name = "Contact"
+  URL = "contact"
+  weight = 7
+
+  ################# footer menu ##################
+
+  [[menu.footer]]
+  name = "service"
+  URL = "service"
+  weight = 1
+
+  [[menu.footer]]
+  name = "about"
+  URL = "about"
+  weight = 2
+  
+  [[menu.footer]]
+  name = "blog"
+  URL = "blog"
+  weight = 3
+  
+  [[menu.footer]]
+  name = "pricing"
+  URL = "pricing"
+  weight = 4
+
+
+[params]
+logo = "images/logo.png"
+home = "Home"
+# Contact Information
+phone = "012548722120"
+email = "example@email.com"
+location = "Flat 20, Reynolds Neck, North Helenaville, FV77"
+copyright = "&copy; 2019 a theme by [themefisher](https://themefisher.com/)"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# google map
+gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+mapLatitude = "51.5223477"
+mapLongitude = "-0.1622023"
+mapMarker = "images/marker.png"
+# Google Analitycs
+googleAnalitycsID = "Your ID"
+
+  # Preloader
+  [params.preloader]
+  enable = true
+
+  # Navigation top header
+  [params.topHeader]
+  enable = true
+
+  # Navigation button
+  [params.navBtn]
+  enable = true
+  label = "Get a quote"
+  link = "donation"
+
+  # Subscription
+  [params.subscription]
+  title = "Subscribe Us"
+  content = "Subscribe to get latest news article and resources"
+  
+
+  #################### social icon ######################################
+  [[params.social]]
+  name = "Facebook"
+  icon = "ti-facebook" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+  
+  [[params.social]]
+  name = "Twitter"
+  icon = "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+  
+  [[params.social]]
+  name = "Vimeo"
+  icon = "ti-vimeo-alt" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+  
+  [[params.social]]
+  name = "Github"
+  icon = "ti-github" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+  
+############################# post share links ######################
+[[params.postShare]]
+icon = "ti-facebook" # themify icon pack https://themify.me/themify-icons
+name = "facebook"
+link = "#"
+
+[[params.postShare]]
+icon = "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+name = "twitter"
+link = "#"
+
+[[params.postShare]]
+icon = "ti-linkedin" # themify icon pack https://themify.me/themify-icons
+name = "linkedin"
+link = "#"
+
+[[params.postShare]]
+icon = "ti-pinterest" # themify icon pack https://themify.me/themify-icons
+name = "pinterest"
+link = "#"

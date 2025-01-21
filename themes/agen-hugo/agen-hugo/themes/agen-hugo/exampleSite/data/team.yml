@@ -1,0 +1,9 @@
+############################## call to action ############################
+cta:
+  enable: true
+  # cta content comes from 'hompage.yml'
+
+#################### clients logo ###############################
+clientsLogo:
+  enable : true
+  # clints logo comes from 'project.yml'

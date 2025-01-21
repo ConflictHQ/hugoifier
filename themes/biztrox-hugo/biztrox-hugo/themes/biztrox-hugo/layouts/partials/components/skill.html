@@ -1,0 +1,46 @@
+{{ with .Params.skill }}
+{{ "<!-- skill -->" | safeHTML }}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<span class="section-title-sm h5">{{ .subtitle | markdownify }}</span>
+				<h2 class="section-title section-title-border-half">{{ .title | markdownify }}</h2>
+			</div>
+			<div class="col-lg-7">
+				<p class="text-dark mb-40">{{ .content | markdownify }}</p>
+				{{ "<!-- fun-fact -->" | safeHTML }}
+				<div class="mb-md-50">
+					<div class="row">
+						{{ range .funfacts }}
+						<div class="col-4">
+							<div class="d-flex flex-column flex-sm-row align-items-center">
+								<i class="round-icon me-sm-3 {{ .icon }}"></i>
+								<div class="text-center text-sm-start">
+									<span class="counter mb-0 h2" data-counter-time="1400">{{ .count }}</span>
+									<p class="mb-0">{{ .title }}</p>
+								</div>
+							</div>
+						</div>
+						{{ end }}
+					</div>
+				</div>
+			</div>
+			{{ "<!-- progressbar -->" | safeHTML }}
+			<div class="col-lg-4 offset-lg-1">
+				{{ range .progressbar }}
+				<div class="progressbar">
+					<h5 class="progressbar-title">{{ .title }}</h5>
+					<div class="progress" data-percent="{{ .progress }}">
+						<div class="progress-bar progress-bar-striped" style="width: {{ .progress }}">
+							<div class="progress-bar-value">{{ .progress }}</div>
+						</div>
+					</div>
+				</div>
+				{{ end }}
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /skill -->" | safeHTML }}
+{{ end }}

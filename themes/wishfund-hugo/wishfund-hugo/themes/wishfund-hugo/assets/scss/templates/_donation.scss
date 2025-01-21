@@ -1,0 +1,73 @@
+
+.donation-wrap{
+	background: #eaeaea;
+	padding: 25px   35px;
+}
+
+.donation{
+	.donation-form{
+
+		.col-form-label{
+			font-weight: 700;
+		}
+		.form-check{
+			margin-bottom: 15px;
+		}
+
+		.form-control{
+			height:50px;
+			border:1px solid transparent;
+
+			&:focus{
+				border-color:$primary-color
+			}
+		}
+
+		.form-group{
+			margin-bottom: 25px;
+		}
+	}
+
+
+	.offline-donation{
+		ul{
+			li{
+				margin: 15px 0px;
+			}
+
+			address,span{
+				font-weight: 700;
+			}
+		}
+	}
+}
+
+
+// volunteer-form
+
+
+.volunteer-form{
+	.form-control{
+			height:50px;
+			border:1px solid rgba(0,0,0,0.06);
+
+			&:focus{
+				border-color:$primary-color;
+			}
+		}
+}
+
+
+
+// Events
+.event-item{
+	border:1px solid rgba(0,0,0,0.06);
+	ul{
+		padding-bottom: 40px;
+	}
+
+	.list-group-flush .list-group-item{
+		border:0px;
+		padding: 10px 20px;
+	}
+}

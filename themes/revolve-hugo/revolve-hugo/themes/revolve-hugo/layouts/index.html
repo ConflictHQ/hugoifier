@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<section class="slider mt-4">
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-lg-12 col-sm-12 col-md-12 slider-wrap">
+        {{ range (where .Site.RegularPages "Type" "featured")}}
+        <div class="slider-item">
+          <div class="slider-item-content">
+            <div class="post-thumb mb-4">
+              <a href="{{ .Permalink }}">
+                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid">
+              </a>
+            </div>
+            <div class="slider-post-content">
+              {{ range .Params.Categories }}
+              <span
+                class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">{{ . | title | humanize }}</span>
+              {{ end }}
+              <h3 class="post-title mt-1"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+              <span class="text-muted  text-capitalize">{{ .PublishDate.Format "January 02, 2006" }}</span>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
+          {{ range $paginator.Pages }}
+          <div class="col-lg-3 col-md-6">
+            <article class="post-grid mb-5">
+              <a class="post-thumb mb-4 d-block" href="{{ .Permalink }}">
+                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid w-100">
+              </a>
+              {{ range .Params.Categories }}
+              <span
+                class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">{{ . | title | humanize }}</span>
+              {{ end }}
+              <h3 class="post-title mt-1"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+              <span
+                class="text-muted letter-spacing text-uppercase font-sm">{{ .PublishDate.Format "January 02, 2006" }}</span>
+            </article>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="m-auto">
+        <div class="pagination mt-5 pt-4">
+          {{ template "_internal/pagination.html" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

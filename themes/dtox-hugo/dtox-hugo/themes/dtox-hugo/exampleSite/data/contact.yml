@@ -1,0 +1,30 @@
+# contact information
+contact:
+  title : "Contact"
+  formAction : "#" # form works with formspree.io
+  content : "If you'll like to know more about our experience designing and delivering cloud solutions, or
+            get advice on your own technology challenges get in touch. With dedicated engineers on-hand 24/7, we’re set
+            up to become an extension of your team."
+  phone : "+442081446356"
+  email : "info@altostack.io"
+  address : "71 Shelton Street<br>London WC2H 9JQ England"
+
+# bullet point
+bulletPoint :
+  # bullet point item
+  - title : "Sales"
+    icon : "ti-layers-alt"
+    iconColor : "blue"
+    content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia."
+    
+  # bullet point item
+  - title : "Help & Support"
+    icon : "ti-layers-alt"
+    iconColor : "green"
+    content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia."
+    
+  # bullet point item
+  - title : "SalesLegal Departments"
+    icon : "ti-layers-alt"
+    iconColor : "orange"
+    content : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia."

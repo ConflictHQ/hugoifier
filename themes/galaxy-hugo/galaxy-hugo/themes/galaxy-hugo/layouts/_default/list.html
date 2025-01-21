@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<section>
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-sm-7">
+        {{ $paginator := .Paginate .Data.Pages }}
+        {{ range $paginator.Pages }}
+        <article class="card mb-5">
+          <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="card-img-top mb-3">
+          <div class="card-body p-0">
+            <h3 class="h2 mb-3"><a href="{{ .Permalink }}" class="post-title">{{ .Title | markdownify }}</a></h3>
+            <ul class="post-meta list-inline mb-3">
+              <li class="list-inline-item mr-3"><i class="ti-time mr-2"></i>{{ .PublishDate.Format "02 JANUARY, 2006"}}</li>
+              <li class="list-inline-item"><i class="ti-folder mr-1"></i> 
+                {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+                  href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}" class="ml-1">{{ . | humanize }} </a>
+                {{end}}</li>
+            </ul>
+            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="btn btn-primary">{{ i18n "read_more" }}<i class="ti-arrow-right ml-2"></i></a>
+          </div>
+        </article>
+        {{ end }}
+        <div class="mt-5">
+          {{ template "_internal/pagination.html" . }}
+        </div>
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

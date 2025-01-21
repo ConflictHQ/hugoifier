@@ -1,0 +1,142 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: ''
+webhook_url: 
+sections:
+- type: heading
+  label: Homepage
+- type: document
+  path: exampleSite/content/english/_index.md
+  label: Homepage (en)
+- type: document
+  path: exampleSite/content/french/_index.md
+  label: Homepage (fr)
+- type: heading
+  label: Blog
+- type: document
+  path: exampleSite/content/english/blog/_index.md
+  label: Blog Setting (en)
+- type: document
+  path: exampleSite/content/french/blog/_index.md
+  label: Blog Setting (fr)
+- type: directory
+  path: exampleSite/content/english/blog
+  label: All Blog Posts (en)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - post
+- type: directory
+  path: exampleSite/content/french/blog
+  label: All Blog Posts (fr)
+  create: documents
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - post
+- type: heading
+  label: Pages (en)
+- type: document
+  path: exampleSite/content/english/about.md
+  label: About (en)
+- type: document
+  path: exampleSite/content/english/about-info.md
+  label: About Info (en)
+- type: document
+  path: exampleSite/content/english/brands-logos.md
+  label: Brands Logos (en)
+- type: document
+  path: exampleSite/content/english/how-it-works.md
+  label: How it works (en)
+- type: document
+  path: exampleSite/content/english/features.md
+  label: Features (en)
+- type: document
+  path: exampleSite/content/english/pricing.md
+  label: Pricing (en)
+- type: document
+  path: exampleSite/content/english/testimonials.md
+  label: Testimonials (en)
+- type: document
+  path: exampleSite/content/english/faq.md
+  label: FAQ (en)
+- type: document
+  path: exampleSite/content/english/contact.md
+  label: Contact (en)
+- type: heading
+  label: Pages (fr)
+- type: document
+  path: exampleSite/content/french/about.md
+  label: About (fr)
+- type: document
+  path: exampleSite/content/french/about-info.md
+  label: About Info (fr)
+- type: document
+  path: exampleSite/content/french/brands-logos.md
+  label: Brands Logos (fr)
+- type: document
+  path: exampleSite/content/french/how-it-works.md
+  label: How it works (fr)
+- type: document
+  path: exampleSite/content/french/features.md
+  label: Features (fr)
+- type: document
+  path: exampleSite/content/french/pricing.md
+  label: Pricing (fr)
+- type: document
+  path: exampleSite/content/french/testimonials.md
+  label: Testimonials (fr)
+- type: document
+  path: exampleSite/content/french/faq.md
+  label: FAQ (fr)
+- type: document
+  path: exampleSite/content/french/contact.md
+  label: Contact (fr)
+- type: heading
+  label: All Pages
+- type: directory
+  path: exampleSite/content
+  label: All Pages
+  create: all
+  match: "**/*"
+  exclude: _index.md
+  templates:
+  - new-page
+- type: heading
+  label: Configuration
+- type: document
+  path: exampleSite/config/_default/config.toml
+  label: Configuration
+- type: document
+  path: exampleSite/config/_default/params.toml
+  label: Parameters
+- type: document
+  path: config.toml
+  label: Variables & Plugins
+- type: document
+  path: exampleSite/config/_default/languages.toml
+  label: Languages
+- type: document
+  path: exampleSite/config/_default/menus.en.toml
+  label: Menu (en)
+- type: document
+  path: exampleSite/config/_default/menus.fr.toml
+  label: Menu (fr)
+upload_dir: exampleSite/static/images
+public_path: "/images"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+build:
+  preview_env:
+  - HUGO_ENV=staging
+  - HUGO_VERSION=0.81.0
+  preview_output_directory: public
+  preview_docker_image: forestryio/hugo:latest
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: hugo server -D -E -F --port 8080 --bind 0.0.0.0 --renderToDisk
+    -d public
+version: 0.81.0

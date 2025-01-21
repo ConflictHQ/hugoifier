@@ -1,0 +1,58 @@
+{{ "<!-- navigation -->" | safeHTML }}
+<header class="sticky-top navigation {{if .IsHome}}home-nav{{end}}">
+  <div class="container">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-between">
+      <div class="logo-wrapper order-1 mobile-view">
+        {{ if site.Params.site_logo }}
+        <a class="site-logo" target="_blank" href="{{site.Params.main_site_link | safeURL}}?ref=docs">
+          {{ partial "logo.html" }}
+        </a>
+        {{ end }}
+        <span class="logo-devider"></span>
+        <a class="docs-logo" href="{{ .Site.BaseURL | relLangURL }}">
+          {{ partial "image.html" (dict "Src" site.Params.docs_logo "Alt" (.Site.Title)) }}</a>
+      </div>
+
+      <form class="form-inline search-wrapper order-3 order-lg-2 {{if not .IsHome}}d-block mt-3{{end}}" data-bs-toggle="modal"
+        data-bs-target="#searchModal">
+        <i class="search-icon fas fa-search"></i>
+        <input class="form-control form-control-sm" placeholder="{{ i18n `search`}}" readonly>
+        <button type="button" class="search-button" style="font-size:12px" data-search-toggler>{{ i18n "search"
+          }}</button>
+      </form>
+
+      <div class="d-flex order-2 order-lg-3 mobile-view">
+        <!-- Language List -->
+        {{ if .IsTranslated }}
+        <select class="language-selector bg-transparent" onchange="location = this.value;">
+          {{ $siteLanguages := .Site.Languages}}
+          {{ $pageLang := .Page.Lang}}
+          {{ range .Page.AllTranslations }}
+          {{ $translation := .}}
+          {{ range $siteLanguages }}
+          {{ if eq $translation.Lang .Lang }}
+          {{ $selected := false }}
+          {{ if eq $pageLang .Lang}}
+          <option value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}</option>
+          {{ else }}
+          <option value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </select>
+        {{ end }}
+        <!-- nav buttons -->
+        {{ range $i, $e:= site.Params.nav_button }}
+        <a href="{{ .link | absLangURL }}"
+          class="btn btn-sm {{if eq .style `outline`}}btn-outline-primary{{else}}btn-primary{{end}} {{if and $i (gt $i 0)}}ms-3{{end}}">{{
+          .label }}</a>
+        {{ end }}
+      </div>
+    </nav>
+  </div>
+</header>
+{{ "<!-- /navigation -->" | safeHTML }}
+
+{{ partial "components/search-modal" . }}

@@ -1,0 +1,3 @@
+---
+title: "Latest Blog Posts"
+---

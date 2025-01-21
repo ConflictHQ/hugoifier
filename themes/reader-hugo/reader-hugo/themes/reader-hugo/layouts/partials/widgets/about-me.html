@@ -1,0 +1,14 @@
+{{ "<!-- about me -->" | safeHTML }}
+<div class="widget widget-about">
+  {{ with site.Params.about_me }}
+  <h2 class="widget-title">{{ .Title }}</h2> 
+  {{ partial "image.html" (dict "Src" .image "Alt" "Author Image") }}
+  <p>{{ .bio | markdownify }}</p>
+  <ul class="list-inline social-icons mb-3">
+    {{ range site.Params.social }}
+    <li class="list-inline-item"><a href="{{.link | safeURL }}"><span class="visually-hidden">{{.title}}</span><i class="{{.icon}}"></i></a></li>
+    {{ end }}
+  </ul>
+  <a href="{{`about-me/` | relLangURL }}" class="btn btn-primary mb-2">{{ i18n "about_me" }}</a>
+  {{ end }}
+</div>

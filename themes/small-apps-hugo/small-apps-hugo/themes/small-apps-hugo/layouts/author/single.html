@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{ partial "components/page-title.html" . }}
+
+<section class="section pt-0">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				<div class="text-center">
+					{{ if .Params.Image }} 
+					{{ partial "image.html" (dict "Src" .Params.Image "Alt" "author image") }}
+					{{else if .Params.Email}} 
+					{{ $emailHash := md5 .Params.Email }}  
+          {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }} 
+					{{ partial "image.html" (dict "Src" $gravatorUrl "Alt" "author image") }}
+					{{ end }}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h4 class="fw-bold mb-4">{{ .Title }}</h4>
+				<div class="content">
+					{{ .Content }}
+				</div>
+				<ul class="list-inline">
+					{{ range .Params.Social }}
+					<li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+					{{ end }}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-center section-title">
+					<h2>{{ i18n "posted_by" }}</h2>
+				</div>
+			</div>
+			{{ range where .Site.RegularPages "Params.author" (.Title | title) }}
+			{{ .Render "post" }}
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}

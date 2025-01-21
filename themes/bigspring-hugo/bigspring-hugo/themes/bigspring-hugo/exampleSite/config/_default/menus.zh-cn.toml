@@ -1,0 +1,231 @@
+# main menu
+[[main]]
+name = "家"
+url = ""
+weight = 1
+
+[[main]]
+weight = 4
+name = "公司"
+hasChildren = true
+
+  [[main]]
+  parent = "公司"
+  name = "关于"
+  url = "about/"
+  weight = 1
+
+  [[main]]
+  parent = "公司"
+  name = "团队"
+  url = "team/"
+  weight = 4
+
+  [[main]]
+  parent = "公司"
+  name = "这个怎么运作"
+  url = "how-it-works/"
+  weight = 8
+
+  [[main]]
+  parent = "公司"
+  name = "职业"
+  url = "career/"
+  weight = 9
+
+  [[main]]
+  parent = "公司"
+  name = "职业详情"
+  url = "career/sr-executive-service-assurance/"
+  weight = 10
+
+[[main]]
+weight = 6
+name = "产品"
+hasChildren = true
+[main.params]
+isMenuLarge = true
+
+  [[main]]
+  parent = "产品"
+  name = "CRM"
+  pre = "<i class='dropdown-icon fas fa-users'></i>"
+  post = "<small class='dropdown-subtitle'>更快地转换潜在客户并完成销售交易</small>"
+  url = "products/product-1/"
+  weight = 1
+
+  [[main]]
+  parent = "产品"
+  name = "Help Desk"
+  pre = "<i class='dropdown-icon fas fa-dice-d6'></i>"
+  post = "<small class='dropdown-subtitle'>提供出色客户支持的软件。</small>"
+  url = "products/product-2/"
+  weight = 2
+
+  [[main]]
+  parent = "产品"
+  name = "Workplace"
+  pre = "<i class='dropdown-icon fas fa-laptop-house'></i>"
+  post = "<small class='dropdown-subtitle'>为提高生产力而构建的应用程序。</small>"
+  url = "products/product-3/"
+  weight = 3
+
+  [[main]]
+  parent = "产品"
+  name = "Analytics"
+  pre = "<i class='dropdown-icon fas fa-chart-bar'></i>"
+  post = "<small class='dropdown-subtitle'>从任何数据集创建自定义报告。</small>"
+  url = "products/product-4/"
+  weight = 4
+
+  [[main]]
+  parent = "产品"
+  name = "查看所有产品"
+  pre = "<i class='dropdown-icon text-primary fas fa-arrow-right'></i>"
+  url = "products/"
+  weight = 5
+
+[[main]]
+weight = 13
+name = "博客"
+hasChildren = true
+
+  [[main]]
+  parent = "博客"
+  name = "博客文章"
+  url = "blog/"
+  weight = 3
+
+  [[main]]
+  parent = "博客"
+  name = "博客详情"
+  url = "blog/post-2/"
+  weight = 8
+
+  [[main]]
+  parent = "博客"
+  name = "元素"
+  url = "blog/post-1/"
+  weight = 9
+
+  [[main]]
+  parent = "博客"
+  name = "作者"
+  url = "author/"
+  weight = 11
+
+  [[main]]
+  parent = "博客"
+  name = "作者详情"
+  url = "author/awab-husameldin/"
+  weight = 12
+
+[[main]]
+weight = 15
+name = "页面"
+hasChildren = true
+
+  [[main]]
+  parent = "页面"
+  name = "价钱"
+  url = "pricing/"
+  weight = 1
+
+  [[main]]
+  parent = "页面"
+  name = "实例探究"
+  url = "case-studies/"
+  weight = 4
+
+  [[main]]
+  parent = "页面"
+  name = "案例研究详情"
+  url = "case-studies/case-1/"
+  weight = 5
+
+  [[main]]
+  parent = "页面"
+  name = "FAQ"
+  url = "faq/"
+  weight = 16
+
+  [[main]]
+  parent = "页面"
+  name = "隐私政策"
+  url = "privacy-policy/"
+  weight = 20
+
+  [[main]]
+  parent = "页面"
+  name = "条款和条件"
+  url = "terms-conditions/"
+  weight = 24
+
+[[main]]
+name = "接触"
+url = "contact/"
+weight = 30
+
+# footer menu left
+[[footer_left]]
+name = "关于"
+url = "about/"
+weight = 1
+
+[[footer_left]]
+name = "团队"
+url = "team/"
+weight = 2
+
+[[footer_left]]
+name = "这个怎么运作"
+url = "how-it-works/"
+weight = 3
+
+[[footer_left]]
+name = "职业"
+url = "career/"
+weight = 4
+
+
+# footer menu middle
+[[footer_middle]]
+name = "CRM"
+url = "products/product-1/"
+weight = 1
+
+[[footer_middle]]
+name = "Help Desk"
+url = "products/product-2/"
+weight = 2
+
+[[footer_middle]]
+name = "Workplace"
+url = "products/product-3/"
+weight = 3
+
+[[footer_middle]]
+name = "Analytics"
+url = "products/product-4/"
+weight = 4
+
+# footer menu right
+[[footer_right]]
+name = "FAQ"
+url = "faq/"
+weight = 1
+
+[[footer_right]]
+name = "接触"
+url = "contact/"
+weight = 2
+
+[[footer_right]]
+name = "隐私政策"
+url = "privacy-policy/"
+weight = 3
+
+[[footer_right]]
+name = "条款和条件"
+url = "terms-conditions/"
+weight = 4

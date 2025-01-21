@@ -1,0 +1,189 @@
+#################### default parameters ################################
+# favicon
+favicon = "images/favicon.png"
+
+# logo
+logo = "images/logo.png"
+
+# use `px` or `x` with logo_width, example: "100px".
+# Note: logo_width is not work with .svg file
+logo_width = "150px"
+page_not_found_image = "images/404.png" # 404 error page image
+
+# if logo_webp set false, will not generate WEBP version of logo | default is true
+logo_webp = true
+
+# logo text will only show when logo is missing.
+logo_text = "LogBook"
+
+# purgeCSS
+purge_css = true
+
+# Main Sections
+mainSections = ["post"]
+
+# featured post
+featured_post = true
+
+# layout
+post_layout = "grid" # layout value (full, grid or list)
+# Sidebar
+sidebar = "right" # sidebar value (left, right or false)
+
+# contact form action
+contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+
+# google tag manager, see https://developers.google.com/tag-manager/
+google_tag_manager = "" # example: G-XXXXXXXXXX
+google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
+
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
+custom_script = ""
+
+# copyright
+theme_copyright = true
+copyright = "Copyright by your company"
+
+# Preloader
+[preloader]
+enable = true
+preloader = "" # use jpg, png, svg or gif format.
+
+[search]
+enable = true
+primary_color = "#ce8460"
+include_sections = ["post", "shop"] # if `include_sections` is empty, then section's will come from `mainSections`
+show_image = true
+show_description = true
+show_tags = true
+show_categories = true
+
+input_placeholder = "Search Gethugothemes .." # i18n is `search_input_placeholder`
+empty_results_placeholder = "Type something to search.." # i18n is `empty_search_results_placeholder`
+
+# contact info
+[contact_info]
+address = "9567 Turner Trace Apt. BC C3G8A4"
+mobile = "+211234565523"
+email = "info@email.com"
+
+# Subscription
+[subscription]
+enable = true
+# mailchimp subsciption
+mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
+mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
+
+# snipcart for shop
+[snipcart]
+enable = true
+# snipcart public api key
+snipcart_api = "ZDgxY2ZiM2EtMWRmMi00M2ZkLWI1MDAtNzA2MDc0Y2Q1MzJlNjM3MTAzNDIwOTQ1NDA4NjM4"
+currency = "$"
+
+# promotion
+[promotion]
+title = "Create Stunning Website!!"
+content = "Lorem ipsum dolor sit amet, consectetur sociis. Etiam nunc amet id dignissim. Feugiat id tempor vel sit ornare."
+image = "images/promotion.jpg"
+button_label = "Get Started"
+button_link = "https://themefisher.com/"
+
+# Crisp Chat
+[crisp_chat]
+enable = false
+crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d" # replace this code with yours
+# Check this video tutorial to get your crisp website ID - https://www.youtube.com/watch?v=nW5UX6iVdFc
+
+# Valine Comment
+[valine_comment]
+enable = false
+appId = ""     # replace this code with yours [ex: QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI]
+appKey = ""    # replace this code with yours [ex: WBmoGyJtbqUswvfLh6L8iEBr]
+# language = "change language translation from `i18n`"
+avatar = ""      # see : https://valine.js.org/en/avatar.html
+pageSize = 10    # will show 10 comments per page
+visitor = true
+highlight = true # Code highlighting
+recordIP = true  # Record reviewer IP.
+enableQQ = false # https://valine.js.org/en/configuration.html#enableQQ
+# serverURLs = "" # https://leancloud.your_website.com
+# Check Valine's official documentation here - https://valine.js.org/en/configuration.html
+
+# seo meta data for OpenGraph / Twitter Card
+[metadata]
+keywords = ["Boilerplate", "Hugo", "Themefisher", "GetHugoThemes"]
+description = "This is meta description"
+author = "Themefisher"
+image = "images/favicon.png"      # this image will be used as fallback if a page has no image of its own
+
+# matomo tracking: see https://matomo.org/
+[matomo]
+enable = false
+url = ""       # your matomo url
+id = ""        # your matomo id
+
+# baidu analytics: see https://tongji.baidu.com/
+[baidu]
+enable = false
+analytics_id = "" # Your ID
+
+# plausible analytics: see https://plausible.io/
+[plausible]
+enable = false
+domain = ""    # yourdomain.com
+
+# counter analytics: see https://counter.dev/setup.html
+[counter]
+enable = false
+username = ""  # your username
+
+# site verifications
+[site_verification]
+google = ""   # Your verification code
+bing = ""     # Your verification code
+baidu = ""    # Your verification code
+facebook = "" # Your verification code
+mastodon = "" # Your verification code
+
+# cookies
+[cookies]
+enable = false
+expire_days = 2
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"
+
+######################## sidebar widgets #########################
+[widgets]
+sidebar = [
+  "search",
+  "about-me",
+  "promotion",
+  "subscription",
+  "categories",
+  "recent-post",
+  "tags",
+  "social",
+]
+# available widget : search,about-me,categories,tags,recent-post,social,promotion,subscription
+
+############################# social site ########################
+[[social]]
+title = "facebook"
+icon = "fab fa-facebook" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "twitter"
+icon = "fab fa-twitter" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "instagram"
+icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"
+
+[[social]]
+title = "linkedin"
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#"

@@ -1,0 +1,18 @@
+{{ with .Site.Data.homepage.aboutApp }}
+<section class="section pb-0">
+  <div class="container">
+    {{ range $i,$p := .appItem }}
+    <div class="row justify-content-center align-items-center mb-50">
+      <div
+        class="col-lg-5 {{if not (modBool $i 2)}} pl-lg-5 order-1 order-lg-2 text-lg-left text-right {{ else }} pr-lg-5 {{end}}">
+        <img src="{{ .image | absURL }}" class="img-fluid" alt="">
+      </div>
+      <div class="col-lg-6{{if not (modBool $i 2)}} order-2 order-lg-1 text-lg-left text-right {{ end }}">
+        <h2 class="title">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

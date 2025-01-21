@@ -1,0 +1,63 @@
+{{ $title := .Title }}
+{{ $description := .Params.description }}
+{{ $isDescEnable := .Params.show_page_description }}
+
+{{/* Hide Description on Integration Single Page */}}
+{{ if findRE "integration" .RelPermalink }}
+  {{ $description = "" }}
+{{ end }}
+<section class="section page-header relative overflow-hidden pb-96 after:z-10">
+  {{ if $title }}
+    <div class="container relative z-30">
+      <div class="row items-center">
+        <div class="lg:col-7 mx-auto text-center">
+          <h1
+            class="mb-6 text-[35px] capitalize sm:text-[50px] xl:text-[65px]"
+            data-aos="fade-up-sm">
+            {{ $title }}
+          </h1>
+
+          {{ $url := replace .Permalink ( printf "%s" .Site.BaseURL) "" }}
+          {{ $.Scratch.Add "path" .Site.BaseURL }}
+
+          {{ partial "components/breadcrumb.html" (dict "Context" .) }}
+
+          {{ if $isDescEnable }}
+            <hr
+              class="border-dark mx-auto mb-6 h-[1px] w-[100px] border-0 border-b border-t border-opacity-50 bg-transparent"
+              data-aos="fade-up-sm"
+              data-aos-delay="50" />
+            <p
+              class="mb-6 text-[20px]"
+              data-aos="fade-up-sm"
+              data-aos-delay="100">
+              {{ $description }}
+            </p>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <!-- End Main Content -->
+  {{ end }}
+
+  {{ partial "components/bg-lines.html" (dict "Color" "bg-line-yellow") }}
+  <!-- End background lines -->
+
+  <!-- Start Shape background -->
+  <div
+    class="pointer-events-none absolute left-0 top-[5%] z-30 hidden select-none lg:block"
+    data-aos="fade-up-sm">
+    {{ partial "image.html" (dict "Src" "images/shapes/page-header-s-1.svg" "Class" "inline-svg text-secondary" "Alt"
+      "shape")
+    }}
+  </div>
+  <div
+    class="pointer-events-none absolute right-0 top-[25%] z-30 hidden select-none lg:block"
+    data-aos="fade-up-sm">
+    {{ partial "image.html" (dict "Src" "images/shapes/page-header-s-2.svg" "Class" "inline-svg text-quinary" "Alt"
+      "shape")
+    }}
+  </div>
+  <!-- End Shape background -->
+</section>
+<!-- End Page Header -->

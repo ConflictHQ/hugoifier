@@ -1,0 +1,72 @@
+<footer class="section pb-0">
+  <div class="container pt-5 pb-4">
+    <div class="row justify-content-between gy-5">
+      <div class="col-xl-5 col-lg-6">
+        <a href="{{ site.BaseURL | relLangURL }}">
+          {{ partial "logo" (dict "Src" site.Params.logo_dark) }}
+        </a>
+
+        <ul class="list-unstyled list-inline footer-links mb-0 mt-5 pt-4">
+          {{ range site.Menus.footer }}
+            <li class="list-inline-item mb-2 my-sm-0">
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ with site.Params.subscription }}
+        {{ if .enable }}
+          <div class="col-xl-5 col-lg-6">
+            <p class="text-white text-base text-lg-end fw-light">
+              {{ .content | markdownify }}
+            </p>
+            <form
+              class="mt-5 pt-2"
+              action="{{ .mailchimp_form_action }}"
+              name="{{ .mailchimp_form_name }}">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control rounded-4 shadow-none text-base border-0"
+                  placeholder="{{ i18n `enter_your_email` }}" />
+                <span class="ms-2">
+                  <button class="btn btn-primary h-100">
+                    {{ i18n `try_for_free` }}
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="row gy-4 mt-3">
+      <div class="col-12">
+        <div class="border-top opacity-25 mb-3"></div>
+      </div>
+      <div class="col-lg-6">
+        <ul class="list-unstyled list-inline footer-links mb-0">
+          {{ range site.Menus.footer_bottom }}
+            <li class="list-inline-item mb-2 my-sm-0">
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-6 text-start text-lg-end text-base">
+        <p class="text-white copyright">
+          {{ site.Params.copyright | markdownify }}
+          {{ if site.Params.theme_copyright }}
+            &nbsp; | &nbsp; Theme by
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://gethugothemes.com/">
+              GetHugoThemes
+            </a>
+          {{ end }}
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

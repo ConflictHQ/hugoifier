@@ -1,0 +1,67 @@
+################ Navigation English #################
+
+# main menu
+[[main]]
+name = "About"
+URL = "about/"
+weight = 1
+
+[[main]]
+name = "team"
+URL = "team/"
+weight = 2
+
+[[main]]
+name = "Blog"
+URL = "blog/"
+weight = 3
+
+[[main]]
+name = "career"
+URL = "career/"
+weight = 4
+
+[[main]]
+name = "Contact"
+URL = "contact/"
+weight = 5
+
+# dropdown menu
+[[main]]
+name = "Pages"
+weight = 6
+hasChildren = true
+
+[[main]]
+parent = "Pages"
+name = "privacy"
+URL = "privacy/"
+weight = 1
+
+[[main]]
+parent = "Pages"
+name = "FAQ"
+URL = "faq/"
+weight = 2
+
+
+# footer menu
+[[footer]]
+name = "About"
+URL = "about/"
+
+[[footer]]
+name = "Contact"
+URL = "contact/"
+
+[[footer]]
+name = "Privacy"
+URL = "privacy/"
+
+[[footer]]
+name = "Blog"
+URL = "blog/"
+
+[[footer]]
+name = "FAQ"
+URL = "faq/"

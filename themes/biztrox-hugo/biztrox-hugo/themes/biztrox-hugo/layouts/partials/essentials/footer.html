@@ -1,0 +1,106 @@
+<footer class="bg-secondary">
+  <div class="py-100 border-bottom" style="border-color: #454547 !important">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-4">
+          <div class="mb-5 mb-md-0 text-center text-md-start">
+            <!-- logo -->
+            <a class="mb-30 d-inline-block" href="{{ site.BaseURL | relLangURL }}">
+              {{ if site.Params.logo_footer }} 
+              {{ partial "image.html" (dict "Src" .Site.Params.logo_footer "Alt" "biztrox" "Width" .Site.Params.logo_footer_width) }}
+              {{ else }}
+              {{site.Title}}
+              {{ end }}
+            </a>
+            {{ with site.Params.footer_content }}<p class="text-white mb-30">{{ . | markdownify }}</p>{{ end }}
+            <!-- social icon -->
+            <ul class="list-inline">
+              {{ range site.Params.social }}
+              <li class="list-inline-item mb-2">
+                <a class="social-icon-outline" href="{{ .link | safeURL }}" aria-label="{{.title}}">
+                  <i class="{{ .icon }}"></i>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        <!-- footer links -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <h4 class="text-white mb-4">{{ i18n "services" }}</h4>
+          <ul class="footer-links">
+            {{ range ( where site.RegularPages "Type" "service") }}
+            <li><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+        <!-- footer links -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <h4 class="text-white mb-4">{{ i18n "quick_links" }}</h4>
+          <ul class="footer-links">
+            {{ range site.Menus.main }}
+            {{ if not .HasChildren }}
+            <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        <!-- subscribe form -->
+        {{ with site.Params.subscription }}
+        {{ if .enable }}
+        <div class="col-lg-3">
+          <div class="mt-5 mt-lg-0 text-center text-md-start">
+            <h4 class="mb-4 text-white">{{ .title | markdownify }}</h4>
+            <p class="text-white mb-4">{{ .content | markdownify }}</p>
+            <div id="mc_embed_signup">
+              <form action="{{ .mailchimp_form_action }}" method="post" id="mc-embedded-subscribe-form"
+                name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll" class="position-relative">
+                  <input type="email" name="EMAIL" class="required email form-control subscribe" id="mce-EMAIL"
+                    placeholder="Enter Your Email" required>
+                  <button class="btn-subscribe" type="submit" name="subscribe" aria-label="subscribe btn">
+                    <i class="ti-arrow-right"></i>
+                  </button>
+                  <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <!-- copyright -->
+  <div class="pt-4 pb-3 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-5">
+          <p class="text-white text-center text-md-start">
+            {{ .Site.Params.copyright }}
+            {{ with .Site.Params.theme_copyright }}
+            | Theme by
+            <a target="_blank" rel="noopener noreferrer" href="https://gethugothemes.com/">GetHugoThemes</a>
+            {{ end }}
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-7">
+          <ul class="list-inline text-center text-md-end">
+            {{ range site.Menus.footer }}
+            <li class="list-inline-item mx-lg-3 my-lg-0 mx-2 my-2">
+              <a class="font-secondary text-white" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- back to top -->
+    <button class="back-to-top" aria-label="scroll to top">
+      <i class="ti-angle-up"></i>
+    </button>
+  </div>
+</footer>

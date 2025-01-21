@@ -1,0 +1,16 @@
+<div id="banner-area">
+  <img src="{{ .Params.page_header_bg | absURL }}" onerror="this.src='{{`images/banner/banner1.jpg` | absURL}}'" alt="" />
+  <div class="parallax-overlay"></div>
+  <!-- Subpage title start -->
+  <div class="banner-title-content">
+    <div class="text-center">
+      <h2>{{ .Title }}</h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.home }}</a></li>
+          <li class="breadcrumb-item text-white" aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>

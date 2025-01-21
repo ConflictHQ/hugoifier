@@ -1,0 +1,82 @@
+// Service section
+
+.service {
+		.card{
+			border: 1px solid rgba(0,0,0,0.05);
+			position: relative;
+			overflow: hidden;
+
+		 i{
+		 	transition: all .3s ease;
+			-moz-transition: all .3s ease;
+			-webkit-transition: all .3s ease;
+			-o-transition: all .3s ease;
+		 	-webkit-transform: translateY(0px);
+			   -moz-transform: translateY(0px);
+			    -ms-transform: translateY(0px);
+			     -o-transform: translateY(0px);
+			        transform: translateY(0px);
+
+		}
+
+		h4,i,p{
+			position: relative;
+		}
+		h4{
+			transition:color 0.3s ease;
+			-moz-transition: color 0.3s ease;
+			-webkit-transition: color 0.3s ease ;
+			-o-transition: color 0.3s ease ;
+		}
+		p{
+			transition:color 0.3s ease;
+			-moz-transition: color 0.3s ease;
+			-webkit-transition: color 0.3s ease;
+			-o-transition: color 0.3s ease;
+		}
+
+		
+		&:hover{
+
+			h4{
+				color: $light;
+			}
+			i{
+				color: $light;
+				-webkit-transform: translateY(-10px);
+				   -moz-transform: translateY(-10px);
+				    -ms-transform: translateY(-10px);
+				     -o-transform: translateY(-10px);
+				        transform: translateY(-10px);
+			}
+			p{
+				color: rgba(255,255,255,.8);
+			}
+		}
+	}
+
+}
+
+.text-lg{
+	font-size: 50px;
+}
+
+.service .card{
+	&:before{
+		position: absolute;
+		content:"";
+		left: 0px;
+		bottom: -500px;
+		width: 100%;
+		height: 100%;
+		background: $primary-color;
+		transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-webkit-transition: all .4s ease;
+		-o-transition: all .4s ease;
+	}
+
+	&:hover:before{
+		bottom: 0px;
+	}
+}

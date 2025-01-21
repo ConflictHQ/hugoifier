@@ -1,0 +1,108 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+{{ partial "cta.html" . }}
+
+<!-- about company -->
+<section class="section bg-secondary-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0 pr-lg-5">
+        <img src="{{ .Params.Image | absURL }}" alt="about" class="img-fluid">
+      </div>
+      <div class="col-md-6 pl-lg-4">
+        <div class="content mb-4">{{ .Content }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /about company -->
+
+<!-- gallery -->
+{{ if $data.about.gallery.enable }}
+{{ with $data.about.gallery }}
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+      {{ range .gallery_item }}
+      {{ $column := .column }}
+      {{ if eq $column 1 }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ else if eq $column 2 }}
+      {{ $column = "col-lg-8" }}
+      {{ else if eq $column 3 }}
+      {{ $column = "col-12" }}
+      {{ else }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ end }}
+      <div class="{{$column}} shuffle-item">
+        <div class="gallery-item mb-4">
+          <div class="d-block">
+            <img src="{{ .image | absURL }}" alt="gallery-image" class="img-fluid w-100">
+            <div class="gallery-content bg-secondary d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <a class="d-inline-block p-3 popup-image" href="{{ .image | absURL }}"
+                  title="{{ .content | markdownify }}" data-effect="mfp-zoom-in"><i
+                    class="ti-fullscreen text-white"></i></a>
+                <div class="text-white content">{{ .content | markdownify }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /gallery -->
+
+<!-- team -->
+{{ if $data.about.team.enable }}
+{{ with $data.about.team }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      {{ range .team_member}}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card rounded-0 text-center hover-bg-secondary">
+          <div class="card-body pt-4">
+            <img src="{{ .image | absURL}}" alt="" class="img-sm mx-auto rounded-circle mb-4">
+            <h4 class="card-title">{{ .name | markdownify }}</h4>
+            <p class="h5 mb-0">{{ .designation | markdownify }}</p>
+            <a href="mailto:{{ .email }}">{{ .email }}</a>
+            <ul class="list-inline mt-3 mb-0">
+              {{ range .social }}
+              <li class="list-inline-item mx-2"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /team -->
+
+<!-- clients -->
+{{ if $data.about.clients_logo.enable }}
+{{ partial "clients-logo-slider.html" . }}
+{{ end }}
+<!-- /clients -->
+
+{{ end }}

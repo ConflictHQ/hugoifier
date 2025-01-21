@@ -1,0 +1,281 @@
+{{ define "main" }}
+  {{ partial "components/page-header" . }}
+  <!-- pricing -->
+  {{ with .Params.pricing }}
+    <section class="pricing section has-backdrop pt-0">
+      <div class="container">
+        <div class="row justify-content-center mb-3">
+          <div class="col-lg-10 text-center">
+            <p class="section-subtitle text-tertiary">
+              {{ .subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .title | markdownify }}
+            </h2>
+          </div>
+        </div>
+        <div
+          class="row gy-3 gx-3 bg-white rounded-5 pb-3 px-2 shadow-lg m-auto">
+          <div class="col-lg-3 col-sm-6">
+            {{ with .custom_plan }}
+              <div
+                class="custom-plan bg-primary rounded-4 overflow-hidden h-100 d-flex flex-column">
+                <h3 class="h5 text-white mb-4 text-capitalize small">
+                  {{ .title | markdownify }}
+                </h3>
+                {{ with .button }}
+                  <a
+                    href="{{ .link | relLangURL }}"
+                    class="text-white mt-auto stretched-link">
+                    {{ .label | markdownify }}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-arrow-right"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <line x1="13" y1="18" x2="19" y2="12"></line>
+                      <line x1="13" y1="6" x2="19" y2="12"></line>
+                    </svg>
+                  </a>
+                {{ end }}
+
+
+                <svg
+                  class="left-top"
+                  width="35"
+                  height="47"
+                  viewBox="0 0 35 47"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M33.2679 11C34.3397 12.8564 34.3397 15.1436 33.2679 17L17.7321 43.909C16.6603 45.7654 14.6795 46.909 12.5359 46.909L-18.5359 46.909C-20.6795 46.909 -22.6602 45.7654 -23.732 43.909L-39.2679 17C-40.3397 15.1436 -40.3397 12.8564 -39.2679 11L-23.732 -15.909C-22.6602 -17.7654 -20.6795 -18.909 -18.5359 -18.909L12.5359 -18.909C14.6795 -18.909 16.6603 -17.7654 17.7321 -15.909L33.2679 11Z"
+                    fill="#1D76F9" />
+                </svg>
+                <svg
+                  class="right-top text-quaternary"
+                  width="52"
+                  height="67"
+                  viewBox="0 0 52 67"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M98.2679 20C99.3397 21.8564 99.3397 24.1436 98.2679 26L76.732 63.3013C75.6602 65.1577 73.6795 66.3013 71.5359 66.3013L28.4641 66.3013C26.3205 66.3013 24.3397 65.1577 23.2679 63.3013L1.73204 26C0.660252 24.1436 0.660252 21.8564 1.73204 20L23.268 -17.3013C24.3397 -19.1577 26.3205 -20.3013 28.4641 -20.3013L71.5359 -20.3013C73.6795 -20.3013 75.6603 -19.1577 76.732 -17.3013L98.2679 20Z"
+                    fill="currentColor" />
+                </svg>
+                <svg
+                  class="left-bottom text-secondary"
+                  width="40"
+                  height="42"
+                  viewBox="0 0 40 42"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M38.2679 32C39.3397 33.8564 39.3397 36.1436 38.2679 38L21.732 66.641C20.6602 68.4974 18.6795 69.641 16.5359 69.641L-16.5359 69.641C-18.6795 69.641 -20.6603 68.4974 -21.7321 66.641L-38.268 38C-39.3397 36.1436 -39.3397 33.8564 -38.268 32L-21.7321 3.35898C-20.6603 1.50257 -18.6795 0.35898 -16.5359 0.358981L16.5359 0.358981C18.6795 0.358982 20.6603 1.50258 21.732 3.35898L38.2679 32Z"
+                    fill="currentColor" />
+                </svg>
+                <svg
+                  class="right-bottom text-tertiary"
+                  width="52"
+                  height="73"
+                  viewBox="0 0 52 73"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M108.113 44C109.9 47.094 109.9 50.906 108.113 54L85.8867 92.4974C84.1004 95.5914 80.7991 97.4974 77.2265 97.4974L32.7735 97.4974C29.2008 97.4974 25.8996 95.5914 24.1133 92.4974L1.88675 54C0.100429 50.906 0.10043 47.094 1.88675 44L24.1133 5.50258C25.8996 2.40857 29.2009 0.502577 32.7735 0.502577L77.2265 0.502578C80.7992 0.502578 84.1004 2.40857 85.8868 5.50258L108.113 44Z"
+                    fill="currentColor" />
+                </svg>
+              </div>
+            {{ end }}
+          </div>
+          {{ range .fixed_plans }}
+            <div class="col-lg-3 col-sm-6">
+              <div class="fixed-plan rounded-4 h-100 d-flex flex-column">
+                <h3 class="h6 mb-2 text-capitalize">
+                  {{ .title | markdownify }}
+                </h3>
+                <p class="mb-4 small">{{ .subtitle | markdownify }}</p>
+                <p><span class="h3">{{ .price }}</span>/{{ .price_per }}</p>
+                {{ with .button }}
+                  <a
+                    href="{{ .link | relLangURL }}"
+                    class="btn btn-outline-primary d-block mt-auto"
+                    >{{ .label | markdownify }}</a
+                  >
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+        <div class="bg-white rounded-5 shadow-lg mt-4 m-auto overflow-hidden">
+          <ul
+            class="row mb-0 py-3 list-unstyled d-none d-lg-flex text-center bg-light w-100 mx-auto">
+            <li class="col-lg-3 fw-bold text-black">{{ i18n `features` }}</li>
+            {{ range .fixed_plans }}
+              <li class="col-lg-3 fw-bold text-black">
+                {{ .title | markdownify }}
+              </li>
+            {{ end }}
+          </ul>
+          <div class="px-3 px-lg-4 pricing-rows">
+            <div class="row gx-4 gx-md-5 gx-lg-4">
+              {{ range .fixed_plan_rows }}
+                <div class="col-sm-6 col-lg-12">
+                  <ul class="row mb-0 py-3 list-unstyled">
+                    <li class="col-lg-3">
+                      <p class="mb-2 mb-lg-0 lh-1 text-dark small">
+                        {{ .title | markdownify }}
+                      </p>
+                    </li>
+                    {{ range .features }}
+                      <li
+                        class="col-lg-3 col-md-12 d-flex align-items-center justify-content-between justify-content-lg-center">
+                        {{ if .availability }}
+                          <span class="d-inline-block d-lg-none small">
+                            {{ .name }}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="text-secondary"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                              stroke="none"
+                              d="M0 0h24v24H0z"
+                              fill="none"></path>
+                            <path d="M5 12l5 5l10 -10"></path>
+                          </svg>
+                        {{ else }}
+                          <span class="d-inline-block d-lg-none small">
+                            {{ .name }}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="text-tertiary"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                              stroke="none"
+                              d="M0 0h24v24H0z"
+                              fill="none"></path>
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        {{ end }}
+                      </li>
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <svg
+        class="backdrop text-tertiary"
+        width="490"
+        height="670"
+        viewBox="0 0 490 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.25"
+          d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+          fill="currentColor"></path>
+      </svg>
+    </section>
+  {{ end }}
+  <!-- end pricing -->
+
+  {{ with site.GetPage "faq" }}
+    <!-- faq -->
+    <section class="has-overlay has-backdrop pt-0 section">
+      <div class="section container">
+        <div class="row justify-content-center mb-3">
+          <div class="col-lg-10 text-center">
+            <p class="section-subtitle text-tertiary">
+              {{ .Params.subtitle | markdownify }}
+            </p>
+            <h2 class="section-title text-center">
+              {{ .Params.title | markdownify }}
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div class="accordion" id="faq">
+              {{ range $i, $e := .Params.faq_list }}
+                <div
+                  class="accordion-item border-0 bg-white rounded-4 overflow-hidden mb-3">
+                  <button
+                    class="accordion-button bg-white text-dark shadow-none fw-bold font-secondary mb-0 {{ if ne $i 0 }}
+                      collapsed
+                    {{ end }}"
+                    id="heading-{{ sha1 .title | urlize }}_"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#id-{{ sha1 .title | urlize }}_"
+                    aria-expanded="{{ if eq $i 0 }}
+                      true
+                    {{ else }}
+                      false
+                    {{ end }}"
+                    aria-controls="id-{{ sha1 .title | urlize }}_">
+                    <span class="pe-3">{{ .title | markdownify }}</span>
+                  </button>
+                  <div
+                    id="id-{{ sha1 .title | urlize }}_"
+                    class="accordion-collapse collapse {{ if eq $i 0 }}
+                      show
+                    {{ end }}"
+                    aria-labelledby="heading-{{ sha1 .title | urlize }}_"
+                    data-bs-parent="#faq">
+                    <div class="accordion-body pt-0 content">
+                      {{ .content | markdownify }}
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg
+        class="backdrop text-primary"
+        style="top:0;left:0;opacity:1"
+        width="270"
+        height="670"
+        viewBox="0 0 270 670"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          opacity="0.22"
+          d="M-65.3333 4.23413e-05C119.866 3.42459e-05 270 149.985 270 335C270 520.015 119.866 670 -65.3333 670C-149.742 670 -246.047 638.844 -325.87 587.416C-421.185 526.006 -493 435.691 -493 335C-493 236.006 -325.251 261.462 -232.333 200.134C-151.593 146.844 -151.44 4.61051e-05 -65.3333 4.23413e-05Z"
+          fill="currentColor" />
+      </svg>
+    </section>
+    <!-- end faq -->
+  {{ end }}
+
+  {{ partial "components/cta" }}
+{{ end }}

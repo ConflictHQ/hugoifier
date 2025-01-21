@@ -1,0 +1,74 @@
+career:
+  ########################## career item loop ##########################
+  - title : "Senior Manager"
+    content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. natus voluptatibus adipisci porro magni
+          dolore eos eius ducimus corporis quo perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam."
+    job_accordion:
+      # job accordion loop item
+      - name : "Job Requirements"
+        apply_url : "#"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research
+
+      # job accordion loop item
+      - name : "Job Responsibilities"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research
+
+      # job accordion loop item
+      - name : "What’s in it for you?"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research
+
+
+          
+  ########################## career item loop ##########################
+  - title : "ASSISTENT MANAGER (P&L)"
+    content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. natus voluptatibus adipisci porro magni
+          dolore eos eius ducimus corporis quo perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam."
+    job_accordion:
+      # job accordion loop item
+      - name : "Job Requirements"
+        apply_url : "#"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research
+
+      # job accordion loop item
+      - name : "Job Responsibilities"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research
+
+      # job accordion loop item
+      - name : "What’s in it for you?"
+        bullet_point:
+          - B.Sc. from any reputed university
+          - MBA in Marketing from any reputed university is very much desired
+          - Two (02) years of experience in Software Company is an advantage.
+          - Experience as Business Analyst will be an added advantage
+          - Manage and execute lead generation activities.
+          - Help building marketing strategy, tool and approach by thorough research

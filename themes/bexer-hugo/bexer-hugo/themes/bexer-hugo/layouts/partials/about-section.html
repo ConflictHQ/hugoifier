@@ -1,0 +1,25 @@
+{{ with .Params.about }}
+<div class="container">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-md-5 bg-contain" data-background="{{ .bg_image_webp | absURL }}">
+      <!-- this image is for trigger this section fallback background image -->
+      <img class="d-none" src="{{ .bg_image_webp | absURL }}"
+        onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url({{ .bg_image | absURL }})'" />
+      {{ "<!-- about us image -->" | safeHTML }}
+      <img loading="lazy" class="img-fluid w-100" src="{{ .image_webp | absURL }}"
+        onerror="this.onerror=null;this.src='{{.image | absURL }}'" alt="About Image">
+    </div>
+    <div class="col-md-6">
+      <div class="section-title-border"></div>
+      <p class="section-title-sm h6">{{ .subtitle | markdownify }}</p>
+      <h2 class="section-title">{{ .title | markdownify }}</h2>
+      <p class="mb-5">{{ .content | markdownify }}</p>
+      {{ if .button.enable }}
+      {{ with .button }}
+      <a href="{{ .link | absLangURL }}" class="btn btn-primary hover-ripple">{{ .label }}</a>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

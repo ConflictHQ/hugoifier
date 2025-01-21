@@ -1,0 +1,57 @@
+############################### Services #############################
+services:
+  title : "Service We Provide"
+  subtitle : "A Quality Experience Team with 4 years experience"
+  title_icon : "fa-cogs" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+  service_item:
+    # service item loop
+    - name : "Web Design"
+      icon : "fa-tachometer" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "Apps Development"
+      icon : "fa-android" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "eCommerce Websites"
+      icon : "fa-shopping-cart" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "Design for Startups"
+      icon : "fa-lightbulb-o" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "Web Design"
+      icon : "fa-tachometer" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "Apps Development"
+      icon : "fa-android" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "eCommerce Websites"
+      icon : "fa-shopping-cart" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+      
+    # service item loop
+    - name : "Design for Startups"
+      icon : "fa-lightbulb-o" # fontawesome icon pack 4.7 | https://fontawesome.com/v4.7.0/icons/
+      content : "High Life narwhal, banh mi PBR single-origin coffee Odd Future actually aliqua polaroid befor"
+
+
+############################### testimonial ####################################
+testimonial:
+  enable : true
+  # testimonail content comes from "data/homepage.yml" file
+
+
+############################### pricing ####################################
+pricing:
+  enable : true
+  # pricing content comes from "data/pricing.yml" file

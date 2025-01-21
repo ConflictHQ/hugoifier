@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-works relative">
+      <!-- .close -->
+      <a href="{{ site.BaseURL }}" class="page-close"><i class="tf-ion-close"> </i></a>
+      <!-- /.close -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+            {{ partial "page-header.html" . }}
+          </div>
+        </div> <!-- /.row -->
+
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="filter list-inline">
+              <li><a href="#" class="active" data-filter="*">All</a></li>
+              {{ $categories := slice }}
+              {{ range .Params.portfolio }}
+              {{ range .categories }}
+              {{ $categories = $categories | append . }}
+              {{ end }}
+              {{ end }}
+              {{ range ( $categories | uniq ) }}
+              <li><a href="#" data-filter=".{{ . | anchorize }}">{{ . | humanize }}</a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="row isotope-gutter">
+          {{ range .Params.portfolio }}
+          <div class="col-xs-12 col-sm-6 col-md-4 {{range .categories}}{{ . | anchorize }} {{end}}">
+            <figure class="works-item">
+              <img src="{{ .image | absURL }}" alt="">
+              <div class="overlay"></div>
+              <figcaption class="works-inner">
+                <h4>{{ .name | markdownify }}</h4>
+                {{with .content}}<p>{{ . | markdownify }}</p>{{end}}
+              </figcaption>
+            </figure>
+          </div>
+          {{ end }}
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+      {{ partial "page-nav.html" . }}
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main> <!-- /.site-wrapper -->
+
+
+{{ end }}

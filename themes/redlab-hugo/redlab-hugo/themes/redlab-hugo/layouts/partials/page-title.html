@@ -1,0 +1,17 @@
+<!-- page-title -->
+<section class="page-title bg-cover overlay" style="background-image: url('{{ .Params.Bg_image | absURL }}'), url('{{`images/backgrounds/banner.jpg` | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="text-white">{{ .Title | markdownify }}</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center bg-transparent">
+            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | absLangURL }}" class="text-white">{{ .Site.Params.home }}</a></li>
+            <li class="breadcrumb-item text-white" aria-current="page">{{ .Title }}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page-title -->

@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+<div class="pr-lg-5 pr-4 py-4">
+  {{ if .Params.Image }}
+  <img class="img-fluid w-100 mb-4" src="{{ .Params.image | absURL }}" alt="{{ .Site.Params.author }}">
+  {{ end }}
+  <h1 class="mb-4">{{ .Title }}</h1>
+  <div class="content">{{.Content}}</div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="h1 mb-4">List Of My University Degrees</h2>
+    </div>
+    {{ range .Params.education }}
+    <div class="col-sm-6 mb-4">
+      <h3 class="post-title text-white">{{ .degree | markdownify }}</h3>
+      <hr class="border-default ml-3">
+      <p class="ml-3">{{ .content | markdownify }}</p>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h2 class="h1 mb-4">Some Skills Which I Owns</h2>
+
+    {{ range .Params.skill }}
+    <div class="skill-item">
+      <h3>{{ .name }}</h3>
+      <p>{{ .content | markdownify }}</p>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+{{ end }}

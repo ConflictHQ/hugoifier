@@ -1,0 +1,52 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section id="blog-full-width">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				{{ $paginator:= .Paginate .Data.Pages }}
+				{{ range $paginator.Pages }}
+				<article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+
+					<div class="blog-post-image">
+						<a href="{{ .Permalink }}">
+							{{ with .Params.image }}<img class="img-fluid" src="{{ . | absURL }}" alt="post-image" />{{ end }}
+						</a>
+					</div>
+					<div class="blog-content">
+						<h2 class="blogpost-title">
+							<a href="{{ .Permalink }}">{{ .Title }}</a>
+						</h2>
+						<div class="blog-meta">
+							<span>{{ .Date.Format (.Site.Params.dateFormat | default "Jan 02, 2006") }}</span>
+							{{ with .Params.author }}<span>by
+								{{ . }}
+							</span>
+							{{ end }}
+							{{ with .Params.tags }}
+							<span>
+								{{ delimit . ", " }}
+							</span>
+							{{ end }}
+						</div>
+						<p>
+							{{ .Summary }}
+						</p>
+						{{ with .Permalink }}<a href="{{ . }}" class="btn btn-dafault btn-details hvr-bounce-to-right">Continue
+							Reading</a>{{ end }}
+					</div>
+				</article>
+				{{ end }}
+
+				<!-- pagination -->
+				{{ template "_internal/pagination.html" . }}
+			</div>
+		</div>
+	</div>
+</section>
+
+{{ partial "cta.html" . }}
+
+{{ end }}

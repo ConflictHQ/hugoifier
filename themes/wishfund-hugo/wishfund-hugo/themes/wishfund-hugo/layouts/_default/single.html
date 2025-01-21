@@ -1,0 +1,40 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section blog-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <article class="single-blog-item" data-file="{{.Permalink}}" data-target="article">
+          <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid w-100">
+
+          <div class="blog-item-content mt-3">
+            <h2 class="mt-3">{{ .Title | markdownify }}</h2>
+
+            <div class="blog-item-meta py-1 px-2 mb-4">
+              <span class="text-black mr-3"><i class="ti-calendar mr-1"></i> {{ .PublishDate.Format "January 02, 2006" }}</span>
+              <span class="text-black mr-3"><i class="ti-timer mr-1"></i> <span class="eta"></span> Read</span>
+            </div>
+            <div class="content">
+              {{.Content}}
+            </div>
+            <!-- post share -->
+            <div class="share-option mt-5 clearfix">
+              <ul class="list-inline">
+                <li class="list-inline-item"> <strong>Share:</strong> </li>
+                {{ range .Site.Params.postShare }}
+                <li class="list-inline-item"><a href="{{ .link | safeURL}}" target="_blank"><i class="{{ .icon }} mr-2"></i>{{ .name }}</a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        {{ partial "blog-sidebar.html" . }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

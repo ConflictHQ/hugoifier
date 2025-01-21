@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+<div class="col-lg-12 my-5">
+  <div class="row align-items-end mb-4 mb-lg-5">
+    {{ if .Params.image }}
+    <div class="col-xl-3 col-lg-4">
+      <div class="pr-3">
+        <img loading="lazy" class="img-fluid" style="max-width:250px" src="{{ .Params.image | absURL }}" alt="Author">
+      </div>
+    </div>
+    {{ else if .Params.email }}
+    <div class="col-xl-3 col-lg-4">
+      <img loading="lazy" class="img-fluid" style="max-width:250px" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=250&pg&d=identicon">
+    </div>
+    {{ end }}
+    <div class="col-lg-7 mt-5 mt-lg-0">
+      <p class="h5 mb-3">{{ i18n `about_me` }}</p>
+      <h3 class="font-primary text-dark mb-0" style="line-height:1.5">{{ .Params.summary }}</h3>
+    </div>
+  </div>
+
+  <div class="content mb-5 pb-1">{{ .Content }}</div>
+
+  {{ if .Params.partners.enable }}
+  {{ with .Params.partners }}
+  <p class="h4 mb-3 text-dark">{{ .title | markdownify}}</p>
+
+  <ul class="list-inline partner-logos">
+    {{ range .partner_logos }}
+    <li class="list-inline-item"><img loading="lazy" src="{{. | absURL}}"></li>
+    {{ end }}
+  </ul>
+
+  {{ end }}
+  {{ end }}
+</div>
+
+{{ end }}

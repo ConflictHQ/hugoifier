@@ -1,0 +1,72 @@
+########################### projects ###########################
+projects:
+  title : "Latest works"
+  content : "We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque"
+  project_item:
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/1.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["branding", "illustration"]
+      
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/2.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["branding", "design"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/3.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["illustration"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/4.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["branding"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/5.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["design"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/6.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["branding",  "illustration", "design"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/1.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["illustration"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/2.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["branding", "illustration"]
+        
+    # project item loop
+    - title : "Sulfur web"
+      image : "images/portfolio/3.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      categories: ["design", "illustration"]
+
+####################### call to action ###############################
+cta: 
+  enable : true
+  subtitle : "For Every type business"
+  title : "Entrust your project to our best team of professionals"
+  button_solid:
+    enable : true
+    label : "Let's Talk"
+    link : "contact"
+  button_border:
+    enable : true
+    label : "Services"
+    link : "service/"

@@ -1,0 +1,3 @@
+Processed: themes/airspace-hugo-master/airspace-hugo-master/layouts/index.html
+Processed: themes/airspace-hugo-master/airspace-hugo-master/layouts/404.html
+Processed: themes/airspace-hugo-master/airspace-hugo-master/layouts/author/single.html

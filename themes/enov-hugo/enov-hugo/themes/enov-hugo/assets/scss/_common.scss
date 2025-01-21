@@ -1,0 +1,367 @@
+/* preloader */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-toggle .icon-bar {
+  background: $primary-color;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="tel"] {
+  box-shadow: none;
+  height: 45px;
+  outline: none;
+  font-size: 14px;
+
+  &:focus {
+    box-shadow: none;
+    border: 1px solid $primary-color;
+  }
+}
+
+
+.form-control {
+  box-shadow: none;
+  border-radius: 0;
+
+  &:focus {
+    box-shadow: none;
+    border: 1px solid $primary-color;
+  }
+}
+
+//
+
+.py-7 {
+  padding: 7rem 0px;
+}
+
+// Button Style
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 600;
+  box-shadow: rgb(153, 153, 153) 0px 0px 0px 0px;
+  border: 1px solid transparent;
+
+  @include transition (all, 0.2s, ease);
+
+  &.btn-icon {
+    i {
+      font-size: 16px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+
+  &:focus {
+    outline: 0px;
+    border: 0px;
+    box-shadow: none;
+  }
+}
+
+.btn-main {
+  background: $primary-color;
+  color: $light;
+  @include transition (all, 0.2s, ease);
+
+  &:hover {
+    border-color: $black;
+    background: $black;
+    color: $light;
+  }
+}
+
+.btn-white {
+  background: $light;
+  color: $black;
+  @include transition (all, 0.2s, ease);
+
+  &:hover {
+    border-color: $primary-color;
+    background: $primary-color;
+    color: $light;
+  }
+}
+
+
+.btn-solid-border {
+  border-color: $border-color;
+  background: transparent;
+  color: $light;
+
+  &:hover {
+    border-color: $primary-color;
+    background: $primary-color;
+    color: $light;
+  }
+}
+
+.btn-main-border {
+  border-color: $primary-color;
+  background: transparent;
+  color: $light;
+
+  &:hover {
+    border-color: $primary-color;
+    background: $primary-color;
+    color: $light;
+  }
+}
+
+.btn-transparent {
+  @extend .btn-main;
+  background: transparent;
+  padding: 0;
+  color: $primary-color;
+
+  &:hover {
+    background: transparent;
+    color: $primary-color;
+  }
+}
+
+
+.btn-round {
+  border-radius: 4px;
+}
+
+.btn-round-full {
+  border-radius: 50px;
+}
+
+
+.btn.active:focus,
+.btn:active:focus,
+.btn:focus {
+  outline: 0;
+}
+
+
+
+
+
+//  Section Title
+.section {
+  padding: 100px 0;
+}
+
+
+.section-title {
+  margin-bottom: 70px;
+
+  h2 {
+    font-family: $secondary-font;
+    font-size: 53px;
+    line-height: 63px;
+  }
+}
+
+
+
+
+.overly {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: #000;
+  }
+}
+
+
+.overly-2 {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(23, 24, 33, 0.75);
+  }
+}
+
+.overly-3 {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: $primary-color;
+    opacity: .95;
+  }
+}
+
+
+.text-color {
+  color: $primary-color;
+}
+
+.text-black {
+  color: $black;
+}
+
+
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-md {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.text-lg {
+  font-size: 80px;
+}
+
+.no-spacing {
+  letter-spacing: 0px
+}
+
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+
+.content-title {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+
+
+.page-title {
+  padding-top: 220px;
+  padding-bottom: 120px;
+  @extend .overly-2;
+
+  h1 {
+    color: $light;
+  }
+
+  p {
+    color: $light;
+  }
+}
+
+// Background
+
+.bg-gray {
+  background: $secondary-color;
+}
+
+.bg-black {
+  background: $black;
+}
+
+
+.bg-gradient {
+  background-image: linear-gradient(145deg, rgba(19, 177, 205, 0.95) 0%, rgba(152, 119, 234, 0.95) 100%);
+  background-repeat: repeat-x;
+}
+
+.bg-primary {
+  background: $primary-color !important;
+}
+
+
+
+@include mobile-xs {
+
+  .content-title {
+    font-size: 28px;
+    line-height: 46px;
+  }
+
+  .p-5 {
+    padding: 2rem !important;
+  }
+
+
+  .text-lg {
+    font-size: 3rem;
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 36px;
+  }
+
+
+}
+
+@include mobile {
+
+  .content-title {
+    font-size: 28px;
+    line-height: 46px;
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 36px;
+  }
+
+  .p-5 {
+    padding: 2rem !important;
+  }
+
+
+
+}

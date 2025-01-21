@@ -1,0 +1,168 @@
+<!--==============================================
+=            Call to Action Subscribe            =
+===============================================-->
+{{ if site.Params.Subscription.enable }}
+{{ with site.Params.Subscription }}
+<section class="cta-subscribe bg-subscribe overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mr-auto">
+				<!-- Subscribe Content -->
+				<div class="content">
+					<h3>{{ .title | markdownify }}</h3>
+					<p>{{ .content | markdownify }}</p>
+				</div>
+			</div>
+			<div class="col-md-6 ml-auto align-self-center">
+				<!-- Subscription form -->
+				<form class="row" action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
+					<div class="col-lg-8 col-md-12">
+						<input type="email" class="form-control main white mb-lg-0" placeholder="Email">
+					</div>
+					<div class="col-lg-4 col-md-12">
+						<div class="subscribe-button">
+							<button class="btn btn-main-md" type="submit" name="subscribe">Subscribe</button>
+						</div>
+					</div>
+					<div style="position: absolute; left: -5000px;" aria-hidden="true">
+						<input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Call to Action Subscribe  ====-->
+
+<!--================================
+=            Google Map            =
+=================================-->
+{{ if site.Params.map.enable }}
+{{ with site.Params.map }}
+<section class="map">
+	<!-- Google Map -->
+	<div id="map_canvas" data-latitude="{{ .map_latitude }}"
+  data-longitude="{{ .map_longitude }}" data-marker="{{ .map_marker | absURL }}"
+  data-marker-name="{{ site.Title }}">
+</div>
+	<div class="address-block">
+		<h4>{{.name | markdownify }}</h4>
+		<ul class="address-list p-0 m-0">
+			<li><i class="fa fa-home"></i><span>{{ .location | markdownify }}</span></li>
+			<li><i class="fa fa-phone"></i><span>{{ .phone | markdownify}}</span></li>
+		</ul>
+		<a href="{{ .link | absURL }}" class="btn btn-white-md">Get Direction</a>
+	</div>
+</section>
+{{ end }}
+{{ end }}
+<!--====  End of Google Map  ====-->
+
+<!--============================
+=            Footer            =
+=============================-->
+
+<footer class="footer-main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block text-center">
+					<div class="footer-logo">
+						<a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+							{{ if site.Params.logo }}
+							<img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo_footer | absURL}}"
+								alt="{{ site.Title }}">
+							{{ else }}
+							{{site.Title}}
+							{{ end }}
+						</a>
+					</div>
+					<ul class="social-links-footer list-inline">
+						{{ range site.Params.social}}
+						<li class="list-inline-item">
+							<a href="{{ .link | safeURL }}"><i class="fa {{.icon}}"></i></a>
+						</li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- Subfooter -->
+<footer class="subfooter">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 align-self-center">
+				<div class="copyright-text">
+					<p>{{site.Params.copyright | markdownify }}</p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<a href="#" class="to-top"><i class="fa fa-angle-up"></i></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+{{ "<!-- Google Map API -->" | safeHTML }}
+{{ with site.Params.map.gmap_api }}
+<script src="{{ . | safeURL }}"></script>
+{{ end }}
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range site.Params.plugins.js}}
+<script src="{{ .link | absURL }}" {{.attributes | safeHTMLAttr}}></script>
+{{ end }}
+
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify }}
+<script src="{{ $script.Permalink }}"></script>
+
+
+<!-- cookie -->
+{{ if site.Params.cookies.enable }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button"
+		class="btn btn-main-sm ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires: {{site.Params.cookies.expire_days}}
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+<!-- cookie style -->
+<style>
+	.cookie-box {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+		z-index: 9999;
+		padding: 1rem 2rem;
+		background: rgb(71, 71, 71);
+		transition: all .75s cubic-bezier(.19, 1, .22, 1);
+		color: #fdfdfd;
+	}
+
+	.cookie-box-hide {
+		display: none;
+	}
+</style>
+{{ end }}

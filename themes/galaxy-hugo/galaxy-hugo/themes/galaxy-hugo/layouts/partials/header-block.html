@@ -1,0 +1,15 @@
+<section class="mb-5">
+  <div class="container">
+    <div class="d-flex">
+      <button class="navbar-toggler border-default mr-2">
+        <i class="ti-menu h3 text-white"></i>
+      </button>
+      {{ if .Site.Params.search }}
+      <form class="search-wrapper" action="{{ `search`| relLangURL }}">
+        <input id="search-query" name="s" type="search" class="form-control" placeholder="{{ i18n `search_placeholder`}}">
+        <button type="submit"><i class="ti-search"></i></button>
+      </form>
+      {{ end }}
+    </div>
+  </div>
+</section>

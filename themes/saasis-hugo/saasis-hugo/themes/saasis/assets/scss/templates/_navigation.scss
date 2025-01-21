@@ -1,0 +1,141 @@
+.navigation {
+  position: relative;
+  z-index: 9999;
+  .nav-item {
+    margin: 0;
+
+    .nav-link {
+      text-transform: capitalize;
+    }
+    &:not(.dropdown) .nav-link {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        height: 3px;
+        width: 20px;
+        border-radius: 15px;
+        background-color: $primary-color;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        transition: 0.3s;
+      }
+      &:hover::before {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+    &.active:not(.dropdown) .nav-link::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
+
+  .navbar-light .navbar-nav .nav-link:not(select) {
+    color: $text-color-dark;
+    font-weight: 500;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .navbar-light .navbar-nav .nav-item .dropdown-toggle.active,
+  .navbar-light .navbar-nav .nav-item.active .nav-link:not(select) {
+    color: $primary-color;
+  }
+
+  .navbar-light .navbar-nav select.nav-link {
+    color: $text-color-dark;
+    font-weight: 500;
+  }
+
+  .navbar-expand-xl .navbar-nav .nav-link {
+    padding: 18px;
+    @include desktop-lg {
+      padding: 10px;
+    }
+  }
+
+  .nav-item.dropdown .nav-link {
+    margin-right: 16px;
+    @include desktop-lg {
+      margin-right: 0;
+    }
+    &::after {
+      position: absolute;
+      right: 20px;
+      @include desktop-lg {
+        position: relative;
+        right: 0;
+      }
+      top: 1px;
+      display: inline-block;
+      vertical-align: 0.255em;
+      content: "";
+      height: 8px;
+      width: 8px;
+      border: 2px solid;
+      border-left: 0;
+      border-top: 0;
+      border-color: inherit;
+      border-radius: 2px;
+      transform: rotate(45deg);
+      transition: 0s;
+    }
+  }
+
+  .dropdown-menu {
+    padding: 10px 18px;
+    border: 0;
+    @supports (backdrop-filter: blur(25px)) {
+      background-color: rgba($white, 0.4);
+      backdrop-filter: blur(25px);
+    }
+    @supports not (backdrop-filter: blur(25px)) {
+      background-color: rgba($white, 0.9);
+    }
+
+    @include desktop-lg {
+      text-align: center;
+      border: 0;
+      padding: 0 18px;
+    }
+
+    .dropdown-item {
+      padding: 5px 0;
+      font-weight: 500;
+      font-size: 15px;
+
+      &.active,
+      &:active,
+      &:focus,
+      &:hover {
+        color: $primary-color;
+        background-color: transparent;
+      }
+    }
+  }
+
+  @media (min-width: 1199px) {
+    .dropdown-menu {
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      width: 180px;
+      transition: 0.2s;
+      left: 50%;
+      border-radius: 8px;
+      transform: translate(-50%, -15px);
+    }
+    .nav-item.dropdown .nav-link {
+      &::after {
+        top: calc(50% - 6px);
+      }
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 30px rgba(22, 28, 45, 0.1);
+      transform: translate(-50%, -6px);
+    }
+  }
+}

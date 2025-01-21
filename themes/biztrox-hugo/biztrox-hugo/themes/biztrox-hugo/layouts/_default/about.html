@@ -1,0 +1,98 @@
+{{ define "main" }}
+
+{{ with .Params.philosophy }}
+{{ if .enable }}
+{{ "<!-- philosophy -->" | safeHTML }}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7 order-2 order-lg-1">
+				<span class="section-title-sm h5">{{ .subtitle | markdownify }}</span>
+				<h2 class="section-title section-title-border-half">{{ .title | markdownify }}</h2>
+				<p>{{ .content | markdownify }}</p>
+			</div>
+			{{ "<!-- philosophy image -->" | safeHTML }}
+			<div class="col-lg-5 align-self-center order-1 order-lg-2 mb-md-50">
+				{{ partial "image.html" (dict "Src" .image "Alt" "philosophy-image" "Class" `w-100`) }}
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /philosophy -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ with .Params.ceo }}
+{{ if .enable }}
+{{ "<!-- ceo section -->" | safeHTML }}
+<section>
+	<div class="container">
+		<div class="row rounded bg-secondary">
+			{{ "<!-- ceo image -->" | safeHTML }}
+			<div class="col-lg-5 rounded-start ceo-image" {{ partial `bg-image.html` (dict `Src` "images/about/ceo.jpg" ) |
+				safeHTMLAttr }}></div>
+			<div class="col-lg-7">
+				{{ "<!-- ceo content -->" | safeHTML }}
+				<div class="p-3 p-sm-5">
+					<h2 class="section-title section-title-border-half-white text-white">{{ .title | markdownify }}</h2>
+					<p class="text-white">{{ .content | markdownify }}</p>
+					{{ partial "image.html" (dict "Src" .signature "Alt" "ceo-signature") }}
+					<h5 class="text-white">{{ .name | markdownify }}</h5>
+					<h6 class="text-white">{{ .designation | markdownify }}</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ "<!-- /ceo section -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+<!-- mission -->
+{{ if .Params.mission.enable }}
+{{ if .Params.mission.inherit_homepage }}
+{{ with .GetPage "/" }}
+{{ partial "components/mission.html" . }}
+{{ end }}
+{{ else }}
+{{ partial "components/mission.html" . }}
+{{ end }}
+{{ end }}
+
+{{ with .Params.funfacts }}
+{{ if .enable }}
+{{ "<!-- funfacts -->" | safeHTML }}
+<section class="fun-facts overlay-dark section-sm" {{ partial `bg-image.html` (dict `Src` .bg_image ) | safeHTMLAttr }}>
+	<div class="container">
+		<div class="row">
+			{{ range .counter }}
+			<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+				<div
+					class="d-flex flex-sm-row flex-column justify-content-lg-center align-items-center text-center text-sm-start">
+					<i class="round-icon {{ .icon }} me-sm-3 me-0 mb-3 mb-sm-0"></i>
+					<div class="text-center text-sm-start">
+						<h2 class="counter text-white mb-0" data-counter-time="1800">{{ .count }}</h2>
+						<p class="text-white mb-0">{{ .title }}</p>
+					</div>
+				</div>
+			</div>
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ "<!-- /funfacts -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+<!-- skill -->
+{{ if .Params.skill.enable }}
+{{ if .Params.skill.inherit_homepage }}
+{{ with .GetPage "/" }}
+{{ partial "components/skill.html" . }}
+{{ end }}
+{{ else }}
+{{ partial "components/skill.html" . }}
+{{ end }}
+{{ end }}
+
+{{ end }}

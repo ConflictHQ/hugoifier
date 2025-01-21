@@ -1,0 +1,66 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq
+.Section "categories") (eq .Section "tags") }}
+
+<section class="section-padding pb-40" data-aos="fade-in" data-aos-delay="150">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-9 text-center mb-40">
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+    <div class="row has-underline-link">
+      <!-- start post range -->
+      {{ $paginator:= .Paginate .Data.Pages }}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-4 col-md-6 mb-40">
+        <div class="card border-0 h-100">
+          <a class="d-flex flex-fill align-items-center" href="{{.Permalink}}">
+            {{ partial "image.html" (dict "Src" .Params.Image "Alt" "blog-image" "Class" `card-img-top rounded`) }}
+          </a>
+          <div class="p-25 pb-0">
+            <div class="post-category position-relative mb-15">
+              {{ range $i,$p:= .Params.Categories }}{{if ne $i 0}},{{end}}<a
+                href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}"
+                class="font-weight-600 ms-1">{{ . | humanize }} </a>
+              {{ end }}
+            </div>
+            <a class="h4 font-weight-bold d-block mb-15" href="{{.Permalink}}">{{ .Title }}</a>
+            <div class="post-meta font-weight-600 mb-15">{{.PublishDate.Format "02 Jan, 2006"}}<span
+                class="mx-2">|</span>{{ .Page.ReadingTime }} {{ i18n "minute_read" }}
+            </div>
+            <p>{{ .Summary }}</p>
+          </div>
+        </div>
+        <!-- blog-post item -->
+      </div>
+      {{ end }}
+      <div class="col-12 mt-5">
+        <!-- pagination -->
+        {{ template "_internal/pagination.html" . }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

@@ -1,0 +1,28 @@
+############# French navigation ##############
+# main menu
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+name = "Github"
+url = "https://github.com/themefisher/"
+weight = 2
+
+
+# footer menu
+[[footer]]
+name = "Changelog"
+url = "changelog/"
+weight = 1
+
+[[footer]]
+name = "contact"
+url = "contact/"
+weight = 2
+
+[[footer]]
+name = "Github"
+url = "https://github.com/themefisher/"
+weight = 3

@@ -1,0 +1,17 @@
+<article class="card h-100">
+  <div class="card-img-wrapper overlay-rounded-top"> 
+    {{ partial "image.html" (dict "Src" .Params.image "Alt" .Title  "Class" `card-img-top`) }}
+  </div>
+  <div class="card-body p-0">
+    <div class="d-flex">
+      <div class="py-3 px-4 text-center">
+        <span class="text-primary mb-0 h3">{{ .PublishDate.Format "02" }}</span>
+        <p class="mb-0">{{ .PublishDate.Format "Jan" }}</p>
+      </div>
+      <div class="p-3 border-start">
+        <h3 class="h4"><a href="{{ .Permalink }}" class="font-primary text-dark">{{ .Title }}</a></h3>
+        {{with .Params.Author}} by <a class="text-primary" href="{{ `author/` | relLangURL }}{{ . | urlize }}">{{ . | title }}</a>{{end}}
+      </div>
+    </div>
+  </div>
+</article>

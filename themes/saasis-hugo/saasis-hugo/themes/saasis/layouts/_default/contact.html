@@ -1,0 +1,80 @@
+{{ define "main" }}
+
+{{ with .Params.contact_info }}
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      {{ range .blocks }}
+      <div class="col-lg-4" data-aos="fade">
+        <div class="bg-white-blur border-sm rounded-md text-center p-4 mt-5">
+          <div class="bg-white-blur-solid border-sm rounded d-inline-block mx-auto p-3 position-relative" style="margin-top:-50px;top:-38px">
+            {{$img:= resources.Get (.image) }}
+            {{$img:= $img.Resize "50x webp"}}
+            <img loading="lazy" decoding="async" src="{{$img.RelPermalink}}" alt="A" width="{{$img.Width}}" height="{{$img.Height}}">
+          </div>
+          <h3 class="h5">{{ .title }}</h3>
+          <p class="mb-2">{{ .description }}</p>
+          <span class="text-white d-inline-block mb-2">─────</span>
+          <p class="mb-2"><a href="mailto:{{.email}}">{{.email}}</a></p>
+          <p class="mb-0"><a href="tel:{{.phone}}">{{.phone}}</a></p>
+        </div>
+      </div>
+      {{ end }}
+
+      <div class="col-12 mt-5 pt-5"></div>
+
+      <div class="col-lg-4 mt-0 mt-lg-5" data-aos="fade">
+        <div class="section-title">
+          <p class="caption">{{ .subtitle | markdownify }}</p>
+          <h2 class="title">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+        <ul class="list-unstyled list-inline social-box-icons">
+          {{ range site.Params.social }}
+          <li class="list-inline-item mb-2"><a class="d-inline-block" href="{{.link}}" aria-label="social profile"><i class="{{.icon}}"></i></a></li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="col-lg-8" data-aos="fade">
+        <div class="bg-white-blur border-sm rounded-md p-4 p-lg-5">
+          <form class="row g-4" action="{{site.Params.contact_form_action}}">
+            <div class="col-sm-6">
+              <label class="mb-2" for="name">{{i18n `name`}}</label>
+              <input id="name" type="text" class="form-control border p-3 rounded-sm shadow-none rounded-sm bg-transparent border-0 text-dark" placeholder="{{i18n `name_placeholder`}}">
+            </div>
+            <div class="col-sm-6">
+              <label class="mb-2" for="email">{{i18n `email_address`}}</label>
+              <input id="email" type="email" class="form-control border p-3 rounded-sm shadow-none rounded-sm bg-transparent border-0 text-dark" placeholder="{{i18n `email_placeholder`}}">
+            </div>
+            <div class="col-sm-6">
+              <label class="mb-2" for="name">{{i18n `phone`}}</label>
+              <input id="name" type="text" class="form-control border p-3 rounded-sm shadow-none rounded-sm bg-transparent border-0 text-dark" placeholder="{{i18n `phone_placeholder`}}">
+            </div>
+            <div class="col-sm-6">
+              <label class="mb-2" for="name">{{i18n `company`}}</label>
+              <input id="name" type="text" class="form-control border p-3 rounded-sm shadow-none rounded-sm bg-transparent border-0 text-dark" placeholder="{{i18n `company_name_placeholder`}}">
+            </div>
+            <div class="col-sm-12">
+              <label class="mb-2" for="message">{{i18n `message`}}</label>
+              <textarea id="message" rows="5" class="form-control border p-3 rounded-sm shadow-none rounded-sm bg-transparent border-0 text-dark" placeholder="{{i18n `message_placeholder`}}"></textarea>
+            </div>
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary">{{i18n `send_message`}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+
+{{ if eq .Permalink ("contact/" | absURL) }}
+{{ if site.Params.gmap.enable }}
+<script src="https://maps.googleapis.com/maps/api/js?key={{site.Params.gmap.gmap_api}}&libraries=places"></script>
+{{ end }}
+{{ end }}
+
+{{ end }}

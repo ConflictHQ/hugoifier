@@ -1,0 +1,73 @@
+.team-member {
+  position: relative;
+
+  &:hover {
+    .team-member-content {
+      &::before {
+        height: 100%;
+        transition: .3s ease;
+      }
+    }
+
+    .team-member-name,
+    .team-member-designation {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: .1s;
+    }
+
+    .team-member-social {
+      opacity: 1;
+      visibility: visible;
+      bottom: 0;
+      transition-delay: .4s;
+    }
+  }
+
+  &-content {
+    position: absolute;
+    height: 32%;
+    width: 80%;
+    left: 10%;
+    bottom: 10%;
+    z-index: 1;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 0;
+      width: 100%;
+      transition: .5s ease;
+      background: $bg-gradient-primary;
+      bottom: 0;
+      border-radius: 10px;
+      left: 0;
+      z-index: -1;
+    }
+  }
+
+  &-name {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: .4s ease;
+    transition-delay: .0s;
+  }
+
+  &-designation {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: .4s ease;
+    transition-delay: .0s;
+  }
+
+  &-social {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10%;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease;
+    transition-delay: .0s;
+  }
+}

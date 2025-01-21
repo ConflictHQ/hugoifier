@@ -1,0 +1,92 @@
+- id: read_more
+  translation: Baca selengkapnya
+  
+- id: read_case_study
+  translation: Baca studi kasus selengkapnya
+  
+- id: view_product
+  translation: Lihat Produk
+
+- id: send
+  translation: Mengirim pesan
+
+- id: category
+  translation: Kategori
+
+- id: tags
+  translation: Tag
+
+- id: by
+  translation: oleh
+
+- id: min_read
+  translation: min Baca
+
+- id: admin
+  translation: Admin
+
+- id: lets_meet
+  translation: Mari Bertemu
+
+- id: prev_case
+  translation: Sebelumnya
+
+- id: next_case
+  translation: Lanjut
+
+- id: apply_for_position
+  translation: Terapkan untuk Posisi
+
+- id: view_all_positions
+  translation: Lihat Semua Posisi
+
+- id: apply_now
+  translation: Lamar Sekarang
+
+- id: share_this_job
+  translation: "Bagikan pekerjaan ini:"
+
+- id: other_jobs
+  translation: Pekerjaan lain
+
+- id: all_jobs
+  translation: Semua Pekerjaan
+  
+- id: fname
+  translation: Nama depan
+  
+- id: full_name
+  translation: Nama lengkap
+  
+- id: lname
+  translation: Nama keluarga
+  
+- id: email
+  translation: Alamat email
+  
+- id: website
+  translation: Situs web
+  
+- id: organization_size
+  translation: Ukuran Organisasi (Karyawan)*
+  
+- id: region
+  translation: Wilayah*
+  
+- id: message
+  translation: Pesan
+  
+- id: submit_now
+  translation: Kirim Sekarang
+  
+- id: get_demo
+  translation: Dapatkan Demo
+  
+- id: cv_note
+  translation: hanya doc, file pdf yang diizinkan & ukuran file kurang dari 2MB
+  
+- id: upload_cv
+  translation: Unggah CV
+  
+- id: search_faq
+  translation: Klik dan cari FAQ..

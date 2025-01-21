@@ -1,0 +1,22 @@
+{{ "<!-- latest post -->" | safeHTML }}
+<div class="widget">
+  <h5 class="widget-title"><span>{{ i18n "latest_article" }}</span></h5>
+  {{ "<!-- post-item -->" | safeHTML }}
+  <ul class="list-unstyled widget-list mb-0">
+    {{ range first 3 ( where site.RegularPages "Section" "in" site.Params.mainSections ) }}
+      <li class="d-flex widget-post align-items-start">
+        <a href="{{ .Permalink }}">
+          {{ with .Params.images }}
+            {{ range first 1 . }}
+              {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `me-3`) }}
+            {{ end }}
+          {{ end }}
+        </a>
+        <div class="media-body">
+          <h5 class="h6 mb-0"><a href="{{ .Permalink }}">{{ .Title }}</a></h5>
+          <small>{{ .PublishDate.Format "January 2, 2006" }}</small>
+        </div>
+      </li>
+    {{ end }}
+  </ul>
+</div>

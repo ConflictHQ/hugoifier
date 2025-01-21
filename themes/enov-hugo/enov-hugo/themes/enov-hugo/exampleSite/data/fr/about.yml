@@ -1,0 +1,60 @@
+############################### About #################################
+about:
+  enable: true
+  title : "We create digital ideas that are bigger, bolder, braver and better."
+  content : "We provide consulting services in the area of IFRS and management
+          reporting, helping companies to reach their highest level. We optimize business processes, making them easier."
+  about_item:
+    # about item loop
+    - title : "Our Mission"
+      image : "images/about/bg-1.jpg"
+      content : "llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti  distinctio ."
+          
+    # about item loop
+    - title : "Our Vission"
+      image : "images/about/about.jpg"
+      content : "llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti  distinctio ."
+          
+    # about item loop
+    - title : "Our Approach"
+      image : "images/about/home-8.jpg"
+      content : "llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti  distinctio ."
+
+##################### Funfacts ######################################
+funfacts:
+  enable : true
+  bg_image : "images/bg/banner-1.jpg"
+  # funfact item comes from "data/**/homepage.yml" file.
+      
+############################# Team ##################################
+team:
+  enable: true
+  # team content comes from "data/**/homepage.yml" file
+
+############################ Testimonial ############################
+testimonial:
+  enable : true
+  bg_image : "images/bg/about-modern-img-1.jpg"
+  testimonial_item:
+    # testimonial item loop
+    - name : "Thomas Johnson"
+      designation : "Excutive Director"
+      content: "Neque ipsa consequuntur excepturi quas repudiandae aliquam iste ab laboriosam id facere
+              ducimus odio sed officia provident doloribus explicabo, magni, corrupti sit."
+              
+    # testimonial item loop
+    - name : "Mickel hussy"
+      designation : "Director"
+      content: "Neque ipsa consequuntur excepturi quas repudiandae aliquam iste ab laboriosam id facere
+              ducimus odio sed officia provident doloribus explicabo, magni, corrupti sit."
+              
+    # testimonial item loop
+    - name : "James Watson"
+      designation : "Excutive manager"
+      content: "Neque ipsa consequuntur excepturi quas repudiandae aliquam iste ab laboriosam id facere
+              ducimus odio sed officia provident doloribus explicabo, magni, corrupti sit."
+
+######################### clients logo ##################################
+clients_logo:
+  enable : true
+  # clients logo comes from "config.toml" file.

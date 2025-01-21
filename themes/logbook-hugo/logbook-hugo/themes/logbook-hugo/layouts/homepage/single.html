@@ -1,0 +1,340 @@
+{{ define "main" }}
+  {{ $sidebar:= .Params.sidebar }}
+  {{ $hasbar:= or (eq $sidebar `left`) (eq $sidebar `right`) }}
+  {{ $layout:= .Params.post_layout }}
+  {{ $widget:= site.Params.widgets.sidebar }}
+
+  {{ if site.Params.featured_post }}
+    {{ partialCached "featured-post.html" . }}
+  {{ end }}
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <!-- left sidebar -->
+        {{ if eq $sidebar "left" }}
+          <aside class="col-lg-4 order-2 order-lg-1">
+            <div class="pr-0 pr-lg-4">
+              {{- partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+            </div>
+          </aside>
+        {{ end }}
+        <!-- /left sidebar -->
+
+        <div
+          class="{{ if $hasbar }}
+            col-lg-8
+          {{ else }}
+            {{ if eq $layout `grid` }}col-12{{ else }}col-lg-9 mx-auto{{ end }}
+          {{ end }}
+           {{ if eq $sidebar `left` }}order-1 order-lg-2{{ end }} mb-5 mb-lg-0">
+          {{ if eq $layout "list" }}
+            <!-- list article -->
+            {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
+              <article class="row mb-5">
+                {{ $permalink := .RelPermalink }}
+                {{ with .Params.images }}
+                  <div class="col-md-4 mb-4 mb-md-0">
+                    {{ if gt (len .) 1 }}
+                      <div class="swiper post-slider slider-sm w-100 h-100">
+                        <div class="swiper-wrapper">
+                          {{ range . }}
+                            <div class="swiper-slide">
+                              <a href="{{ $permalink }}">
+                                {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100 h-100`) }}
+                              </a>
+                            </div>
+                          {{ end }}
+                        </div>
+                        <div class="swiper-navigation">
+                          <button
+                            class="swiper-button-prev"
+                            aria-label="navigation button"></button>
+                          <button
+                            class="swiper-button-next"
+                            aria-label="navigation button"></button>
+                        </div>
+                      </div>
+                    {{ else }}
+                      <div class="post-slider slider-sm h-100">
+                        {{ range . }}
+                          <a href="{{ $permalink }}">
+                            {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100 h-100`) }}
+                          </a>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                  </div>
+                {{ end }}
+
+
+                <div
+                  class="{{ if .Params.Images }}
+                    col-md-8
+                  {{ else }}
+                    col-12
+                  {{ end }}">
+                  <h3 class="h5">
+                    <a class="post-title" href="{{ .RelPermalink }}"
+                      >{{ .Title }}</a
+                    >
+                  </h3>
+                  <ul class="list-inline post-meta mb-2">
+                    <li class="list-inline-item">
+                      <i class="fas fa-user me-2"></i
+                      ><a
+                        href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/"
+                        >{{ .Params.author }}</a
+                      >
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "date" }} :
+                      {{ .PublishDate.Format "January 2, 2006" }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "categories" }} :
+                      {{ range $i,$p:= .Params.Categories }}
+                        {{ if ne $i 0 }},{{ end }}<a
+                          href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . | humanize }}
+                        </a>
+                      {{ end }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "tags" }} :
+                      {{ range $i,$p:= .Params.Tags }}
+                        {{ if ne $i 0 }},{{ end }}<a
+                          href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . | humanize }}
+                        </a>
+                      {{ end }}
+                    </li>
+                  </ul>
+                  <p>
+                    {{ if .Params.Images }}
+                      {{ if or (eq $sidebar `left`) (eq $sidebar `right`) }}
+                        {{ .Summary | truncate 100 }}
+                      {{ else }}
+                        {{ .Summary |
+                          truncate 200
+                        }}
+                      {{ end }}
+                    {{ else }}
+                      {{ .Summary | truncate 300 }}
+                    {{ end }}
+                  </p>
+                  <a href="{{ .RelPermalink }}" class="btn btn-outline-primary"
+                    >{{ i18n "continue_reading" }}</a
+                  >
+                </div>
+              </article>
+            {{ end }}
+            <!-- /list article -->
+          {{ else if eq $layout "grid" }}
+            <!-- grid article -->
+            <div class="row">
+              {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
+                <div
+                  class="{{ if $hasbar }}
+                    col-md-6
+                  {{ else }}
+                    col-lg-4 col-md-6
+                  {{ end }}">
+                  <article class="card mb-4 border-0">
+                    <!-- post thumb -->
+                    {{ $permalink := .RelPermalink }}
+                    {{ with .Params.images }}
+                      {{ if gt (len .) 1 }}
+                        <div class="swiper post-slider slider-sm w-100">
+                          <div class="swiper-wrapper">
+                            {{ range . }}
+                              <div class="swiper-slide">
+                                <a href="{{ $permalink }}">
+                                  {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100`) }}
+                                </a>
+                              </div>
+                            {{ end }}
+                          </div>
+                          <div class="swiper-navigation">
+                            <button
+                              class="swiper-button-prev"
+                              aria-label="navigation button"></button>
+                            <button
+                              class="swiper-button-next"
+                              aria-label="navigation button"></button>
+                          </div>
+                        </div>
+                      {{ else }}
+                        <div class="post-slider slider-sm">
+                          {{ range . }}
+                            <a href="{{ $permalink }}">
+                              {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100`) }}
+                            </a>
+                          {{ end }}
+                        </div>
+                      {{ end }}
+                    {{ end }}
+                    <!-- /post thumb -->
+                    <div class="card-body">
+                      <h3 class="h4">
+                        <a class="post-title" href="{{ .RelPermalink }}"
+                          >{{ .Title }}</a
+                        >
+                      </h3>
+                      <ul class="list-inline post-meta mb-4">
+                        <li class="list-inline-item">
+                          <i class="fas fa-user me-2"></i>
+                          <a
+                            href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/"
+                            >{{ .Params.author }}</a
+                          >
+                        </li>
+                        <li class="list-inline-item">
+                          {{ i18n "date" }} :
+                          {{ .PublishDate.Format "January 2, 2006" }}
+                        </li>
+                        <li class="list-inline-item">
+                          {{ i18n "categories" }} :
+                          {{ range $i,$p:= .Params.Categories }}
+                            {{ if ne $i 0 }},{{ end }}<a
+                              href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
+                              class="ms-1"
+                              >{{ . | humanize }}
+                            </a>
+                          {{ end }}
+                        </li>
+                        <li class="list-inline-item">
+                          {{ i18n "tags" }} :
+                          {{ range $i,$p:= .Params.Tags }}
+                            {{ if ne $i 0 }},{{ end }}<a
+                              href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/"
+                              class="ms-1"
+                              >{{ . | humanize }}
+                            </a>
+                          {{ end }}
+                        </li>
+                      </ul>
+                      <p>{{ .Summary | truncate 150 }}</p>
+                      <a
+                        href="{{ .RelPermalink }}"
+                        class="btn btn-outline-primary"
+                        >{{ i18n "continue_reading" }}</a
+                      >
+                    </div>
+                  </article>
+                </div>
+              {{ end }}
+            </div>
+            <!-- grid article -->
+          {{ else }}
+
+            <!-- full article -->
+            {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
+              <article class="row mb-5">
+                {{ $permalink := .RelPermalink }}
+                {{ with .Params.images }}
+                  <div class="col-12">
+                    {{ if gt (len .) 1 }}
+                      <div class="swiper post-slider mb-4 slider-sm w-100">
+                        <div class="swiper-wrapper">
+                          {{ range . }}
+                            <div class="swiper-slide">
+                              <a href="{{ $permalink }}">
+                                {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100 h-100`) }}
+                              </a>
+                            </div>
+                          {{ end }}
+                        </div>
+                        <div class="swiper-navigation">
+                          <button
+                            class="swiper-button-prev"
+                            aria-label="navigation button"></button>
+                          <button
+                            class="swiper-button-next"
+                            aria-label="navigation button"></button>
+                        </div>
+                      </div>
+                    {{ else }}
+                      <div class="post-slider mb-4 slider-sm">
+                        {{ range . }}
+                          <a href="{{ $permalink }}">
+                            {{ partial "image.html" (dict "Src" . "Alt" "post-thumb" "Class" `w-100 h-100`) }}
+                          </a>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                  </div>
+                {{ end }}
+
+
+                <div
+                  class="{{ if or (eq $sidebar `left`) (eq $sidebar `right`) }}
+                    col-12
+                  {{ else }}
+                    col-lg-10
+                  {{ end }} mx-auto">
+                  <h3>
+                    <a class="post-title" href="{{ .RelPermalink }}"
+                      >{{ .Title }}</a
+                    >
+                  </h3>
+                  <ul class="list-inline post-meta mb-4">
+                    <li class="list-inline-item">
+                      <i class="fas fa-user me-2"></i
+                      ><a
+                        href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/"
+                        >{{ .Params.author }}</a
+                      >
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "date" }} :
+                      {{ .PublishDate.Format "January 2, 2006" }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "categories" }} :
+                      {{ range $i,$p:= .Params.Categories }}
+                        {{ if ne $i 0 }},{{ end }}<a
+                          href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . | humanize }}
+                        </a>
+                      {{ end }}
+                    </li>
+                    <li class="list-inline-item">
+                      {{ i18n "tags" }} :
+                      {{ range $i,$p:= .Params.Tags }}
+                        {{ if ne $i 0 }},{{ end }}<a
+                          href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/"
+                          class="ms-1"
+                          >{{ . | humanize }}
+                        </a>
+                      {{ end }}
+                    </li>
+                  </ul>
+                  <p>{{ .Summary }}</p>
+                  <a href="{{ .RelPermalink }}" class="btn btn-outline-primary"
+                    >{{ i18n "continue_reading" }}</a
+                  >
+                </div>
+              </article>
+            {{ end }}
+            <!-- /full article -->
+          {{ end }}
+        </div>
+
+        <!-- right sidebar -->
+        {{ if eq $sidebar "right" }}
+          <aside class="col-lg-4">
+            <div class="ps-0 ps-lg-4">
+              {{- partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+            </div>
+          </aside>
+        {{ end }}
+        <!-- /right sidebar -->
+      </div>
+    </div>
+  </section>
+{{ end }}

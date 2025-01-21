@@ -1,0 +1,83 @@
+- id: home
+  translation: Home
+
+- id: enter_your_email
+  translation: Enter your email
+
+- id: try_for_free
+  translation: Try For Free
+
+- id: send
+  translation: send message
+
+- id: toc
+  translation: Table of Contents
+
+- id: features
+  translation: Features
+
+- id: email
+  translation: Email
+
+- id: phone
+  translation: Phone
+
+- id: company
+  translation: Company
+
+- id: address
+  translation: Office Address
+
+- id: follow_us
+  translation: Follow us
+
+- id: first_name
+  translation: First Name
+
+- id: last_name
+  translation: Last Name
+
+- id: message
+  translation: Message
+
+- id: email_address
+  translation: Email Address
+
+- id: view_listing
+  translation: View listing
+
+- id: upload_cv
+  translation: Upload CV
+
+- id: apply_now
+  translation: Apply Now
+
+- id: share_this_job
+  translation: Share This Job
+
+- id: other_jobs
+  translation: Other Jobs
+
+- id: view_all_positions
+  translation: View All Positions
+
+- id: min_read
+  translation: min read
+
+- id: recent_posts
+  translation: Recent Posts of
+
+- id: related_posts
+  translation: Related Posts
+
+- id: all_posts
+  translation: All Posts
+
+- id: follow_us
+  translation: Follow us
+
+- id: 404_not_found
+  translation: 404 Page Not Found!
+
+- id: back_to_home
+  translation: Go Back home

@@ -1,0 +1,110 @@
+- id: socials
+  translation: Socials
+
+- id: social_media
+  translation: Social Media
+
+- id: quick_links
+  translation: Quick Links
+
+- id: location_contact
+  translation: Location & Contact
+
+- id: recent_posts
+  translation: Recent Posts by
+
+- id: related_articles
+  translation: Related Articles
+
+- id: view_listing
+  translation: View Listing
+
+- id: read_more
+  translation: Read More
+
+- id: about_the_role
+  translation: About the role
+
+- id: fname
+  translation: First Name
+
+- id: full_name
+  translation: Full Name
+
+- id: lname
+  translation: Last Name
+
+- id: name_re
+  translation: Your name is required!
+
+- id: email
+  translation: Email Address
+
+- id: email_re
+  translation: Your email is required!
+
+- id: upload_cv
+  translation: Upload CV
+
+- id: cv_note
+  translation: only doc, pdf file allowed &amp; file size will be less than 2MB
+
+- id: cv_re
+  translation: Your CV is required!
+
+- id: apply_job
+  translation: Apply for Job
+
+- id: lets_meet
+  translation: Lets Meet
+
+- id: year
+  translation: Year
+
+- id: location
+  translation: Location
+
+- id: company_size
+  translation: Company Size
+
+- id: send_a_message
+  translation: Send A Message
+
+- id: send_message
+  translation: Send Message
+
+- id: comment_re
+  translation: Your comment is required!
+
+- id: your_message
+  translation: Your Message
+
+- id: phone
+  translation: Phone
+
+- id: contact_us
+  translation: Contact us
+
+- id: get_in_touch
+  translation: Get In Touch
+
+- id: form_thanks_message
+  translation: Thanks for your submission!
+
+- id: form_error_message
+  translation: Oops! There was a problem submitting your form
+
+- id: min_read
+  translation: Min read
+
+- id: monthly
+  translation: Billed Monthly
+
+- id: yearly
+  translation: Billed Annually
+
+- id: month
+  translation: Month
+
+- id: year
+  translation: Year

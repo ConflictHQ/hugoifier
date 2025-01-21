@@ -1,0 +1,25 @@
+{{ "<!-- latest post -->" | safeHTML }}
+<div class="widget">
+  <span class="widget-title">{{ i18n `recent_post` }}</span>
+  
+  <ul class="sidebar-recent-post list-unstyled">
+    {{ $related := ( where site.RegularPages "Type" "in" site.Params.mainSections ) | intersect (where site.Pages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+    {{ range first 3 $related }}
+    <li class="recent-post-item">
+      <div class="media">
+        <div class="media-body mr-2">
+          <h5><a href="{{ .Permalink }}">{{ .Title }}</a></h5>
+          <span class="card-meta">
+            <span class="card-meta-date">{{.PublishDate.Format "Jan 02, 2006"}}</span>
+          </span>
+        </div>
+        <a href="{{ .Permalink }}" class="recent-post-image">
+          {{ range first 1 .Params.Images }}
+          <img loading="lazy" class="img-fluid rounded-circle" src="{{ . | absURL }}">
+          {{ end }}
+        </a>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</div>

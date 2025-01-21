@@ -1,0 +1,65 @@
+.contact{
+    position: relative;
+    overflow: hidden;
+    .shape-big{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+    &-info{
+        position: relative;
+        h4{
+            margin-bottom: 20px;
+        }
+        p{
+            line-height: 25px;
+        }
+        ul{
+            margin-top: 80px;
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 0;
+            @include desktop{
+                margin-top: 30px;
+            }
+            li{
+                margin-bottom: 18px;
+                color: $black;
+                font-family: $primary-font;
+                font-weight: 700;
+                a{
+                    font-weight: 400;
+                    color: $text-color;
+                    margin-left: 15px;
+                    text-decoration: none;
+                    &:hover{
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+    &-form{
+        position: absolute;
+        width: 120%;
+        height: auto;
+        z-index: 2;
+        top: calc(100% + 50px); left: 0;
+        padding: 50px;
+        background: $white;
+        box-shadow: 0px 19px 52.7px 9.3px rgba(0, 0, 0, 0.06);
+        @include desktop{
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+        }
+    }
+}
+
+#map{
+    height: 900px;
+    @include desktop{
+        height: 500px;
+    }
+}

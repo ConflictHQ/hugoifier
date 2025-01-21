@@ -1,0 +1,137 @@
+{{ define "main" }}
+  <!-- checking blog -->
+  {{ partial "components/page-header.html" . }}
+  <section class="section-sm has-backdrop pt-0">
+    <div class="container">
+      <div class="row gy-4 justify-content-center has-colored-text">
+        {{ $paginator := .Paginate (.Data.Pages) }}
+        {{ range $i, $e := $paginator.Pages }}
+          {{ if eq $i 0 }}
+            <div class="col-12">
+              <article
+                class="blog-card blog-card-horizontal row g-0 justify-content-center align-items-center mb-3">
+                <div class="col-lg-5 order-1 order-lg-0">
+                  <div class="block bg-white shadow rounded-4 p-4">
+                    <span
+                      class="me-4 d-inline-flex align-items-center flex-wrap small">
+                      <svg
+                        class="me-1 text-muted"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="22"
+                        width="22"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      {{ .PublishDate.Format "02 Jan, 2006" }}
+                    </span>
+                    <span
+                      class="d-inline-flex align-items-center flex-wrap small">
+                      <svg
+                        class="me-1 text-muted"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="22"
+                        width="22"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {{ .ReadingTime }}
+                      {{ i18n `min_read` }}
+                    </span>
+                    <h2 class="mt-3 h5">
+                      <a
+                        class="blog-title"
+                        href="{{ .RelPermalink }}"
+                        title="{{ .Title }}">
+                        {{ .Title }}
+                      </a>
+                    </h2>
+                    <p>{{ .Plain | truncate 110 }}</p>
+
+                    {{ with site.GetPage (string .Params.Author | urlize | lower) }}
+                      <div class="card-author">
+                        <div class="d-flex align-items-center">
+                          <a
+                            class="d-block me-3"
+                            href="{{ .RelPermalink }}"
+                            title="{{ .Title }}">
+                            {{ if .Params.image }}
+                              {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Size" "46x46" "Class" "rounded-circle") }}
+                            {{ else if .Params.Email }}
+                              <img
+                                loading="lazy"
+                                decoding="async"
+                                class="rounded-circle"
+                                src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=46&pg&d=identicon" />
+                            {{ else }}
+                              <img
+                                loading="lazy"
+                                decoding="async"
+                                class="rounded-circle"
+                                src="https://www.gravatar.com/avatar/{{ md5 . }}?s=46&pg&d=identicon" />
+                            {{ end }}
+                          </a>
+                          <a class="author-link" href="{{ .RelPermalink }}"
+                            >{{ .Title }}</a
+                          >
+                        </div>
+                      </div>
+                    {{ end }}
+                  </div>
+                </div>
+                <div
+                  class="col-lg-5 order-0 order-lg-1 position-relative colored-text">
+                  <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+                    {{ partial "image" (dict "Src" .Params.image "Alt" .Params.Title "Size" "1000x889" "Command" "Fill" "Class" "rounded-3 shadow-md w-100 card-image") }}
+                  </a>
+                  {{ range .GetTerms "categories" }}
+                    <a
+                      class="badge position-absolute top-0 end-0 mt-3 me-3"
+                      href="{{ .Permalink }}"
+                      >{{ .LinkTitle | humanize }}</a
+                    >
+                  {{ end }}
+                </div>
+              </article>
+            </div>
+          {{ end }}
+          {{ if gt $i 0 }}
+            <div class="col-lg-5 col-md-6">
+              {{ .Render "article" }}
+            </div>
+          {{ end }}
+        {{ end }}
+        <div class="col-12">
+          {{ partial "components/custom-pagination.html" . }}
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="backdrop text-primary translate-middle-y"
+      width="490"
+      height="670"
+      viewBox="0 0 490 670"
+      style="left: 0px;top: 50%;"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.3"
+        d="M427.667 1.51615e-05C612.866 7.06621e-06 763 149.985 763 335C763 520.015 612.866 670 427.667 670C343.258 670 246.953 638.844 167.13 587.416C71.8151 526.006 -1.0242e-05 435.691 -1.46433e-05 335C-1.89705e-05 236.006 167.749 261.462 260.667 200.134C341.407 146.844 341.56 1.89254e-05 427.667 1.51615e-05Z"
+        fill="currentColor" />
+    </svg>
+  </section>
+
+  {{ partial "components/cta.html" . }}
+{{ end }}

@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+<section class="section banner pb-lg-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="container">
+    <div class="row mb-5 justify-content-center">
+      <div class="col-10 text-center">
+        <div class="btn-group btn-group-toggle " data-toggle="buttons">
+          <label class="btn active ">
+            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Projects
+          </label>
+          {{ $categories := slice }}
+          {{ range .Data.Pages }}
+          {{ $categories = $categories | append .Params.Category }}
+          {{ end }}
+          {{ range ( $categories | uniq ) }}
+          <label class="btn">
+            <input type="radio" name="shuffle-filter" value="{{ . | urlize }}"/>{{ . | humanize }}
+          </label>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row shuffle-wrapper portfolio-gallery">
+      {{ range (where .Site.RegularPages "Type" "portfolio")}}
+      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;{{ .Params.Category | urlize }}&quot;]">
+        <div class="position-relative inner-box">
+          <div class="image position-relative">
+            <img src="{{ .Params.Image | absURL }}" alt="portfolio-image" class="img-fluid w-100 d-block">
+            <div class="overlay-box">
+              <a class="portfolio-image popup-gallery" href="{{ .Params.Image | absURL }}">
+                <i class="ti-plus"></i>
+              </a>
+              <div class="overlay-inner">
+                <a class="overlay-content" href="{{ .Permalink }}">
+                  <h5 class="mb-0">{{ .Title }}</h5>
+                  <p>{{ .Params.Category | humanize }}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

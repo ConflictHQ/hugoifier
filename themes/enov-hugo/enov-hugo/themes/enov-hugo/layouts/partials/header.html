@@ -1,0 +1,97 @@
+<!-- Header Start -->
+<header class="navigation">
+  {{ if .Site.Params.top_header }}
+  <!-- top header -->
+  <div class="header-top d-none d-md-block d-lg-block">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-8 col-md-8">
+          <div class="header-top-info">
+            <a href="tel:{{ .Site.Params.phone }}"><i
+                class="ti-mobile mr-2"></i><span>{{ .Site.Params.phone }}</span></a>
+            <a href="mailto:{{ .Site.Params.email }}"><i
+                class="ti-email mr-2"></i><span>{{ .Site.Params.email }}</span></a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <div class="header-top-socials text-center text-lg-right">
+            {{ range .Site.Params.social }}
+            <a href="{{ .link | safeURL }}" target="_blank"><i class="{{ .icon }}"></i></a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /top header -->
+  {{ end }}
+
+  <nav class="navbar navbar-expand-lg  main-nav py-3" id="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}/"><img src="{{ .Site.Params.logo | absURL }}"
+          alt="{{ .Site.Title }}" class="img-fluid"></a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-menu"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ml-auto text-center text-lg-left">
+          <li class="nav-item active"><a class="nav-link"
+              href="{{ .Site.BaseURL | relLangURL }}/">{{ .Site.Params.Home }}</a></li>
+          {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }} +
+            </a>
+            <div class="dropdown-menu">
+              {{ range .Children }}
+              <a class="dropdown-item" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+
+        <!-- Language List -->
+        {{ if .IsTranslated }}
+        <select class="m-2 border-0" id="select-language" onchange="location = this.value;">
+          {{ $siteLanguages := .Site.Languages}}
+          {{ $pageLang := .Page.Lang}}
+          {{ range .Page.AllTranslations }}
+          {{ $translation := .}}
+          {{ range $siteLanguages }}
+          {{ if eq $translation.Lang .Lang }}
+          {{ $selected := false }}
+          {{ if eq $pageLang .Lang}}
+          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+          </option>
+          {{ else }}
+          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </select>
+        {{ end }}
+
+        {{ if .Site.Params.navigation_button.enable }}
+        <div class="text-center text-lg-left">
+          <a href="{{ .Site.Params.navigation_button.link | absLangURL }}"
+            class="quote-btn ml-4 bg-primary text-white rounded-btn letter-spacing text-uppercase">{{ .Site.Params.navigation_button.label }}
+            <i class="ti-angle-right"></i></a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Header Close -->

@@ -1,0 +1,188 @@
+{{ define "main"}}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq
+.Section "categories") (eq .Section "tags") }}
+
+{{ $sidebar := site.Params.sidebar }}
+{{ $has_sidebar := or (eq $sidebar `left`) (eq $sidebar `right`)}}
+{{ $widget:= site.Params.widgets.sidebar }}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- left sidebar -->
+      {{ if eq $sidebar "left" }}
+      <aside class="col-lg-3 order-2 order-lg-1">
+        <div class="sticky-sidebar">
+          {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+        </div>
+      </aside>
+      {{ end }}
+      <!-- /left sidebar -->
+
+      <div
+        class="{{ if $has_sidebar }}col-lg-9{{ else }}col-lg-10{{ end }} {{ if eq $sidebar `left` }}order-1 order-lg-2{{ end }}">
+        <div class="{{ if eq $sidebar `left` }}pl-lg-4{{ end }}{{ if eq $sidebar `right` }}pr-lg-4{{ end }}">
+          <div class="text-center mb-5">
+            <h2 class="h3 mb-4 post-title">{{.Title}}</h2>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                {{ $author:= .Params.Author | urlize | lower}}
+                {{ with site.GetPage $author }}
+                <a href="{{.Permalink}}" class="card-meta-author">
+                  {{ if .Params.image }}
+                  {{ partial "image.html" (dict "Src" .Params.image "Command" "Fill" "Size" "52x52" "Alt" .Title)
+                  }}
+                  {{else if .Params.Email}}
+                  <a href="{{.Permalink}}" class="card-meta-author">
+                    {{ $emailHash := md5 .Params.Email }}
+                    {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }}
+                    {{ partial "image.html" (dict "Src" $gravatorUrl "Alt" .Title) }}
+                  </a>
+                  {{ end }}
+                  <span>{{ .Title }}</span>
+                </a>
+                {{ end }}
+              </li>
+              <li class="list-inline-item">|</li>
+              <li class="list-inline-item">
+                <span>{{.PublishDate.Format "02 January 2006"}}</span>
+              </li>
+            </ul>
+          </div>
+
+          {{with .Params.images}}
+          <div class="mb-5{{ if $has_sidebar }}{{ else }} text-center{{ end }}">
+            {{if gt (len .) 1}}
+            <div class="swiper post-slider rounded">
+              <div class="swiper-wrapper">
+                {{ range .}}
+                <div class="swiper-slide">
+                  {{ partial "image.html" (dict "Src" . "Class" "w-100 h-auto" "Alt" "post-thumb") }}
+                </div>
+                {{ end }}
+              </div>
+              <div class="swiper-navigation">
+                <button class="swiper-button-prev" aria-disabled="false"></button>
+                <button class="swiper-button-next" aria-disabled="false"></button>
+              </div>
+            </div>
+            {{else}}
+            <div class="rounded">
+              {{ range .}}
+              {{ partial "image.html" (dict "Src" . "Class" "w-100 h-auto" "Alt" "post-thumb") }}
+              {{ end }}
+            </div>
+            {{end}}
+          </div>
+          {{end}}
+
+          <div class="content">
+            {{.Content}}
+          </div>
+
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-start">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  {{range .Params.tags}}
+                  <li class="list-inline-item"><a href="{{`tags` | absLangURL}}/{{.| urlize}}">{{.}}</a></li>
+                  {{end}}
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
+                {{- partial "components/social-share.html" . -}}
+              </div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row text-center text-sm-start">
+              <div class="col-md-2">
+                {{ $author:= .Params.Author | urlize | lower}}
+                {{ with site.GetPage $author }}
+                <a href="{{.Permalink}}">
+                  {{ if .Params.image }}
+                  {{ partial "image.html" (dict "Src" .Params.image "Command" "Fill" "Size" "150x150" "Alt" .Title "Class" "rounded-3") }}
+                  {{else if .Params.Email}}
+                  {{ $emailHash := md5 .Params.Email }}
+                  {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=700&pg&d=identicon" }}
+                  {{ partial "image.html" (dict "Src" $gravatorUrl "Alt" .Title "Class" `rounded-circle mb-4`) }}
+                  {{ end }}
+                </a>
+              </div>
+
+              <div class="col">
+                <p class="font-primary mb-1">{{i18n "written_by"}}</p>
+                <h4 class="h5"><a href="{{.Permalink}}" class="text-dark fw-700">{{.Title}}</a></h4>
+                <p class="font-primary">{{ .Summary | truncate 250 }}</p>
+                <ul class="social-links list-unstyled list-inline ms-0 ms-sm-n2">
+                  {{ range .Params.social }}
+                  <li class="list-inline-item"><a href="{{.link | safeURL}}">
+                      <i class="lab {{.icon}}"></i>
+                    </a></li>
+                  {{end}}
+                </ul>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- comments -->
+          {{ if site.DisqusShortname }}
+          <div class="pt-4"></div>
+          <div class="mt-5 border-default border p-4 bg-white rounded">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+          {{ end }}
+
+          <div class="single-post-similer">
+            <div class="row mt-3">
+              <div class="col-12">
+                <h3 class="text-dark fw-800 mb-4 pb-2">{{i18n "you_may_also_like"}}</h3>
+              </div>
+              {{ $related := (where site.RegularPages "Section" "blog") | intersect (where site.Pages ".Title" "!="
+              .Title) | union (site.RegularPages.Related . ) }}
+              {{ range first 2 $related }}
+              <div class="col-md-6">
+                {{ .Render "post" }}
+              </div>
+              {{ end }}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- right sidebar -->
+      {{ if eq $sidebar "right" }}
+      <aside class="col-lg-3 mt-5 mt-lg-0">
+        <div class="sticky-sidebar">
+          {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+        </div>
+      </aside>
+      {{ end }}
+      <!-- /right sidebar -->
+    </div>
+  </div>
+</section>
+
+{{ else }}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
+
+{{ end }}

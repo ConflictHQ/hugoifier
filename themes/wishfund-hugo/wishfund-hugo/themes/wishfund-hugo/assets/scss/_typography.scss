@@ -1,0 +1,53 @@
+// Fonts 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Bitter:400,700,900&display=swap');
+
+html{
+  overflow-x: hidden;
+}
+
+body {
+  line-height: 1.7;
+  font-family: $secondary-font;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color:#464646;
+
+}
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+  font-family: $primary-font;
+  font-weight:900;
+  color: $black;
+}
+
+h1 ,.h1{
+  font-size: 2.5rem;
+  
+}
+
+h2,.h2 {
+  line-height: 1.6;
+  font-size: 26px;
+}
+
+h3,.h3 {
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+h4,.h4 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+h5,.h5 {
+  font-size: 18px;
+}
+
+h6,.h6 {
+  font-size: 14px;
+}
+
+
+p{
+  color: #6c757d;
+}

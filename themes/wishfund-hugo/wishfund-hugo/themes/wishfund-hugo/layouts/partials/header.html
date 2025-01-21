@@ -1,0 +1,67 @@
+<!-- Header Start -->
+<header class="navigation">
+  {{ if .Site.Params.topHeader.enable }}
+  <!-- top header -->
+  <div class="header-top ">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-6 col-md-4 text-center text-lg-left text-md-left">
+          <div class="header-top-info">
+            <a href="tel:{{ .Site.Params.phone }}"><i class="ti-mobile mr-2"></i><span>{{ .Site.Params.phone }}</span></a>
+            <a href="mailto:{{ .Site.Params.email }}"><i class="ti-email mr-2"></i><span>{{ .Site.Params.email }}</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-8">
+          <div class="header-top-right text-center text-lg-right text-md-right mt-3 mt-lg-0">
+            {{ range .Site.Params.social }}
+            <a href="{{ .link | safeURL }}" target="_blank"><i class="{{ .icon }}"></i></a>
+            {{ end }}
+            
+            {{ if .Site.Params.navBtn.enable }}
+            <a href="{{ .Site.Params.navBtn.link | absURL }}" class="top-btn">{{ .Site.Params.navBtn.label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /top header -->
+  {{ end }}
+  <nav class="navbar navbar-expand-lg navigation" id="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | absURL }}"
+          alt="{{ .Site.Title }}" class="img-fluid"></a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09"
+        aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-menu"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a class="nav-link" href="{{ .Site.BaseURL }}">{{ .Site.Params.Home }}</a></li>
+          {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }} +
+            </a>
+            <div class="dropdown-menu">
+              {{ range .Children }}
+              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- Header Close -->

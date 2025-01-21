@@ -1,0 +1,81 @@
+# This file is for render site varibles and plugins
+# don't remove this file.
+# The presence of this file is for compatibility with Blogdown and Forestry.
+#
+# The actual configuration files are stored in the `config/_default/` folder.
+
+
+######################### site variables ##############################
+# customize your color and font from here.
+[params.variables]
+color_primary = "#237CFF"
+color_secondary = "#61C04C"
+color_tertiary = "#F74E5F"
+color_quaternary = "#FCBE00"
+body_color = "#f6f7fb"
+text_color = "#666666"
+text_dark = "#222222"
+text_light = "#959595"
+border_color = "#D5D7DF"
+black = "#000"
+white = "#fff"
+dark = "#12243A"
+light = "#EBEEF5"
+
+gradient_primary = "linear-gradient(90deg,#61c04c 14.06%,#237cff 48.61%,#fcbe00 82.81%)"
+gradient_secondary = "linear-gradient(90deg,#61c04c1a 14.06%,#237cff1a 48.61%, #fcbe001a 82.81%)"
+
+# font variables
+# base font size for full website, 
+font_size = "20px" # default is 20px
+
+# Font Scale Sizes
+# "minorSecond": 1.067,
+# "majorSecond": 1.125,
+# "minorThird": 1.2,
+# "majorThird": 1.25,
+# "perfectFourth": 1.333,
+# "augmentedFourth": 1.414,
+# "perfectFifth": 1.5,
+# "goldenRatio": 1.618
+font_scale = "1.23" # default is "majorThird": 1.25
+
+# go to https://fonts.google.com/ to find the font you want to use. select your font and copy only the bold part from the URL. and paste it here.
+# example: "Work+Sans:wght@400;500;600"
+font_primary = "Plus+Jakarta+Sans:wght@300;400;500;600"
+font_primary_type = "sans-serif"            # [serif/sans-serif]
+font_secondary = "Nokora:wght@600;700"
+font_secondary_type = "sans-serif"          # [serif/sans-serif]
+font_icon = "Font Awesome 6 Free"           # https://fontawesome.com/v6.0/icons/
+
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/swiper/swiper-bundle.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/regular.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/brands.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/solid.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/icons.css"
+
+# JS Plugins
+# [[params.plugins.js]]
+# link = "plugins/jquery/jquery.js"
+[[params.plugins.js]]
+link = "plugins/swiper/swiper-bundle.js"
+[[params.plugins.js]]
+link = "plugins/webfont/webfont-loader-2.js"
+[[params.plugins.js]]
+link = "plugins/glightbox.js"
+[[params.plugins.js]]
+link = "plugins/cookie.js"
+[[params.plugins.js]]
+link = "plugins/lazy-loader.js"
+[[params.plugins.js]]
+link = "https://cpwebassets.codepen.io/assets/embed/ei.js"
+attributes = "async"

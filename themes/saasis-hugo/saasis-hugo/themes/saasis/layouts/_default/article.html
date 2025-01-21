@@ -1,0 +1,18 @@
+<article class="text-center">
+  {{with .Params.images}}
+  <div class="post-slider slider-sm rounded mb-4">
+    {{ range first 1 .}}
+    {{$img:= resources.Get (.) }}
+    {{$img:= $img.Resize "400x webp"}}
+    <img loading="lazy" loading="lazy" class="w-100 rounded-sm border-sm" src="{{$img.RelPermalink}}" alt="post-thumb" width="{{$img.Width}}" height="{{$img.Height}}">
+    {{ end }}
+  </div>
+  {{end}}
+  
+  <div class="mt-4 px-0 px-lg-4">
+    <p class="mb-3">{{.PublishDate.Format "02 Jan, 2006"}}</p>
+    <h2 class="h4 mb-4"><a href="{{.Permalink}}">{{.Title}}</a></h2>
+
+    <a href="{{.Permalink}}" class="text-primary fw-bold" aria-label="Read the full article by clicking here">{{ i18n `read_more` }}</a>
+  </div>
+</article>

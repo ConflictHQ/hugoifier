@@ -1,0 +1,31 @@
+<footer class="bg-dark mt-5">
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 mx-auto text-center">
+					<a class="d-inline-block mb-4 pb-2" href="{{ site.BaseURL | relLangURL }}">
+						{{ $logo:= site.Params.logo_white }}
+						{{ if fileExists (add `assets/` $logo) }}
+						{{ $logo:= resources.Get $logo }}
+						{{ $option := add (string site.Params.logo_width) " webp" }}
+						{{ $logo:= $logo.Resize site.Params.logo_width }}
+						{{ $logo_webp:= $logo.Resize $option }}
+						<img loading="prelaod" decoding="async" class="img-fluid" width="{{$logo.Width}}" height="{{$logo.Height}}" src="{{$logo_webp.RelPermalink}}" alt="{{ site.Title }}" onerror="this.onerror=null;this.src='{{$logo.RelPermalink}}'">
+						{{ else }}
+						{{site.Params.logo_text | markdownify}}
+						{{ end }}
+					</a>
+					<ul class="p-0 d-flex navbar-footer mb-0 list-unstyled">
+						{{ range site.Menus.footer }}
+						<li class="nav-item my-0">
+							<a class="nav-link"
+								href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+						</li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copyright bg-dark content">{{site.Params.copyright | markdownify}}</div>
+</footer>

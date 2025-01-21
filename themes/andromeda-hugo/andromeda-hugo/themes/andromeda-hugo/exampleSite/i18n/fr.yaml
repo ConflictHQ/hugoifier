@@ -1,0 +1,110 @@
+- id: socials
+  translation: Réseaux sociaux
+
+- id: social_media
+  translation: Des médias sociaux
+
+- id: quick_links
+  translation: Liens rapides
+
+- id: location_contact
+  translation: Localisation & Contact
+
+- id: recent_posts
+  translation: Postes Récents
+
+- id: related_articles
+  translation: Articles Liés
+
+- id: view_listing
+  translation: Voir la liste
+
+- id: read_more
+  translation: Lire la suite
+
+- id: about_the_role
+  translation: À propos du rôle
+
+- id: fname
+  translation: Prénom
+
+- id: full_name
+  translation: Nom complet
+
+- id: lname
+  translation: Nom de famille
+
+- id: name_re
+  translation: Votre nom est requis !
+
+- id: email
+  translation: Adresse e-mail
+
+- id: email_re
+  translation: Votre email est obligatoire !
+
+- id: upload_cv
+  translation: Télécharger le CV
+
+- id: cv_note
+  translation: uniquement doc, fichier pdf autorisé &amp; la taille du fichier sera inférieure à 2 Mb
+
+- id: cv_re
+  translation: Votre CV est obligatoire !
+
+- id: apply_job
+  translation: Postuler pour un travail
+
+- id: lets_meet
+  translation: On se retrouve
+
+- id: year
+  translation: Année
+
+- id: location
+  translation: Lieu
+
+- id: company_size
+  translation: Taille de l'entreprise
+
+- id: send_a_message
+  translation: Envoyer un message
+
+- id: send_message
+  translation: Envoyer le message
+
+- id: comment_re
+  translation: Votre commentaire est obligatoire !
+
+- id: your_message
+  translation: Votre message
+
+- id: phone
+  translation: Téléphoner
+
+- id: contact_us
+  translation: Nous contacter
+
+- id: get_in_touch
+  translation: Entrer en contact
+
+- id: form_thanks_message
+  translation: Merci pour votre soumission !
+
+- id: form_error_message
+  translation: Oups! Un problème est survenu lors de l'envoi de votre formulaire
+
+- id: min_read
+  translation: Lecture min
+
+- id: monthly
+  translation: Facturé mensuellement
+
+- id: yearly
+  translation: Facturé annuellement
+
+- id: month
+  translation: Mois
+
+- id: year
+  translation: An

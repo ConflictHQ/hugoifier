@@ -1,0 +1,44 @@
+.navbar-nav {
+  .nav-item {
+    margin: 0;
+
+    .nav-link {
+      text-transform: capitalize;
+      color: $text-color-dark;
+      padding: 10px 0;
+      font-size: 20px;
+      font-family: $secondary-font;
+      font-weight: 500;
+      display: inline-block;
+      letter-spacing: 2px;
+
+      &.active {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: "";
+          height: 2px;
+          width: 15px;
+          background-color: $text-color-dark;
+          left: calc(100% + 5px);
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
+
+.navbar-toggler{
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}
+
+.lang-list{
+  background-color: $body-color;
+  color: $white;
+  margin-top: 10px;
+}

@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+{{ "<!-- pricing -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="post-content">
+          {{ .Content }}
+        </div>
+      </div>
+      {{ "<!-- pricing items -->" | safeHTML }}
+      {{ range .Params.pricing_table }}
+      <div class="col-lg-4 col-sm-6 mb-md-50">
+        <div class="card h-100">
+          <div class="card-header p-4 pb-0 rounded-0">
+            <h3 class="text-color mb-0">{{ .title }}</h3>
+            <i class="square-icon translateY-20 float-end {{ .icon }}"></i>
+          </div>
+          <div class="card-body pt-5 px-4">
+            <span class="fw-bold mb-3 h2">{{ .value }}<span class="h5">/{{ .unit }}</span></span>
+            <ul class="ps-0 mb-30">
+              {{ range .service_list }}
+              <li class="font-secondary text-color py-10 border-bottom">
+                <i class="text-primary me-2 ti-arrow-circle-right"></i>{{ . }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="card-footer border-0 py-0">
+            <a href="{{ .link | safeURL }}" class="btn btn-primary translateY-25">{{ i18n "buy_now" }}</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /pricing -->" | safeHTML }}
+
+{{ end }}

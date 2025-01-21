@@ -1,0 +1,12 @@
+<div class="media align-items-md-center flex-column flex-md-row">
+  {{ with .Params.Image }}<img src="{{ . | absURL }}" class="img-fluid mr-md-4 mb-4 mb-md-0" alt="">{{ end }}
+  <div class="media-body">
+    <h4 class="mb-3"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    <p>{{ .PublishDate.Format "06 Jan, 2006"}} — <a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.Author }}</a></p>
+    <ul class="btn-link-group list-inline">
+      {{ range .Params.Links }}
+      <li class="list-inline-item"><a href="{{ .link | absURL }}">{{ .label }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

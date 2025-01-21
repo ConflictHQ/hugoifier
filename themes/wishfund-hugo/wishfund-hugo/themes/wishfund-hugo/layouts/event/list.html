@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section event">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ $paginator := .Paginate .Data.Pages }}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-4 col-md-6">
+        <div class="card event-item mb-4">
+          <img src="{{ .Params.Image | absURL }}" class="card-img-top" alt="{{ .Title | markdownify }}">
+          <div class="card-body">
+            <h3 class="card-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+            <p class="card-text">{{ .Summary }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Date : </strong> {{ .Params.EventDate }}</li>
+            <li class="list-group-item"><strong>Location : </strong> {{ .Params.Location | markdownify }}</li>
+            <li class="list-group-item"><strong>Organizer : </strong> {{ .Params.Organizer | markdownify }}</li>
+          </ul>
+          <a href="{{ .Permalink }}" class="btn btn-main-2">Learn More</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ template "_internal/pagination.html" . }}
+  </div>
+</section>
+
+{{ partial "cta.html" . }}
+
+{{ end }}

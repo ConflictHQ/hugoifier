@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section portfolio">
+  <div class="container">
+    <div class="row align-items-center">
+      {{ range .Data.Pages }}
+      <div class="col-md-6">
+        <div class="portfolio-item text-center">
+          <a href="{{ .Permalink }}" class="image-holder" data-aos="image-reveal" data-aos-once="true">
+            <img src="{{ .Params.Image | absURL }}" class="img-fluid" alt="{{ .Title }}">
+          </a>
+          <h6 class="sm product-name">{{ .Title }}</h6>
+          <p class="company">{{ .Params.Company }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

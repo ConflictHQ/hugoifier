@@ -1,0 +1,119 @@
+.testimonial-item{
+    padding: 50px;
+    // margin: 0 20px 20px 0;
+    outline: 0;
+    transition: all .5s ease;
+    position: relative;
+    .quote-icon{
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        background: $primary-color;
+        text-align: center;
+        margin-bottom: 15px;
+        svg{
+            margin-top: 8px;
+        }
+    }
+    .quote{
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .quote-person{
+        display: flex;
+        .image{
+            img{
+                border-radius: 100%;
+            }
+        }
+        .content{
+            align-self: center;
+            margin-left: 20px;
+            .name{
+                text-transform: uppercase;
+                font-weight: 700;
+                color: $black;
+                margin-bottom: 8px;
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+            .pos{
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+        }
+    }
+    &::before{
+        background: url(../images/pattern.png);
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        transform: translate(20px, 20px);
+        opacity: 0;
+        z-index: -1;
+        transition: all .6s ease;
+    }
+    &.slick-current{
+        background: $white;
+        box-shadow: 0px 16px 53.01px 3.99px rgba(0, 0, 0, 0.1);
+        &::before{
+            opacity: .2;
+        }
+    }
+}
+.slider-wrapper{
+    width: 100%;
+    overflow: hidden;
+}
+.testimonial-slider{
+    // height: 100%;
+    //
+    // overflow: hidden;
+    width: 70%; 
+    margin: 10px 0 100px 50px;
+    @include mobile{
+        width: 80%;
+        margin: 10px 0 50px 30px;
+    }
+    .slick-list{
+        overflow: visible;
+    }
+    .prev-arrow, .next-arrow{
+        position: absolute;
+        cursor: pointer;
+        svg{
+            fill: #bcbcbc;
+            transition: all .3s ease;
+        }
+        &:hover{
+            svg{
+                fill: $primary-light;
+            }
+        }
+    }
+    .prev-arrow{
+        bottom: -100px;
+        @include mobile{
+            bottom: -50px;
+        }
+    }
+    .next-arrow{
+        bottom: -100px;
+        left: 50px;
+        @include mobile{
+            bottom: -50px;
+        }
+    }
+}
+.testimonial{
+    overflow: hidden;
+    .section-title{
+        @include desktop{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+}

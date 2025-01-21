@@ -1,0 +1,137 @@
+/* Button style */
+.btn {
+  font-size: 0.75rem;
+  font-family: $font-primary;
+  text-transform: capitalize;
+  padding: 0.9em 1.8em;
+  border-radius: 8px;
+  border: 1px solid;
+  position: relative;
+  z-index: 1;
+  transition: 0.2s ease;
+  font-weight: 700;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+
+  &-sm {
+    font-size: 0.7rem !important;
+    padding: 0.8em 1.7em;
+  }
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: $white;
+  border-color: $color-primary;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    background: darken($color-primary, 10) !important;
+    border-color: darken($color-primary, 20) !important;
+  }
+}
+
+.btn-text-primary {
+  padding: 0px;
+  border: none;
+  display: inline-block;
+  color: $color-primary !important;
+  text-decoration: underline;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    text-decoration: none;
+  }
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: $text-dark;
+  border-color: $text-dark;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    background: $color-primary !important;
+    border-color: $color-primary !important;
+    color: $white;
+  }
+}
+
+.btn-white {
+  background: $white;
+  color: $text-dark;
+  border-color: $white;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    background: darken($white, 5) !important;
+    border-color: darken($white, 20) !important;
+  }
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: $white;
+  border-color: $white;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    background: $white !important;
+    border-color: $white !important;
+    color: $text-dark;
+  }
+}
+
+.btn-secondary {
+  background: darken($white, 12.16);
+  color: $text-dark;
+  border-color: darken($white, 12.16);
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    color: $text-dark;
+    background: darken($white, 12.16) !important;
+    border-color: darken($white, 26.27) !important;
+  }
+}
+
+.btn-outline-secondary {
+  background: transparent;
+  color: $text-dark;
+  border-color: darken($white, 26.27);
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus,
+  &.focus {
+    background: darken($white, 12.16) !important;
+    border-color: darken($white, 26.27) !important;
+    color: $text-dark;
+  }
+}

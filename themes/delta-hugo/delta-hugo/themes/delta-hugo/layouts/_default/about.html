@@ -1,0 +1,328 @@
+{{define "main"}}
+
+<section class="banner bg-tertiary-soft rounded-lg wave-block overflow-hidden">
+  {{ partial "essentials/header.html" . }}
+
+  {{with .Params.banner}}
+  <div class="container container-delta block">
+    <div class="row align-items-center text-center text-lg-start">
+      <div class="col-lg-6">
+        <div class="pe-0 pe-lg-5">
+          <p class="subtitle">{{.subtitle | markdownify}}</p>
+          <h1 class="title text-xl mb-3">{{.title | markdownify}}</h1>
+          <p class="mb-4">{{.description | markdownify}}</p>
+
+          {{with .button}}
+          {{if .enable}}
+          <a href="{{.link | relLangURL}}" class="btn btn-primary m-1">
+            {{.label}} <i class="arrow-right {{.icon}}"></i>
+          </a>
+          {{end}}
+          {{end}}
+          
+          {{with .video_button}}
+          {{if .enable}}
+          <button class="btn btn-outline-secondary btn-play m-1" type="button" data-bs-toggle="modal" data-src="{{ .video_url | safeURL }}" data-bs-target="#videoModal" aria-label="watch video">
+            <i class="fas fa-play"></i> {{.label}}
+          </button>
+          {{end}}
+          {{end}}
+        </div>
+      </div>
+      <div class="col-lg-6 mt-5 mt-lg-0">
+        {{with .image}}
+        {{ partial "image.html" (dict "Src" . "Alt" "Banner Image") }}
+        {{end}}
+
+      </div>
+    </div>
+  </div>
+  {{end}}
+
+  <div class="has-wave">    
+    <svg class="wave-left" width="274" height="395" viewBox="0 0 274 395" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.6" d="M-160.703 49.9832C-102.183 25.7147 -35.1189 14.7857 26.6255 33.4291C82.7274 50.3045 126.094 93.2164 147.051 147.379C157.53 174.218 162.85 202.826 162.689 231.595C162.528 245.256 162.205 260.364 157.369 273.221C155.273 278.846 151.888 284.311 146.406 287.043C142.537 288.972 136.089 289.936 132.703 286.4C124.643 277.721 133.026 258.756 138.507 251.042C145.762 240.756 157.53 233.041 170.105 231.756C198.8 228.863 223.466 252.81 236.04 276.114C262.963 326.097 249.26 396.492 203.798 431.368C198.639 435.386 195.899 441.654 199.445 447.922C202.347 453.065 210.891 456.119 216.05 452.261C267.477 412.885 287.951 339.919 264.091 279.489C251.517 247.828 225.723 217.291 191.062 209.416C155.273 201.219 119.161 222.756 108.521 257.792C103.524 274.185 104.33 295.722 119.323 306.651C133.348 316.776 153.5 313.401 166.074 302.472C180.261 290.097 183.969 270.328 185.742 252.488C187.516 235.292 187.193 217.934 185.097 200.898C176.714 132.592 140.764 66.6978 80.4704 30.8576C5.66784 -13.6614 -89.4475 -5.46471 -167.152 26.679C-173.117 29.0898 -177.469 34.7149 -175.535 41.465C-173.923 47.2509 -166.829 52.5547 -160.703 49.9832Z" fill="currentColor"/>
+    </svg>
+    
+    <svg class="wave-right" width="329" height="366" viewBox="0 0 329 366" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.85" d="M525.288 205.211C475.043 243.798 413.092 271.712 348.627 269.685C290.069 267.905 237.074 237.679 202.812 190.787C185.744 167.573 173.201 141.317 165.911 113.487C162.531 100.25 158.932 85.5736 160.276 71.9025C160.844 65.9266 162.7 59.7721 167.287 55.7143C170.525 52.85 176.505 50.2496 180.69 52.7887C190.722 59.0855 187.533 79.5738 184.235 88.4441C179.89 100.257 170.519 110.755 158.706 115.251C131.737 125.473 101.714 108.725 83.5359 89.4699C44.5941 48.1576 39.6108 -23.385 74.497 -68.839C78.4401 -74.0552 79.465 -80.8191 74.4169 -85.9556C70.2829 -90.1723 61.2394 -90.9104 57.2548 -85.8494C17.7716 -34.5048 16.8803 41.2741 55.5672 93.4698C75.9079 120.798 108.726 143.618 144.244 142.254C180.935 140.909 210.243 110.76 211.452 74.1631C212.036 57.0349 205.684 36.4411 188.373 29.7651C172.205 23.6149 153.614 32.0905 144.296 45.9015C133.796 61.527 135.331 81.5814 138.235 99.2722C140.973 116.342 145.777 133.025 152.211 148.938C177.987 212.746 229.767 267.091 297.282 286.105C381.058 309.747 470.811 277.212 537.548 226.052C542.686 222.179 545.435 215.619 541.819 209.6C538.764 204.428 530.54 201.141 525.288 205.211Z" fill="currentColor"/>
+    </svg>
+  </div>
+</section>
+
+{{if .Params.brands.enable}}
+{{with site.GetPage "/"}}
+{{with .Params.brands}}
+<section class="section">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-12 text-center">        
+        {{ with .images }}
+        <div class="brand-carousel swiper pb-5">
+          <div class="swiper-wrapper">
+            {{ range . }}
+            <div class="block swiper-slide">
+              {{$img:= resources.Get . }}
+              {{$img:= $img.Resize "200x"}}
+              {{$imgWebp:= $img.Resize "200x webp"}}
+              <img loading="lazy" decoding="async" class="img-fluid mx-auto" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="Brand Logo" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+            </div>
+            {{ end }}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+{{end}}
+
+{{if .Params.featured_testimonial.enable}}
+{{with .Params.featured_testimonial}}
+<section class="section pt-0">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="text-center">
+          {{with .author_image}}
+          {{$img:= resources.Get . }}
+          {{$img:= $img.Resize "80x"}}
+          {{$imgWebp:= $img.Resize "80x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid rounded-circle mb-5" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+          {{end}}
+
+          <h3 class="mb-3">{{.review | markdownify}}</h3>
+          <p>{{.author_info | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{if .Params.about_info.enable}}
+<section class="section bg-primary-soft rounded-lg wave-block">
+  <div class="container container-delta">
+    {{with .Params.about_info}}
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <div class="section-title">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+      </div>
+      <div class="col-lg-11 mx-auto">
+        {{with .image}}
+        <div class="process-image">
+          {{ partial "image.html" (dict "Src" . "Class" "w-100 rounded-lg shadow" "Alt" "image") }}
+
+        </div>
+        {{end}}
+      </div>
+    </div>
+    {{end}}
+    {{with site.GetPage "/"}}
+    {{with .Params.fun_facts}}
+    <div class="row fun-facts-floating">
+      <div class="col-lg-10 mx-auto">
+        <div class="bg-white rounded-md py-5 px-3 px-md-5">
+          <div class="row gy-3">
+            {{range .fact_item}}
+            <div class="col-lg-3 col-6 fact-item text-center">
+              <div class="block">
+                <h4 class="title h1"><span class="counter" data-count="{{.counter}}">0</span>{{.counter_suffix}}</h4>
+                <p class="mb-0">{{.content | markdownify}}</p>
+              </div>
+            </div>
+            {{end}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{end}}
+    {{end}}
+  </div>
+
+  <div class="has-wave alter-position">
+    <svg class="wave-left" style="opacity:0.75" width="245" height="280" viewBox="0 0 245 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.75" d="M193.97 -38.8821C157.391 -46.8434 128.867 -7.89509 115.04 20.3438C105.459 39.8887 99.9716 62.2619 106.378 83.6072C109.18 92.9645 114.527 101.934 122.265 108.104C126.855 111.683 136.46 116.764 139.736 109.213C143.28 101.197 137.772 90.897 132.91 84.8394C127.205 77.8303 119.414 72.5579 111.081 69.2951C95.2955 63.1224 69.9647 60.8812 55.8795 72.4081C47.2175 79.6359 51.1561 95.0673 51.9614 104.665C53.1185 117.407 55.0391 130.435 55.0484 143.289C55.1115 155.244 49.4632 165.296 38.0867 169.718C27.76 173.662 17.194 171.587 7.37011 167.153C-3.4496 162.3 -12.9648 155.723 -24.4057 152.213C-35.3152 148.856 -46.4485 147.226 -57.8057 147.325C-80.337 147.475 -102.017 154.461 -120.449 167.349C-131.04 174.701 -140.922 157.231 -130.447 149.812C-89.9485 121.492 -35.6544 120.487 7.1228 144.256C12.9946 147.491 30.4893 158.211 34.4632 147.038C36.4166 141.51 33.9943 132.836 33.554 127.164C32.793 118.83 32.0989 110.38 31.3379 102.046C30.0695 88.156 28.6048 73.5336 37.8355 61.8355C45.5604 52.2092 57.9686 47.6087 69.7999 45.6162C93.6454 41.5821 119.096 46.8333 138.183 62.033C155.382 75.6778 170.298 105.342 152.919 124.719C133.936 145.801 104.753 123.69 94.009 105.567C80.5913 82.9604 80.7654 55.0431 88.839 30.6029C103.703 -13.91 144.925 -70.2942 198.697 -58.5982C211.737 -55.7134 206.546 -36.2654 193.97 -38.8821Z" fill="currentColor"/>
+    </svg>
+    
+    <svg class="wave-right" style="opacity:0.9" width="231" height="117" viewBox="0 0 231 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.9" d="M246.59 1.52485C227.579 -4.34276 208.848 7.53216 199.063 23.3188C188.578 40.0834 188.299 62.576 174.879 77.3847C169.987 82.8332 163.557 86.8846 156.148 85.0685C150.556 83.6714 145.943 79.4803 142.029 75.5685C131.685 65.5098 122.879 53.076 109.179 47.2084C76.0499 32.8188 46.4151 71.3774 57.598 102.392C61.0927 111.892 67.1036 119.576 72.9746 127.679C78.0069 134.524 83.0393 141.649 83.4586 150.311C83.878 158.553 78.2866 162.605 70.3187 161.487C61.0928 160.09 53.8238 153.105 46.9743 147.237C38.4472 140.112 28.5224 131.451 16.5007 133.546C4.33924 135.642 -0.972693 147.517 0.145608 158.833C1.26391 170.568 7.69407 180.208 14.2641 189.568C19.4362 196.972 27.9632 208.288 22.5115 217.369C15.662 228.965 33.6945 239.582 40.6838 227.987C51.8668 208.987 39.9849 190.127 29.2213 174.34C26.8449 170.708 24.1889 167.075 22.6513 163.024C21.9523 161.208 21.3932 159.252 21.1137 157.436C20.9739 156.597 21.3932 155.34 21.1137 154.502C20.4147 152.127 22.0922 154.642 19.9954 154.083C28.103 156.318 34.8127 164.421 41.2429 169.45C55.7808 180.906 77.308 188.869 93.663 175.737C108.341 163.862 106.244 142.348 97.9965 127.259C90.7276 113.848 73.9532 101.274 76.6091 84.3699C78.2866 73.4729 87.5125 61.4583 99.674 65.7892C111.416 69.9803 119.244 82.5538 127.771 90.9361C138.535 101.274 151.675 108.679 167.051 105.745C188.439 101.693 199.901 80.5979 206.331 61.7377C211.224 47.4878 219.471 15.0762 241.278 21.7821C253.999 25.6938 259.59 5.43659 246.59 1.52485Z" fill="currentColor"/>
+    </svg>
+  </div>
+</section>
+{{end}}
+
+{{if .Params.features_box.enable}}
+{{with .Params.features_box}}
+<section class="section">
+  <div class="container container-delta">
+    <div class="row gy-4">
+      {{range .features_box_item}}
+      <div class="col-lg-4 col-md-6 features-box">
+        <div class="block shadow-md rounded-lg">
+          <i class="icon rounded-circle mb-4 {{.icon}}"></i>
+          <h3 class="h4 mb-3">{{.title | markdownify}}</h3>
+          <p>{{.content | markdownify}}</p>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{with .Params.image_and_content_block}}
+{{if .enable}}
+<section class="section bg-secondary-soft rounded-lg wave-block">
+  <div class="container container-delta">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-1 {{with .content_position}}{{if eq . `right`}}order-lg-1{{else if eq . `left`}}order-lg-0{{else}}order-lg-0{{end}}{{end}}">
+        <div class="section-title">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+        {{with .content}}<div class="content">{{. | markdownify}}</div>{{end}}
+      </div>
+      <div class="col-lg-6 order-0 mb-5 mb-lg-0 {{with .content_position}}{{if eq . `right`}}order-lg-0{{else if eq . `left`}}order-lg-1{{else}}order-lg-1{{end}}{{end}}">
+        {{with .image}}
+        {{$img:= resources.Get . }}
+        {{$img:= $img.Resize "570x"}}
+        {{$imgWebp:= $img.Resize "570x webp"}}
+        <img loading="lazy" decoding="async" class="img-fluid px-2" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+        {{end}}
+      </div>
+    </div>
+  </div>
+
+  <div class="has-wave">
+    <svg class="wave-right" width="338" height="359" viewBox="0 0 338 359" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.8" d="M9.25539 -130.288C38.1064 -108.752 56.1082 -72.7011 54.3523 -36.4791C52.4519 3.0333 31.3837 40.0401 39.0542 80.2057C45.7828 115.713 73.1451 143.856 111.329 138.577C130.169 135.979 147.485 126.241 164.13 117.644C178.234 110.328 195.02 100.505 211.566 101.724C217.649 102.094 225.572 104.223 226.901 111.224C228.729 120.206 220.398 130.179 215.645 136.81C199.51 158.904 183.18 180.858 166.85 202.812C162.349 208.886 164.71 215.888 169.782 220.551C185.389 234.821 209.532 232.034 226.931 222.797C237.236 217.484 245.954 209.854 255.146 203.005C262.8 197.27 271.879 190.784 281.925 191.186C287.311 191.5 297.046 194.189 297.79 200.771C298.314 204.982 294.567 209.384 292.525 212.644C289.477 217.102 286.456 221.727 284.161 226.577C276.546 242.964 278.08 262.654 285.228 278.837C293.989 298.535 310.935 312.583 331.942 316.848C347.956 320.047 350.477 294.701 334.631 291.475C316.302 287.799 303.997 267.482 304.471 249.524C304.822 238.119 311.083 231.239 316.595 221.904C323.869 209.699 325.815 195.451 317.266 183.282C300.809 159.698 269.241 163.368 247.928 177.034C232.202 187.026 204.306 218.112 184.436 199.906C185.404 205.763 186.399 211.788 187.367 217.645C202.271 197.474 217.315 177.108 232.219 156.936C244.159 140.694 258.813 120.048 249.495 99.066C242.069 82.2414 223.465 75.8604 206.358 76.4528C186.543 77.3206 168.194 87.0581 150.907 95.9324C135.212 104.028 117 115.634 98.6677 114.022C82.4284 112.58 71.8971 100.91 66.5607 86.319C52.4707 46.8704 77.7028 5.90886 79.6032 -33.6036C81.7079 -79.167 60.4532 -123.449 23.9365 -150.767C11.0867 -160.849 -3.73426 -140.176 9.25539 -130.288Z" fill="currentColor"/>
+    </svg>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{if .Params.customer_info.enable}}
+{{with .Params.customer_info}}
+<section class="section">
+  <div class="container container-delta">
+    <div class="row gy-4">
+      <div class="col-lg-8 mx-auto">
+        <div class="section-title text-center mb-2">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+      </div>
+      {{range .block}}
+      <div class="col-md-6 features-box">
+        <div class="block shadow-md rounded-lg">
+          <i class="icon mb-4 bg-transparent {{.icon}}"></i>
+          <h3 class="mb-3">{{.title | markdownify}}</h3>
+          <p>{{.content | markdownify}}</p>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{if .Params.our_peoples.enable}}
+{{with .Params.our_peoples}}
+<section class="section bg-primary-soft rounded-lg wave-block">
+  <div class="container container-delta">
+    <div class="row">
+      <div class="col-lg-12 mb-4">
+        <div class="section-title text-center mb-2">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title">{{.title | markdownify}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row gy-4">
+      {{range .lists}}
+      <div class="col-lg-3 col-md-4 col-sm-6 text-center has-avatar-shadow">
+        {{with .image}}
+        <div class="avatar rounded-circle mb-3">
+          {{$img:= resources.Get . }}
+          {{$img:= $img.Resize "110x"}}
+          {{$imgWebp:= $img.Resize "110x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="testimonials image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+        </div>
+        {{end}}
+        <h3 class="h5 mb-0">{{.name | markdownify}}</h3>
+        <p class="mb-0">{{.designation | markdownify}}</p>
+      </div>
+      {{end}}
+    </div>
+  </div>
+
+  <div class="has-wave alter-position">
+    <svg class="wave-left" style="opacity:0.75" width="154" height="219" viewBox="0 0 154 219" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.8" d="M-84.8234 217.528C-66.4111 223.194 -48.2696 211.726 -38.7927 196.482C-28.6389 180.293 -28.3682 158.573 -15.3713 144.272C-10.6328 139.011 -4.40512 135.099 2.77024 136.852C8.18562 138.201 12.6533 142.249 16.444 146.026C26.4625 155.74 34.9917 167.746 48.2593 173.412C80.3454 187.308 109.047 150.073 98.2162 120.124C94.8316 110.95 89.01 103.53 83.3239 95.7053C78.4501 89.0948 73.5762 82.2145 73.1701 73.8502C72.7639 65.8906 78.1792 61.9782 85.8961 63.0575C94.8315 64.4066 101.871 71.152 108.505 76.8181C116.764 83.6985 126.376 92.0628 138.019 90.0391C149.798 88.0155 154.942 76.5483 153.859 65.6207C152.776 54.2885 146.548 44.9798 140.185 35.9409C135.176 28.7908 126.918 17.8632 132.198 9.09418C138.831 -2.10321 121.367 -12.3562 114.598 -1.15884C103.767 17.1887 115.275 35.4013 125.699 50.6459C128.001 54.1535 130.573 57.6612 132.062 61.5735C132.739 63.3273 133.281 65.216 133.551 66.9698C133.687 67.7793 133.281 68.9935 133.551 69.8029C134.228 72.0963 132.604 69.668 134.634 70.2076C126.782 68.0491 120.284 60.2244 114.056 55.3677C99.9762 44.3052 79.127 36.6155 63.287 49.2969C49.0717 60.7641 51.1024 81.5399 59.0901 96.11C66.1301 109.061 82.3762 121.203 79.8039 137.527C78.1792 148.05 69.2439 159.652 57.4655 155.47C46.0932 151.422 38.5117 139.281 30.2532 131.186C19.8286 121.203 7.10255 114.053 -7.78972 116.886C-28.5035 120.798 -39.6051 141.169 -45.8328 159.382C-50.5712 173.143 -58.5589 204.441 -79.6788 197.966C-91.9988 194.188 -97.4141 213.75 -84.8234 217.528Z" fill="currentColor"/>
+    </svg>
+    
+    <svg class="wave-right" style="opacity:0.9" width="261" height="262" viewBox="0 0 261 262" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.8" d="M50.628 318.746C87.2069 326.707 115.731 287.759 129.558 259.52C139.139 239.975 144.626 217.602 138.22 196.256C135.418 186.899 130.071 177.929 122.333 171.759C117.743 168.181 108.138 163.1 104.862 170.651C101.318 178.666 106.826 188.967 111.687 195.024C117.393 202.033 125.184 207.306 133.517 210.568C149.302 216.741 174.633 218.982 188.718 207.455C197.38 200.228 193.442 184.796 192.636 175.198C191.479 162.456 189.559 149.428 189.55 136.575C189.486 124.619 195.135 114.568 206.511 110.146C216.838 106.201 227.404 108.277 237.228 112.71C248.047 117.564 257.563 124.141 269.004 127.65C279.913 131.008 291.046 132.637 302.404 132.538C324.935 132.389 346.615 125.402 365.046 112.514C375.638 105.162 385.52 122.632 375.045 130.051C334.546 158.371 280.252 159.376 237.475 135.608C231.603 132.372 214.109 121.653 210.135 132.825C208.181 138.354 210.604 147.028 211.044 152.7C211.805 161.034 212.499 169.484 213.26 177.818C214.528 191.707 215.993 206.33 206.762 218.028C199.038 227.654 186.629 232.255 174.798 234.247C150.952 238.281 125.502 233.03 106.415 217.831C89.2157 204.186 74.2996 174.522 91.6788 155.145C110.662 134.062 139.845 156.174 150.589 174.296C164.007 196.903 163.832 224.82 155.759 249.261C140.895 293.773 99.6731 350.158 45.9011 338.462C32.8611 335.577 38.0524 316.129 50.628 318.746Z" fill="currentColor"/>
+    </svg>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{if .Params.career.enable}}
+{{with .Params.career}}
+<section class="section pb-0">
+  <div class="container container-delta">
+    <div class="row gy-4 justify-content-between">
+      <div class="col-lg-5">
+        <div class="section-title mb-0">
+          {{with .subtitle}}<p class="subtitle">{{. | markdownify}}</p>{{end}}
+          <h2 class="title mb-3">{{.title | markdownify}}</h2>
+          {{with .content}}<p class="mb-0">{{. | markdownify}}</p>{{end}}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        {{ range first 3 (where site.RegularPages "Section" (string .section)) }}
+        <div class="features-box mb-4">
+          <a href="{{.RelPermalink}}" class="block rounded-md shadow-md text-reset p-3 p-md-4 d-block">
+            <h3 class="h4">{{.Title | markdownify}}</h3>
+            <ul class="list-unstyled list-inline mb-0">
+              <li class="list-inline-item me-2">
+                <i class="fas fa-paper-plane small text-quaternary"></i>
+                <span style="margin-left:2px">{{.Params.job_nature | markdownify}}</span>
+              </li>
+              <li class="list-inline-item">
+                <i class="fas fa-tags small text-tertiary"></i>
+                <span style="margin-left:2px">{{.Params.category | markdownify}}</span>
+              </li>
+            </ul>
+          </a>
+        </div>
+        {{end}}
+
+        <a href="{{.section | relLangURL}}/" class="btn btn-primary m-1">
+          {{i18n `view_all_positions`}} <i class="arrow-right fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{if .Params.call_to_action.enable}}
+{{ partial "call-to-action-2.html" . }}
+{{end}}
+
+{{end}}

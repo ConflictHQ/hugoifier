@@ -1,0 +1,53 @@
+.btn {
+    text-transform: uppercase;
+    color: $white !important;
+    border-radius: 0;
+    position: relative;
+    font-size: 1rem;
+    border-radius: 3px;
+    z-index: 1;
+    transition: .2s ease;
+
+    &:hover,
+    &:active,
+    &.active,
+    &:focus,
+    &.focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
+}
+
+.btn-primary {
+    background: $color-primary !important;
+    color: $white;
+    outline: none;
+    border: none;
+}
+
+.btn-primary-rounded {
+    border-radius: 50px;
+    border: 1px solid $white !important;
+}
+
+#js-cookie-button:hover {
+    background-color: $color-primary;
+    border-color: $color-primary;
+}
+
+.btn-sm {
+    padding: 13px 50px;
+}
+
+.btn-md {
+    padding: 15px 35px;
+    font-size: 14px;
+}
+
+.btn-lg {
+    padding: 17px 38px;
+}
+
+.btn-xl {
+    padding: 18px 45px;
+}

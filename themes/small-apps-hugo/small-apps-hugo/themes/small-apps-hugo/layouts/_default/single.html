@@ -1,0 +1,68 @@
+{{ define "main" }}
+{{ partial "components/page-title.html" . }}
+
+{{ "<!-- Single Article -->" | safeHTML }}
+<section class="section blog-single pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 m-auto">
+        <article class="single-post">
+          <div class="post-body">
+            <div class="feature-image">
+              {{ partial "image.html" (dict "Src" .Params.Image "Alt" .Title) }}
+            </div>
+            <div class="content">
+              {{ .Content }}
+            </div>
+          </div>
+        </article>
+        <div class="about-author">
+          <h2>About this author</h2>
+          {{ range where .Site.RegularPages "Title" (.Params.Author | title) }}  
+          {{ $emailHash := md5 .Params.Email }}  
+          {{ $gravatorUrl := print "https://www.gravatar.com/avatar/" $emailHash "?s=200&pg&d=identicon" }} 
+          <div class="media d-flex align-items-center">
+            <div class="image">
+              {{ if .Params.Image }}
+              {{ partial "image.html" (dict "Src" .Params.Image "Alt" .Title "Class" "max-w-fit fit-cover") }}
+              {{else if .Params.Email}}
+              {{ partial "image.html" (dict "Src" $gravatorUrl "Alt" .Title
+              "Class" "max-w-fit fit-cover") }}
+              {{ end }}
+            </div>
+            <div class="media-body align-self-center">
+              <h3><a class="h4" href="{{ `author/` | relLangURL }}{{ .Title | lower | urlize }}/">{{ .Title }}</a></h3>
+              <p>{{ .Content | truncate 150 }}</p>
+              <ul class="list-inline social-links">
+                {{ range .Params.Social }}
+                <li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- End of Single Article -->" | safeHTML }}
+
+{{ "<!-- Related Article -->" | safeHTML }}
+<section class="section related-articles bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 title">
+        <h2>{{ i18n "related" }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      {{ range first 3 ( where .Site.Pages "Type" "post" )}}
+      {{ .Render "post"}}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- End of Related Article -->" | safeHTML }}
+
+{{ end }}

@@ -1,0 +1,36 @@
+############################# Company #######################
+company:
+  enable: true
+  title: "Our Company"
+  content:
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad quo quia cupiditate, dolore
+    possimus quidem maxime, neque beatae. Fuga maxime quos recusandae ratione earum atque, quam sunt dolorem illum
+    dolor."
+  office:
+    # office loop
+    - name: "Corporate Office"
+      officeContact:
+        - icon: "ti-location-pin" # themify icon pack : https://themify.me/themify-icons
+          content: "Khaja Road, Bayzid, Bangladesh"
+
+        - icon: "ti-mobile" # themify icon pack : https://themify.me/themify-icons
+          content: "+880-31-000-000"
+
+        - icon: "ti-email" # themify icon pack : https://themify.me/themify-icons
+          content: "hello@example.com"
+
+    # office loop
+    - name: "Branch Office"
+      officeContact:
+        - icon: "ti-location-pin" # themify icon pack : https://themify.me/themify-icons
+          content: "184 Street Victoria 8007"
+
+        - icon: "ti-mobile" # themify icon pack : https://themify.me/themify-icons
+          content: "+880-31-000-000"
+
+        - icon: "ti-email" # themify icon pack : https://themify.me/themify-icons
+          content: "hello@example.com"
+
+########################### Map #################################
+map:
+  enable: true

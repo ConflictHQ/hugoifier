@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+{{ partial "components/page-header.html" . }}
+
+{{with .Params.team_members}}
+<section class="section pb-0">
+  <div class="container container-delta">
+    <div class="row gy-4">
+      {{range .lists}}
+      <div class="col-lg-3 col-md-4 col-sm-6 text-center has-avatar-shadow">
+        {{with .image}}
+        <div class="avatar rounded-circle mb-3">
+          {{$img:= resources.Get . }}
+          {{$img:= $img.Resize "110x"}}
+          {{$imgWebp:= $img.Resize "110x webp"}}
+          <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="testimonials image" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+        </div>
+        {{end}}
+        <h3 class="h5 mb-0">{{.name | markdownify}}</h3>
+        <p class="mb-0">{{.designation | markdownify}}</p>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}
+
+{{ partial "call-to-action-2.html" . }}
+
+{{ end }}

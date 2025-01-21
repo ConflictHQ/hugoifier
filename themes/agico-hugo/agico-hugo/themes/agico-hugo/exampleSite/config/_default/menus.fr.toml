@@ -1,0 +1,72 @@
+############# French navigation ##############
+# main menu    
+[[main]]
+name = "About"
+URL = "about/"
+weight = 2
+  
+[[main]]
+name = "Service"
+URL = "service/"
+weight = 3
+
+[[main]]
+name = "Blog"
+URL = "blog/"
+weight = 4
+
+[[main]]
+name = "Contact"
+URL = "contact/"
+weight = 5
+
+[[main]]
+weight = 6
+name = "Pages"
+hasChildren = true
+
+  [[main]]
+  parent = "Pages"
+  name = "Pricing"
+  URL = "pricing/"
+
+  [[main]]
+  parent = "Pages"
+  name = "Career"
+  URL = "career/"
+  
+  [[main]]
+  parent = "Pages"
+  name = "Team"
+  URL = "team/"
+
+  [[main]]
+  parent = "Pages"
+  name = "FAQ"
+  URL = "faq/"
+  
+  [[main]]
+  parent = "Pages"
+  name = "Changelog"
+  URL = "changelog/"
+
+#Footer menu
+[[footer]]
+name = "Company History"
+URL = "about/"
+
+[[footer]]
+name = "About us"
+URL = "about/"
+
+[[footer]]
+name = "Contact us"
+URL = "contact/"
+
+[[footer]]
+name = "Services"
+URL = "service/"
+
+[[footer]]
+name = "Privacy Policy"
+URL = "#"

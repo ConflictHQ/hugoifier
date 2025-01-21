@@ -1,0 +1,42 @@
+// About Setcion
+
+.about-img{
+  box-shadow: 0 30px 100px rgba(0,0,0,.17);
+  img{
+    border-radius:3px;
+  }
+}
+
+
+
+.feature {
+	span{
+		color: rgba(0,0,0,0.2);
+	}
+}
+
+
+
+
+
+@include mobile-xs{
+  .bg-about{
+    display: none;
+  }
+}
+
+
+@include mobile{
+
+  .bg-about{
+    display: none;
+  }
+}
+
+
+@include tablet{
+ 
+  .bg-about{
+    display: none;
+  }
+}

@@ -1,0 +1,92 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+<!-- portfolio -->
+{{ with $data.project.projects }}
+<section class="section portfolio">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <div class="section-title">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{.content | markdownify}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-center mb-5">
+      <div class="btn-group btn-group-toggle " data-toggle="buttons">
+        <label class="btn active">
+          <input type="radio" name="shuffle-filter" value="all" checked="checked"/>{{ i18n "all"}}
+        </label>
+        {{ $categories := slice }}
+        {{ range .project_item }}
+        {{ range .categories }}
+        {{ $categories = $categories | append . }}
+        {{ end }}
+        {{ end }}
+        {{ range ( $categories | uniq ) }}
+        <label class="btn"><input type="radio" name="shuffle-filter" value="{{ . | urlize }}"/>{{ . | humanize }}</label>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="row shuffle-wrapper portfolio-gallery">
+      {{ range .project_item }}
+      <div class="col-lg-4 col-md-6 mb-4 shuffle-item"
+        data-groups="[{{range $index, $element:= .categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
+        <div class="position-relative rounded inner-box">
+          <div class="image position-relative">
+            <img src="{{ .image |absURL }}" alt="{{ .title }}" class="img-fluid rounded w-100 d-block">
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="overlay-content text-center">
+                  <h3 class="mb-2">{{ .title | markdownify }}</h3>
+                  <p class="text-white-50">{{ .content | markdownify }}</p>
+                  <a href="{{ .image |absURL }}" class="portfolio-image popup-gallery btn btn-light btn-sm"
+                    title="Marketing">{{ i18n "view_project" }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /portfolio -->
+
+<!-- call to action -->
+{{ if $data.project.cta.enable }}
+{{ with $data.project.cta }}
+<section class="section pt-0 cta">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <span>{{ .subtitle | markdownify }}</span>
+        <h2 class="mt-4 mb-5">{{ .title | markdownify }}</h2>
+        {{ if .button_solid.enable }}
+        {{ with .button_solid }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-main">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+        
+        {{ if .button_border.enable }}
+        {{ with .button_border }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-main-border text-black">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /call to action -->
+
+{{ end }}

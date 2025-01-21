@@ -1,0 +1,15 @@
+<!-- Google Map API -->
+{{ if eq .Permalink ("contact/" | absURL) }}
+{{ if site.Params.gmap.enable }}
+<script src="{{ site.Params.gmap.gmap_api | safeURL }}"></script>
+{{ end }}
+{{ end }}
+
+<!-- JS Plugins -->
+{{ range site.Params.plugins.js}}
+<script src="{{ .link | absURL }}"></script>
+{{ end }}
+
+<!-- Main Script -->
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>

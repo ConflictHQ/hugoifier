@@ -1,0 +1,49 @@
+.bg-cover{
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+
+@include mobile{
+	.cta-section{
+		.bg-2 {
+		    background: #eee;
+		    width: 100% !important;
+		}
+	}
+}
+@include mobile-xs{
+	.cta-section {
+	    padding: 40px 0px;
+	}
+	.cta-section{
+		.bg-2 {
+		    background: #eee;
+		    width: 100% !important;
+		}
+	}
+}
+@include tablet{
+	.cta-section {
+	    padding: 40px 0px;
+	}
+
+	.cta-section{
+		.bg-2 {
+		    background: #eee;
+		    width: 100% !important;
+		}
+	}
+}
+@include desktop{
+	.cta-section {
+	    padding: 40px 0px;
+	}
+	.cta-section{
+		.bg-2 {
+		    background: #eee;
+		    width: 100% !important;
+		}
+	}
+}

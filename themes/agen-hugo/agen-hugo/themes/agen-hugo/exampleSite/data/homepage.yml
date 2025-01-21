@@ -1,0 +1,84 @@
+############################## Banner ###################################
+banner:
+  bgImage : "images/banner/banner2.jpg"
+  title : "Creative Agency"
+
+########################### services ##################################
+service:
+  enable : true
+  title : "Our Services"
+  subtitle : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat."
+  # service item comes from 'service.yml'
+  
+############################ features #################################
+feature:
+  enable : true
+  image : "images/feature.jpg"
+  title : "We know What Bait to Use"
+  featureItem:
+    # feature item
+    - title : "User Experience"
+      icon : "ti-vector" # themify icon pack https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo"
+      
+    # feature item
+    - title : "Responsive Layout"
+      icon : "ti-layout" # themify icon pack https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo"
+      
+    # feature item
+    - title : "Digital Solutions"
+      icon : "ti-headphone-alt" # themify icon pack https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo"
+      
+    # feature item
+    - title : "Bootstrap 4x"
+      icon : "ti-ruler-pencil" # themify icon pack https://themify.me/themify-icons
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo"
+
+
+############################# promo video #################################
+promo:
+  enable : true
+  bgImage : "images/backgrounds/about-bg.jpg"
+  title : "Who We Are"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  videoURL : "https://www.youtube.com/watch?v=jrkvirglgaQ"
+  button:
+    enable : true
+    label : "Read More"
+    link : "about"
+
+
+############################## project ####################################
+project:
+  enable : true
+  title : "Our Feature Works"
+  # project item comes from 'project.yml'
+  
+################################## call to action ###########################
+cta:
+  enable : true
+  title : "Let's Start With Us!"
+  bgImage : "images/backgrounds/cta-bg.jpg"
+  content : "Lorem ipsum dolor sit amet, magna habemus ius ad"
+  button : 
+    enable : true
+    label : "Let’s talk"
+    link : "contact/"
+
+
+############################## pricing ######################################
+pricing:
+  enable : true
+  title : "Our Smart Pricing Table"
+  # pricing table comes from 'pricing.yml'
+
+
+############################## blog ######################################
+blog:
+  enable : true
+  title : "Latest News"
+  # blog content comes from `content/blog` folder

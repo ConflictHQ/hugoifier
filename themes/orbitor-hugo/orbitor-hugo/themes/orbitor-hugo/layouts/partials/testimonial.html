@@ -1,0 +1,35 @@
+{{ with site.Data.homepage.testimonial }}
+<section class="section testimonial">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="heading">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 testimonial-wrap">
+        {{ range .testimonial_item }}
+        <div class="testimonial-block">
+          <p>{{ .content | markdownify }}</p>
+          <div class="client-info d-flex align-items-center">
+            <div class="client-img">
+              <img loading="lazy" src="{{ .image | absURL }}" alt="{{ .name }}" class="img-fluid">
+            </div>
+            <div class="info">
+              <h6>{{ .name }}</h6>
+              <span>{{ .location }}</span>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

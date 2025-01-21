@@ -1,0 +1,58 @@
+// Color Variables
+{{ with site.Params.variables }}
+$color-primary: {{.color_primary | default "#237CFF"}};
+$color-secondary: {{.color_secondary | default "#61C04C"}};
+$color-tertiary: {{.color_tertiary | default "#F74E5F"}};
+$color-quaternary: {{.color_quaternary | default "#FCBE00"}};
+$text-color: {{.text_color | default "#777"}};
+$text-dark: {{.text_dark | default "#222"}};
+$text-light: {{.text_light | default "#999"}};
+$body-bg: {{.body_color | default "#fff"}};
+$border-color: {{.border_color | default "#ECECEC"}};
+$black: {{.black | default "#000"}};
+$white: {{.white | default "#fff"}};
+$dark: {{.dark | default "#12243A"}};
+$light: {{.light | default "#EDF6F5"}};
+$gradient-primary: {{.gradient_primary | default "linear-gradient(90deg,#61c04c 14.06%,#237cff 48.61%,#fcbe00 82.81%)"}};
+$gradient-secondary: {{.gradient_secondary | default "linear-gradient(90deg,#61c04c1a 14.06%,#237cff1a 48.61%, #fcbe001a 82.81%)"}};
+
+
+// Font Variables
+$font-size: {{.font_size | default "16px"}};
+$font-scale: {{.font_scale | default "1.25"}};
+$font-primary: '{{replace (replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_primary | default "Lato") "+" " "}}', {{.font_primary_type | default "sans-serif"}};
+$font-secondary: '{{replace (replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_secondary | default "Lato") "+" " "}}', {{.font_secondary_type | default "sans-serif"}};
+$font-icon: '{{.font_icon | default "Font Awesome 6 Free"}}';
+{{ end }}
+
+@import 'templates/bootstrap';
+
+@import 'preloader';
+
+@import 'mixins';
+
+@import 'typography';
+
+@import 'buttons';
+
+@import 'module-override';
+
+@import 'common';
+
+@import 'templates/navigation';
+
+@import 'templates/main';
+
+@import 'notice';
+
+@import 'tabs';
+
+@import 'images';
+
+@import 'gallery';
+
+@import 'social-share';
+
+@import 'toc';
+
+@import 'custom';

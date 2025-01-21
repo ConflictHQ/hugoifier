@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<section class="section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				<div class="text-md-center mb-4 mb-md-0">
+					{{ if .Params.Image }}
+					<img class="img-fluid" src="{{ .Params.Image | relURL }}" alt="{{ .Title }}">
+					{{else if .Params.Email}}
+					<img class="img-fluid" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=256&pg&d=identicon">
+					{{ end }}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="content">
+					{{ .Content }}
+				</div>
+				<ul class="list-inline social-links">
+					{{ range .Params.Social }}
+					<li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+					{{ end }}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-center section-title">
+					<h2 class="mb-4">{{ i18n "posted_by" }}</h2>
+				</div>
+			</div>
+			{{ range where .Site.RegularPages "Params.author" (.Title | title) }}
+			<div class="col-lg-4 col-sm-6">
+				{{ .Render "post" }}
+			</div>
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}
