@@ -21,7 +21,7 @@ To build a Hugo-ifier, a Python-based utility that:
 
 ### Phase 2: Decap CMS Integration
 
-- Extract site structure elements (navigation, hero sections, footers) into YAML/JSON files in Hugo’s `data/` directory.
+- Extract site structure elements (navigation, hero sections, footers) into YAML/JSON files in Hugo's `data/` directory.
 - Generate a Decap CMS `config.yml` file with proper collections for pages, posts, and layout elements.
 - Ensure the generated theme is fully editable via Decap CMS.
 
@@ -36,7 +36,7 @@ To build a Hugo-ifier, a Python-based utility that:
 
 ### Prerequisites
 
-- Python 3.7 or higher
+- Python 3.11.4
 - Hugo extended version
 - OpenAI API key
 - Cloudflare account (for deployment)
@@ -58,5 +58,7 @@ To build a Hugo-ifier, a Python-based utility that:
 ## Usage
 
 Run the CLI tool to start the conversion process:
-bash
+
+```bash
 python cli.py convert --input theme.html --output hugo-theme
+```
