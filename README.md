@@ -1,10 +1,10 @@
-# Hugo-ifier (AI-Powered Theme Converter)
+# Hugoifier (AI-Powered Theme Converter)
 
 This project aims to create a fully production-ready, AI-assisted Hugo theme converter with Decap CMS support as efficiently as possible.
 
-## Objective
+## What is it?
 
-To build a Hugo-ifier, a Python-based utility that:
+Hugoifier is a Python-based utility that:
 
 - Converts any HTML/JS/CSS theme into a Hugo-compatible theme using AI.
 - Extracts layout data into structured files (`data/*.yaml` or `data/*.json`) to make the theme editable via Decap CMS.
@@ -13,21 +13,21 @@ To build a Hugo-ifier, a Python-based utility that:
 
 ## Core Features & Workflow
 
-### Phase 1: AI-Powered HTML Conversion
+### Step 1: AI-Powered HTML Conversion
 
-- Use GPT-4-Turbo to analyze an HTML theme and suggest where Hugo template tags (`{{ .Title }}`, `{{ .Content }}`, etc.) should be placed.
-- Identify partials (e.g., `header.html`, `footer.html`) and reusable elements.
-- Convert hardcoded links, images, and text into Hugo-friendly components.
+- Uses GPT-4-Turbo to analyze an HTML theme and suggest where Hugo template tags (`{{ .Title }}`, `{{ .Content }}`, etc.) should be placed.
+- Identifies partials (e.g., `header.html`, `footer.html`) and reusable elements.
+- Converts all hardcoded links, images, and text into Hugo-friendly components.
 
-### Phase 2: Decap CMS Integration
+### Step2 2: Decap CMS Integration
 
-- Extract site structure elements (navigation, hero sections, footers) into YAML/JSON files in Hugo's `data/` directory.
-- Generate a Decap CMS `config.yml` file with proper collections for pages, posts, and layout elements.
-- Ensure the generated theme is fully editable via Decap CMS.
+- Extracts the site structure elements (navigation, hero sections, footers) into YAML/JSON files in Hugo's `data/` directory.
+- Generates a Decap CMS `config.yml` file with proper collections for pages, posts, and layout elements.
+- Ensures the generated theme is fully editable via Decap CMS.
 
-### Phase 3: Automation & Deployment
+### Step3 3: Automation & Deployment
 
-- Provide a Python CLI tool to automate the entire conversion process.
+- Provides a Python CLI tool to automate the entire conversion process.
 - Offer interactive mode for customization and auto mode for full automation.
 - Ensure themes are deployable on Cloudflare Pages CMS setups.
 - Deploy the CMS on Cloudflare Pages.
