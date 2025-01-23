@@ -1,6 +1,6 @@
 # Hugoifier (AI-Powered Theme Converter)
 
-This project aims to create a fully production-ready, AI-assisted Hugo theme converter with Decap CMS support as efficiently as possible.
+A utility that takes your HTML template/website or Hugo them and generates a production-ready Hugo theme with Decap CMS integration. 
 
 ## What is it?
 
