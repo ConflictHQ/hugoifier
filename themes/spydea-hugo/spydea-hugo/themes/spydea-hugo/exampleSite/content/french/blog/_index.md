@@ -1,3 +1,0 @@
----
-title: "Derniers articles blog"
----

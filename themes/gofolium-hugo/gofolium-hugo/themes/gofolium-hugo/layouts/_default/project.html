@@ -1,7 +1,0 @@
-<article class="card bg-dark rounded-0 border-0">
-  {{ with .Params.Image }} <img src="{{ . | absURL }}" alt="" class="card-img-top mb-4 rounded-0"> {{ end }}
-  <div class="card-body">
-    <h4 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h4>
-    <p>{{ .Summary }}</p>
-  </div>
-</article>

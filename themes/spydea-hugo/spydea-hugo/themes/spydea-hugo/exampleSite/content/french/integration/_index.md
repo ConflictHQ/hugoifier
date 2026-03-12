@@ -1,3 +1,0 @@
----
-title: "Comment intégrer Spydea"
----

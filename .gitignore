@@ -173,3 +173,4 @@ cython_debug/
 # hugoifier generated output
 output/
 processing_log.txt
+themes/
