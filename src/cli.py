@@ -11,6 +11,7 @@ Usage examples:
 """
 
 import argparse
+import logging
 import sys
 import os
 
@@ -63,8 +64,9 @@ def main():
     decapify_parser.add_argument("--cms-color", default=None, help="Whitelabel top-bar hex color")
 
     # translate
-    translate_parser = subparsers.add_parser("translate", help="Translate content (stub)")
-    translate_parser.add_argument("path", help="Path to the content")
+    translate_parser = subparsers.add_parser("translate", help="Translate content to another language")
+    translate_parser.add_argument("path", help="Path to the content file")
+    translate_parser.add_argument("--target-language", default="Spanish", help="Target language (default: Spanish)")
 
     # parse / lint
     parser_parser = subparsers.add_parser("parser", help="Parse and lint (stub)")
@@ -82,41 +84,47 @@ def main():
 
     args = parser.parse_args()
 
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
     # Override backend if specified on command line
     if args.backend:
         import config as cfg
         cfg.BACKEND = args.backend
 
-    if args.command == "complete":
-        result = complete(
-            args.path,
-            output_dir=getattr(args, 'output', None),
-            cms_name=getattr(args, 'cms_name', None),
-            cms_logo=getattr(args, 'cms_logo', None),
-            cms_color=getattr(args, 'cms_color', None),
-        )
-        print(result)
-    elif args.command == "analyze":
-        print(analyze(args.path))
-    elif args.command == "hugoify":
-        print(hugoify(args.path))
-    elif args.command == "decapify":
-        print(decapify(
-            args.path,
-            cms_name=getattr(args, 'cms_name', None),
-            cms_logo=getattr(args, 'cms_logo', None),
-            cms_color=getattr(args, 'cms_color', None),
-        ))
-    elif args.command == "translate":
-        print(translate(args.path))
-    elif args.command == "parser":
-        print(parse(args.path))
-    elif args.command == "deploy":
-        print(deploy(args.path, args.zone))
-    elif args.command == "cloudflare":
-        print(configure_cloudflare(args.path, args.zone))
-    else:
-        parser.print_help()
+    try:
+        if args.command == "complete":
+            result = complete(
+                args.path,
+                output_dir=args.output,
+                cms_name=args.cms_name,
+                cms_logo=args.cms_logo,
+                cms_color=args.cms_color,
+            )
+            print(result)
+        elif args.command == "analyze":
+            print(analyze(args.path))
+        elif args.command == "hugoify":
+            print(hugoify(args.path))
+        elif args.command == "decapify":
+            print(decapify(
+                args.path,
+                cms_name=args.cms_name,
+                cms_logo=args.cms_logo,
+                cms_color=args.cms_color,
+            ))
+        elif args.command == "translate":
+            print(translate(args.path, target_language=args.target_language))
+        elif args.command == "parser":
+            print(parse(args.path))
+        elif args.command == "deploy":
+            print(deploy(args.path, args.zone))
+        elif args.command == "cloudflare":
+            print(configure_cloudflare(args.path, args.zone))
+        else:
+            parser.print_help()
+    except (ValueError, EnvironmentError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
