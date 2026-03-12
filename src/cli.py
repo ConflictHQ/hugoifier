@@ -1,9 +1,22 @@
 """
-This script serves as the command-line interface (CLI) for the Hugo-ifier tool.
-It provides various commands to analyze, convert, and deploy themes using the utility scripts.
+Hugo-ifier CLI Tool
+
+Usage examples:
+  python cli.py complete themes/revolve-hugo
+  python cli.py complete themes/revolve-hugo --output /tmp/my-site
+  HUGOIFIER_BACKEND=openai python cli.py complete themes/revolve-hugo
+  python cli.py analyze themes/revolve-hugo
+  python cli.py hugoify themes/revolve-hugo
+  python cli.py decapify output/revolve-hugo
 """
 
 import argparse
+import sys
+import os
+
+# Ensure src/ is on the path when called directly
+sys.path.insert(0, os.path.dirname(__file__))
+
 from utils.analyze import analyze
 from utils.complete import complete
 from utils.cloudflare import configure_cloudflare
@@ -15,64 +28,96 @@ from utils.parser import parse
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Hugo-ifier CLI Tool")
+    parser = argparse.ArgumentParser(
+        description="Hugo-ifier — AI-powered Hugo theme converter",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
+    )
+    parser.add_argument(
+        '--backend', choices=['anthropic', 'openai', 'google'],
+        help='AI backend to use (overrides HUGOIFIER_BACKEND env var)',
+    )
     subparsers = parser.add_subparsers(dest="command")
 
-    # Analyze command
-    analyze_parser = subparsers.add_parser("analyze", help="Analyze a theme")
+    # complete — full pipeline
+    complete_parser = subparsers.add_parser("complete", help="Run the full pipeline (analyze → hugoify → decap)")
+    complete_parser.add_argument("path", help="Path to the theme directory")
+    complete_parser.add_argument("--output", "-o", help="Output directory (default: output/{theme-name})")
+    complete_parser.add_argument("--cms-name", default=None, help="Whitelabel CMS name")
+    complete_parser.add_argument("--cms-logo", default=None, help="Whitelabel logo URL")
+    complete_parser.add_argument("--cms-color", default=None, help="Whitelabel top-bar hex color")
+
+    # analyze
+    analyze_parser = subparsers.add_parser("analyze", help="Analyze a theme and report structure")
     analyze_parser.add_argument("path", help="Path to the theme")
 
-    # Complete command
-    complete_parser = subparsers.add_parser("complete", help="Complete the workflow")
-    complete_parser.add_argument("path", help="Path to the theme")
+    # hugoify
+    hugoify_parser = subparsers.add_parser("hugoify", help="Convert HTML to Hugo theme (or validate existing Hugo theme)")
+    hugoify_parser.add_argument("path", help="Path to HTML file or theme directory")
 
-    # Cloudflare command
-    cloudflare_parser = subparsers.add_parser("cloudflare", help="Configure Cloudflare")
-    cloudflare_parser.add_argument("path", help="Path to the theme")
-    cloudflare_parser.add_argument("zone", help="Cloudflare zone")
+    # decapify
+    decapify_parser = subparsers.add_parser("decapify", help="Add Decap CMS to an assembled Hugo site")
+    decapify_parser.add_argument("path", help="Path to the Hugo site directory")
+    decapify_parser.add_argument("--cms-name", default=None, help="Whitelabel CMS name (default: 'Content Manager')")
+    decapify_parser.add_argument("--cms-logo", default=None, help="Whitelabel logo URL")
+    decapify_parser.add_argument("--cms-color", default=None, help="Whitelabel top-bar hex color")
 
-    # Deploy command
-    deploy_parser = subparsers.add_parser("deploy", help="Deploy the theme")
-    deploy_parser.add_argument("path", help="Path to the theme")
-    deploy_parser.add_argument("zone", help="Cloudflare zone")
-
-    # Hugoify command
-    hugoify_parser = subparsers.add_parser("hugoify", help="Convert to Hugo theme")
-    hugoify_parser.add_argument("path", help="Path to the theme")
-
-    # Decapify command
-    decapify_parser = subparsers.add_parser("decapify", help="Integrate Decap CMS")
-    decapify_parser.add_argument("path", help="Path to the theme")
-
-    # Translate command
-    translate_parser = subparsers.add_parser("translate", help="Translate content")
+    # translate
+    translate_parser = subparsers.add_parser("translate", help="Translate content (stub)")
     translate_parser.add_argument("path", help="Path to the content")
 
-    # Parser command
-    parser_parser = subparsers.add_parser("parser", help="Parse and lint")
+    # parse / lint
+    parser_parser = subparsers.add_parser("parser", help="Parse and lint (stub)")
     parser_parser.add_argument("path", help="Path to the theme")
+
+    # deploy (stub)
+    deploy_parser = subparsers.add_parser("deploy", help="Deploy to Cloudflare (stub)")
+    deploy_parser.add_argument("path", help="Path to the site")
+    deploy_parser.add_argument("zone", help="Cloudflare zone")
+
+    # cloudflare (stub)
+    cloudflare_parser = subparsers.add_parser("cloudflare", help="Configure Cloudflare (stub)")
+    cloudflare_parser.add_argument("path", help="Path to the site")
+    cloudflare_parser.add_argument("zone", help="Cloudflare zone")
 
     args = parser.parse_args()
 
-    if args.command == "analyze":
+    # Override backend if specified on command line
+    if args.backend:
+        import config as cfg
+        cfg.BACKEND = args.backend
+
+    if args.command == "complete":
+        result = complete(
+            args.path,
+            output_dir=getattr(args, 'output', None),
+            cms_name=getattr(args, 'cms_name', None),
+            cms_logo=getattr(args, 'cms_logo', None),
+            cms_color=getattr(args, 'cms_color', None),
+        )
+        print(result)
+    elif args.command == "analyze":
         print(analyze(args.path))
-    elif args.command == "complete":
-        print(complete(args.path))
-    elif args.command == "cloudflare":
-        print(configure_cloudflare(args.path, args.zone))
-    elif args.command == "deploy":
-        print(deploy(args.path, args.zone))
     elif args.command == "hugoify":
         print(hugoify(args.path))
     elif args.command == "decapify":
-        print(decapify(args.path))
+        print(decapify(
+            args.path,
+            cms_name=getattr(args, 'cms_name', None),
+            cms_logo=getattr(args, 'cms_logo', None),
+            cms_color=getattr(args, 'cms_color', None),
+        ))
     elif args.command == "translate":
         print(translate(args.path))
     elif args.command == "parser":
         print(parse(args.path))
+    elif args.command == "deploy":
+        print(deploy(args.path, args.zone))
+    elif args.command == "cloudflare":
+        print(configure_cloudflare(args.path, args.zone))
     else:
         parser.print_help()
 
 
 if __name__ == "__main__":
-    main() 
+    main()

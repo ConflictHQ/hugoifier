@@ -1,40 +1,265 @@
 """
-This script integrates Decap CMS with Hugo themes by analyzing the theme, applying necessary configurations, and ensuring compatibility.
-It prepares the theme for content management via Decap CMS.
+Generates Decap CMS integration for a Hugo site.
+
+Writes:
+  static/admin/index.html  — Decap CMS admin panel
+  static/admin/config.yml  — CMS config mapped to actual content structure
 """
 
 import logging
 import os
-from config import setup_openai_api
+import re
+import yaml
 
-# Configure logging
+from config import call_ai
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Function to integrate Decap CMS with Hugo themes
-def decapify(path):
-    logging.info(f"Starting Decap CMS integration for {path}...")
+DECAP_CDN = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
+
+# Whitelabel defaults — override via decapify() kwargs or env vars
+import os as _os
+DEFAULT_CMS_NAME = _os.getenv('CMS_NAME', 'Content Manager')
+DEFAULT_CMS_LOGO = _os.getenv('CMS_LOGO_URL', '')     # URL or empty
+DEFAULT_CMS_COLOR = _os.getenv('CMS_COLOR', '#2e3748')  # top-bar background
+
+
+def decapify(
+    site_dir: str,
+    cms_name: str = None,
+    cms_logo: str = None,
+    cms_color: str = None,
+) -> str:
+    """
+    Add Decap CMS to a Hugo site directory.
+
+    Args:
+        site_dir:  Root of the assembled Hugo site (has hugo.toml, content/, themes/).
+        cms_name:  Whitelabel name shown in the admin UI (default: 'Content Manager').
+        cms_logo:  URL to a logo image for the admin UI (optional).
+        cms_color: Hex color for the admin top bar (default: '#2e3748').
+
+    Returns:
+        Status message.
+    """
+    logging.info(f"Adding Decap CMS to {site_dir} ...")
+
+    admin_dir = os.path.join(site_dir, 'static', 'admin')
+    os.makedirs(admin_dir, exist_ok=True)
+
+    branding = {
+        'name': cms_name or DEFAULT_CMS_NAME,
+        'logo': cms_logo or DEFAULT_CMS_LOGO,
+        'color': cms_color or DEFAULT_CMS_COLOR,
+    }
+
+    _write_admin_index(admin_dir, branding)
+    _write_decap_config(site_dir, admin_dir)
+
+    logging.info("Decap CMS integration complete.")
+    return "Decap CMS integration complete"
+
+
+# ---------------------------------------------------------------------------
+# Admin index.html
+# ---------------------------------------------------------------------------
+
+def _sanitize_color(color: str) -> str:
+    """Allow only valid CSS hex colors (#rgb or #rrggbb) to prevent style injection."""
+    if re.fullmatch(r'#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?', color):
+        return color
+    return '#2e3748'  # fall back to default
+
+
+def _write_admin_index(admin_dir: str, branding: dict):
+    import html as html_mod
+    name = html_mod.escape(branding['name'])
+    logo_html = ''
+    if branding['logo']:
+        logo_url = html_mod.escape(branding['logo'])
+        logo_html = f'\n  <img src="{logo_url}" alt="{name}" style="max-height:40px;margin:8px 0;">'
+
+    color_css = ''
+    if branding['color']:
+        safe_color = _sanitize_color(branding['color'])
+        color_css = f"""
+  <style>
+    [class^="AppHeader"] {{ background-color: {safe_color} !important; }}
+  </style>"""
+
+    html = f"""<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>{name}</title>{color_css}
+</head>
+<body>{logo_html}
+  <script src="{DECAP_CDN}"></script>
+</body>
+</html>
+"""
+    with open(os.path.join(admin_dir, 'index.html'), 'w') as f:
+        f.write(html)
+
+
+# ---------------------------------------------------------------------------
+# config.yml
+# ---------------------------------------------------------------------------
+
+def _write_decap_config(site_dir: str, admin_dir: str):
+    content_dir = os.path.join(site_dir, 'content')
+    collections = _build_collections(content_dir)
+
+    config = {
+        'backend': {
+            'name': 'git-gateway',
+            'branch': 'main',
+        },
+        'media_folder': 'static/images/uploads',
+        'public_folder': '/images/uploads',
+        'collections': collections,
+    }
+
+    config_path = os.path.join(admin_dir, 'config.yml')
+    with open(config_path, 'w') as f:
+        yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+
+    logging.info(f"Wrote Decap CMS config to {config_path}")
+
+
+def _build_collections(content_dir: str) -> list:
+    """
+    Inspect content/ to build Decap CMS collections.
+    - Subdirs with multiple .md files → folder collection (e.g. blog)
+    - Subdirs with a single _index.md → file collection (e.g. about, contact)
+    - Top-level _index.md → homepage file entry
+    """
+    if not os.path.isdir(content_dir):
+        return [_default_pages_collection()]
+
+    collections = []
+    seen_blog_like = False
+
+    entries = sorted(os.listdir(content_dir))
+    for entry in entries:
+        subdir = os.path.join(content_dir, entry)
+        if not os.path.isdir(subdir):
+            continue
+
+        md_files = [f for f in os.listdir(subdir) if f.endswith('.md')]
+        non_index = [f for f in md_files if f != '_index.md']
+
+        if non_index:
+            # Folder collection (blog, posts, etc.)
+            fields = _infer_fields_for_folder(subdir, non_index)
+            collections.append({
+                'name': entry,
+                'label': entry.replace('-', ' ').title(),
+                'folder': f'content/{entry}',
+                'create': True,
+                'slug': '{{slug}}',
+                'fields': fields,
+            })
+            seen_blog_like = True
+        elif '_index.md' in md_files:
+            # File collection (single page)
+            fields = _infer_fields_for_file(os.path.join(subdir, '_index.md'))
+            collections.append({
+                'name': entry,
+                'label': entry.replace('-', ' ').title(),
+                'files': [{
+                    'name': entry,
+                    'label': entry.replace('-', ' ').title(),
+                    'file': f'content/{entry}/_index.md',
+                    'fields': fields,
+                }],
+            })
+
+    if not collections:
+        collections.append(_default_pages_collection())
+
+    return collections
+
+
+def _infer_fields_for_folder(subdir: str, md_files: list) -> list:
+    """Read a sample .md file and extract frontmatter keys as fields."""
+    sample = os.path.join(subdir, md_files[0])
+    frontmatter = _parse_frontmatter(sample)
+
+    fields = []
+    field_map = {
+        'title': {'label': 'Title', 'name': 'title', 'widget': 'string'},
+        'date': {'label': 'Date', 'name': 'date', 'widget': 'datetime'},
+        'description': {'label': 'Description', 'name': 'description', 'widget': 'text'},
+        'image': {'label': 'Image', 'name': 'image', 'widget': 'image', 'required': False},
+        'categories': {'label': 'Categories', 'name': 'categories', 'widget': 'list', 'required': False},
+        'tags': {'label': 'Tags', 'name': 'tags', 'widget': 'list', 'required': False},
+        'draft': {'label': 'Draft', 'name': 'draft', 'widget': 'boolean', 'default': False},
+        'author': {'label': 'Author', 'name': 'author', 'widget': 'string', 'required': False},
+    }
+
+    # Add known fields in a logical order
+    for key in ['title', 'date', 'description', 'image', 'categories', 'tags', 'author', 'draft']:
+        if key in frontmatter:
+            fields.append(field_map[key])
+
+    # Add any remaining frontmatter keys not in our map
+    for key, value in frontmatter.items():
+        if key not in field_map and key not in ('type', 'layout', 'url'):
+            widget = _widget_for_value(value)
+            fields.append({'label': key.title(), 'name': key, 'widget': widget, 'required': False})
+
+    # Always include body
+    fields.append({'label': 'Body', 'name': 'body', 'widget': 'markdown'})
+
+    return fields
+
+
+def _infer_fields_for_file(md_path: str) -> list:
+    """For a single page (_index.md), infer fields from frontmatter."""
+    frontmatter = _parse_frontmatter(md_path)
+    fields = []
+    for key, value in frontmatter.items():
+        widget = _widget_for_value(value)
+        fields.append({'label': key.title(), 'name': key, 'widget': widget, 'required': False})
+    fields.append({'label': 'Body', 'name': 'body', 'widget': 'markdown'})
+    return fields
+
+
+def _parse_frontmatter(md_path: str) -> dict:
+    """Parse YAML frontmatter from a .md file."""
     try:
-        # Set up OpenAI API key
-        setup_openai_api()
+        with open(md_path, 'r', errors='replace') as f:
+            content = f.read()
+        match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+        if match:
+            return yaml.safe_load(match.group(1)) or {}
+    except Exception:
+        pass
+    return {}
 
-        # Analyze Hugo theme
-        logging.info("Analyzing Hugo theme...")
-        # Example analysis logic
-        # if not os.path.exists(os.path.join(path, 'config.toml')):
-        #     raise FileNotFoundError("Missing Hugo config.toml")
 
-        # Apply Decap CMS configurations
-        logging.info("Applying Decap CMS configurations...")
-        # Example configuration logic
-        # configure_decap_cms(path)
+def _widget_for_value(value) -> str:
+    if isinstance(value, bool):
+        return 'boolean'
+    if isinstance(value, (int, float)):
+        return 'number'
+    if isinstance(value, list):
+        return 'list'
+    return 'string'
 
-        # Ensure compatibility
-        logging.info("Ensuring compatibility...")
-        # Example compatibility check
-        # check_decap_compatibility(path)
 
-        logging.info("Decapify complete.")
-        return "Decapify complete"
-    except Exception as e:
-        logging.error(f"Error during Decapify: {e}")
-        return "Decapify failed" 
+def _default_pages_collection() -> dict:
+    return {
+        'name': 'pages',
+        'label': 'Pages',
+        'folder': 'content',
+        'create': True,
+        'slug': '{{slug}}',
+        'fields': [
+            {'label': 'Title', 'name': 'title', 'widget': 'string'},
+            {'label': 'Body', 'name': 'body', 'widget': 'markdown'},
+        ],
+    }

@@ -1,0 +1,101 @@
+######################### Hero Slider ##################################
+slider:
+  enable: true
+  sliderItem:
+    # slider item loop
+    - bgImage: "images/slider/slideshow1-1.jpg"
+      subtitle: "Winter Collection Sale"
+      title: " **70% off** to everything"
+      button:
+        enable: true
+        label: "Shop Now"
+        link: "shop/"
+
+    # slider item loop
+    - bgImage: "images/slider/slideshow1-2.jpg"
+      subtitle: "up to 70% off"
+      title: " **Classic** Style"
+      button:
+        enable: true
+        label: "Shop Now"
+        link: "shop/"
+
+    # slider item loop
+    - bgImage: "images/slider/slideshow1-3.jpg"
+      subtitle: "Trendy dress"
+      title: " **Winter** Collection"
+      button:
+        enable: true
+        label: "Shop Now"
+        link: "shop/"
+
+################################### Categories #########################
+categories:
+  enable: true
+  category:
+    # category loop
+    - title: "Stylish Leather watch"
+      image: "images/about/cat-1.jpg"
+      offer: "up to **50%** off"
+      link: "watch"
+
+    # category loop
+    - title: "Ladies hand bag"
+      image: "images/about/cat-2.jpg"
+      offer: "up to **30%** off"
+      link: "bag"
+
+    # category loop
+    - title: "Trendy shoe"
+      image: "images/about/cat-3.jpg"
+      offer: "up to **49%** off"
+      link: "shoe"
+
+#################################### New Arrival #########################
+newArrival:
+  enable: true
+  title: "New arrivals"
+  subtitle: "The best Online sales to shop these weekend"
+  # products comes from `content/products` folder
+
+############################## Deal ######################################
+deal:
+  enable: true
+  subtitle: "Deal of the day 50% Off"
+  title: "Trendy Suit"
+  content: "Hurry up! Limited time offer.Grab ot now!"
+
+  # set timer
+  year: "2023"
+  month: "12"
+  day: "01"
+  hour: "01"
+
+  # button
+  button:
+    label: "Shop Now"
+    link: "shop/"
+
+############################## Service ###################################
+service:
+  enable: true
+  serviceItem:
+    # service item loop
+    - title: "Free Shipping"
+      icon: "ti-truck" # themify icon pack : https://themify.me/themify-icons
+      content: "On all order over $39.00"
+
+    # service item loop
+    - title: "30 Days Return"
+      icon: "ti-wallet" # themify icon pack : https://themify.me/themify-icons
+      content: "Money back Guarantee"
+
+    # service item loop
+    - title: "Secure Checkout"
+      icon: "ti-shield" # themify icon pack : https://themify.me/themify-icons
+      content: "100% Protected by paypa"
+
+    # service item loop
+    - title: "24 / 7 Support"
+      icon: "ti-alarm-clock" # themify icon pack : https://themify.me/themify-icons
+      content: "All time customer support"

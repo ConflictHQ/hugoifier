@@ -1,0 +1,319 @@
+body {
+  background-color: $body-color;
+  overflow-x: hidden;
+  transition: .2s ease;
+
+  &.light {
+    background-color: $day-body-color;
+
+    .preloader {
+      background-color: $day-body-color;
+    }
+
+    .text-light {
+      color: $day-text-color-light !important;
+    }
+
+    .text-dark {
+      color: $day-text-color-dark !important;
+    }
+
+    .text-white {
+      color: $day-text-color-dark !important;
+    }
+
+    .bg-dark {
+      background-color: $light !important;
+    }
+
+    .bg-black {
+      background-color: $white !important;
+    }
+
+    .border-default {
+      border-color: $day-border-color !important;
+    }
+
+    .form-control {
+      color: $day-text-color-dark;
+      border-color: $day-border-color;
+    }
+
+    .form-group {
+      label {
+        color: $day-text-color;
+      }
+    }
+  }
+}
+
+::selection {
+  background: lighten($color: $primary-color, $amount: 10);
+  color: $white;
+}
+
+/* preloader */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $body-color;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a,
+button,
+select {
+  cursor: pointer;
+  transition: .2s ease;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+a:hover {
+  color: $primary-color;
+}
+
+.slick-slide {
+  outline: 0;
+}
+
+.section {
+  padding-top: 150px;
+  padding-bottom: 150px;
+
+  &-sm {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  &-title {
+    margin-bottom: 30px;
+  }
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.border-primary {
+  border-color: $border-color !important;
+}
+
+/* overlay */
+
+.overlay {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: $black;
+    opacity: .5;
+  }
+}
+
+
+.border-default {
+  border-color: $border-color !important;
+}
+
+.outline-0 {
+  outline: 0 !important;
+}
+
+.d-unset {
+  display: unset !important;
+}
+
+.bg-primary {
+  background: $primary-color !important;
+}
+
+.bg-dark {
+  background: $dark !important;
+}
+
+.bg-black {
+  background: $black !important;
+}
+
+.text-primary {
+  color: $primary-color !important;
+}
+
+.text-light {
+  color: $text-color-light !important;
+}
+
+.zindex-1 {
+  z-index: 1;
+}
+
+.sticky-top.bg-black{
+  transition: .2s ease;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.display-xl {
+  display: block;
+
+  @include desktop-lg {
+    display: none;
+  }
+}
+
+.display-lg {
+  display: none;
+
+  @include desktop-lg {
+    display: block;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.display-md {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.display-sm {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.display-xs {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+
+// form control
+.form-control {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $border-color;
+  background-color: transparent;
+  color: $text-color-dark;
+
+  &:focus {
+    border-color: $border-color;
+    color: inherit;
+    box-shadow: none;
+    background-color: transparent;
+  }
+}
+
+.form-group {
+  label {
+    color: $text-color-dark;
+    font-size: 15px;
+  }
+
+  .form-control {
+    border: 0;
+    border-bottom: 1px solid $border-color;
+    border-radius: 0;
+    padding: 0;
+    height: 40px;
+    background-color: inherit;
+
+    &::placeholder {
+      font-size: 13px;
+      opacity: .8;
+    }
+  }
+
+  margin-bottom: 20px;
+}
+
+textarea.form-control {
+  height: 100px !important;
+}
+
+
+// day night toggle
+.sun {
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked~.checkmark {
+      svg {
+        fill: $white;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    svg {
+      fill: $black;
+      transition: .2s ease;
+    }
+  }
+}

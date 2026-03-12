@@ -1,0 +1,41 @@
+- id: read_more
+  translation: Lire la suite
+  
+- id: trending
+  translation: Messages tendance
+
+- id: team
+  translation: Rencontrez nos membres
+
+- id: send
+  translation: Envoyer
+
+- id: first_name
+  translation: Ton prénom
+
+- id: last_name
+  translation: Votre nom de famille
+
+- id: email 
+  translation: Votre adresse email
+
+- id: message
+  translation: Votre message ici
+
+- id: subscribe
+  translation: Abonnez-vous maintenant
+
+- id: recent_post
+  translation: Messages récents
+
+- id: categories
+  translation: Les catégories
+
+- id: instafeed
+  translation: Messages Instagram
+
+- id: follow
+  translation: Abonnez-vous et suivez
+
+- id: search_placeholder
+  translation: tapez et appuyez sur Entrée ...

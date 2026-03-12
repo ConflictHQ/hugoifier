@@ -1,0 +1,33 @@
+<!-- grid style -->
+
+{{ $.Scratch.Set "count" 1 }}
+{{ range (.Site.RegularPages.GroupByDate "2006") }}
+{{ if (gt .Key 2000) }}
+{{ $.Scratch.Set "count" 1 }}
+{{ range (where .Pages "Section" "post") }}
+{{ if (eq ($.Scratch.Get "count") 1) }}
+{{ $.Scratch.Set "count" 0 }}
+<h3 class="h4 sticky-top bg-black py-4">Showing post from {{ .Date.Format "2006" }}</h3>
+{{ end }}
+{{ end }}
+
+<div class="row">
+  {{ range (where .Pages "Section" "post") }}
+  <div class="col-sm-6 mb-4">
+    <div class="card">
+      {{if .Params.Image}}<img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" class="card-img-top">{{ end }}
+      <div class="card-body">
+        <h4 class="h5 mb-3 {{delimit .Params.categories ` `}}"><a href="{{ .Permalink }}"
+            class="post-title">{{ .Title }}</a></h4>
+        <div style="padding-left: 20px;">
+          <p class="text-light mb-2">{{ .PublishDate.Format "02 January" }}</p>
+          <a href="{{ .Permalink }}" class="btn btn-link">read more <i class="ti-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
+<!-- /grid style -->

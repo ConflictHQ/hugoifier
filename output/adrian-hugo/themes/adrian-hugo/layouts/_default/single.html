@@ -1,0 +1,156 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="single-product">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ site.BaseURL }}">{{ site.Params.home }}</a></li>
+            <li class="breadcrumb-item"><a href="{{`shop` | relURL}}">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ .Title | markdownify }}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row mt-5 mt-lg-0">
+      <div class="col-md-5">
+        <div class="single-product-slider">
+          {{ range .Params.Images }}
+          <div data-image="{{ . | relURL }}">
+            <img class="img-fluid w-100" src="{{ . | relURL }}" alt="product-img">
+          </div>
+          {{ end }}
+          {{ if eq (len .Params.Images) 1}}
+          <style>
+            .slick-dots{
+              display: none !important;
+            }
+          </style>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="single-product-details mt-5 mt-lg-0">
+          <h2>{{ .Title | markdownify }}</h2>
+          <hr>
+
+          <h3 class="product-price">{{ site.Params.currency }}{{ .Params.Price}}
+            {{ if .Params.PriceBefore }}<del>{{ site.Params.currency }}{{ .Params.PriceBefore }}</del>{{ end }}</h3>
+
+          <p class="product-description my-4">
+            {{ .Summary }}
+          </p>
+
+          <div class="products-meta mt-4">
+            {{ if .Params.Categories }}
+            <div class="product-category d-flex align-items-center">
+              <span class="font-weight-bold text-capitalize product-meta-title">Category :</span>
+              {{ range $index, $element:= .Params.Categories }}{{ if eq $index 0 }}{{ . | title | humanize }}{{ else }}, {{ . | title | humanize }}{{ end }}{{ end }}
+            </div>
+            {{ end }}
+            {{ if .Params.Colors }}
+            <div class="product-category d-flex align-items-center">
+              <span class="font-weight-bold text-capitalize product-meta-title">Color :</span>
+              {{ range $index, $element:= .Params.Colors }}{{ $name:= replace . "[" " " }}{{ $name:= replace $name "]" "$" }}{{ if eq $index 0 }}{{ $name | title | humanize }}{{ else }}, &nbsp; {{ $name | title | humanize }}{{ end }}{{ end }}
+            </div>
+            {{ end }}
+            {{ if .Params.Sizes }}
+            <div class="product-category d-flex align-items-center">
+              <span class="font-weight-bold text-capitalize product-meta-title">Size :</span>
+              {{ range $index, $element:= .Params.Sizes }}{{ $name:= replace . "[" " " }}{{ $name:= replace $name "]" "$" }}{{ if eq $index 0 }}{{ $name | title | upper }}{{ else }}, &nbsp; {{ $name | title | upper }}{{ end }}{{ end }}
+            </div>
+            {{ end }}
+            <h5 class="mt-4">[Varient can be select after add to cart]</h5>
+            <button class="snipcart-add-item btn btn-main btn-small mt-5"
+              data-item-id="{{ .Title | urlize }}__{{ .Params.Price }}"
+              data-item-name="{{ .Title }}"
+              data-item-image="{{ with .Params.Images }} {{ range first 1 .}} {{ . | relURL }}{{ end }}{{ end }}"
+              data-item-price="{{ .Params.Price }}"
+              data-item-url="{{ .RelPermalink }}"
+              data-item-description="{{ .Params.Description | markdownify }}"
+              {{ if .Params.Colors }}
+              data-item-custom1-name="Choose Color"
+              data-item-custom1-options="{{ range $index, $element:= .Params.Colors }}{{ if eq $index 0 }}{{ . | title }}{{ else }}|{{ . | title }}{{ end }}{{ end }}"
+              {{ end }}
+              {{ if .Params.Sizes }}
+              data-item-custom2-name="Choose Size"
+              data-item-custom2-options="{{ range $index, $element:= .Params.Sizes }}{{ if eq $index 0 }}{{ . | title | upper }}{{ else }}|{{ . | title | upper }}{{ end }}{{ end }}"
+              {{ end }}>
+              Add to cart
+            </button>
+            {{partial "share.html" . }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <nav class="product-info-tabs wc-tabs mt-5 mb-5">
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+              aria-controls="nav-home" aria-selected="true">Description</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+              aria-controls="nav-profile" aria-selected="false">Additional Information</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+              aria-controls="nav-contact" aria-selected="false">Reviews</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            {{ .Content }}
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <ul class="list-unstyled info-desc">
+              {{ if .Params.ProductWeight }}
+              <li class="d-flex">
+                <strong>Weight </strong>
+                <span>{{ .Params.ProductWeight }}</span>
+              </li>
+              {{ end }}
+
+              {{ if .Params.Dimensions }}
+              <li class="d-flex">
+                <strong>Dimensions </strong>
+                <span>{{ .Params.Dimensions }}</span>
+              </li>
+              {{ end }}
+
+              {{ if .Params.Materials }}
+              <li class="d-flex">
+                <strong>Materials</strong>
+                <span>{{ .Params.Materials }}</span>
+              </li>
+              {{ end }}
+
+              {{ if .Params.Colors }}
+              <li class="d-flex">
+                <strong>Color </strong>
+                <span>{{ range $index, $element:= .Params.Colors }}{{ $name:= replace . "[" " " }}{{ $name:= replace $name "]" "$" }}{{ if eq $index 0 }}{{ $name | title | humanize }}{{ else }}, &nbsp; {{ $name | title | humanize }}{{ end }}{{ end }}</span>
+              </li>
+              {{ end }}
+
+              {{ if .Params.Sizes }}
+              <li class="d-flex">
+                <strong>Size</strong>
+                <span>{{ range $index, $element:= .Params.Sizes }}{{ $name:= replace . "[" " " }}{{ $name:= replace $name "]" "$" }}{{ if eq $index 0 }}{{ $name | title | upper }}{{ else }}, &nbsp; {{ $name | title | upper }}{{ end }}{{ end }}</span>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

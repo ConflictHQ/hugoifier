@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- about -->
+{{ if .Site.Data.about.about.enable }}
+{{ with .Site.Data.about.about }}
+<section class="section about-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="about-item-img">
+          <img src="{{ .image | absURL }}" alt="" class="img-fluid w-100">
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="about-item-content pl-4">
+          <h2 class="mb-4 content-title">{{ .title | markdownify }}</h2>
+          <p class="lead">{{ .leadContent | markdownify }}</p>
+          <p class="mb-4">{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /aobut -->
+
+<!-- partners -->
+{{ if .Site.Data.about.partners.enable }}
+{{ with .Site.Data.about.partners }}
+<div class="section pt-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="content text-center">
+          <h2 class="content-title mb-4">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="clients-item-wrap mt-5">
+      <div class="row">
+        {{ range .partnersLogo }}
+        <div class="col-lg-3 col-md-6 col-sm-4">
+          <a href="{{ .link | safeURL }}">
+            <img src="{{ .logo | absURL }}" alt="" class="img-fluid">
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ end }}
+<!-- /partners -->
+
+<!-- history -->
+{{ if .Site.Data.about.history.enable }}
+{{ with .Site.Data.about.history }}
+<section class="section feature pb-0">
+  <div class="container">
+    <div class="row no-gutters">
+      {{ range .historyItem }}
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-inner">
+          <i class="{{ .icon }}"></i>
+          <h4>{{ .title | markdownify }}</h4>
+          <p>{{ .subtitle | markdownify }}</p>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /history -->
+
+<!--  Section Services Start -->
+{{ if .Site.Data.about.team.enable }}
+{{ with .Site.Data.about.team }}
+<section class="section team">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 text-center">
+        <div class="section-title">
+          <span class="h6 text-color">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-3 content-title">{{ .title | markdownify }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range .teamMember}}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="team-item-wrap mb-5">
+          <div class="team-item position-relative">
+            <img src="{{ .image | absURL }}" alt="" class="img-fluid w-100">
+            <div class="team-img-hover">
+              <ul class="team-social list-inline">
+                {{ range .social }}
+                <li class="list-inline-item">
+                  <a href="{{ .link | safeURL }}" class="{{ .name }}"><i class="{{ .icon }}"></i></a>
+                </li>
+                {{end }}
+              </ul>
+            </div>
+          </div>
+          <div class="team-item-content">
+            <h4 class="mt-3 mb-0 text-capitalize">{{ .name }}</h4>
+            <p>{{ .designation }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ if .button.enable }}
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-main rounded">{{ .label }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /team -->
+
+<!-- call to action -->
+{{ if .Site.Data.about.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+<!-- /call to action -->
+
+<!-- gallery -->
+{{ if .Site.Data.about.gallery.enable }}
+{{ partial "gallery.html" . }}
+{{ end }}
+<!-- /gallary -->
+
+{{ end }}

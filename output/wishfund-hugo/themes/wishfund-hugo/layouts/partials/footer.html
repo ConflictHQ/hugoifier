@@ -1,0 +1,113 @@
+<!-- footer Start -->
+<footer class="footer section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="footer-widget widget">
+					<h4 class="text-capitalize mb-4 text-white">Company</h4>
+					<p>{{ .Site.Params.location | markdownify }}</p>
+
+					<ul class="list-unstyled footer-menu mt-4">
+						<li><a href="tel:{{ .Site.Params.phone }}"><i class="ti-mobile"></i>{{ .Site.Params.phone }}</a></li>
+						<li><a href="mailto:{{ .Site.Params.email }}"><i class="ti-email"></i>{{ .Site.Params.email }}</a></li>
+					</ul>
+					<ul class="list-inline footer-socials">
+						{{ range .Site.Params.social }}
+						<li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-2 col-md-6 col-sm-6">
+				<div class="widget footer-widget">
+					<h4 class="text-capitalize mb-4 text-white">Quick Links</h4>
+
+					<ul class="list-unstyled footer-menu lh-35">
+						{{ range .Site.Menus.footer}}
+						<li><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="footer-widget widget">
+					<h4 class="text-capitalize mb-4 text-white">{{ .Site.Params.subscription.title }}</h4>
+					<p class="mb-4">{{ .Site.Params.subscription.content | markdownify }}</p>
+
+					<form action="#" class="sub-form">
+						<input type="text" class="form-control mb-4" placeholder="Subscribe Now ...">
+						<a href="#" class="btn btn-main btn-small rounded">subscribe</a>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget footer-widget">
+					<h4 class="text-capitalize mb-4 text-white">Gallery</h4>
+
+					<div class="gallery-wrap">
+						<div class="row mx-0">
+							{{ range first 9 .Site.Data.homepage.gallery.galleryItems }}
+							<div class="col-4 px-1 mb-2">
+								<a href="{{ .image | absURL }}" class="gallery-popup">
+									<img src="{{ .image | absURL }}" alt="" class="img-fluid w-100">
+								</a>
+							</div>
+							{{ end }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-btm py-4">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<div class="copyright text-center">
+						{{ .Site.Params.copyright | markdownify }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- search index -->
+<script>
+	var indexURL = {{ "index.json" | absURL}}
+</script>
+
+{{ "<!-- Google Map API -->" | safeHTML }}
+<script src="{{ .Site.Params.gmapAPI | absURL }}"></script>
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range .Site.Params.plugins.js}}
+<script src="{{ .URL | absURL }}"></script>
+{{ end }}
+
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>
+
+{{ "<!-- contact -->" | safeHTML }}
+{{ $script := resources.Get "js/contact.js" | minify}}
+<script src="{{ $script.Permalink }}"></script>
+
+{{ "<!-- google analitycs -->" | safeHTML }}
+<script>
+	(function (i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	ga('create', '{{ .Site.Params.googleAnalitycsID }}', 'auto');
+	ga('send', 'pageview');
+</script>

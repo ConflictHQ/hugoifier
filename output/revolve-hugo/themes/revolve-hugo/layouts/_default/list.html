@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+          {{ range $paginator.Pages }}
+          <div class="col-lg-6 col-md-6">
+            <article class="post-grid mb-5">
+              <div class="post-thumb mb-4">
+                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid w-100">
+              </div>
+              {{ range .Params.Categories }}
+              <span
+                class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">{{ . | title | humanize }}</span>
+              {{ end }}
+              <h3 class="post-title mt-1"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+              <span class="text-muted text-capitalize">{{ .PublishDate.Format "January 02, 2006" }}</span>
+            </article>
+          </div>
+          {{ end }}
+        </div>
+        <div class="pagination mt-5 pt-4">
+          {{ template "_internal/pagination.html" . }}
+        </div>
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

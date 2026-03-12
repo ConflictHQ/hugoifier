@@ -1,0 +1,142 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: static/images/uploads
+public_folder: /images/uploads
+collections:
+- name: about
+  label: About
+  files:
+  - name: about
+    label: About
+    file: content/about/_index.md
+    fields:
+    - label: Title
+      name: title
+      widget: string
+      required: false
+    - label: Date
+      name: date
+      widget: string
+      required: false
+    - label: Draft
+      name: draft
+      widget: boolean
+      required: false
+    - label: Description
+      name: description
+      widget: string
+      required: false
+    - label: Image
+      name: image
+      widget: string
+      required: false
+    - label: Smallblock1Title
+      name: smallBlock1Title
+      widget: string
+      required: false
+    - label: Smallblock1Content
+      name: smallBlock1Content
+      widget: string
+      required: false
+    - label: Smallblock2Title
+      name: smallBlock2Title
+      widget: string
+      required: false
+    - label: Smallblock2Content
+      name: smallBlock2Content
+      widget: string
+      required: false
+    - label: Body
+      name: body
+      widget: markdown
+- name: blog
+  label: Blog
+  folder: content/blog
+  create: true
+  slug: '{{slug}}'
+  fields:
+  - label: Title
+    name: title
+    widget: string
+  - label: Date
+    name: date
+    widget: datetime
+  - label: Description
+    name: description
+    widget: text
+  - label: Image
+    name: image
+    widget: image
+    required: false
+  - label: Categories
+    name: categories
+    widget: list
+    required: false
+  - label: Tags
+    name: tags
+    widget: list
+    required: false
+  - label: Draft
+    name: draft
+    widget: boolean
+    default: false
+  - label: Body
+    name: body
+    widget: markdown
+- name: contact
+  label: Contact
+  files:
+  - name: contact
+    label: Contact
+    file: content/contact/_index.md
+    fields:
+    - label: Title
+      name: title
+      widget: string
+      required: false
+    - label: Date
+      name: date
+      widget: string
+      required: false
+    - label: Draft
+      name: draft
+      widget: boolean
+      required: false
+    - label: Description
+      name: description
+      widget: string
+      required: false
+    - label: Image
+      name: image
+      widget: string
+      required: false
+    - label: Body
+      name: body
+      widget: markdown
+- name: search
+  label: Search
+  files:
+  - name: search
+    label: Search
+    file: content/search/_index.md
+    fields:
+    - label: Title
+      name: title
+      widget: string
+      required: false
+    - label: Date
+      name: date
+      widget: string
+      required: false
+    - label: Draft
+      name: draft
+      widget: boolean
+      required: false
+    - label: Description
+      name: description
+      widget: string
+      required: false
+    - label: Body
+      name: body
+      widget: markdown

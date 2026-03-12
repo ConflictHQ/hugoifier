@@ -1,0 +1,88 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 col-sm-6 mb-5 mb-lg-0 text-center text-sm-left mr-auto">
+        <div class="footer-widget">
+          <a class="navbar-brand" href="{{ site.BaseURL }}"><img class="img-fluid" src="{{ site.Params.logo | relURL }}"
+          alt="{{ site.Title }}"></a>
+          <p class="lead">{{ site.Params.footer_content | markdownify }}</p>
+          <p class="mb-0"><strong>Location : </strong>{{ site.Params.location | markdownify }}</p>
+          <p><strong>Support Email : </strong>{{ site.Params.email }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-2 col-sm-6 mb-5 mb-lg-0 text-center text-sm-left">
+        <div class="footer-widget">
+          <h4 class="mb-4">Category</h4>
+          <ul class="pl-0 list-unstyled mb-0">
+            {{- range site.Menus.category }}
+            <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+            {{- end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-2 col-sm-6 mb-5 mb-lg-0 text-center text-sm-left">
+        <div class="footer-widget">
+          <h4 class="mb-4">Useful Link</h4>
+          <ul class="pl-0 list-unstyled mb-0">
+            {{ range site.Menus.useful_links }}
+            <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 col-sm-6 text-center text-sm-left">
+        <div class="footer-widget">
+          <h4 class="mb-4">Opening Hours</h4>
+          <ul class="pl-0 list-unstyled mb-5">
+            {{ range site.Params.openingHour }}
+            <li class="d-lg-flex justify-content-between">{{ .day }} <span>{{ .time }}</span></li>
+            {{ end }}
+          </ul>
+
+          <h5>Call Now : {{ site.Params.mobile }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="footer-btm py-4 ">
+  <div class="container">
+    <div class="row ">
+      <div class="col-lg-6">
+        <p class="copyright mb-0 ">{{site.Params.copyright | markdownify}}</p>
+      </div>
+      <div class="col-lg-6">
+        <ul class="list-inline mb-0 footer-btm-links text-lg-right mt-2 mt-lg-0">
+          {{ range site.Menus.footer }}
+          <li class="list-inline-item"><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- search index -->
+<script>
+  var indexURL = {{`index.json` | relURL}}
+</script>
+
+<!-- Snipcart public key -->
+<div hidden id="snipcart" data-api-key="{{ site.Params.snipcartAPI }}"></div>
+
+<!-- Google Map API -->
+<script src="{{ site.Params.gmapAPI }}"></script>
+
+<!-- JS Plugins -->
+{{ range site.Params.plugins.js}}
+<script src="{{ .link | relURL }}"></script>
+{{ end }}
+
+<!-- Main Script -->
+{{ $script := resources.Get "js/script.js" | minify}}
+<script src="{{ $script.RelPermalink }}"></script>

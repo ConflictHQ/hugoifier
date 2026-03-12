@@ -1,0 +1,30 @@
+.page-404 {
+	padding:100px 0 120px;
+	h1 {
+		font-size:300px;
+		line-height:300px;
+
+		@include mobile {
+			font-size:130px;
+			line-height:150px;
+		}
+		@include mobile-xs {
+			font-size:100px;
+			line-height:100px;
+		}
+		@include tablet {
+			font-size:150px;
+			line-height:200px;
+		}
+	}
+	h2 {
+		font-size: 20px;
+	}
+	
+}
+
+
+.error-content{
+	background: $extra-color;
+	padding: 60px 0px;
+}

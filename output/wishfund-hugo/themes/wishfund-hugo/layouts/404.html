@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<section class="section 404 border-top">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="error-content text-center">
+          <i class="icofont-error text-lg"></i>
+          <h2 class=" mb-4">404!</h2>
+          <p class="mb-4">Sorry! Which page your are looking for this doesn't exist anymore.</p>
+          <a href="{{ .Site.BaseURL }}" class="btn btn-main rounded">Go to home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

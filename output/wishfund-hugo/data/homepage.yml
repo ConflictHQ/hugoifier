@@ -1,0 +1,146 @@
+################################ Banner ##############################
+banner:
+  enable : true
+  subtitle : "Small Help Can Make Change"
+  title : "New hope for <br> near future"
+  content : "Your small contribution means a lot. Natus officia amet hic <br> accusamus repellat magni reprehenderit dolorem."
+  button:
+    enable : true
+    label : "Donate Now"
+    link : "donation"
+
+############################# Intro ##################################
+intro:
+  enable: true
+  subtitle : "What we can do"
+  title : "We Believe that We can <br>Save More Lifes with you"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, dicta, iure. Esse quasi labore aperiam,
+          dolorem amet voluptas soluta asperiores nostrum voluptate molestias numquam similique. Voluptate natus
+          corporis ex, distinctio."
+  introItem:
+    # intro item loop
+    - title : "Get inspired"
+      image : "images/about/image-1.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus."
+      
+    # intro item loop
+    - title : "Give Donation"
+      image : "images/about/image-2.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus."
+      
+    # intro item loop
+    - title : "Become a Volunteer"
+      image : "images/about/image-3.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus."
+      
+    # intro item loop
+    - title : "Help The children"
+      image : "images/about/image-1.jpg"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus."
+
+################################# Video ###############################
+video:
+  enable : true
+  title : "We Make a Difference <br>in their Life"
+  videoThumb : "images/bg/bg-3.jpg"
+  video: "https://www.youtube.com/watch?v=jrkvirglgaQ"
+  
+################################# funfacts ###############################
+funfacts:
+  enable : true
+  funItem:
+    # funfacts item loop
+    - title : "Years of Experience"
+      count: "18"
+      
+    # funfacts item loop
+    - title : "Active Volunteer"
+      count: "1460"
+      
+    # funfacts item loop
+    - title : "Availble Country"
+      count: "92"
+      
+    # funfacts item loop
+    - title : "Million People Helped"
+      count: "54"
+
+############################ gallery ###################################
+gallery:
+  enable : true
+  subtitle : "Our Gallery"
+  title : "We connect with people across different sectors. we take risksand we always keep learning."
+  galleryItems:
+    - image : "images/gallery/1.jpg"
+    - image : "images/gallery/2.jpg"
+    - image : "images/gallery/3.jpg"
+    - image : "images/gallery/4.jpg"
+    - image : "images/gallery/5.jpg"
+    - image : "images/gallery/6.jpg"
+    - image : "images/gallery/7.jpg"
+    - image : "images/gallery/8.jpg"
+    - image : "images/gallery/9.jpg"
+
+########################## latest causes ################################
+causes:
+  enable : true
+  subtitle : "Latest Cuases"
+  title : "Our Recent Causes to serve better"
+  content : "We provide services in the area of IFRS and management reporting, helping companies to reach
+            their highest level."
+  # causes item comes from "content/event" folder
+
+######################## call to action ###################################
+cta:
+  enable : true
+  title : "We can’t help everyone, but everyone can help someone"
+  button:
+    enable : true
+    label : "Make a donation"
+    link : "donation"
+
+############################# Latest Blog ###############################
+blog:
+  enable : true
+  subtitle : ""
+  title : ""
+  content : ""
+  # blog item comes from "content/blog" folder
+
+################################# Volunteer ##############################
+volunteer:
+  enable : true
+  image : "images/bg/image-5.jpg"
+  title : "We can’t help everyone, but everyone can help someone"
+  content : "Assumenda reiciendis delectus dolore incidunt molestias omnis quo quaerat voluptate, eligendi perspiciatis
+            ipsa laudantium nesciunt officia, odit nemo quidem hic itaque. Fugiat."
+  partners:
+    enable : true
+    title : "Trusted worldwide partner"
+    partner:
+      # partner loop
+      - logo : "images/clients/client1.png"
+        link : "#"
+        
+      # partner loop
+      - logo : "images/clients/client2.png"
+        link : "#"
+        
+      # partner loop
+      - logo : "images/clients/client4.png"
+        link : "#"
+        
+      # partner loop
+      - logo : "images/clients/client5.png"
+        link : "#"
+        
+      # partner loop
+      - logo : "images/clients/client6.png"
+        link : "#"
+  
+  # form
+  form:
+    subtitle : "Join With us"
+    title : "Become A Volunteer"
+    formAction : "#" # form works with formspree.io
+    

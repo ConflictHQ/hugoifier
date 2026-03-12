@@ -1,0 +1,41 @@
+<div class="sidebar-wrap mt-5 mt-lg-0">
+  <div class="sidebar-widget search p-4 mb-3">
+    <form action="{{ .Site.BaseURL }}/search">
+      <input id="search-query" name="s" type="search" class="form-control" placeholder="search">
+    </form>
+  </div>
+
+  <div class="sidebar-widget latest-post p-4 mb-3">
+    <h5>Latest Posts</h5>
+    {{ range first 3 ( where .Site.Pages "Type" "post" )}}
+    <div class="border-bottom py-3">
+      <span class="text-sm text-muted">{{ .PublishDate.Format "02 Jan 2006" }}</span>
+      <h5 class="my-2"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h5>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="sidebar-widget categories p-4 mb-3">
+    <h5 class="mb-4">Caregory</h5>
+    <ul class="list-unstyled">
+      {{- if isset .Site.Taxonomies "categories" }}
+      {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
+      {{- range $name, $items := .Site.Taxonomies.categories }}
+      <li><a href="{{ "categories/" | relLangURL }}{{ $name | urlize | lower }}"><i class="ti-folder mr-3"></i>{{ $name | humanize }}</a></li>
+      {{- end }}
+      {{- end }}
+      {{- end }}
+    </ul>
+  </div>
+
+  <div class="sidebar-widget tags p-4 mb-3">
+    <h5 class="mb-4">Tags</h5>
+    {{- if isset .Site.Taxonomies "tags" }}
+    {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
+    {{- range $name, $items := .Site.Taxonomies.tags }}
+    <a href="{{ "tags/" | relLangURL }}{{ $name | urlize | lower }}">{{ $name | humanize }}</a>
+    {{- end }}
+    {{- end }}
+    {{- end }}
+  </div>
+</div>

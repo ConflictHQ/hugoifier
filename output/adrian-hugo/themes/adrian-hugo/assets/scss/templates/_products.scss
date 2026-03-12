@@ -1,0 +1,139 @@
+.product{
+  position: relative;
+  transition:.4s all;
+  overflow: hidden;
+
+
+    &:hover .product-hover-overlay{
+      opacity: 1;
+    }
+
+    &:hover .img-second{
+      opacity: 1;
+       -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  .img-first{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    transition: .2s linear;
+  }
+
+  .img-second{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left:0px;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    transition: .2s linear;
+  }
+
+  .product-hover-overlay{
+      position: absolute;
+      bottom: 120px;
+      left: 0px;
+      width: 100%;
+      transition: .4s all;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      button{
+        background: $black;
+        color:$light;
+        cursor:pointer;
+        display:inline-block;
+        font-size:16px;
+        border: 0;
+        padding-top: 13px;
+        transition:.2s all;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        text-align: center;
+        margin: 0px 1px;
+        &:hover {
+          background:$primary-color;
+          color:$light;
+        }
+      }
+    }
+
+    .product-title{
+      a{
+        color: $black;
+        letter-spacing: .5px;
+      }
+    }
+
+       
+    .product-info{
+      text-align: center;
+
+      .price{
+        color:#777;
+        font-size: 18px;
+        font-family: $base-font;
+
+      }
+       del{
+          margin-right: 8px;
+        }
+    }
+
+
+    .onsale{
+      background: $primary-color;
+      display: inline-block;
+      color: $light;
+      position: absolute;
+      top: 20px;
+      right:0px;
+      padding: 5px 10px;
+      text-align: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+
+
+// Products main home
+// 
+
+.products-main,.products-shop{
+    .product-hover-overlay{
+
+      .btn{
+          font-size: 14px;
+          padding: 10px 29px;
+          text-transform: capitalize;
+          border-radius: 33px;
+          font-weight: 600;
+          letter-spacing:.5px;
+          background: $primary-color;
+          border-color:$primary-color;
+          color: $light;
+          box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.06);
+          &:hover{
+            background: $black;
+            border-color:$black;
+            color:$light!important;
+          }
+      }
+   }
+} 
+
+
+
+
+  .share-product{
+    li a {
+      color: #444;
+      font-size: 14px;
+    }
+  }
+

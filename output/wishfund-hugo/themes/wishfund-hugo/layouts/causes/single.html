@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section cause-single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="single-details">
+          <img src="{{ .Params.Image | absURL }}" alt="" class="img-fluid w-100">
+          <h2 class="my-4 text-lg">{{ .Title }}</h2>
+          <div class="bg-light p-4 d-lg-flex align-items-center justify-content-between mb-4">
+            <div class="cause-meta mb-4 mb-lg-0">
+              {{ if ne (or (.Params.Goal) (.Params.Raised)) "" }}
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item"><i class="ti-check text-color mr-2"></i>Goal:
+                  <span>{{ .Params.Goal }}</span></li>
+                <li class="list-inline-item"><i class="ti-check text-color mr-2"></i>Raised:
+                  <span>{{ .Params.Raised }}</span></li>
+              </ul>
+              {{ end }}
+            </div>
+            <a href="/donation" class="btn btn-main rounded">Donate Now</a>
+          </div>
+          <div class="content">{{ .Content }}</div>
+
+          <!-- post share -->
+          <div class="share-option mt-5 clearfix bg-warning p-4">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mb-3 mb-lg-0"><strong>Share Cause:</strong></li>
+              {{ range .Site.Params.postShare }}
+              <li class="list-inline-item"><a href="{{ .link | safeURL}}" target="_blank"><i class="{{ .icon }} mr-2"></i>{{ .name }}</a></li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

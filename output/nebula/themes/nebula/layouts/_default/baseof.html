@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{- partial "head.html" . -}}
+
+<body>
+	{{- partial "preloader.html" . -}}
+	<section>
+		<div class="container-fluid">
+			<div class="row justify-content-around">
+				<div class="col-md-6 col-lg-4">
+					{{ partial "sidebar.html" . }}
+				</div>
+				<div class="col-md-6">
+					{{- block "main" . }}{{- end }}
+				</div>
+			</div>
+		</div>
+	</section>
+	{{- partial "footer.html" . -}}
+</body>
+
+</html>

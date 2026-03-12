@@ -1,0 +1,18 @@
+{{ with .Site.Data.homepage.cta }}
+<div class="cta-block section">
+  <div class="container">
+    <div class="row justify-content-center ">
+      <div class="col-lg-7 col-md-12">
+        <div class="cta-content text-center">
+          <h2 class="text-white text-lg mb-5 mt-3">{{ .title | markdownify }}</h2>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | absURL }}" class="btn btn-main rounded">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

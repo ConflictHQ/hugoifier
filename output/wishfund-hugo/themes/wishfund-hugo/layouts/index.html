@@ -1,0 +1,263 @@
+{{ define "main" }}
+
+<!-- Slider -->
+{{ if .Site.Data.homepage.banner.enable }}
+{{ with .Site.Data.homepage.banner }}
+<section class="slider">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-10">
+        <div class="block text-center">
+          <span class="d-block mb-3 text-white text-capitalize">{{ .subtitle | markdownify }}</span>
+          <h1 class="animated fadeInUp mb-4">{{ .title | markdownify }}</h1>
+          <p class="mb-4">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | safeURL }}" target="_blank"
+            class="btn btn-main animated fadeInUp rounded">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /Slider -->
+
+<!-- Section Intro Start -->
+{{ if .Site.Data.homepage.intro.enable }}
+{{ with .Site.Data.homepage.intro }}
+<section class="section intro">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="section-title">
+          <span class="text-color ">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-3 content-title">{{ .title | markdownify }}</h2>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <p>{{ .content | markdownify }}</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range .introItem }}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="intro-item mb-5 mb-lg-0">
+          <img src="{{ .image | absURL}}" alt="" class="img-fluid w-100">
+          <h4 class="mt-4 mb-3">{{ .title | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /intro -->
+
+<!-- video -->
+<section class="section video">
+  <div class="container">
+    {{ if .Site.Data.homepage.video.enable }}
+    {{ with .Site.Data.homepage.video }}
+    <div class="row ">
+      <div class="col-lg-8">
+        <div class="video-content mb-5 mb-lg-0">
+          <h2 class="mt-3 mb-5 position-relative text-lg text-white">{{ .title | markdownify }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="video-block">
+          <div class="img-block">
+            <img src="{{ .videoThumb | absURL }}" alt="" class="img-fluid">
+          </div>
+          <a href="{{ .video | safeURL }}" class="videoplay popup-youtube">
+            <i class="ti-control-play"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+
+    {{ if .Site.Data.homepage.funfacts.enable }}
+    {{ with .Site.Data.homepage.funfacts }}
+    <div class="counter-section">
+      <div class="row">
+        {{ range .funItem }}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="counter-item-2 mb-5 mb-lg-0 pt-5">
+            <span class="counter-stat text-color" data-count="{{ .count }}">0</span>
+            <p>{{ .title | markdownify }}</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+<!-- gallery -->
+{{ if .Site.Data.homepage.gallery.enable }}
+{{ partial "gallery.html" . }}
+{{ end }}
+<!-- /gallary -->
+
+<!-- causes -->
+{{ if .Site.Data.homepage.causes.enable }}
+<section class="section causes pt-0">
+  <div class="container">
+    {{ with .Site.Data.homepage.causes }}
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-7">
+        <div class="section-title text-center">
+          <span class="text-color">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-3 mb-4 position-relative content-title">{{ .title | markdownify }}</h2>
+          <p class="mb-5">{{ .content | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row">
+      {{ range first 3 (where .Site.RegularPages "Type" "causes" )}}
+      <div class="col-lg-4 col-md-6">
+        <div class="card cause-item">
+          <div class="row no-gutters">
+            <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100" alt="{{ .Title | markdownify }}">
+            <div class="card-body">
+              <h3 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+              {{ if ne (or (.Params.Goal) (.Params.Raised)) "" }}
+              <ul class="list-inline border-bottom border-top py-3">
+                <li class="list-inline-item"><i class="ti-check text-color mr-2"></i>Goal:
+                  <span>{{ .Params.Goal }}</span></li>
+                <li class="list-inline-item"><i class="ti-check text-color mr-2"></i>Raised:
+                  <span>{{ .Params.Raised }}</span></li>
+              </ul>
+              {{ end }}
+              <p class="card-text mb-4">{{ .Summary }}</p>
+              <a href="/donation" class="btn btn-main rounded">Donate Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end}}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- causes -->
+
+<!-- call to action -->
+{{ if .Site.Data.homepage.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+<!-- /call to action -->
+
+<!-- blog -->
+{{ if .Site.Data.homepage.blog.enable }}
+<section class="section latest-blog">
+  <div class="container">
+    {{ with .Site.Data.homepage.blog }}
+    <div class="row justify-content-center">
+      <div class="col-lg-7 text-center">
+        <div class="section-title">
+          <span class="h6 text-color">Latest News</span>
+          <h2 class="mt-3 content-title">Latest articles to enrich knowledge</h2>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    <div class="row justify-content-center">
+      {{ range first 3 (where .Site.RegularPages "Type" "post")}}
+      <div class="col-lg-4 col-md-6">
+        <div class="blog-item-content">
+          <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="img-fluid">
+          <div class="blog-item-content-content mt-3">
+            <span class="text-sm text-color text-uppercase font-weight-bold">{{ .PublishDate.Format "January 02, 2006" }}</span>
+            <h3 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+            <p class="mb-4">{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="btn btn-small btn-main rounded">Learn More</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /blog -->
+
+<!-- volunteer -->
+{{ if .Site.Data.homepage.volunteer.enable }}
+{{ with .Site.Data.homepage.volunteer }}
+<div class="volunteer section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-12 col-sm-12">
+        <div class="volunteer-content">
+          <img src="{{ .image | absURL }}" alt="" class="img-fluid">
+          <h2 class="text-lg mb-5 mt-3">{{ .title | markdownify }}</h2>
+          <p>{{ .content | markdownify }}</p>
+
+          {{ if .partners.enable }}
+          {{ with .partners }}
+          <h2 class="mt-5 mb-4">{{ .title | markdownify }}</h2>
+          <div class="clients-wrap">
+            {{ range .partner }}
+            <a href="{{ .link | safeURL }}">
+              <img src="{{ .logo | absURL }}" alt="" class="img-fluid">
+            </a>
+            {{ end }}
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="col-lg-5 col-md-12 col-sm-12">
+        {{ with .form }}
+        <div class="volunteer-form-wrap">
+          <span class="text-white">{{ .subtitle | markdownify }}</span>
+          <h2 class="mb-5 text-lg text-white">{{ .title | markdownify }}</h2>
+          <form action="{{ .formAction }}" class="volunteer-form">
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Emaill Address">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="address" id="address" placeholder="Adress">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Occupation">
+            </div>
+            <div class="form-group">
+              <textarea name="Message" id="Message" cols="30" rows="6" class="form-control" placeholder="Your Message"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-main rounded mt-3">Send Message</button>
+          </form>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ end }}
+<!-- /volunteer -->
+
+{{ end }}

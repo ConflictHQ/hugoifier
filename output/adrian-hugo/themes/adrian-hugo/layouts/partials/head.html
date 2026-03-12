@@ -1,0 +1,37 @@
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Title }}</title>
+
+  {{ "<!-- mobile responsive meta -->" | safeHTML }}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description"
+    content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+  {{ with site.Params.author }}
+  <meta name="author" content="{{ . }}">{{ end }}
+  {{ hugo.Generator }}
+
+  <meta name="theme-name" content="adrian-hugo" />
+
+  {{ "<!-- plugins -->" | safeHTML }}
+  {{ range site.Params.plugins.css }}
+  <link rel="stylesheet" href="{{ .link | relURL }} ">
+  {{ end }}
+
+  {{ "<!-- Main Stylesheet -->" | safeHTML }}
+  {{ $styles := resources.Get "scss/style.scss" | toCSS | minify }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{{ site.Params.favicon | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ site.Params.favicon | relURL }}" type="image/x-icon">
+
+
+  {{ with .Params.image }}
+  <meta property="og:image" content="{{ . | relURL }}">
+  {{ end }}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+  {{ template "_internal/google_analytics.html" . }}
+  {{ site.Params.custom_script | safeHTML }}
+
+</head>

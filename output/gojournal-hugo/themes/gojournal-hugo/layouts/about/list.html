@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<section class="pt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 mx-auto text-center">
+        <h1>{{.Title }}</h1>
+        <p>{{.Params.Description | markdownify}}</p>
+      </div>
+      <div class="col-12 mb-4">
+        <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100" alt="">
+      </div>
+      <div class="col-lg-7 col-md-10 mx-auto">
+        <div class="content">{{.Content}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- team -->
+{{ if gt (len .Params.Team) 0 }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ i18n "team" }}</h2>
+      </div>
+      {{ range .Params.Team }}
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card bg-transparent">
+          <div class="card-body p-0">
+            <img src="{{ .image | absURL }}" class="card-img-top mb-3" alt="">
+            <h4 class="card-title mb-2">{{ .name | title }}</h4>
+            <p class="text-light">{{ .designation | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /teem -->
+
+{{ end }}

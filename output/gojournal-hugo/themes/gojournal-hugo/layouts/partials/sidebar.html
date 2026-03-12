@@ -1,0 +1,59 @@
+<!-- promotion -->
+{{ if .Site.Params.promotion.enable }}
+{{ with .Site.Params.promotion }}
+<a href="{{ .link | absLangURL }}/" class="mb-4 d-block">
+  <img src="{{ .image | absURL }}" alt="" class="img-fluid">
+</a>
+{{ end }}
+{{ end }}
+<!-- recent-post -->
+<div class="widget">
+  <h4 class="widget-title">{{ i18n "recent_post"}}</h4>
+  <ul class="list-unstyled">
+    {{ range first 3 ( where .Site.RegularPages "Section" "post" )}}
+    <li class="media mb-3">
+      <a href="{{ .Permalink }}">
+        {{ if .Params.Image }}
+        <img class="mr-2" src="{{ .Params.Image | absURL }}" height="65px" width="80px" style="object-fit: cover;">
+        {{ else }}
+        <p class="recent-thumb-alt mr-2">{{.Title | title}}</p>
+        {{ end }}
+      </a>
+      <div class="media-body">
+        <h5 class="mt-0 mb-1 h6"><a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a></h5>
+        <small class="post-date">{{ .PublishDate.Format "jan 02, 2006"}}</small>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+<!-- categories -->
+<div class="widget">
+  <h4 class="widget-title">{{ i18n "categories" }}</h4>
+  {{- if isset .Site.Taxonomies "categories" }}
+  {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
+  <ul class="list-unstyled widget-list">
+    {{- range $name, $items := .Site.Taxonomies.categories }}
+    <li><a href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}/">{{ $name | humanize }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- end }}
+</div>
+<!-- instagram-post -->
+{{ if .Site.Params.instafeed.enable }}
+<div class="widget">
+  <h4 class="widget-title">{{ i18n "instafeed"}}</h4>
+  <div class="instafeed row mx-0" id="instafeed" data-userId="{{.Site.Params.instafeed.user_id}}"
+    data-accessToken="{{.Site.Params.instafeed.access_token}}"></div>
+</div>
+{{ end }}
+<!-- instagram-post -->
+<div class="widget">
+  <h4 class="widget-title">{{ i18n "follow"}}</h4>
+  <ul class="list-inline social-icons">
+    {{ range .Site.Params.social }}
+    <li class="list-inline-item"><a href="{{.link | safeURL}}"><i class="{{ .icon }}"></i></a></li>
+    {{ end }}
+  </ul>
+</div>

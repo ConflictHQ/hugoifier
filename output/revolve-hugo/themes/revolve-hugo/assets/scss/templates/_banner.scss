@@ -1,0 +1,69 @@
+.banner{
+	position: relative;
+	margin-bottom:130px;
+}
+
+.banner-content{
+	position: absolute;
+	content: "";
+	left: 0px;
+	right:0px;
+	margin: 0 auto;
+	width: 70%;
+	bottom:-120px;
+	background: $white;
+	padding: 50px 80px;
+}
+
+
+// slider
+
+
+.slider-item{
+	margin: 0px 10px;
+	img{
+		width: 100%;
+	}
+}
+.slider-item-content{
+	position: relative;
+}
+.slider-post-content{
+	position: absolute;
+	bottom: 38px;
+	padding: 20px;
+	background: #fff;
+	width: 90%;
+	text-align: center;
+	margin: 0 auto;
+	left: 0px;
+	right: 0px;
+}
+
+
+
+@include mobile-xs{
+	.banner-content {
+	    position: relative;
+	    width: 100%;
+	    padding: 50px 15px;
+	    bottom:0px;
+	}
+}
+
+@include mobile{
+	.banner-content {
+	    position: relative;
+	    width: 100%;
+	    padding: 50px 15px;
+	    bottom:0px;
+	}
+}
+@include tablet{
+	.banner-content {
+	    position: relative;
+	    width: 100%;
+	    padding: 50px 15px;
+	    bottom:0px;
+	}
+}

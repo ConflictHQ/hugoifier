@@ -1,0 +1,20 @@
+// Service section
+
+.service-item{
+	position: relative;
+	padding-left: 80px;
+
+	i{
+		position: absolute;
+		left: 0px;
+		top:5px;
+		font-size: 50px;
+		opacity: .4;
+	}
+}
+
+.cause-meta{
+	li{
+		font-size: 20px;
+	}
+}

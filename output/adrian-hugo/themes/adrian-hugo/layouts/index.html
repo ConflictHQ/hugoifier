@@ -1,0 +1,165 @@
+{{ define "main" }}
+
+<!-- slider -->
+{{ if site.Data.homepage.slider.enable }}
+{{ with site.Data.homepage.slider }}
+<div class="main-slider slider">
+  {{ range .sliderItem }}
+  <div class="slider-item " style="background-image:url('{{ .bgImage | relURL }}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12 offset-lg-6 offset-md-6">
+          <div class="slider-caption">
+            <span class="lead">{{ .subtitle | markdownify }}</span>
+            <h1 class="mt-2 mb-5 title">{{ .title | markdownify }}</h1>
+            {{ if .button.enable }}
+            {{ with .button }}
+            <a href="{{ .link | relURL }}" class="btn btn-main">{{ .label }}</a>
+            {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
+
+<!-- category -->
+{{ if site.Data.homepage.categories.enable }}
+{{ with site.Data.homepage.categories }}
+<section class="category section pt-3 pb-0">
+  <div class="container">
+    <div class="row">
+      {{ range .category }}
+      <div class="col-lg-4 col-sm-12 col-md-6">
+        <div class="cat-item mb-4 mb-lg-0">
+          <img src="{{ .image | relURL }}" alt="category" class="img-fluid">
+          <div class="item-info">
+            <p class="mb-0">{{ .title | markdownify }}</p>
+            <h4 class="mb-4">{{ .offer | markdownify }}</h4>
+            <a href="{{ `categories/` | relURL }}{{ .link }}" class="read-more">Shop now</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- new arrival -->
+{{ if site.Data.homepage.newArrival.enable }}
+<section class="section products-main">
+  <div class="container">
+    {{ with site.Data.homepage.newArrival }}
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="title text-center">
+          <h2>{{ .title | markdownify }}</h2>
+          <p>{{ .subtitle | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row">
+      {{ range first 8 site.RegularPages }}
+      <div class="col-lg-3 col-12 col-md-6 col-sm-6 mb-5">
+        <div class="product">
+          <div class="product-wrap">
+            <a href="{{ .RelPermalink }}">
+              {{ range $image, $items := .Params.Images }}
+              {{ if eq $image 0 }}<img class="img-fluid w-100 mb-3 img-first" src="{{ . | relURL }}" />{{ end }}
+              {{ if eq $image 1 }}<img class="img-fluid w-100 mb-3 img-second" src="{{ . | relURL }}" />{{ end }}
+              {{ end }}
+            </a>
+          </div>
+          {{ if .Params.PriceBefore }}
+          <span class="onsale">Sale</span>
+          {{ end }}
+          <div class="product-hover-overlay">
+            <button class="snipcart-add-item"
+              data-item-id="{{ .Title | urlize }}__{{ .Params.Price }}"
+              data-item-name="{{ .Title }}"
+              data-item-image="{{ with .Params.Images }} {{ range first 1 .}} {{ . | relURL }}{{ end }}{{ end }}"
+              data-item-price="{{ .Params.Price }}"
+              data-item-url="{{ .RelPermalink }}"
+              data-item-description="{{ .Params.Description | markdownify }}"
+              {{ if .Params.Colors }}
+              data-item-custom1-name="Choose Color"
+              data-item-custom1-options="{{ range $index, $element:= .Params.Colors }}{{ if eq $index 0 }}{{ . | title }}{{ else }}|{{ . | title }}{{ end }}{{ end }}"
+              {{ end }}
+              {{ if .Params.Sizes }}
+              data-item-custom2-name="Choose Size"
+              data-item-custom2-options="{{ range $index, $element:= .Params.Sizes }}{{ if eq $index 0 }}{{ . | title | upper }}{{ else }}|{{ . | title | upper }}{{ end }}{{ end }}"
+              {{ end }}>
+              <i class="ti-shopping-cart-full"></i></button>
+          </div>
+
+          <div class="product-info">
+            <h2 class="product-title h5 mb-0"><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></h2>
+            <span class="price">
+              {{ site.Params.currency }}{{ .Params.Price }}
+            </span>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- deal -->
+{{ if site.Data.homepage.deal.enable }}
+{{ with site.Data.homepage.deal }}
+<section class="deal section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 offset-lg-6">
+        <div class="deal-content">
+          <span class="h5 deal">{{ .subtitle | markdownify }}</span>
+          <h2 class="mt-3 text-white">{{ .title | markdownify }}</h2>
+          <p class="text-md mt-3 text-white">{{ .content | markdownify }}</p>
+          <div id="simple-timer" class="syotimer mb-5" data-year="{{ .year }}" data-month="{{ .month }}"
+            data-day="{{ .day }}" data-hour="{{ .hour }}"></div>
+          {{with .button }}
+          <a href="{{ .link | relURL }}" class="btn btn-main"><i class="ti-bag mr-2"></i>{{ .label }} </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if site.Data.homepage.service.enable }}
+{{ with site.Data.homepage.service }}
+<section class="features border-top">
+  <div class="container">
+    <div class="row">
+      {{ range .serviceItem }}
+      <div class="col-lg-3 col-sm-6 col-md-6">
+        <div class="feature-block">
+          {{ if .icon }}
+          <i class="{{ .icon }}"></i>
+          {{ end }}
+          <div class="content">
+            <h5>{{ .title | markdownify }}</h5>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ end }}
