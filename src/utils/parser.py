@@ -5,9 +5,6 @@ It checks for syntax errors and validates the structure of the content.
 
 import logging
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 # Function to perform parsing, linting, and validation
 def parse(path):
     logging.info(f"Starting parsing and linting for {path}...")

@@ -5,9 +5,6 @@ It uses Cloudflare's API to automate these tasks.
 
 import logging
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 # Function to configure and deploy to Cloudflare
 def configure_cloudflare(path, zone):
     logging.info(f"Starting Cloudflare configuration for {path} in zone {zone}...")

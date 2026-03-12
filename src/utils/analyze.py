@@ -8,8 +8,6 @@ import os
 from config import call_ai
 from utils.theme_finder import find_hugo_theme, find_raw_html_files
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 SYSTEM = "You are an expert Hugo theme developer analyzing themes for conversion."
 
 

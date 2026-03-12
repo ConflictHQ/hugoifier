@@ -5,8 +5,6 @@ Translates web content using the configured AI backend.
 import logging
 from config import call_ai
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 
 def translate(path: str, target_language: str = "Spanish") -> str:
     logging.info(f"Translating content in {path} ...")

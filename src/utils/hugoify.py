@@ -12,8 +12,6 @@ import re
 
 from config import call_ai
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 SYSTEM = """You are an expert Hugo theme developer. Convert HTML templates to valid Hugo Go template files.
 Output only valid Hugo template syntax — no explanations, no markdown fences."""
 

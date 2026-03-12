@@ -6,9 +6,6 @@ It may use Cloudflare functions for deployment.
 import logging
 import os
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 # Function to handle deployment tasks
 def deploy(path, zone):
     logging.info(f"Starting deployment for {path} to zone {zone}...")

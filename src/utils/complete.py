@@ -15,9 +15,6 @@ from utils.hugoify import hugoify_html
 from utils.decapify import decapify
 from utils.theme_patcher import patch_theme, patch_config
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-
 def complete(
     input_path: str,
     output_dir: str = None,

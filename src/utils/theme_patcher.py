@@ -4,11 +4,9 @@ Patches common Hugo deprecations in theme layout files so they work with Hugo >=
 Call patch_theme(theme_dir) after copying theme files to the output directory.
 """
 
+import logging
 import os
 import re
-import logging
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Map of (pattern, replacement) for deprecated Hugo template variables/functions
 TEMPLATE_PATCHES = [
