@@ -11,8 +11,6 @@ import os
 import re
 import yaml
 
-from config import call_ai
-
 DECAP_CDN = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
 
 # Whitelabel defaults — override via decapify() kwargs or env vars

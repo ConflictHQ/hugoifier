@@ -46,7 +46,7 @@ def _analyze_hugo_theme(info: dict) -> str:
         f"Theme: {theme_name}",
         f"Theme dir: {theme_dir}",
         f"Layouts ({len(layouts)}):",
-        *[f"  {l}" for l in sorted(layouts)],
+        *[f"  {layout}" for layout in sorted(layouts)],
         f"Content types: {content_types}",
         f"ExampleSite: {example_site or 'none'}",
         "",

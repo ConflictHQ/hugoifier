@@ -4,7 +4,6 @@ It may use Cloudflare functions for deployment.
 """
 
 import logging
-import os
 
 # Function to handle deployment tasks
 def deploy(path, zone):

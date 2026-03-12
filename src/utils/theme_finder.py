@@ -5,7 +5,6 @@ Themes in themes/ are structured as: {name}/{name}/themes/{theme-name}/
 
 import logging
 import os
-import glob as glob_module
 
 
 def find_hugo_theme(input_path):
