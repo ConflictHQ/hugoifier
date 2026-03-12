@@ -174,3 +174,5 @@ cython_debug/
 output/
 processing_log.txt
 themes/
+
+data/hugothemes-zipped/
