@@ -23,9 +23,17 @@ Your content lives in plain `.md` files in a Git repository. That means:
 - **Writable anywhere** — any text editor, any machine, offline
 - **Diffable** — you can review content changes in a PR like code changes
 
+### Built for the Edge
+
+Hugo compiles your site to pure static HTML at build time. There's no server, no runtime, no application to deploy — just files. That means the output can be dropped onto any CDN and served directly from the edge, everywhere in the world, simultaneously.
+
+When a visitor hits your site, Cloudflare serves the HTML from a data center that's physically close to them — often within milliseconds of their location. There's no origin server to round-trip to, no database query in the critical path, no cold start. The page is already there, pre-rendered, waiting.
+
+This is what "edge-native" actually means in practice: static HTML that travels well. Every CDN on the planet — Cloudflare, Fastly, AWS CloudFront, GitHub Pages — is designed exactly for this. You get global low-latency delivery for free, as a natural consequence of how Hugo works.
+
 ### Fast. Really Fast.
 
-Hugo is written in Go and builds thousands of pages in under a second. But more importantly, the *output* is fast — pre-rendered HTML with no runtime processing means your pages load in milliseconds, anywhere in the world, without caching tricks or optimization layers.
+Hugo is written in Go and builds thousands of pages in under a second. But the build speed is almost beside the point — the real win is that the *output* is fast. Pre-rendered HTML with no runtime processing means your pages load in milliseconds, anywhere in the world, without caching tricks, optimization layers, or infrastructure tuning.
 
 ### Easy to Maintain
 
