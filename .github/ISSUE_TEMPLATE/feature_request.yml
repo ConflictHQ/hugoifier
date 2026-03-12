@@ -1,0 +1,37 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Hugoifier
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We appreciate your ideas for improving Hugoifier. Please describe your request in detail.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the feature you'd like to see.
+      placeholder: Describe the feature...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: What problem does this solve? What workflow does it improve?
+      placeholder: |
+        When converting a theme that has date-organized content (content/blog/2024/post.md), I need...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: If you have ideas on implementation, describe them here. Optional.
+      placeholder: Describe a possible approach...
+    validations:
+      required: false

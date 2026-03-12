@@ -1,0 +1,92 @@
+name: Bug Report
+description: Report a bug in Hugoifier
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please fill out the fields below so we can diagnose and fix the issue quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: The exact steps to reproduce the behavior.
+      placeholder: |
+        1. Run `python src/cli.py complete themes/my-theme`
+        2. Observe error during decapify step
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      placeholder: Describe what you expected...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Linux (Ubuntu/Debian)
+        - Linux (Fedora/RHEL)
+        - Linux (other)
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: python-version
+    attributes:
+      label: Python Version
+      options:
+        - "3.13"
+        - "3.12"
+        - "3.11"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: backend
+    attributes:
+      label: AI Backend
+      description: Which backend were you using?
+      options:
+        - Anthropic (default)
+        - OpenAI
+        - Google
+        - Not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste any relevant log output.
+      render: shell
+    validations:
+      required: false
