@@ -13,15 +13,12 @@ import yaml
 
 from config import call_ai
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 DECAP_CDN = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
 
 # Whitelabel defaults — override via decapify() kwargs or env vars
-import os as _os
-DEFAULT_CMS_NAME = _os.getenv('CMS_NAME', 'Content Manager')
-DEFAULT_CMS_LOGO = _os.getenv('CMS_LOGO_URL', '')     # URL or empty
-DEFAULT_CMS_COLOR = _os.getenv('CMS_COLOR', '#2e3748')  # top-bar background
+DEFAULT_CMS_NAME = os.getenv('CMS_NAME', 'Content Manager')
+DEFAULT_CMS_LOGO = os.getenv('CMS_LOGO_URL', '')     # URL or empty
+DEFAULT_CMS_COLOR = os.getenv('CMS_COLOR', '#2e3748')  # top-bar background
 
 
 def decapify(
@@ -129,18 +126,26 @@ def _write_decap_config(site_dir: str, admin_dir: str):
     logging.info(f"Wrote Decap CMS config to {config_path}")
 
 
+def _collect_md_files(dirpath: str) -> list:
+    """Recursively collect all .md files under dirpath (excluding _index.md)."""
+    found = []
+    for root, dirs, files in os.walk(dirpath):
+        for f in files:
+            if f.endswith('.md') and f != '_index.md':
+                found.append(os.path.join(root, f))
+    return found
+
+
 def _build_collections(content_dir: str) -> list:
     """
     Inspect content/ to build Decap CMS collections.
-    - Subdirs with multiple .md files → folder collection (e.g. blog)
-    - Subdirs with a single _index.md → file collection (e.g. about, contact)
-    - Top-level _index.md → homepage file entry
+    - Subdirs with any .md files (at any depth) → folder collection (e.g. blog)
+    - Subdirs with only a top-level _index.md → file collection (e.g. about, contact)
     """
     if not os.path.isdir(content_dir):
         return [_default_pages_collection()]
 
     collections = []
-    seen_blog_like = False
 
     entries = sorted(os.listdir(content_dir))
     for entry in entries:
@@ -148,12 +153,13 @@ def _build_collections(content_dir: str) -> list:
         if not os.path.isdir(subdir):
             continue
 
-        md_files = [f for f in os.listdir(subdir) if f.endswith('.md')]
-        non_index = [f for f in md_files if f != '_index.md']
+        # Collect all .md files at any depth (excluding _index.md)
+        non_index = _collect_md_files(subdir)
+        has_index = os.path.exists(os.path.join(subdir, '_index.md'))
 
         if non_index:
-            # Folder collection (blog, posts, etc.)
-            fields = _infer_fields_for_folder(subdir, non_index)
+            # Folder collection (blog, posts, etc.) — use shallowest sample for field inference
+            fields = _infer_fields_for_folder(subdir, [os.path.relpath(f, subdir) for f in non_index])
             collections.append({
                 'name': entry,
                 'label': entry.replace('-', ' ').title(),
@@ -162,8 +168,7 @@ def _build_collections(content_dir: str) -> list:
                 'slug': '{{slug}}',
                 'fields': fields,
             })
-            seen_blog_like = True
-        elif '_index.md' in md_files:
+        elif has_index:
             # File collection (single page)
             fields = _infer_fields_for_file(os.path.join(subdir, '_index.md'))
             collections.append({
@@ -185,7 +190,9 @@ def _build_collections(content_dir: str) -> list:
 
 def _infer_fields_for_folder(subdir: str, md_files: list) -> list:
     """Read a sample .md file and extract frontmatter keys as fields."""
-    sample = os.path.join(subdir, md_files[0])
+    # md_files may be relative paths (from _collect_md_files); resolve to absolute
+    first = md_files[0]
+    sample = first if os.path.isabs(first) else os.path.join(subdir, first)
     frontmatter = _parse_frontmatter(sample)
 
     fields = []
