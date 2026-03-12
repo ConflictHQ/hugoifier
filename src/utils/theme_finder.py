@@ -3,6 +3,7 @@ Locates the actual Hugo theme and exampleSite within the messy zip-extracted str
 Themes in themes/ are structured as: {name}/{name}/themes/{theme-name}/
 """
 
+import logging
 import os
 import glob as glob_module
 
@@ -34,6 +35,11 @@ def find_hugo_theme(input_path):
 
     # Pick the deepest match (most likely the actual theme dir)
     theme_dir = max(candidates, key=lambda p: p.count(os.sep))
+    if len(candidates) > 1:
+        logging.warning(
+            f"Multiple Hugo theme candidates found; using {theme_dir!r}. "
+            f"Others: {[c for c in candidates if c != theme_dir]}"
+        )
 
     # Detect exampleSite
     example_site = None
