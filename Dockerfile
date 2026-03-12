@@ -20,4 +20,4 @@ COPY . .
 # ENV OPENAI_API_KEY=your_openai_api_key
 
 # Define the command to run your application
-CMD ["python3", "src/main.py"] 
+CMD ["python3", "src/cli.py"]

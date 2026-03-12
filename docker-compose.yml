@@ -1,10 +1,12 @@
-version: '3.8'
-
 services:
   hugoifier:
     build: .
     environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - HUGOIFIER_BACKEND=${HUGOIFIER_BACKEND:-anthropic}
     volumes:
-      - ./:/app
-    command: python cli.py convert --input theme.html --output hugo-theme
+      - ./themes:/app/themes
+      - ./output:/app/output
+    command: python src/cli.py complete themes/
