@@ -8,6 +8,7 @@ For raw HTML themes: calls hugoify first, then assembles.
 import logging
 import os
 import shutil
+from pathlib import Path
 
 from utils.theme_finder import find_hugo_theme, find_raw_html_files
 from utils.hugoify import hugoify_html
@@ -48,7 +49,7 @@ def complete(
         # Raw HTML path
         html_files = find_raw_html_files(input_path)
         if not html_files:
-            return f"No Hugo theme or HTML files found in {input_path}"
+            raise ValueError(f"No Hugo theme or HTML files found in {input_path}")
         return _convert_raw_html(input_path, html_files, output_dir, branding)
 
 
@@ -62,11 +63,7 @@ def _assemble_hugo_site(info: dict, output_dir: str = None, branding: dict = Non
     theme_name = info['theme_name']
 
     if output_dir is None:
-        output_dir = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-            'output',
-            theme_name,
-        )
+        output_dir = str(Path(__file__).parents[2] / 'output' / theme_name)
 
     logging.info(f"Building site at {output_dir} ...")
     os.makedirs(output_dir, exist_ok=True)
@@ -124,11 +121,7 @@ def _convert_raw_html(input_path: str, html_files: list, output_dir: str = None,
     theme_name = os.path.basename(os.path.abspath(input_path))
 
     if output_dir is None:
-        output_dir = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-            'output',
-            theme_name,
-        )
+        output_dir = str(Path(__file__).parents[2] / 'output' / theme_name)
 
     logging.info(f"Converting raw HTML theme: {theme_name}")
 
@@ -211,9 +204,6 @@ def _write_hugo_toml(source_config: str, output_dir: str, theme_name: str):
     with open(source_config, 'r') as f:
         content = f.read()
 
-    # Fix deprecated keys for Hugo >= v0.128
-    content = re.sub(r'^paginate\s*=\s*(\d+)', r'[pagination]\n  pagerSize = \1', content, flags=re.MULTILINE)
-
     # Suppress noisy but harmless warnings from example content
     if 'ignoreLogs' not in content:
         content += "\nignorelogs = ['warning-goldmark-raw-html']\n"
@@ -233,11 +223,13 @@ def _write_hugo_toml(source_config: str, output_dir: str, theme_name: str):
 
 def _write_minimal_hugo_toml(output_dir: str, theme_name: str):
     dest = os.path.join(output_dir, 'hugo.toml')
+    safe_name = theme_name.replace('"', '')
+    title = safe_name.replace('-', ' ').title()
     with open(dest, 'w') as f:
         f.write(f'''baseURL = "http://localhost:1313/"
 languageCode = "en-us"
-title = "{theme_name.replace('-', ' ').title()}"
-theme = "{theme_name}"
+title = "{title}"
+theme = "{safe_name}"
 ''')
     logging.info("Wrote minimal hugo.toml")
 
