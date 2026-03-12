@@ -1,19 +1,18 @@
+"""Tests for utils.cloudflare."""
 import unittest
-from src.utils.cloudflare import configure_cloudflare
 
-class TestCloudflare(unittest.TestCase):
+from utils.cloudflare import configure_cloudflare
 
-    def setUp(self):
-        # Set up any necessary test data
-        pass
 
-    def tearDown(self):
-        # Clean up after tests
-        pass
+class TestConfigureCloudflare(unittest.TestCase):
+    def test_returns_complete_message(self):
+        result = configure_cloudflare("/some/path", "example.com")
+        self.assertIn("complete", result.lower())
 
-    def test_configure_cloudflare(self):
-        # Placeholder for configure_cloudflare function test
-        pass
+    def test_accepts_path_and_zone(self):
+        result = configure_cloudflare("/tmp/site", "zone-id-123")
+        self.assertIsInstance(result, str)
 
-if __name__ == '__main__':
-    unittest.main() 
+
+if __name__ == "__main__":
+    unittest.main()

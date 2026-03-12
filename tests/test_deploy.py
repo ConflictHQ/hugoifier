@@ -1,19 +1,18 @@
+"""Tests for utils.deploy."""
 import unittest
-from src.utils.deploy import deploy
+
+from utils.deploy import deploy
+
 
 class TestDeploy(unittest.TestCase):
+    def test_returns_complete_message(self):
+        result = deploy("/some/path", "example.com")
+        self.assertIn("complete", result.lower())
 
-    def setUp(self):
-        # Set up any necessary test data
-        pass
+    def test_accepts_path_and_zone(self):
+        result = deploy("/tmp/site", "zone-id-123")
+        self.assertIsInstance(result, str)
 
-    def tearDown(self):
-        # Clean up after tests
-        pass
 
-    def test_deploy(self):
-        # Placeholder for deploy function test
-        pass
-
-if __name__ == '__main__':
-    unittest.main() 
+if __name__ == "__main__":
+    unittest.main()
