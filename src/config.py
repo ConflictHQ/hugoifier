@@ -48,6 +48,8 @@ def call_ai(prompt: str, system: str = "You are a helpful Hugo theme conversion 
 
 
 def _call_anthropic(prompt: str, system: str) -> str:
+    if not ANTHROPIC_API_KEY:
+        raise EnvironmentError("ANTHROPIC_API_KEY is not set")
     import anthropic
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     message = client.messages.create(
@@ -60,6 +62,8 @@ def _call_anthropic(prompt: str, system: str) -> str:
 
 
 def _call_openai(prompt: str, system: str) -> str:
+    if not OPENAI_API_KEY:
+        raise EnvironmentError("OPENAI_API_KEY is not set")
     from openai import OpenAI
     client = OpenAI(api_key=OPENAI_API_KEY)
     response = client.chat.completions.create(
@@ -74,6 +78,8 @@ def _call_openai(prompt: str, system: str) -> str:
 
 
 def _call_google(prompt: str, system: str) -> str:
+    if not GOOGLE_API_KEY:
+        raise EnvironmentError("GOOGLE_API_KEY is not set")
     import google.generativeai as genai
     genai.configure(api_key=GOOGLE_API_KEY)
     model = genai.GenerativeModel(
