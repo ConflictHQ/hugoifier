@@ -2,4 +2,3 @@ anthropic
 openai
 google-generativeai
 pyyaml
-beautifulsoup4
