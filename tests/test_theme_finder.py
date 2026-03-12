@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from utils.theme_finder import find_hugo_theme, find_raw_html_files
+from hugoifier.utils.theme_finder import find_hugo_theme, find_raw_html_files
 
 
 def _make_hugo_theme(base_dir, theme_name="test-theme"):

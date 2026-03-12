@@ -5,15 +5,17 @@ For already-Hugo themes, use hugoify_dir() to validate/augment.
 For raw HTML, use hugoify_html() to produce Hugo layout files.
 """
 
+import json
 import logging
 import os
-import json
 import re
 
-from config import call_ai
+from ..config import call_ai
 
-SYSTEM = """You are an expert Hugo theme developer. Convert HTML templates to valid Hugo Go template files.
-Output only valid Hugo template syntax — no explanations, no markdown fences."""
+SYSTEM = (
+    "You are an expert Hugo theme developer. Convert HTML templates to valid Hugo Go template files. "
+    "Output only valid Hugo template syntax — no explanations, no markdown fences."
+)
 
 
 def hugoify_html(html_path: str) -> dict:
@@ -103,7 +105,7 @@ def hugoify(path: str) -> str:
     If path is a Hugo theme dir: validate it.
     If path is an HTML file or raw HTML dir: convert it.
     """
-    from utils.theme_finder import find_hugo_theme, find_raw_html_files
+    from .theme_finder import find_hugo_theme, find_raw_html_files
 
     info = find_hugo_theme(path)
     if info:

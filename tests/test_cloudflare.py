@@ -1,7 +1,7 @@
 """Tests for utils.cloudflare."""
 import unittest
 
-from utils.cloudflare import configure_cloudflare
+from hugoifier.utils.cloudflare import configure_cloudflare
 
 
 class TestConfigureCloudflare(unittest.TestCase):

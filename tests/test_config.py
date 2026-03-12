@@ -8,7 +8,8 @@ class TestCallAiRouting(unittest.TestCase):
     def _get_config(self):
         # Reload config to pick up env var changes
         import importlib
-        import config
+
+        import hugoifier.config as config
         importlib.reload(config)
         return config
 
@@ -43,7 +44,7 @@ class TestCallAiRouting(unittest.TestCase):
                 cfg._call_google("prompt", "system")
 
     def test_anthropic_backend_calls_anthropic(self):
-        import config
+        import hugoifier.config as config
         with patch.object(config, '_call_anthropic', return_value="response") as mock_fn:
             config.BACKEND = 'anthropic'
             result = config.call_ai("hello")
@@ -51,7 +52,7 @@ class TestCallAiRouting(unittest.TestCase):
             self.assertEqual(result, "response")
 
     def test_openai_backend_calls_openai(self):
-        import config
+        import hugoifier.config as config
         with patch.object(config, '_call_openai', return_value="response") as mock_fn:
             config.BACKEND = 'openai'
             result = config.call_ai("hello")
@@ -59,7 +60,7 @@ class TestCallAiRouting(unittest.TestCase):
             self.assertEqual(result, "response")
 
     def test_google_backend_calls_google(self):
-        import config
+        import hugoifier.config as config
         with patch.object(config, '_call_google', return_value="response") as mock_fn:
             config.BACKEND = 'google'
             result = config.call_ai("hello")

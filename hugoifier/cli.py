@@ -13,19 +13,15 @@ Usage examples:
 import argparse
 import logging
 import sys
-import os
 
-# Ensure src/ is on the path when called directly
-sys.path.insert(0, os.path.dirname(__file__))
-
-from utils.analyze import analyze
-from utils.complete import complete
-from utils.cloudflare import configure_cloudflare
-from utils.deploy import deploy
-from utils.hugoify import hugoify
-from utils.decapify import decapify
-from utils.translate import translate
-from utils.parser import parse
+from .utils.analyze import analyze
+from .utils.cloudflare import configure_cloudflare
+from .utils.complete import complete
+from .utils.decapify import decapify
+from .utils.deploy import deploy
+from .utils.hugoify import hugoify
+from .utils.parser import parse
+from .utils.translate import translate
 
 
 def main():

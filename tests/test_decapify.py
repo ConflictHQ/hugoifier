@@ -3,13 +3,13 @@ import os
 import tempfile
 import unittest
 
-from utils.decapify import (
+from hugoifier.utils.decapify import (
+    _build_collections,
+    _infer_fields_for_file,
+    _infer_fields_for_folder,
+    _parse_frontmatter,
     _sanitize_color,
     _widget_for_value,
-    _parse_frontmatter,
-    _infer_fields_for_folder,
-    _infer_fields_for_file,
-    _build_collections,
     decapify,
 )
 

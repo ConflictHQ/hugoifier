@@ -1,9 +1,10 @@
 """
-This script configures and deploys a Hugo site to Cloudflare, handling page creation, DNS settings, and deployment.
-It uses Cloudflare's API to automate these tasks.
+Configures and deploys a Hugo site to Cloudflare, handling page creation,
+DNS settings, and deployment via the Cloudflare API.
 """
 
 import logging
+
 
 # Function to configure and deploy to Cloudflare
 def configure_cloudflare(path, zone):
@@ -27,4 +28,4 @@ def configure_cloudflare(path, zone):
         return "Cloudflare configuration complete"
     except Exception as e:
         logging.error(f"Error during Cloudflare configuration: {e}")
-        return "Cloudflare configuration failed" 
+        return "Cloudflare configuration failed"

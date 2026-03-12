@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from utils.analyze import _analyze_hugo_theme
+from hugoifier.utils.analyze import _analyze_hugo_theme
 
 
 class TestAnalyzeHugoTheme(unittest.TestCase):

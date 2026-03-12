@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from utils.generate_decap_config import generate_decap_config
+from hugoifier.utils.generate_decap_config import generate_decap_config
 
 
 class TestGenerateDecapConfig(unittest.TestCase):

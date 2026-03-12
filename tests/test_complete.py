@@ -3,7 +3,12 @@ import os
 import tempfile
 import unittest
 
-from utils.complete import _pick_main_html, _copy_dir, _find_config, _write_minimal_hugo_toml
+from hugoifier.utils.complete import (
+    _copy_dir,
+    _find_config,
+    _pick_main_html,
+    _write_minimal_hugo_toml,
+)
 
 
 class TestPickMainHtml(unittest.TestCase):

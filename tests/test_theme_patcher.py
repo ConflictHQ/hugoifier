@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from utils.theme_patcher import patch_theme, patch_config
+from hugoifier.utils.theme_patcher import patch_config, patch_theme
 
 
 class TestPatchTheme(unittest.TestCase):

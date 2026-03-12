@@ -10,10 +10,11 @@ import os
 import shutil
 from pathlib import Path
 
-from utils.theme_finder import find_hugo_theme, find_raw_html_files
-from utils.hugoify import hugoify_html
-from utils.decapify import decapify
-from utils.theme_patcher import patch_theme, patch_config
+from .decapify import decapify
+from .hugoify import hugoify_html
+from .theme_finder import find_hugo_theme, find_raw_html_files
+from .theme_patcher import patch_config, patch_theme
+
 
 def complete(
     input_path: str,
@@ -103,7 +104,10 @@ def _assemble_hugo_site(info: dict, output_dir: str = None, branding: dict = Non
 
     # 3. Generate Decap CMS config
     b = branding or {}
-    decapify(output_dir, cms_name=b.get('cms_name'), cms_logo=b.get('cms_logo'), cms_color=b.get('cms_color'))
+    decapify(
+        output_dir,
+        cms_name=b.get('cms_name'), cms_logo=b.get('cms_logo'), cms_color=b.get('cms_color'),
+    )
 
     logging.info(f"Done. Site ready at: {output_dir}")
     logging.info(f"Run: cd {output_dir} && hugo serve")
@@ -114,7 +118,9 @@ def _assemble_hugo_site(info: dict, output_dir: str = None, branding: dict = Non
 # Raw HTML path
 # ---------------------------------------------------------------------------
 
-def _convert_raw_html(input_path: str, html_files: list, output_dir: str = None, branding: dict = None) -> str:
+def _convert_raw_html(
+    input_path: str, html_files: list, output_dir: str = None, branding: dict = None
+) -> str:
     theme_name = os.path.basename(os.path.abspath(input_path))
 
     if output_dir is None:
@@ -155,7 +161,10 @@ def _convert_raw_html(input_path: str, html_files: list, output_dir: str = None,
         f.write('---\ntitle: Home\n---\n')
 
     b = branding or {}
-    decapify(output_dir, cms_name=b.get('cms_name'), cms_logo=b.get('cms_logo'), cms_color=b.get('cms_color'))
+    decapify(
+        output_dir,
+        cms_name=b.get('cms_name'), cms_logo=b.get('cms_logo'), cms_color=b.get('cms_color'),
+    )
 
     logging.info(f"Done. Site ready at: {output_dir}")
     return output_dir

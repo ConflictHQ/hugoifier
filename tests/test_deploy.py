@@ -1,7 +1,7 @@
 """Tests for utils.deploy."""
 import unittest
 
-from utils.deploy import deploy
+from hugoifier.utils.deploy import deploy
 
 
 class TestDeploy(unittest.TestCase):

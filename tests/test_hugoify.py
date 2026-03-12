@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from utils.hugoify import _parse_layout_json, _fallback_baseof, hugoify_dir
+from hugoifier.utils.hugoify import _fallback_baseof, _parse_layout_json, hugoify_dir
 
 
 class TestParseLayoutJson(unittest.TestCase):

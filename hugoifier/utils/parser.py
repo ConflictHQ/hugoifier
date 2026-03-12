@@ -1,9 +1,10 @@
 """
-This script performs parsing, linting, and validation of web content to ensure it adheres to best practices and standards.
-It checks for syntax errors and validates the structure of the content.
+Performs parsing, linting, and validation of web content to ensure it adheres
+to best practices and standards. Checks for syntax errors and structural issues.
 """
 
 import logging
+
 
 # Function to perform parsing, linting, and validation
 def parse(path):
@@ -28,4 +29,4 @@ def parse(path):
         return "Parsing complete"
     except Exception as e:
         logging.error(f"Error during parsing: {e}")
-        return "Parsing failed" 
+        return "Parsing failed"

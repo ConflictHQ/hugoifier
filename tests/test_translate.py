@@ -11,8 +11,8 @@ class TestTranslate(unittest.TestCase):
             f.write("<p>Hello world</p>")
             path = f.name
         try:
-            from utils.translate import translate
-            with patch("utils.translate.call_ai", return_value="<p>Hola mundo</p>") as mock_ai:
+            from hugoifier.utils.translate import translate
+            with patch("hugoifier.utils.translate.call_ai", return_value="<p>Hola mundo</p>") as mock_ai:
                 result = translate(path, target_language="Spanish")
                 self.assertEqual(result, "<p>Hola mundo</p>")
                 call_args = mock_ai.call_args[0][0]
@@ -26,8 +26,8 @@ class TestTranslate(unittest.TestCase):
             f.write("<p>Bonjour</p>")
             path = f.name
         try:
-            from utils.translate import translate
-            with patch("utils.translate.call_ai", return_value="<p>Hallo</p>") as mock_ai:
+            from hugoifier.utils.translate import translate
+            with patch("hugoifier.utils.translate.call_ai", return_value="<p>Hallo</p>") as mock_ai:
                 translate(path, target_language="German")
                 call_args = mock_ai.call_args[0][0]
                 self.assertIn("German", call_args)
@@ -35,7 +35,7 @@ class TestTranslate(unittest.TestCase):
             os.unlink(path)
 
     def test_returns_error_on_missing_file(self):
-        from utils.translate import translate
+        from hugoifier.utils.translate import translate
         result = translate("/nonexistent/file.html")
         self.assertIn("failed", result.lower())
 

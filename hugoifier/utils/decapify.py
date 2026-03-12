@@ -9,6 +9,7 @@ Writes:
 import logging
 import os
 import re
+
 import yaml
 
 DECAP_CDN = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
@@ -157,7 +158,8 @@ def _build_collections(content_dir: str) -> list:
 
         if non_index:
             # Folder collection (blog, posts, etc.) — use shallowest sample for field inference
-            fields = _infer_fields_for_folder(subdir, [os.path.relpath(f, subdir) for f in non_index])
+            rel_files = [os.path.relpath(f, subdir) for f in non_index]
+            fields = _infer_fields_for_folder(subdir, rel_files)
             collections.append({
                 'name': entry,
                 'label': entry.replace('-', ' ').title(),
@@ -199,7 +201,8 @@ def _infer_fields_for_folder(subdir: str, md_files: list) -> list:
         'date': {'label': 'Date', 'name': 'date', 'widget': 'datetime'},
         'description': {'label': 'Description', 'name': 'description', 'widget': 'text'},
         'image': {'label': 'Image', 'name': 'image', 'widget': 'image', 'required': False},
-        'categories': {'label': 'Categories', 'name': 'categories', 'widget': 'list', 'required': False},
+        'categories': {'label': 'Categories', 'name': 'categories', 'widget': 'list',
+                       'required': False},
         'tags': {'label': 'Tags', 'name': 'tags', 'widget': 'list', 'required': False},
         'draft': {'label': 'Draft', 'name': 'draft', 'widget': 'boolean', 'default': False},
         'author': {'label': 'Author', 'name': 'author', 'widget': 'string', 'required': False},

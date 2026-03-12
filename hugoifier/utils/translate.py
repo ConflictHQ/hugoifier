@@ -3,7 +3,8 @@ Translates web content using the configured AI backend.
 """
 
 import logging
-from config import call_ai
+
+from ..config import call_ai
 
 
 def translate(path: str, target_language: str = "Spanish") -> str:

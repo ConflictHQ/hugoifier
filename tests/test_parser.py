@@ -1,7 +1,7 @@
 """Tests for utils.parser."""
 import unittest
 
-from utils.parser import parse
+from hugoifier.utils.parser import parse
 
 
 class TestParse(unittest.TestCase):

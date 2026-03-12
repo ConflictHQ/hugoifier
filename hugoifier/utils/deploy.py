@@ -1,9 +1,10 @@
 """
-This script handles the deployment of a Hugo site, ensuring all prerequisites are met and executing the deployment process.
-It may use Cloudflare functions for deployment.
+Handles deployment of a Hugo site, ensuring prerequisites are met
+and executing the deployment process (optionally via Cloudflare).
 """
 
 import logging
+
 
 # Function to handle deployment tasks
 def deploy(path, zone):
@@ -24,4 +25,4 @@ def deploy(path, zone):
         return "Deployment complete"
     except Exception as e:
         logging.error(f"Error during deployment: {e}")
-        return "Deployment failed" 
+        return "Deployment failed"

@@ -5,8 +5,8 @@ Analyzes a Hugo theme or raw HTML theme and reports structure + recommendations.
 import logging
 import os
 
-from config import call_ai
-from utils.theme_finder import find_hugo_theme, find_raw_html_files
+from ..config import call_ai
+from .theme_finder import find_hugo_theme, find_raw_html_files
 
 SYSTEM = "You are an expert Hugo theme developer analyzing themes for conversion."
 
@@ -40,7 +40,10 @@ def _analyze_hugo_theme(info: dict) -> str:
     if example_site:
         content_dir = os.path.join(example_site, 'content')
         if os.path.isdir(content_dir):
-            content_types = [d for d in os.listdir(content_dir) if os.path.isdir(os.path.join(content_dir, d))]
+            content_types = [
+                d for d in os.listdir(content_dir)
+                if os.path.isdir(os.path.join(content_dir, d))
+            ]
 
     report = [
         f"Theme: {theme_name}",
@@ -61,7 +64,10 @@ def _analyze_raw_html(path: str) -> str:
         return f"No HTML files found at {path}"
 
     # Read main HTML file for AI analysis
-    main = next((f for f in html_files if os.path.basename(f).lower() == 'index.html'), html_files[0])
+    main = next(
+        (f for f in html_files if os.path.basename(f).lower() == 'index.html'),
+        html_files[0],
+    )
     with open(main, 'r', errors='replace') as f:
         html = f.read()[:20000]
 
