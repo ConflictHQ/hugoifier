@@ -60,6 +60,24 @@ Push to `main`, site updates. Every PR gets a preview deployment at a unique URL
 
 ---
 
+## Why GitHub
+
+Your site's content is a Git repository. That's not a technical detail — it's the whole point.
+
+Git gives you a complete, timestamped history of every word ever published on your site. Revert a bad edit in seconds. See exactly what changed and when. Run your content through pull request review before it goes live.
+
+GitHub adds a layer on top of that:
+
+- **Free hosting** — GitHub Pages serves static sites directly from your repo at no cost, with a CDN and HTTPS included
+- **Collaboration** — anyone with a GitHub account can fork your repo, propose changes, and submit a PR. No user accounts, no permissions system to manage
+- **Automation** — GitHub Actions runs your Hugo build and deploys it on every push. The workflow is a file in your repo, version-controlled alongside your content
+- **Decap CMS integration** — Decap CMS (which Hugoifier configures automatically) uses Git Gateway to commit content changes directly back to GitHub. Your editors use a clean web UI; under the hood it's just commits
+- **Single source of truth** — content, theme, config, and deploy pipeline all live in one place. No external services to keep in sync, no credentials to rotate, no staging environments to maintain
+
+GitHub is free for public repositories and has been running reliably for over 15 years. For a website, it's all the infrastructure you need.
+
+---
+
 ## The Case Against Overbuilding
 
 The internet is full of websites that are WordPress or Next.js or a React SPA backed by a database — not because those sites need any of that, but because that's what the developer knew how to build.
