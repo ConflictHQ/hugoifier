@@ -74,6 +74,7 @@ nav:
       - Configuration: getting-started/configuration.md
   - CLI Reference: cli-reference.md
   - Architecture: architecture.md
+  - Why Hugo + Cloudflare: about.md
 
 extra:
   social:
