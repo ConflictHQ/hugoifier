@@ -77,71 +77,253 @@ Return ONLY a valid JSON object, no explanation."""
     return _parse_layout_json(response)
 
 
-def hugoify_nextjs(info: dict) -> dict:
+def hugoify_nextjs(info: dict, dev_url: str = None) -> dict:
     """
     Convert a Next.js app to a set of Hugo layout files.
 
+    If dev_url is provided (or auto-detected), captures the actual rendered HTML
+    from the running Next.js dev server for pixel-perfect conversion.
+    Otherwise falls back to AI-powered TSX source conversion.
+
     Args:
         info: dict from find_nextjs_app() with app_dir, router_type, etc.
+        dev_url: URL of a running Next.js dev server (e.g. http://localhost:3000)
 
     Returns:
-        dict mapping relative layout paths to their content, same format as hugoify_html().
+        dict mapping relative layout paths to their content, plus
+        a '_captured_assets' key with any downloaded CSS/JS files.
     """
     app_dir = info['app_dir']
     logging.info(f"Hugoifying Next.js app at {app_dir} ...")
 
+    # Try to auto-detect a running dev server
+    if not dev_url:
+        dev_url = _detect_nextjs_server(info)
+
+    if dev_url:
+        return _capture_rendered_html(dev_url, info)
+
+    # Fallback: AI-powered source conversion (less faithful)
+    return _ai_convert_nextjs_sources(info)
+
+
+def _detect_nextjs_server(info: dict) -> str | None:
+    """Check if a Next.js dev server is running on common ports."""
+    import urllib.request
+    for port in [3000, 3001, 3002]:
+        url = f"http://localhost:{port}"
+        try:
+            req = urllib.request.Request(url, method='HEAD')
+            resp = urllib.request.urlopen(req, timeout=2)
+            if resp.status == 200:
+                logging.info(f"Detected running Next.js server at {url}")
+                return url
+        except Exception:
+            continue
+    return None
+
+
+def _capture_rendered_html(dev_url: str, info: dict) -> dict:
+    """
+    Capture the actual server-rendered HTML from a running Next.js app
+    and convert it into Hugo layout files. This gives pixel-perfect results.
+    """
+    import urllib.request
+    import urllib.parse
+
+    logging.info(f"Capturing rendered HTML from {dev_url} ...")
+
+    # Fetch the full rendered page
+    resp = urllib.request.urlopen(dev_url)
+    html = resp.read().decode('utf-8')
+    logging.info(f"Captured {len(html)} chars of rendered HTML")
+
+    # Download compiled CSS
+    css_urls = re.findall(r'href="(/_next/static/[^"]+\.css)"', html)
+    captured_css = {}
+    for css_path in css_urls:
+        css_url = f"{dev_url}{css_path}"
+        try:
+            css_resp = urllib.request.urlopen(css_url)
+            css_content = css_resp.read().decode('utf-8')
+            captured_css['compiled.css'] = css_content
+            logging.info(f"Captured CSS: {len(css_content)} chars")
+            break  # Usually just one CSS file
+        except Exception as e:
+            logging.warning(f"Failed to fetch CSS {css_url}: {e}")
+
+    # Strip Next.js scripts, dev tooling, and React hydration markers
+    body_html = _extract_and_clean_body(html)
+
+    # Extract <head> content we want to keep (fonts, meta, etc.)
+    head_extras = _extract_head_content(html)
+
+    # Build Hugo layouts
+    baseof = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{{{ if .IsHome }}}}{{{{ .Site.Title }}}}{{{{ else }}}}{{{{ .Title }}}} | {{{{ .Site.Title }}}}{{{{ end }}}}</title>
+{head_extras}
+  <link rel="stylesheet" href="/css/compiled.css">
+  <link rel="stylesheet" href="/css/globals.css">
+</head>
+<body class="antialiased">
+  {{{{- block "main" . }}}}{{{{- end }}}}
+</body>
+</html>'''
+
+    index_html = f'{{{{ define "main" }}}}\n{body_html}\n{{{{ end }}}}'
+
+    layouts = {
+        "_default/baseof.html": baseof,
+        "index.html": index_html,
+    }
+
+    # Attach captured CSS as metadata for the pipeline to handle
+    if captured_css:
+        layouts['_captured_css'] = captured_css
+
+    return layouts
+
+
+def _extract_and_clean_body(html: str) -> str:
+    """Extract <body> content and strip Next.js scripts/dev tooling."""
+    # Extract body content
+    body_match = re.search(r'<body[^>]*>(.*?)</body>', html, re.DOTALL)
+    if not body_match:
+        return html
+
+    body = body_match.group(1)
+
+    # Strip all <script> tags (Next.js runtime, React hydration, HMR, etc.)
+    body = re.sub(r'<script\b[^>]*>.*?</script>', '', body, flags=re.DOTALL)
+    body = re.sub(r'<script\b[^>]*/?>', '', body)
+
+    # Strip Next.js dev overlay and error boundary elements
+    body = re.sub(r'<next-route-announcer[^>]*>.*?</next-route-announcer>', '', body, flags=re.DOTALL)
+    body = re.sub(r'<nextjs-portal[^>]*>.*?</nextjs-portal>', '', body, flags=re.DOTALL)
+
+    # Strip data-reactroot, data-nextjs, and other React/Next.js attributes
+    body = re.sub(r'\s*data-(?:reactroot|nextjs[^=]*|rsc[^=]*)(?:="[^"]*")?', '', body)
+
+    # Fix FadeIn components: they render with opacity:0 and translateY(32px)
+    # because the IntersectionObserver JS isn't running. Force them visible.
+    body = re.sub(r'opacity:\s*0', 'opacity:1', body)
+    body = re.sub(r'translateY\(32px\)', 'translateY(0px)', body)
+
+    # Replace /_next/static/ asset references with /static/ for Hugo
+    body = re.sub(r'/_next/static/media/([^"]+)', r'/\1', body)
+
+    return body.strip()
+
+
+def _extract_head_content(html: str) -> str:
+    """Extract useful <head> elements (fonts, preloads) from rendered HTML."""
+    head_match = re.search(r'<head[^>]*>(.*?)</head>', html, re.DOTALL)
+    if not head_match:
+        return ""
+
+    head = head_match.group(1)
+    lines = []
+
+    # Keep font preload/stylesheet links
+    for match in re.finditer(r'<link[^>]+(?:fonts\.googleapis|fonts\.gstatic|preload[^>]+font)[^>]*/?>',
+                              head, re.DOTALL):
+        lines.append(f"  {match.group(0)}")
+
+    # Keep image preloads
+    for match in re.finditer(r'<link[^>]+rel="preload"[^>]+as="image"[^>]*/?>',
+                              head, re.DOTALL):
+        tag = match.group(0)
+        # Fix /_next paths to local paths
+        tag = re.sub(r'/_next/static/media/', '/', tag)
+        lines.append(f"  {tag}")
+
+    return "\n".join(lines)
+
+
+def _ai_convert_nextjs_sources(info: dict) -> dict:
+    """
+    Fallback: AI-powered conversion from TSX source files.
+    Used when no running dev server is available.
+    """
     sources = _collect_nextjs_sources(info)
     if not sources:
         logging.warning("No source files collected from Next.js app")
         return _fallback_layouts()
 
-    # Build the source context for the AI
-    source_block = ""
+    layouts = {}
+
+    # Identify component vs structural files
+    component_sources = {}
+    layout_sources = {}
     for rel_path, content in sources.items():
-        source_block += f"\n{'='*60}\n// FILE: {rel_path}\n{'='*60}\n{content}\n"
+        if rel_path.endswith('.css'):
+            continue
+        elif 'layout.' in rel_path or 'page.' in rel_path:
+            layout_sources[rel_path] = content
+        else:
+            component_sources[rel_path] = content
 
-    prompt = f"""Convert the following Next.js React application into Hugo layout files.
+    # Convert each component individually
+    for rel_path, content in component_sources.items():
+        basename = os.path.splitext(os.path.basename(rel_path))[0]
+        partial_name = f"partials/{basename}.html"
+        logging.info(f"  Converting {rel_path} → {partial_name}")
+        html = _convert_single_component(basename, content)
+        if html:
+            layouts[partial_name] = html
 
-The app uses the Next.js App Router with React components (TSX). Convert it to a static Hugo theme.
+    # Build baseof and index
+    partial_names = [os.path.splitext(os.path.basename(k))[0] for k in layouts.keys()]
+    baseof, index_html = _convert_layout_and_page(layout_sources, component_sources, partial_names)
+    layouts["_default/baseof.html"] = baseof
+    layouts["index.html"] = index_html
 
-Return a JSON object where keys are relative file paths under layouts/ and values are the Hugo template content.
+    logging.info(f"Generated {len(layouts)} layout files via AI conversion")
+    return layouts
 
-Required keys to produce:
-- "_default/baseof.html" — base template with the HTML shell, <head>, and blocks
-- "partials/header.html" — site header/navigation extracted as partial
-- "partials/footer.html" — footer extracted as partial
-- "index.html" — homepage using {{{{ define "main" }}}} ... {{{{ end }}}}
-- Additional "partials/{{name}}.html" for each major section component
 
-Conversion rules:
-- JSX `className` → HTML `class`
-- React component composition → Hugo partials via `{{{{ partial "name.html" . }}}}`
-- `app/layout.tsx` → `_default/baseof.html` with `{{{{ block "main" . }}}}{{{{ end }}}}`
-- `app/page.tsx` → `index.html` with `{{{{ define "main" }}}}...{{{{ end }}}}`
-- Each section component (e.g. HeroSection, CTASection, FooterSection) → `partials/{{name}}.html`
-- `<Link href="...">text</Link>` → `<a href="...">text</a>`
-- `<Image src="..." alt="..." />` → `<img src="..." alt="..." />`
-- next/font imports (Geist, Sora, etc.) → Google Fonts <link> tags in <head>
-- Conditional rendering `{{condition && <div>...</div>}}` → render the static content
-- `map()` calls over static arrays → unroll into static HTML
-- Interactive elements (onClick, useState, useEffect, motion.*) → strip interactivity, keep the static HTML structure
-- Animation wrappers (FadeIn, motion.div) → plain `<div>` elements preserving classes
-- Preserve ALL Tailwind CSS classes and inline styles exactly as-is
-- Replace hardcoded page titles with `{{{{ .Title }}}}`
-- Replace hardcoded site name with `{{{{ .Site.Title }}}}`
-- Replace copyright year with `{{{{ now.Year }}}}`
-- For Tailwind CSS, include `<script src="https://cdn.tailwindcss.com"></script>` in the <head> of baseof.html
-- Link any CSS files as `<link rel="stylesheet" href="/css/globals.css">`
-- SVG content should be preserved inline as-is
-- Keep all `id` attributes on sections for anchor navigation
+_COMPONENT_PROMPT = """Convert this React/Next.js component to static Hugo-compatible HTML.
 
-Source files:
-{source_block}
+CRITICAL RULES:
+- Output ONLY the raw HTML. No markdown fences, no explanation, no JSON wrapping.
+- Convert ALL JSX `className` to HTML `class`
+- Unroll ALL `.map()` calls into full static HTML — every single item
+- Preserve EVERY Tailwind CSS class and inline style EXACTLY
+- Preserve ALL text content — do NOT summarize or shorten
+- Preserve ALL SVG content inline
+- Strip React hooks and event handlers, keep static HTML structure
 
-Return ONLY a valid JSON object, no explanation."""
+Component name: {name}
 
-    response = call_ai(prompt, NEXTJS_SYSTEM, max_tokens=16384)
-    return _parse_layout_json(response)
+Source code:
+{source}"""
+
+
+def _convert_single_component(name: str, source: str) -> str | None:
+    """Convert a single React component to Hugo-compatible HTML via AI."""
+    prompt = _COMPONENT_PROMPT.format(name=name, source=source)
+    try:
+        response = call_ai(prompt, NEXTJS_SYSTEM, max_tokens=16384)
+        html = re.sub(r'^```(?:html)?\s*', '', response.strip())
+        html = re.sub(r'```\s*$', '', html.strip())
+        return html
+    except Exception as e:
+        logging.warning(f"Failed to convert component {name}: {e}")
+        return None
+
+
+def _convert_layout_and_page(layout_sources, component_sources, partial_names):
+    """Build baseof.html and index.html from layout files and partial list."""
+    partial_includes = "\n".join(
+        f'  {{{{ partial "{name}.html" . }}}}' for name in partial_names
+    )
+    baseof = _fallback_baseof()
+    index_html = f'{{% define "main" %}}\n<div class="bg-[#121517] flex flex-col w-full">\n{partial_includes}\n</div>\n{{% end %}}'
+    return baseof, index_html
 
 
 def _collect_nextjs_sources(info: dict) -> dict:

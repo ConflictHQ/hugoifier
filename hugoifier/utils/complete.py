@@ -134,10 +134,13 @@ def _convert_nextjs(
 
     logging.info(f"Converting Next.js app: {theme_name}")
 
-    # Use AI to convert TSX source to Hugo layouts
+    # Convert: capture rendered HTML if dev server running, else AI fallback
     hugo_layouts = hugoify_nextjs(nextjs_info)
 
     os.makedirs(output_dir, exist_ok=True)
+
+    # Extract captured CSS if present (from rendered HTML capture)
+    captured_css = hugo_layouts.pop('_captured_css', {})
 
     # Write converted layouts
     theme_layouts_dir = os.path.join(output_dir, 'themes', theme_name, 'layouts')
@@ -146,7 +149,8 @@ def _convert_nextjs(
 
     for filename, content in hugo_layouts.items():
         # Fix common AI mistake: partial "partials/X.html" → partial "X.html"
-        content = content.replace('partial "partials/', 'partial "')
+        if isinstance(content, str):
+            content = content.replace('partial "partials/', 'partial "')
         dest = os.path.join(theme_layouts_dir, filename)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         with open(dest, 'w') as f:
@@ -159,9 +163,15 @@ def _convert_nextjs(
         _copy_dir(public_dir, theme_static)
         logging.info("Copied public/ assets to static/")
 
-    # Copy CSS files
+    # Write captured CSS (from rendered HTML capture)
     css_dest = os.path.join(theme_static, 'css')
     os.makedirs(css_dest, exist_ok=True)
+    for css_name, css_content in captured_css.items():
+        with open(os.path.join(css_dest, css_name), 'w') as f:
+            f.write(css_content)
+        logging.info(f"Wrote captured CSS: {css_name}")
+
+    # Also copy source CSS files (globals.css etc.)
     for css_file in nextjs_info.get('css_files', []):
         if os.path.isfile(css_file):
             shutil.copy2(css_file, os.path.join(css_dest, os.path.basename(css_file)))
