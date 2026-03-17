@@ -11,8 +11,8 @@ import shutil
 from pathlib import Path
 
 from .decapify import decapify
-from .hugoify import hugoify_html
-from .theme_finder import find_hugo_theme, find_raw_html_files
+from .hugoify import hugoify_html, hugoify_nextjs
+from .theme_finder import find_hugo_theme, find_nextjs_app, find_raw_html_files
 from .theme_patcher import patch_config, patch_theme
 
 
@@ -43,12 +43,17 @@ def complete(
 
     if info:
         return _assemble_hugo_site(info, output_dir, branding)
-    else:
-        # Raw HTML path
-        html_files = find_raw_html_files(input_path)
-        if not html_files:
-            raise ValueError(f"No Hugo theme or HTML files found in {input_path}")
-        return _convert_raw_html(input_path, html_files, output_dir, branding)
+
+    # Next.js path (check before raw HTML since Next.js projects may contain .html files)
+    nextjs_info = find_nextjs_app(input_path)
+    if nextjs_info:
+        return _convert_nextjs(input_path, nextjs_info, output_dir, branding)
+
+    # Raw HTML path
+    html_files = find_raw_html_files(input_path)
+    if not html_files:
+        raise ValueError(f"No Hugo theme, Next.js app, or HTML files found in {input_path}")
+    return _convert_raw_html(input_path, html_files, output_dir, branding)
 
 
 # ---------------------------------------------------------------------------
@@ -115,6 +120,83 @@ def _assemble_hugo_site(info: dict, output_dir: str = None, branding: dict = Non
 
 
 # ---------------------------------------------------------------------------
+# Next.js path
+# ---------------------------------------------------------------------------
+
+def _convert_nextjs(
+    input_path: str, nextjs_info: dict, output_dir: str = None, branding: dict = None
+) -> str:
+    app_dir = nextjs_info['app_dir']
+    theme_name = nextjs_info.get('app_name', os.path.basename(os.path.abspath(input_path)))
+
+    if output_dir is None:
+        output_dir = str(Path(__file__).parents[2] / 'output' / theme_name)
+
+    logging.info(f"Converting Next.js app: {theme_name}")
+
+    # Convert: capture rendered HTML if dev server running, else AI fallback
+    hugo_layouts = hugoify_nextjs(nextjs_info)
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Extract captured CSS if present (from rendered HTML capture)
+    captured_css = hugo_layouts.pop('_captured_css', {})
+
+    # Write converted layouts
+    theme_layouts_dir = os.path.join(output_dir, 'themes', theme_name, 'layouts')
+    os.makedirs(os.path.join(theme_layouts_dir, '_default'), exist_ok=True)
+    os.makedirs(os.path.join(theme_layouts_dir, 'partials'), exist_ok=True)
+
+    for filename, content in hugo_layouts.items():
+        # Fix common AI mistake: partial "partials/X.html" → partial "X.html"
+        if isinstance(content, str):
+            content = content.replace('partial "partials/', 'partial "')
+        dest = os.path.join(theme_layouts_dir, filename)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'w') as f:
+            f.write(content)
+
+    # Copy public/ assets to theme static/
+    public_dir = os.path.join(app_dir, 'public')
+    theme_static = os.path.join(output_dir, 'themes', theme_name, 'static')
+    if os.path.isdir(public_dir):
+        _copy_dir(public_dir, theme_static)
+        logging.info("Copied public/ assets to static/")
+
+    # Write captured CSS (from rendered HTML capture)
+    css_dest = os.path.join(theme_static, 'css')
+    os.makedirs(css_dest, exist_ok=True)
+    for css_name, css_content in captured_css.items():
+        with open(os.path.join(css_dest, css_name), 'w') as f:
+            f.write(css_content)
+        logging.info(f"Wrote captured CSS: {css_name}")
+
+    # Also copy source CSS files (globals.css etc.)
+    for css_file in nextjs_info.get('css_files', []):
+        if os.path.isfile(css_file):
+            shutil.copy2(css_file, os.path.join(css_dest, os.path.basename(css_file)))
+    logging.info("Copied CSS files")
+
+    _write_minimal_hugo_toml(output_dir, theme_name)
+
+    # Create minimal content
+    content_dir = os.path.join(output_dir, 'content')
+    os.makedirs(content_dir, exist_ok=True)
+    with open(os.path.join(content_dir, '_index.md'), 'w') as f:
+        f.write('---\ntitle: Home\n---\n')
+
+    b = branding or {}
+    decapify(
+        output_dir,
+        cms_name=b.get('cms_name'), cms_logo=b.get('cms_logo'), cms_color=b.get('cms_color'),
+    )
+
+    logging.info(f"Done. Site ready at: {output_dir}")
+    logging.info(f"Run: cd {output_dir} && hugo serve")
+    return output_dir
+
+
+# ---------------------------------------------------------------------------
 # Raw HTML path
 # ---------------------------------------------------------------------------
 
@@ -128,9 +210,9 @@ def _convert_raw_html(
 
     logging.info(f"Converting raw HTML theme: {theme_name}")
 
-    # Use AI to convert the main HTML file to Hugo layouts
+    # Direct HTML extraction — use the actual HTML as-is, no AI reinterpretation
     main_html = _pick_main_html(html_files)
-    logging.info(f"Converting {main_html} ...")
+    logging.info(f"Extracting {main_html} ...")
     hugo_layouts = hugoify_html(main_html)
 
     os.makedirs(output_dir, exist_ok=True)
@@ -146,11 +228,16 @@ def _convert_raw_html(
         with open(dest, 'w') as f:
             f.write(content)
 
-    # Copy CSS/JS/images
-    for ext_dir in ('css', 'js', 'images', 'img', 'assets', 'fonts'):
-        src = os.path.join(input_path, ext_dir)
-        if os.path.isdir(src):
-            _copy_dir(src, os.path.join(output_dir, 'themes', theme_name, 'static', ext_dir))
+    # Copy ALL static assets from the HTML theme directory
+    theme_static = os.path.join(output_dir, 'themes', theme_name, 'static')
+    for item in os.listdir(input_path):
+        src = os.path.join(input_path, item)
+        if os.path.isdir(src) and item not in ('__MACOSX', '.git', 'node_modules'):
+            _copy_dir(src, os.path.join(theme_static, item))
+        elif os.path.isfile(src) and not item.endswith('.html'):
+            # Copy non-HTML files (images, fonts, etc.) to static root
+            os.makedirs(theme_static, exist_ok=True)
+            shutil.copy2(src, os.path.join(theme_static, item))
 
     _write_minimal_hugo_toml(output_dir, theme_name)
 
