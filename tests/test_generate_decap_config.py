@@ -34,7 +34,7 @@ class TestGenerateDecapConfig(unittest.TestCase):
             with open(os.path.join(tmp, "static", "admin", "config.yml")) as f:
                 content = f.read()
             self.assertIn("backend", content)
-            self.assertIn("git-gateway", content)
+            self.assertIn("github", content)
 
 
 if __name__ == "__main__":

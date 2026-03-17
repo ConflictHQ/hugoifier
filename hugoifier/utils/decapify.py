@@ -25,15 +25,17 @@ def decapify(
     cms_name: str = None,
     cms_logo: str = None,
     cms_color: str = None,
+    github_repo: str = None,
 ) -> str:
     """
     Add Decap CMS to a Hugo site directory.
 
     Args:
-        site_dir:  Root of the assembled Hugo site (has hugo.toml, content/, themes/).
-        cms_name:  Whitelabel name shown in the admin UI (default: 'Content Manager').
-        cms_logo:  URL to a logo image for the admin UI (optional).
-        cms_color: Hex color for the admin top bar (default: '#2e3748').
+        site_dir:    Root of the assembled Hugo site (has hugo.toml, content/, themes/).
+        cms_name:    Whitelabel name shown in the admin UI (default: 'Content Manager').
+        cms_logo:    URL to a logo image for the admin UI (optional).
+        cms_color:   Hex color for the admin top bar (default: '#2e3748').
+        github_repo: GitHub repo slug e.g. 'ConflictHQ/my-site' (optional, for GitHub backend).
 
     Returns:
         Status message.
@@ -50,7 +52,9 @@ def decapify(
     }
 
     _write_admin_index(admin_dir, branding)
-    _write_decap_config(site_dir, admin_dir)
+    _write_decap_config(site_dir, admin_dir, github_repo=github_repo)
+    _write_oauth_functions(site_dir)
+    _create_media_dir(site_dir)
 
     logging.info("Decap CMS integration complete.")
     return "Decap CMS integration complete"
@@ -104,15 +108,21 @@ def _write_admin_index(admin_dir: str, branding: dict):
 # config.yml
 # ---------------------------------------------------------------------------
 
-def _write_decap_config(site_dir: str, admin_dir: str):
+def _write_decap_config(site_dir: str, admin_dir: str, github_repo: str = None):
     content_dir = os.path.join(site_dir, 'content')
     collections = _build_collections(content_dir)
 
+    backend = {
+        'name': 'github',
+        'branch': 'main',
+    }
+    if github_repo:
+        backend['repo'] = github_repo
+    backend['base_url'] = ''  # placeholder — set to deployed site URL
+    backend['auth_endpoint'] = '/api/auth'
+
     config = {
-        'backend': {
-            'name': 'git-gateway',
-            'branch': 'main',
-        },
+        'backend': backend,
         'media_folder': 'static/images/uploads',
         'public_folder': '/images/uploads',
         'collections': collections,
@@ -271,3 +281,118 @@ def _default_pages_collection() -> dict:
             {'label': 'Body', 'name': 'body', 'widget': 'markdown'},
         ],
     }
+
+
+# ---------------------------------------------------------------------------
+# OAuth functions (Cloudflare Pages Functions)
+# ---------------------------------------------------------------------------
+
+_AUTH_JS = """\
+export async function onRequest(context) {
+    const { request, env } = context;
+    const client_id = env.GITHUB_CLIENT_ID;
+
+    try {
+        const url = new URL(request.url);
+        const redirectUrl = new URL('https://github.com/login/oauth/authorize');
+        redirectUrl.searchParams.set('client_id', client_id);
+        redirectUrl.searchParams.set('redirect_uri', url.origin + '/api/callback');
+        redirectUrl.searchParams.set('scope', 'repo user');
+        redirectUrl.searchParams.set(
+            'state',
+            crypto.getRandomValues(new Uint8Array(12)).join(''),
+        );
+        return Response.redirect(redirectUrl.href, 301);
+    } catch (error) {
+        console.error(error);
+        return new Response(error.message, { status: 500 });
+    }
+}
+"""
+
+_CALLBACK_JS = """\
+function renderBody(status, content) {
+    const html = `
+    <script>
+      const receiveMessage = (message) => {
+        window.opener.postMessage(
+          'authorization:github:${status}:${JSON.stringify(content)}',
+          message.origin
+        );
+        window.removeEventListener("message", receiveMessage, false);
+      }
+      window.addEventListener("message", receiveMessage, false);
+      window.opener.postMessage("authorizing:github", "*");
+    </script>
+    `;
+    const blob = new Blob([html]);
+    return blob;
+}
+
+export async function onRequest(context) {
+    const { request, env } = context;
+    const client_id = env.GITHUB_CLIENT_ID;
+    const client_secret = env.GITHUB_CLIENT_SECRET;
+
+    try {
+        const url = new URL(request.url);
+        const code = url.searchParams.get('code');
+        const response = await fetch(
+            'https://github.com/login/oauth/access_token',
+            {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'user-agent': 'hugoifier-cms-oauth',
+                    'accept': 'application/json',
+                },
+                body: JSON.stringify({ client_id, client_secret, code }),
+            },
+        );
+        const result = await response.json();
+        if (result.error) {
+            return new Response(renderBody('error', result), {
+                headers: { 'content-type': 'text/html;charset=UTF-8' },
+                status: 401
+            });
+        }
+        const token = result.access_token;
+        const provider = 'github';
+        const responseBody = renderBody('success', { token, provider });
+        return new Response(responseBody, {
+            headers: { 'content-type': 'text/html;charset=UTF-8' },
+            status: 200
+        });
+    } catch (error) {
+        console.error(error);
+        return new Response(error.message, {
+            headers: { 'content-type': 'text/html;charset=UTF-8' },
+            status: 500,
+        });
+    }
+}
+"""
+
+
+def _write_oauth_functions(site_dir: str):
+    """Write Cloudflare Pages Functions for GitHub OAuth (Decap CMS auth)."""
+    functions_dir = os.path.join(site_dir, 'functions', 'api')
+    os.makedirs(functions_dir, exist_ok=True)
+
+    with open(os.path.join(functions_dir, 'auth.js'), 'w') as f:
+        f.write(_AUTH_JS)
+
+    with open(os.path.join(functions_dir, 'callback.js'), 'w') as f:
+        f.write(_CALLBACK_JS)
+
+    logging.info("Wrote OAuth functions to functions/api/")
+
+
+def _create_media_dir(site_dir: str):
+    """Create the media uploads directory so Decap doesn't 404."""
+    media_dir = os.path.join(site_dir, 'static', 'images', 'uploads')
+    os.makedirs(media_dir, exist_ok=True)
+    gitkeep = os.path.join(media_dir, '.gitkeep')
+    if not os.path.exists(gitkeep):
+        with open(gitkeep, 'w') as f:
+            pass
