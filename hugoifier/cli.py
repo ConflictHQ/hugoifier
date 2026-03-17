@@ -49,7 +49,7 @@ def main():
     analyze_parser.add_argument("path", help="Path to the theme")
 
     # hugoify
-    hugoify_parser = subparsers.add_parser("hugoify", help="Convert HTML to Hugo theme (or validate existing Hugo theme)")
+    hugoify_parser = subparsers.add_parser("hugoify", help="Convert HTML or Next.js app to Hugo theme (or validate existing Hugo theme)")
     hugoify_parser.add_argument("path", help="Path to HTML file or theme directory")
 
     # decapify

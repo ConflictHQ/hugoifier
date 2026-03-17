@@ -29,15 +29,16 @@ GOOGLE_MODEL = os.getenv('GOOGLE_MODEL', 'gemini-1.5-pro')
 MAX_TOKENS = int(os.getenv('HUGOIFIER_MAX_TOKENS', '4096'))
 
 
-def call_ai(prompt: str, system: str = "You are a helpful Hugo theme conversion assistant.") -> str:
+def call_ai(prompt: str, system: str = "You are a helpful Hugo theme conversion assistant.", max_tokens: int = None) -> str:
     """
     Call the configured AI backend and return the response text.
     This is the single entry point for all AI calls in the codebase.
     """
+    tokens = max_tokens or MAX_TOKENS
     if BACKEND == 'anthropic':
-        return _call_anthropic(prompt, system)
+        return _call_anthropic(prompt, system, tokens)
     elif BACKEND == 'openai':
-        return _call_openai(prompt, system)
+        return _call_openai(prompt, system, tokens)
     elif BACKEND == 'google':
         return _call_google(prompt, system)
     else:
@@ -47,21 +48,21 @@ def call_ai(prompt: str, system: str = "You are a helpful Hugo theme conversion 
         )
 
 
-def _call_anthropic(prompt: str, system: str) -> str:
+def _call_anthropic(prompt: str, system: str, max_tokens: int = None) -> str:
     if not ANTHROPIC_API_KEY:
         raise EnvironmentError("ANTHROPIC_API_KEY is not set")
     import anthropic
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     message = client.messages.create(
         model=ANTHROPIC_MODEL,
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens or MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
     )
     return message.content[0].text
 
 
-def _call_openai(prompt: str, system: str) -> str:
+def _call_openai(prompt: str, system: str, max_tokens: int = None) -> str:
     if not OPENAI_API_KEY:
         raise EnvironmentError("OPENAI_API_KEY is not set")
     from openai import OpenAI
@@ -72,7 +73,7 @@ def _call_openai(prompt: str, system: str) -> str:
             {"role": "system", "content": system},
             {"role": "user", "content": prompt},
         ],
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens or MAX_TOKENS,
     )
     return response.choices[0].message.content.strip()
 
