@@ -30,51 +30,66 @@ def hugoify_html(html_path: str) -> dict:
     """
     Convert a raw HTML file to a set of Hugo layout files.
 
-    Returns dict mapping relative layout paths to their content, e.g.:
-      {
-        "_default/baseof.html": "<!DOCTYPE html>...",
-        "partials/header.html": "<header>...",
-        "partials/footer.html": "<footer>...",
-        "index.html": "{{ define \"main\" }}...",
-      }
+    Uses direct HTML extraction (no AI) to preserve content exactly as-is.
+    Splits the HTML into Hugo's baseof.html (head/shell) and index.html (body content).
+
+    Returns dict mapping relative layout paths to their content.
     """
     logging.info(f"Hugoifying {html_path} ...")
 
     with open(html_path, 'r', errors='replace') as f:
         html = f.read()
 
-    # Truncate very large files to avoid token limits
-    if len(html) > 30000:
-        logging.warning(f"HTML is large ({len(html)} chars), truncating to 30000 for AI analysis")
-        html = html[:30000]
+    logging.info(f"Read {len(html)} chars from {html_path}")
 
-    prompt = f"""Convert the following HTML file into Hugo layout files.
+    # Extract <head> content (CSS links, meta, fonts, etc.)
+    head_extras = _extract_head_content(html)
 
-Return a JSON object where keys are relative file paths under layouts/ and values are the Hugo template content.
+    # Extract and rewrite CSS/JS paths to be relative to Hugo static/
+    css_links = re.findall(r'<link[^>]+rel=["\']stylesheet["\'][^>]*/?>',
+                           html, re.DOTALL | re.IGNORECASE)
+    js_links = re.findall(r'<script[^>]+src=["\'][^"\']+["\'][^>]*>.*?</script>',
+                          html, re.DOTALL)
 
-Required keys to produce:
-- "_default/baseof.html" — base template with blocks for head, header, main, footer
-- "partials/header.html" — site header/nav extracted as partial
-- "partials/footer.html" — footer extracted as partial
-- "index.html" — homepage using {{ define "main" }} ... {{ end }}
+    # Extract <body> content
+    body_match = re.search(r'<body[^>]*>(.*?)</body>', html, re.DOTALL)
+    body_content = body_match.group(1).strip() if body_match else html
 
-Rules:
-- Replace hardcoded page titles with {{ .Title }}
-- Replace hardcoded site name with {{ .Site.Title }}
-- Replace hardcoded URLs with {{ .Site.BaseURL }} or {{ .Permalink }}
-- Replace nav links with {{ range .Site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
-- Replace blog post lists with {{ range .Pages }} ... {{ end }}
-- Replace copyright year with {{ now.Year }}
-- Keep all CSS classes and HTML structure intact
-- Use {{ partial "header.html" . }} and {{ partial "footer.html" . }} in baseof.html
+    # Extract body attributes (class, style, etc.)
+    body_attrs_match = re.search(r'<body([^>]*)>', html)
+    body_attrs = body_attrs_match.group(1).strip() if body_attrs_match else ''
 
-HTML to convert:
-{html}
+    # Build baseof.html preserving the original <head> structure
+    head_match = re.search(r'<head[^>]*>(.*?)</head>', html, re.DOTALL)
+    if head_match:
+        head_content = head_match.group(1).strip()
+        # Replace hardcoded <title> with Hugo template
+        head_content = re.sub(
+            r'<title>[^<]*</title>',
+            '<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>',
+            head_content
+        )
+        baseof = f'''<!DOCTYPE html>
+<html lang="{{{{ with .Site.LanguageCode }}}}{{{{ . }}}}{{{{ else }}}}en{{{{ end }}}}">
+<head>
+{head_content}
+</head>
+<body{" " + body_attrs if body_attrs else ""}>
+  {{{{- block "main" . }}}}{{{{- end }}}}
+</body>
+</html>'''
+    else:
+        baseof = _fallback_baseof()
 
-Return ONLY a valid JSON object, no explanation."""
+    index_html = f'{{{{ define "main" }}}}\n{body_content}\n{{{{ end }}}}'
 
-    response = call_ai(prompt, SYSTEM)
-    return _parse_layout_json(response)
+    layouts = {
+        "_default/baseof.html": baseof,
+        "index.html": index_html,
+    }
+
+    logging.info(f"Extracted {len(layouts)} layout files directly from HTML (no AI)")
+    return layouts
 
 
 def hugoify_nextjs(info: dict, dev_url: str = None) -> dict:

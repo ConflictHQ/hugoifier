@@ -210,9 +210,9 @@ def _convert_raw_html(
 
     logging.info(f"Converting raw HTML theme: {theme_name}")
 
-    # Use AI to convert the main HTML file to Hugo layouts
+    # Direct HTML extraction — use the actual HTML as-is, no AI reinterpretation
     main_html = _pick_main_html(html_files)
-    logging.info(f"Converting {main_html} ...")
+    logging.info(f"Extracting {main_html} ...")
     hugo_layouts = hugoify_html(main_html)
 
     os.makedirs(output_dir, exist_ok=True)
@@ -228,11 +228,16 @@ def _convert_raw_html(
         with open(dest, 'w') as f:
             f.write(content)
 
-    # Copy CSS/JS/images
-    for ext_dir in ('css', 'js', 'images', 'img', 'assets', 'fonts'):
-        src = os.path.join(input_path, ext_dir)
-        if os.path.isdir(src):
-            _copy_dir(src, os.path.join(output_dir, 'themes', theme_name, 'static', ext_dir))
+    # Copy ALL static assets from the HTML theme directory
+    theme_static = os.path.join(output_dir, 'themes', theme_name, 'static')
+    for item in os.listdir(input_path):
+        src = os.path.join(input_path, item)
+        if os.path.isdir(src) and item not in ('__MACOSX', '.git', 'node_modules'):
+            _copy_dir(src, os.path.join(theme_static, item))
+        elif os.path.isfile(src) and not item.endswith('.html'):
+            # Copy non-HTML files (images, fonts, etc.) to static root
+            os.makedirs(theme_static, exist_ok=True)
+            shutil.copy2(src, os.path.join(theme_static, item))
 
     _write_minimal_hugo_toml(output_dir, theme_name)
 
