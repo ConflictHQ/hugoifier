@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hugoifier"
-version = "0.2.1"
+version = "0.3.0"
 description = "AI-powered Hugo theme converter with Decap CMS integration"
 readme = "README.md"
 license = "MIT"
