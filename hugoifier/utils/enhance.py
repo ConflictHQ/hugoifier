@@ -77,7 +77,8 @@ Instruction: {instruction}
 
 Return a JSON object mapping relative file paths (under content/) to full markdown files.
 Each file MUST start with YAML frontmatter (--- delimiters) including: title, date, description.
-Example: {{"blog/my-first-post.md": "---\\ntitle: My First Post\\ndate: 2026-03-17\\ndescription: A great post\\n---\\n\\nContent here..."}}
+IMPORTANT: Always quote title and description values in frontmatter with double quotes to handle colons and special characters.
+Example: {{"blog/my-first-post.md": "---\\ntitle: \\"My First Post\\"\\ndate: 2026-03-17\\ndescription: \\"A great post about things\\"\\n---\\n\\nContent here..."}}
 
 Return ONLY valid JSON, no explanation."""
 
@@ -90,6 +91,7 @@ Return ONLY valid JSON, no explanation."""
     content_dir = os.path.join(site_dir, 'content')
     written = []
     for rel_path, content in files.items():
+        content = _fix_frontmatter_quoting(content)
         dest = os.path.join(content_dir, rel_path)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         with open(dest, 'w') as f:
@@ -435,6 +437,26 @@ def _parse_ai_json(response: str) -> dict | None:
         except json.JSONDecodeError:
             pass
     return None
+
+
+def _fix_frontmatter_quoting(content: str) -> str:
+    """Quote YAML frontmatter values that contain colons (Hugo/YAML safety)."""
+    match = re.match(r'^(---\n)(.*?)(\n---)', content, re.DOTALL)
+    if not match:
+        return content
+    fm_lines = match.group(2).split('\n')
+    fixed = []
+    for line in fm_lines:
+        kv = re.match(r'^(\w+):\s+(.+)$', line)
+        if kv:
+            key, val = kv.group(1), kv.group(2)
+            # Quote if value contains a colon and isn't already quoted
+            if ':' in val and not (val.startswith('"') or val.startswith("'")):
+                val = f'"{val}"'
+            fixed.append(f'{key}: {val}')
+        else:
+            fixed.append(line)
+    return f"---\n{chr(10).join(fixed)}\n---{content[match.end():]}"
 
 
 def _chunks(lst, n):

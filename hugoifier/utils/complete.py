@@ -178,6 +178,7 @@ def _convert_nextjs(
     logging.info("Copied CSS files")
 
     _write_minimal_hugo_toml(output_dir, theme_name)
+    _write_default_layouts(output_dir, theme_name)
 
     # Create minimal content
     content_dir = os.path.join(output_dir, 'content')
@@ -240,6 +241,7 @@ def _convert_raw_html(
             shutil.copy2(src, os.path.join(theme_static, item))
 
     _write_minimal_hugo_toml(output_dir, theme_name)
+    _write_default_layouts(output_dir, theme_name)
 
     # Create minimal content
     content_dir = os.path.join(output_dir, 'content')
@@ -325,6 +327,46 @@ title = "{title}"
 theme = "{safe_name}"
 ''')
     logging.info("Wrote minimal hugo.toml")
+
+
+def _write_default_layouts(output_dir: str, theme_name: str):
+    """Write single.html and list.html if they don't already exist."""
+    layouts_dir = os.path.join(output_dir, 'themes', theme_name, 'layouts', '_default')
+    os.makedirs(layouts_dir, exist_ok=True)
+
+    single = os.path.join(layouts_dir, 'single.html')
+    if not os.path.exists(single):
+        with open(single, 'w') as f:
+            f.write('''{{ define "main" }}
+<div style="max-width:48rem;margin:0 auto;padding:3rem 1.5rem">
+  <a href="/" style="color:#515be3;font-size:0.875rem;display:inline-block;margin-bottom:2rem">&larr; Back to home</a>
+  <h1 style="font-size:2.25rem;font-weight:700;margin-bottom:1rem">{{ .Title }}</h1>
+  {{ with .Params.description }}<p style="color:#9ca3af;font-size:1.125rem;margin-bottom:1.5rem">{{ . }}</p>{{ end }}
+  {{ with .Date }}<time style="color:#6b7280;font-size:0.875rem;display:block;margin-bottom:2.5rem">{{ .Format "January 2, 2006" }}</time>{{ end }}
+  <article>{{ .Content }}</article>
+</div>
+{{ end }}
+''')
+        logging.info("Wrote default single.html")
+
+    list_html = os.path.join(layouts_dir, 'list.html')
+    if not os.path.exists(list_html):
+        with open(list_html, 'w') as f:
+            f.write('''{{ define "main" }}
+<div style="max-width:48rem;margin:0 auto;padding:3rem 1.5rem">
+  <a href="/" style="color:#515be3;font-size:0.875rem;display:inline-block;margin-bottom:2rem">&larr; Back to home</a>
+  <h1 style="font-size:2.25rem;font-weight:700;margin-bottom:3rem">{{ .Title }}</h1>
+  {{ range .Pages }}
+  <a href="{{ .Permalink }}" style="display:block;padding:1.5rem;border-radius:1rem;border:1px solid #374151;margin-bottom:1.5rem;text-decoration:none;color:inherit">
+    <h2 style="font-size:1.25rem;font-weight:600;margin-bottom:0.5rem">{{ .Title }}</h2>
+    {{ with .Params.description }}<p style="color:#9ca3af">{{ . }}</p>{{ end }}
+    {{ with .Date }}<time style="color:#6b7280;font-size:0.875rem;margin-top:0.75rem;display:block">{{ .Format "January 2, 2006" }}</time>{{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+''')
+        logging.info("Wrote default list.html")
 
 
 def _pick_main_html(html_files: list) -> str:
