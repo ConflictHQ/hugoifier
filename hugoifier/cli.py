@@ -19,9 +19,9 @@ from .utils.cloudflare import configure_cloudflare
 from .utils.complete import complete
 from .utils.decapify import decapify
 from .utils.deploy import deploy
+from .utils.enhance import alt_text, enhance, generate, seo
 from .utils.hugoify import hugoify
 from .utils.parser import parse
-from .utils.enhance import enhance, generate, seo, alt_text
 from .utils.translate import translate
 
 

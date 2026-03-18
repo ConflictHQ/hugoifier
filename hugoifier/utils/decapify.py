@@ -394,5 +394,4 @@ def _create_media_dir(site_dir: str):
     os.makedirs(media_dir, exist_ok=True)
     gitkeep = os.path.join(media_dir, '.gitkeep')
     if not os.path.exists(gitkeep):
-        with open(gitkeep, 'w') as f:
-            pass
+        open(gitkeep, 'w').close()

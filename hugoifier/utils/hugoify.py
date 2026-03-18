@@ -42,15 +42,6 @@ def hugoify_html(html_path: str) -> dict:
 
     logging.info(f"Read {len(html)} chars from {html_path}")
 
-    # Extract <head> content (CSS links, meta, fonts, etc.)
-    head_extras = _extract_head_content(html)
-
-    # Extract and rewrite CSS/JS paths to be relative to Hugo static/
-    css_links = re.findall(r'<link[^>]+rel=["\']stylesheet["\'][^>]*/?>',
-                           html, re.DOTALL | re.IGNORECASE)
-    js_links = re.findall(r'<script[^>]+src=["\'][^"\']+["\'][^>]*>.*?</script>',
-                          html, re.DOTALL)
-
     # Extract <body> content
     body_match = re.search(r'<body[^>]*>(.*?)</body>', html, re.DOTALL)
     body_content = body_match.group(1).strip() if body_match else html
@@ -144,7 +135,6 @@ def _capture_rendered_html(dev_url: str, info: dict) -> dict:
     and convert it into Hugo layout files. This gives pixel-perfect results.
     """
     import urllib.request
-    import urllib.parse
 
     logging.info(f"Capturing rendered HTML from {dev_url} ...")
 
