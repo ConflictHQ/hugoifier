@@ -21,6 +21,7 @@ from .utils.decapify import decapify
 from .utils.deploy import deploy
 from .utils.hugoify import hugoify
 from .utils.parser import parse
+from .utils.enhance import enhance, generate, seo, alt_text
 from .utils.translate import translate
 
 
@@ -78,6 +79,24 @@ def main():
     cloudflare_parser.add_argument("path", help="Path to the site")
     cloudflare_parser.add_argument("zone", help="Cloudflare zone")
 
+    # generate — AI content generation
+    generate_parser = subparsers.add_parser("generate", help="Generate content pages using AI")
+    generate_parser.add_argument("path", help="Path to the Hugo site directory")
+    generate_parser.add_argument("--prompt", default=None, help="Text prompt describing what content to generate")
+    generate_parser.add_argument("--from-file", default=None, help="Example markdown file to use as style reference")
+
+    # seo — add meta descriptions + OG tags
+    seo_parser = subparsers.add_parser("seo", help="Add missing meta descriptions and OG tags")
+    seo_parser.add_argument("path", help="Path to the Hugo site directory")
+
+    # alt-text — generate image alt text
+    alttext_parser = subparsers.add_parser("alt-text", help="Generate alt text for images in templates")
+    alttext_parser.add_argument("path", help="Path to the Hugo site directory")
+
+    # enhance — run all enhancements (seo + alt-text)
+    enhance_parser = subparsers.add_parser("enhance", help="Run all AI enhancements (seo + alt-text)")
+    enhance_parser.add_argument("path", help="Path to the Hugo site directory")
+
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -116,6 +135,14 @@ def main():
             print(deploy(args.path, args.zone))
         elif args.command == "cloudflare":
             print(configure_cloudflare(args.path, args.zone))
+        elif args.command == "generate":
+            print(generate(args.path, prompt=args.prompt, from_file=args.from_file))
+        elif args.command == "seo":
+            print(seo(args.path))
+        elif args.command == "alt-text":
+            print(alt_text(args.path))
+        elif args.command == "enhance":
+            print(enhance(args.path))
         else:
             parser.print_help()
     except (ValueError, EnvironmentError) as e:
