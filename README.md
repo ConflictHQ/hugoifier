@@ -82,6 +82,4 @@ We're grateful to both communities for building the tools that make this project
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
-
-Made by [Conflict](https://weareconflict.com).
+MIT — [CONFLICT](https://weareconflict.com)
